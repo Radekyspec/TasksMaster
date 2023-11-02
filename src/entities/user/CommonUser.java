@@ -1,7 +1,6 @@
-package entity.user;
+package entities.user;
 
-import entity.organization.Organization;
-import entity.user.User;
+import entities.organization.Organization;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package entity.todo;
+package entities.todo;
 
 
 public class CommonToDo implements ToDo{

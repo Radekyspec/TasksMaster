@@ -1,6 +1,6 @@
-package entity.organization;
+package entities.organization;
 
-import entity.user.User;
+import entities.user.User;
 
 public class CommonOrganizationFactory {
     public static CommonOrganization create(int ID, String name, User owner){

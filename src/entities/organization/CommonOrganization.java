@@ -1,7 +1,7 @@
-package entity.organization;
+package entities.organization;
 
-import entity.project.Project;
-import entity.user.User;
+import entities.project.Project;
+import entities.user.User;
 
 import java.util.HashMap;
 import java.util.Map;

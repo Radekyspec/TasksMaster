@@ -1,4 +1,4 @@
-package entity.todo_panel;
+package entities.todo_panel;
 
 public interface ToDoPanel {
 }
