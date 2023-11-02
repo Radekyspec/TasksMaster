@@ -3,7 +3,7 @@ package entity.user;
 import java.time.LocalDateTime;
 
 public class CommonUserFactory {
-    public User create(int ID, String name, String password, LocalDateTime createDateTime, String email){
+    public static User create(int ID, String name, String password, LocalDateTime createDateTime, String email){
         return new CommonUser(ID, name, password, createDateTime, email);
     }
 }

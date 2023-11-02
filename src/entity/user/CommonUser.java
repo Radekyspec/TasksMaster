@@ -42,6 +42,11 @@ public class CommonUser implements User {
         return creatDateTime;
     }
 
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
     public void setRule(){
 
     }
