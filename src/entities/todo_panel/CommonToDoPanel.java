@@ -1,6 +1,6 @@
-package entity.todo_panel;
+package entities.todo_panel;
 
-import entity.todo_list.ToDoList;
+import entities.todo_list.ToDoList;
 
 import java.util.Map;
 
