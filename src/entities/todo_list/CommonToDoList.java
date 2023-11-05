@@ -4,13 +4,17 @@ import entities.todo.ToDo;
 
 import java.util.Map;
 
-public class CommonToDoList implements ToDoList{
-    private Integer ID;
+public class CommonToDoList implements ToDoList {
+    private final int ID;
     private String name;
     private String detail;
     private Map<Integer, ToDo> toDos;
 
-    public CommonToDoList(Integer ID){
+    public CommonToDoList(int ID) {
         this.ID = ID;
+    }
+
+    public int getId() {
+        return ID;
     }
 }

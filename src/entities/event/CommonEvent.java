@@ -1,4 +1,4 @@
 package entities.event;
 
-public class CommonEvent {
+public class CommonEvent implements Event {
 }

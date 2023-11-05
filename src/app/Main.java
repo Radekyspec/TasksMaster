@@ -17,5 +17,12 @@ public class Main {
 
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(cardLayout, views, viewManagerModel);
+
+        // views.add(signupView, signupView.getViewName());
+        // viewManagerModel.setActiveView(signupView.getViewName());
+        // viewManagerModel.firePropertyChanged();
+
+        application.pack();
+        application.setVisible(true);
     }
 }

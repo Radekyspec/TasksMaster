@@ -7,7 +7,7 @@ import java.beans.PropertyChangeSupport;
 
 public class SignupViewModel extends ViewModel {
     public static final String SIGNUP_TITLE_LABEL = "Create Your Account";
-    public static final String SIGNUP_USERNAME_LABEL = "Username";
+    public static final String SIGNUP_USERNAME_LABEL = "Enter Username";
     public static final String SIGNUP_PASSWORD_LABEL = "Enter Password";
     public static final String SIGNUP_REPEAT_PASSWORD_LABEL = "Enter Password again";
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
@@ -22,6 +22,7 @@ public class SignupViewModel extends ViewModel {
 
     public void setSignupState(SignupState signupState) {
         this.signupState = signupState;
+        firePropertyChanged();
     }
 
     public SignupState getSignupState() {
