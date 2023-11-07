@@ -1,5 +1,7 @@
 package use_case.signup;
 
+import data_access.signup.SignupUserDataAccessInterface;
+
 public class SignupInteractor implements SignupInputBoundary {
     private final SignupOutputBoundary signupPresenter;
     private final SignupUserDataAccessInterface userDataAccessObject;

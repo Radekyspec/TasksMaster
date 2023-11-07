@@ -3,13 +3,17 @@ package view.signup;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import use_case.signup.SignupInputData;
 import view.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Arrays;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     private final SignupViewModel signupViewModel;
@@ -39,11 +43,72 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 repeatPasswordInputField
         );
 
+        usernameInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setUsername(usernameInputField.getText() + e.getKeyChar());
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                }
+        );
+        passwordInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setPassword(Arrays.toString(passwordInputField.getPassword()) + e.getKeyChar());
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {}
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {}
+                }
+        );
+        repeatPasswordInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setRepeatPassword(
+                                Arrays.toString(repeatPasswordInputField.getPassword()) + e.getKeyChar()
+                        );
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {}
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {}
+                }
+        );
+
         JPanel buttons = new JPanel();
         signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
         cancel = new JButton(SignupViewModel.SIGNUP_CANCEL_BUTTON_LABEL);
         buttons.add(signUp);
         buttons.add(cancel);
+
+        signUp.addActionListener(
+                (e) -> {
+                    SignupState state = signupViewModel.getSignupState();
+                    signupController.execute(
+                            state.getUsername(),
+                            state.getPassword(),
+                            state.getRepeatPassword()
+                    );
+                }
+        );
 
         title = new JLabel(SignupViewModel.SIGNUP_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT);

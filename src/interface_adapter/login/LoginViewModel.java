@@ -12,15 +12,11 @@ public class LoginViewModel extends ViewModel {
     public static final String LOGIN_USERNAME_LABEL = "Username";
     public static final String LOGIN_PASSWORD_LABEL = "Password";
 
-    private LoginState loginState = new LoginState();
+    private final LoginState loginState = new LoginState();
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public LoginViewModel() {
         super("log in");
-    }
-
-    public void setLoginState(LoginState loginState) {
-        this.loginState = loginState;
     }
 
     public LoginState getLoginState() {

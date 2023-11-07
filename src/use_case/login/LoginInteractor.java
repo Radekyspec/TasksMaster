@@ -1,5 +1,7 @@
 package use_case.login;
 
+import data_access.login.LoginUserDataAccessInterface;
+
 public class LoginInteractor implements LoginInputBoundary {
     private final LoginOutputBoundary loginPresenter;
     private final LoginUserDataAccessInterface userDataAccessObject;

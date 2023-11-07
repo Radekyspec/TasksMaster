@@ -13,16 +13,11 @@ public class SignupViewModel extends ViewModel {
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
     public static final String SIGNUP_CANCEL_BUTTON_LABEL = "Cancel";
 
-    private SignupState signupState = new SignupState();
+    private final SignupState signupState = new SignupState();
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public SignupViewModel() {
         super("sign up");
-    }
-
-    public void setSignupState(SignupState signupState) {
-        this.signupState = signupState;
-        firePropertyChanged();
     }
 
     public SignupState getSignupState() {
