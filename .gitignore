@@ -25,4 +25,5 @@ replay_pid*
 
 # Intellij config
 .idea/
+.out/
 *.iml
