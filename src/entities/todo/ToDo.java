@@ -1,5 +1,7 @@
 package entities.todo;
 
+import java.util.Map;
+
 public interface ToDo {
-    getToDo(); 
+    Map<String, Object> getToDo();
 }
