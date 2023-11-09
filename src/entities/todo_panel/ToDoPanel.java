@@ -1,5 +1,7 @@
 package entities.todo_panel;
 
+import java.util.Map;
+
 public interface ToDoPanel {
-    getToDoPanel()
+    Map<String, Object> getToDoPanel();
 }
