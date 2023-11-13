@@ -2,7 +2,6 @@ package entities.todo_panel;
 
 import entities.todo_list.ToDoList;
 import java.util.Map;
-import java.util.HashMap;
 
 public class CommonToDoPanel implements ToDoPanel{
     private final Integer ID;
@@ -15,11 +14,13 @@ public class CommonToDoPanel implements ToDoPanel{
         this.lists = lists;
     }
 
+    /**
+     * Returns this To_DoPanel object, which pack this to_doPanel in a whole.
+     * Comparing to return a hashmap, it eliminates further modifications.
+     * @return a To_DoPanel object.
+     */
     @Override
-    public Map<String, Object> getToDoPanel(){
-        Map<String, Object> tdpM = new HashMap<>(); //Object and Objects are NOT the same.
-        tdpM.put("ID", ID);
-        tdpM.put("lists", lists);
-        return tdpM;
+    public ToDoPanel getToDoPanel(){
+        return this;
     }
 }

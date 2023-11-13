@@ -1,8 +1,5 @@
 package entities.todo;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class CommonToDo implements ToDo{
     private final Integer ID; // No one will pass an id inside, create a unique id once it created
     // Is Integer type proper here when facing large id?
@@ -19,13 +16,14 @@ public class CommonToDo implements ToDo{
         // We should have a db that store our data.
         // We store data temporarily in a text file.
     }
-    
+
+    /**
+     * Returns this To_Do object, which pack this to_do in a whole.
+     * Comparing to return a hashmap, it eliminates further modifications.
+     * @return a To_Do object.
+     */
     @Override
-    public Map<String, Object> getToDo(){
-        Map<String, Object> tdM = new HashMap<>();
-        tdM.put("ID", ID);
-        tdM.put("target", target);
-        tdM.put("assignedTo", assignedTo);
-        return tdM;
+    public ToDo getToDo() {
+        return this;
     }
 }

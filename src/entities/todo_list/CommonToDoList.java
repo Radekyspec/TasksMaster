@@ -2,7 +2,6 @@ package entities.todo_list;
 
 import entities.todo.ToDo;
 import java.util.Map;
-import java.util.HashMap;
 
 public class CommonToDoList implements ToDoList{
     private final Integer ID;
@@ -17,14 +16,14 @@ public class CommonToDoList implements ToDoList{
         this.detail = detail;
         this.toDos = toDos;
     }
-    
+
+    /**
+     * Returns this To_DoList object, which pack this to_doList in a whole.
+     * Comparing to return a hashmap, it eliminates further modifications.
+     * @return a To_DoList object.
+     */
     @Override
-    public Map<String, Object> getToDoList(){
-        Map<String, Object> tdlMap = new HashMap<>();
-        tdlMap.put("ID", ID);
-        tdlMap.put("name", name);
-        tdlMap.put("detail", detail);
-        tdlMap.put("toDos", toDos);
-        return tdlMap;
+    public ToDoList getToDoList(){
+        return this;
     }
 }
