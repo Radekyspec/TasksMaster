@@ -3,7 +3,6 @@ package view.signup;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
-import use_case.signup.SignupInputData;
 import view.LabelTextPanel;
 
 import javax.swing.*;
@@ -49,14 +48,17 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     public void keyTyped(KeyEvent e) {
                         SignupState state = signupViewModel.getSignupState();
                         state.setUsername(usernameInputField.getText() + e.getKeyChar());
+                        signupViewModel.firePropertyChanged();
                     }
 
                     @Override
                     public void keyPressed(KeyEvent e) {
+                        // Do nothing since done in keyTyped.
                     }
 
                     @Override
                     public void keyReleased(KeyEvent e) {
+                        // Do nothing since done in keyTyped.
                     }
                 }
         );
@@ -66,13 +68,18 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     public void keyTyped(KeyEvent e) {
                         SignupState state = signupViewModel.getSignupState();
                         state.setPassword(Arrays.toString(passwordInputField.getPassword()) + e.getKeyChar());
+                        signupViewModel.firePropertyChanged();
                     }
 
                     @Override
-                    public void keyPressed(KeyEvent e) {}
+                    public void keyPressed(KeyEvent e) {
+                        // Do nothing because done in keyTyped.
+                    }
 
                     @Override
-                    public void keyReleased(KeyEvent e) {}
+                    public void keyReleased(KeyEvent e) {
+                        // Do nothing because done in keyTyped.
+                    }
                 }
         );
         repeatPasswordInputField.addKeyListener(
@@ -83,13 +90,18 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                         state.setRepeatPassword(
                                 Arrays.toString(repeatPasswordInputField.getPassword()) + e.getKeyChar()
                         );
+                        signupViewModel.firePropertyChanged();
                     }
 
                     @Override
-                    public void keyPressed(KeyEvent e) {}
+                    public void keyPressed(KeyEvent e) {
+                        // Do nothing because done in keyTyped.
+                    }
 
                     @Override
-                    public void keyReleased(KeyEvent e) {}
+                    public void keyReleased(KeyEvent e) {
+                        // Do nothing because done in keyTyped.
+                    }
                 }
         );
 
@@ -100,13 +112,15 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         buttons.add(cancel);
 
         signUp.addActionListener(
-                (e) -> {
-                    SignupState state = signupViewModel.getSignupState();
-                    signupController.execute(
-                            state.getUsername(),
-                            state.getPassword(),
-                            state.getRepeatPassword()
-                    );
+                e -> {
+                    if (e.getSource().equals(signUp)) {
+                        SignupState state = signupViewModel.getSignupState();
+                        signupController.execute(
+                                state.getUsername(),
+                                state.getPassword(),
+                                state.getRepeatPassword()
+                        );
+                    }
                 }
         );
 
