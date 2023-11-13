@@ -5,11 +5,9 @@ import java.util.Map;
 
 public class CommonToDoPanel implements ToDoPanel{
     private final Integer ID;
-    private final Integer LastID;
     private Map<Integer, ToDoList> lists;
 
     public CommonToDoPanel(Integer LastID, Map<Integer, ToDoList> lists){
-        this.LastID = LastID;
         this.ID = LastID + 1;
         this.lists = lists;
     }
@@ -22,5 +20,23 @@ public class CommonToDoPanel implements ToDoPanel{
     @Override
     public ToDoPanel getToDoPanel(){
         return this;
+    }
+
+    /**
+     * Returns ID of this obj.
+     * @return its ID.
+     */
+    @Override
+    public Integer getId() {
+        return this.ID;
+    }
+
+    /**
+     * Returns lists of this obj.
+     * @return all the TO_DOList managed by this panel.
+     */
+    @Override
+    public Map<Integer, ToDoList> getLists() {
+        return this.lists;
     }
 }

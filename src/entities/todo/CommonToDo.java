@@ -26,4 +26,31 @@ public class CommonToDo implements ToDo{
     public ToDo getToDo() {
         return this;
     }
+
+    /**
+     * Returns target of this obj.
+     * @return its target.
+     */
+    @Override
+    public String getTarget() {
+        return this.target;
+    }
+
+    /**
+     * Returns ID of this obj.
+     * @return its ID.
+     */
+    @Override
+    public Integer getId() {
+        return this.ID;
+    }
+
+    /**
+     * Returns the people who is assigned to this obj.
+     * @return its assginto[].
+     */
+    @Override
+    public String[] getAssignedTo() {
+        return this.assignedTo;
+    }
 }
