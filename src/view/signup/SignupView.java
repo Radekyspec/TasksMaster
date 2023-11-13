@@ -1,5 +1,7 @@
 package view.signup;
 
+import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -15,31 +17,42 @@ import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
+    private final ViewManagerModel viewManagerModel;
     private final SignupViewModel signupViewModel;
     private final SignupController signupController;
+    private final LoginViewModel loginViewModel;
     private final JLabel title;
     private final JTextField usernameInputField = new JTextField(15);
+    private final JLabel usernameHint = new JLabel();
     private final JPasswordField passwordInputField = new JPasswordField(15);
+    private final JLabel passwordHint = new JLabel();
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
+    private final JLabel repeatPasswordHint = new JLabel();
     private final JButton signUp;
     private final JButton cancel;
 
-    public SignupView(SignupViewModel signupViewModel, SignupController signupController) {
+    public SignupView(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel,
+                      SignupController signupController, LoginViewModel loginViewModel) {
+        this.viewManagerModel = viewManagerModel;
         this.signupViewModel = signupViewModel;
         this.signupController = signupController;
+        this.loginViewModel = loginViewModel;
         signupViewModel.addPropertyChangeListener(this);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.SIGNUP_USERNAME_LABEL),
-                usernameInputField
+                usernameInputField,
+                usernameHint
         );
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.SIGNUP_PASSWORD_LABEL),
-                passwordInputField
+                passwordInputField,
+                passwordHint
         );
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.SIGNUP_REPEAT_PASSWORD_LABEL),
-                repeatPasswordInputField
+                repeatPasswordInputField,
+                repeatPasswordHint
         );
 
         usernameInputField.addKeyListener(
@@ -111,16 +124,14 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         buttons.add(signUp);
         buttons.add(cancel);
 
-        signUp.addActionListener(
+        signUp.addActionListener(this);
+        cancel.addActionListener(
                 e -> {
-                    if (e.getSource().equals(signUp)) {
-                        SignupState state = signupViewModel.getSignupState();
-                        signupController.execute(
-                                state.getUsername(),
-                                state.getPassword(),
-                                state.getRepeatPassword()
-                        );
+                    if (!e.getSource().equals(cancel)) {
+                        return;
                     }
+                    viewManagerModel.setActiveView(loginViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
                 }
         );
 
@@ -140,20 +151,28 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.exit(0);
+        if (!e.getSource().equals(signUp)) {
+            return;
+        }
+        SignupState state = signupViewModel.getSignupState();
+        signupController.execute(
+                state.getUsername(),
+                state.getPassword(),
+                state.getRepeatPassword()
+        );
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SignupState state = (SignupState) evt.getNewValue();
         if (state.getUsernameError() != null) {
-
+            usernameHint.setText(state.getUsernameError());
         }
         if (state.getPasswordError() != null) {
-
+            passwordHint.setText(state.getPasswordError());
         }
         if (state.getRepeatPasswordError() != null) {
-
+            repeatPasswordHint.setText(state.getRepeatPasswordError());
         }
     }
 }
