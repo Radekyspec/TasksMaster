@@ -59,19 +59,19 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState state = signupViewModel.getSignupState();
-                        state.setUsername(usernameInputField.getText() + e.getKeyChar());
-                        signupViewModel.firePropertyChanged();
+                        // Do nothing since done in keyReleased.
                     }
 
                     @Override
                     public void keyPressed(KeyEvent e) {
-                        // Do nothing since done in keyTyped.
+                        // Do nothing since done in keyReleased.
                     }
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        // Do nothing since done in keyTyped.
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setUsername(usernameInputField.getText());
+                        signupViewModel.firePropertyChanged();
                     }
                 }
         );
@@ -79,19 +79,19 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState state = signupViewModel.getSignupState();
-                        state.setPassword(Arrays.toString(passwordInputField.getPassword()) + e.getKeyChar());
-                        signupViewModel.firePropertyChanged();
+                        // Do nothing because done in keyReleased.
                     }
 
                     @Override
                     public void keyPressed(KeyEvent e) {
-                        // Do nothing because done in keyTyped.
+                        // Do nothing because done in keyReleased.
                     }
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        // Do nothing because done in keyTyped.
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setPassword(Arrays.toString(passwordInputField.getPassword()));
+                        signupViewModel.firePropertyChanged();
                     }
                 }
         );
@@ -99,21 +99,19 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState state = signupViewModel.getSignupState();
-                        state.setRepeatPassword(
-                                Arrays.toString(repeatPasswordInputField.getPassword()) + e.getKeyChar()
-                        );
-                        signupViewModel.firePropertyChanged();
+                        // Do nothing because done in keyReleased.
                     }
 
                     @Override
                     public void keyPressed(KeyEvent e) {
-                        // Do nothing because done in keyTyped.
+                        // Do nothing because done in keyReleased.
                     }
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        // Do nothing because done in keyTyped.
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setRepeatPassword(Arrays.toString(repeatPasswordInputField.getPassword()));
+                        signupViewModel.firePropertyChanged();
                     }
                 }
         );
