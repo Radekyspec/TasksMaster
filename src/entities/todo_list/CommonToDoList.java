@@ -1,7 +1,6 @@
 package entities.todo_list;
 
 import entities.todo.ToDo;
-
 import java.util.Map;
 
 public class CommonToDoList implements ToDoList{
