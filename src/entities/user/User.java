@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public interface User {
     int getID();
+
     String getName();
 
     String getPassword();
@@ -11,5 +12,6 @@ public interface User {
     LocalDateTime getCreationTime();
 
     String getEmail();
+
     void setRule();
 }

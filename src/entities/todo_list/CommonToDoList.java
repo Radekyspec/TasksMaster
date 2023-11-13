@@ -26,4 +26,8 @@ public class CommonToDoList implements ToDoList{
     public ToDoList getToDoList(){
         return this;
     }
+
+    public int getId() {
+        return ID;
+    }
 }
