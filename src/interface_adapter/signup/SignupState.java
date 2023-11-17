@@ -23,6 +23,7 @@ public class SignupState {
 
     public void setUsername(String username) {
         this.username = username;
+        System.out.println(this.username);
     }
 
     public String getUsernameError() {
