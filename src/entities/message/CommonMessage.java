@@ -19,6 +19,10 @@ public class CommonMessage implements Message {
         comments = new HashMap<>();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getId() {
         return ID;

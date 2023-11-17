@@ -59,6 +59,10 @@ public class CommonProject implements Project {
         return schedule;
     }
 
+    /**
+     * Set the to_do panel as current to_do panel for the project
+     * @param toDoPanel a to_do panel object
+     */
     @Override
     public void setToDoPanel(ToDoPanel toDoPanel) {
         this.toDoPanel = toDoPanel;

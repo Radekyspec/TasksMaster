@@ -21,11 +21,19 @@ public class CommonOrganization implements Organization {
         members = new HashMap<>();
     }
 
+    /**
+     * Return the ID of the Organization
+     * @return its ID
+     */
     @Override
     public int getID() {
         return ID;
     }
 
+    /**
+     * Return the name of the Organization
+     * @return its name
+     */
     @Override
     public String getName() {
         return name;
