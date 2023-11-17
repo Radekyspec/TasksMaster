@@ -13,6 +13,12 @@ public class CommonOrganization implements Organization {
     private final Map<Integer, Project> project_set;
     private final Map<Integer, User> members;
 
+    /**
+     * Return a new organization with ID, organization name, and owner.
+     * @param ID the ID of organization
+     * @param name the name of organization
+     * @param owner the owner of organization
+     */
     public CommonOrganization(int ID, String name, User owner) {
         this.ID = ID;
         this.name = name;
@@ -39,16 +45,28 @@ public class CommonOrganization implements Organization {
         return name;
     }
 
+    /**
+     * Return the owner of the Organization
+     * @return its owner
+     */
     @Override
     public User getOwner() {
         return owner;
     }
 
+    /**
+     * Return the set of all project of the Organization
+     * @return its project_set
+     */
     @Override
     public Map<Integer, Project> getProject_set() {
         return project_set;
     }
 
+    /**
+     * Return all members of the Organization
+     * @return its members in the Organization
+     */
     @Override
     public Map<Integer, User> getMembers() {
         return members;
