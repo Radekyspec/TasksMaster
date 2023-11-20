@@ -1,4 +1,5 @@
-package use_case.login;
+package data_access.login;
 
 public interface LoginUserDataAccessInterface {
+
 }

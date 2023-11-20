@@ -6,6 +6,7 @@ import java.util.Map;
 
 public interface ToDoPanel {
     /**
+<<<<<<< HEAD
      * Returns ID of this obj.
      * @return its ID.
      */

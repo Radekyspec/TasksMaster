@@ -5,7 +5,6 @@ import entities.todo.ToDo;
 import java.util.Map;
 
 public interface ToDoList {
-
     /**
      * Returns ID of this obj.
      * @return its ID.
@@ -28,7 +27,13 @@ public interface ToDoList {
     /**
      * Returns toDos of this obj.
      * A Map contains pairs of (ID of TO_DO, TO_DO)
-     * @return A map contains pairs of id and to_dog.
+     * @return A map contains pairs of id and to_do.
      */
     Map<Integer, ToDo> getToDos();
+
+    /**
+     * add a new to_do into the to_do list
+     * @param toDo a new to_do
+     */
+    void addToDos(ToDo toDo);
 }

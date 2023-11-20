@@ -6,21 +6,18 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class LoginViewModel extends ViewModel {
+    public static final String LOGIN_TITLE_LABEL = "Log in to TasksMaster";
     public static final String LOGIN_BUTTON_LABEL = "Log in";
     public static final String LOGIN_CANCEL_BUTTON_LABEL = "Cancel";
     public static final String LOGIN_SIGNUP_BUTTON_LABEL = "Sign up";
     public static final String LOGIN_USERNAME_LABEL = "Username";
     public static final String LOGIN_PASSWORD_LABEL = "Password";
 
-    private LoginState loginState = new LoginState();
+    private final LoginState loginState = new LoginState();
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public LoginViewModel() {
         super("log in");
-    }
-
-    public void setLoginState(LoginState loginState) {
-        this.loginState = loginState;
     }
 
     public LoginState getLoginState() {

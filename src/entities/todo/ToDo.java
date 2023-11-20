@@ -3,7 +3,6 @@ package entities.todo;
 import java.util.Map;
 
 public interface ToDo {
-
     /**
      * Returns target of this obj.
      * @return its target.

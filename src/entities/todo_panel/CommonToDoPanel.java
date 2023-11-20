@@ -1,15 +1,17 @@
 package entities.todo_panel;
 
 import entities.todo_list.ToDoList;
+
+import java.util.HashMap;
 import java.util.Map;
 
 public class CommonToDoPanel implements ToDoPanel{
     private Integer ID;
     private Map<Integer, ToDoList> lists;
 
-    public CommonToDoPanel(Integer ID, Map<Integer, ToDoList> lists){
+    public CommonToDoPanel(Integer ID){
         this.ID = ID;
-        this.lists = lists;
+        this.lists = new HashMap<>();
     }
 
     /**
