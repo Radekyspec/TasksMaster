@@ -1,12 +1,16 @@
 package entities.todo_panel;
 
+import entities.todo_list.ToDoList;
+
+import java.util.Map;
+
 public class CommonToDoPanelFactory {
     /**
-     * Create a new to_do Panel that contain space for many to_do lists
-     * @param ID the ID of the to_do Panel
-     * @return a new to_do Panel object
+     * create a CommonToDoPanel class that contains things as followed.
+     * @param ID the identification of this To_DoPanel
+     * @return a CommonToDoPanel class
      */
-    public static CommonToDoPanel create(int ID){
+    public static CommonToDoPanel create(Integer ID){
         return new CommonToDoPanel(ID);
     }
 }
