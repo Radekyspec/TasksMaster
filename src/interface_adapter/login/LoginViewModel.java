@@ -6,6 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class LoginViewModel extends ViewModel {
+    public static final String LOGIN_TITLE_LABEL = "Log in to TasksMaster";
     public static final String LOGIN_BUTTON_LABEL = "Log in";
     public static final String LOGIN_CANCEL_BUTTON_LABEL = "Cancel";
     public static final String LOGIN_SIGNUP_BUTTON_LABEL = "Sign up";
