@@ -17,11 +17,8 @@ import java.beans.PropertyChangeListener;
 import java.util.Arrays;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
-    private final ViewManagerModel viewManagerModel;
     private final SignupViewModel signupViewModel;
     private final SignupController signupController;
-    private final LoginViewModel loginViewModel;
-    private final JLabel title;
     private final JTextField usernameInputField = new JTextField(15);
     private final JLabel usernameHint = new JLabel();
     private final JPasswordField passwordInputField = new JPasswordField(15);
@@ -33,10 +30,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     public SignupView(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel,
                       SignupController signupController, LoginViewModel loginViewModel) {
-        this.viewManagerModel = viewManagerModel;
         this.signupViewModel = signupViewModel;
         this.signupController = signupController;
-        this.loginViewModel = loginViewModel;
         signupViewModel.addPropertyChangeListener(this);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
@@ -133,10 +128,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        title = new JLabel(SignupViewModel.SIGNUP_TITLE_LABEL);
+        JLabel title = new JLabel(SignupViewModel.SIGNUP_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
+        this.add(new JLabel());
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);
@@ -165,12 +161,18 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         SignupState state = (SignupState) evt.getNewValue();
         if (state.getUsernameError() != null) {
             usernameHint.setText(state.getUsernameError());
+        } else {
+            usernameHint.setText("");
         }
         if (state.getPasswordError() != null) {
             passwordHint.setText(state.getPasswordError());
+        } else {
+            passwordHint.setText("");
         }
         if (state.getRepeatPasswordError() != null) {
             repeatPasswordHint.setText(state.getRepeatPasswordError());
+        } else {
+            repeatPasswordHint.setText("");
         }
     }
 }
