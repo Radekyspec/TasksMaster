@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonToDoList implements ToDoList{
-    private final int ID;
+    private final Integer ID;
     private final String name;
     private final String detail;
     private final Map<Integer, ToDo> toDos;
@@ -61,7 +61,6 @@ public class CommonToDoList implements ToDoList{
     public Map<Integer, ToDo> getToDos() {
         return this.toDos;
     }
-
     /**
      * add a new to_do into the to_do list
      *

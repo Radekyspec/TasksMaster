@@ -19,7 +19,7 @@ public class SignupUseCaseFactory {
             SignupUserDataAccessInterface signupUserDataAccessObject) {
         SignupController signupController = createSignupController(viewManagerModel,
                 loginViewModel, signupUserDataAccessObject);
-        return new SignupView(signupViewModel, signupController);
+        return new SignupView(viewManagerModel, signupViewModel, signupController, loginViewModel);
     }
 
     private static SignupController createSignupController(

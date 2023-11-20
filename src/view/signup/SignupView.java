@@ -1,5 +1,7 @@
 package view.signup;
 
+import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -17,48 +19,54 @@ import java.util.Arrays;
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     private final SignupViewModel signupViewModel;
     private final SignupController signupController;
-    private final JLabel title;
     private final JTextField usernameInputField = new JTextField(15);
+    private final JLabel usernameHint = new JLabel();
     private final JPasswordField passwordInputField = new JPasswordField(15);
+    private final JLabel passwordHint = new JLabel();
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
+    private final JLabel repeatPasswordHint = new JLabel();
     private final JButton signUp;
     private final JButton cancel;
 
-    public SignupView(SignupViewModel signupViewModel, SignupController signupController) {
+    public SignupView(ViewManagerModel viewManagerModel, SignupViewModel signupViewModel,
+                      SignupController signupController, LoginViewModel loginViewModel) {
         this.signupViewModel = signupViewModel;
         this.signupController = signupController;
         signupViewModel.addPropertyChangeListener(this);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.SIGNUP_USERNAME_LABEL),
-                usernameInputField
+                usernameInputField,
+                usernameHint
         );
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.SIGNUP_PASSWORD_LABEL),
-                passwordInputField
+                passwordInputField,
+                passwordHint
         );
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.SIGNUP_REPEAT_PASSWORD_LABEL),
-                repeatPasswordInputField
+                repeatPasswordInputField,
+                repeatPasswordHint
         );
 
         usernameInputField.addKeyListener(
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState state = signupViewModel.getSignupState();
-                        state.setUsername(usernameInputField.getText() + e.getKeyChar());
-                        signupViewModel.firePropertyChanged();
+                        // Do nothing since done in keyReleased.
                     }
 
                     @Override
                     public void keyPressed(KeyEvent e) {
-                        // Do nothing since done in keyTyped.
+                        // Do nothing since done in keyReleased.
                     }
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        // Do nothing since done in keyTyped.
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setUsername(usernameInputField.getText());
+                        signupViewModel.firePropertyChanged();
                     }
                 }
         );
@@ -66,19 +74,19 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState state = signupViewModel.getSignupState();
-                        state.setPassword(Arrays.toString(passwordInputField.getPassword()) + e.getKeyChar());
-                        signupViewModel.firePropertyChanged();
+                        // Do nothing because done in keyReleased.
                     }
 
                     @Override
                     public void keyPressed(KeyEvent e) {
-                        // Do nothing because done in keyTyped.
+                        // Do nothing because done in keyReleased.
                     }
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        // Do nothing because done in keyTyped.
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setPassword(Arrays.toString(passwordInputField.getPassword()));
+                        signupViewModel.firePropertyChanged();
                     }
                 }
         );
@@ -86,21 +94,19 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState state = signupViewModel.getSignupState();
-                        state.setRepeatPassword(
-                                Arrays.toString(repeatPasswordInputField.getPassword()) + e.getKeyChar()
-                        );
-                        signupViewModel.firePropertyChanged();
+                        // Do nothing because done in keyReleased.
                     }
 
                     @Override
                     public void keyPressed(KeyEvent e) {
-                        // Do nothing because done in keyTyped.
+                        // Do nothing because done in keyReleased.
                     }
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        // Do nothing because done in keyTyped.
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setRepeatPassword(Arrays.toString(repeatPasswordInputField.getPassword()));
+                        signupViewModel.firePropertyChanged();
                     }
                 }
         );
@@ -111,23 +117,22 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         buttons.add(signUp);
         buttons.add(cancel);
 
-        signUp.addActionListener(
+        signUp.addActionListener(this);
+        cancel.addActionListener(
                 e -> {
-                    if (e.getSource().equals(signUp)) {
-                        SignupState state = signupViewModel.getSignupState();
-                        signupController.execute(
-                                state.getUsername(),
-                                state.getPassword(),
-                                state.getRepeatPassword()
-                        );
+                    if (!e.getSource().equals(cancel)) {
+                        return;
                     }
+                    viewManagerModel.setActiveView(loginViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
                 }
         );
 
-        title = new JLabel(SignupViewModel.SIGNUP_TITLE_LABEL);
+        JLabel title = new JLabel(SignupViewModel.SIGNUP_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
+        this.add(new JLabel());
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);
@@ -140,20 +145,34 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.exit(0);
+        if (!e.getSource().equals(signUp)) {
+            return;
+        }
+        SignupState state = signupViewModel.getSignupState();
+        signupController.execute(
+                state.getUsername(),
+                state.getPassword(),
+                state.getRepeatPassword()
+        );
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SignupState state = (SignupState) evt.getNewValue();
         if (state.getUsernameError() != null) {
-
+            usernameHint.setText(state.getUsernameError());
+        } else {
+            usernameHint.setText("");
         }
         if (state.getPasswordError() != null) {
-
+            passwordHint.setText(state.getPasswordError());
+        } else {
+            passwordHint.setText("");
         }
         if (state.getRepeatPasswordError() != null) {
-
+            repeatPasswordHint.setText(state.getRepeatPasswordError());
+        } else {
+            repeatPasswordHint.setText("");
         }
     }
 }
