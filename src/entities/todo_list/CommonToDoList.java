@@ -4,27 +4,17 @@ import entities.todo.ToDo;
 import java.util.Map;
 
 public class CommonToDoList implements ToDoList{
-    private final Integer ID;
+    private Integer ID;
     private String name;
     private String detail;
     private Map<Integer, ToDo> toDos;
 
-    public CommonToDoList(Integer LastID, String name, String detail,
+    public CommonToDoList(Integer ID, String name, String detail,
                           Map<Integer, ToDo> toDos){
-        this.ID = LastID + 1; // No detect of ID < 0
+        this.ID = ID;
         this.name = name;
         this.detail = detail;
         this.toDos = toDos;
-    }
-
-    /**
-     * Returns this To_DoList object, which pack this to_doList in a whole.
-     * Comparing to return a hashmap, it eliminates further modifications.
-     * @return a To_DoList object.
-     */
-    @Override
-    public ToDoList getToDoList(){
-        return this;
     }
 
     /**
@@ -58,7 +48,7 @@ public class CommonToDoList implements ToDoList{
     /**
      * Returns toDos of this obj.
      * A Map contains pairs of (ID of TO_DO, TO_DO)
-     * @return A map contains pairs of id and to_do.
+     * @return A map contains pairs of id and to_dog.
      */
     @Override
     public Map<Integer, ToDo> getToDos() {

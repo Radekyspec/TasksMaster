@@ -4,22 +4,12 @@ import entities.todo_list.ToDoList;
 import java.util.Map;
 
 public class CommonToDoPanel implements ToDoPanel{
-    private final Integer ID;
+    private Integer ID;
     private Map<Integer, ToDoList> lists;
 
-    public CommonToDoPanel(Integer LastID, Map<Integer, ToDoList> lists){
-        this.ID = LastID + 1;
+    public CommonToDoPanel(Integer ID, Map<Integer, ToDoList> lists){
+        this.ID = ID;
         this.lists = lists;
-    }
-
-    /**
-     * Returns this To_DoPanel object, which pack this to_doPanel in a whole.
-     * Comparing to return a hashmap, it eliminates further modifications.
-     * @return a To_DoPanel object.
-     */
-    @Override
-    public ToDoPanel getToDoPanel(){
-        return this;
     }
 
     /**
