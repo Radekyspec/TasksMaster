@@ -11,6 +11,12 @@ public class CommonToDoList implements ToDoList{
     private final String detail;
     private final Map<Integer, ToDo> toDos;
 
+    /**
+     * build up a to_do list
+     * @param ID the ID
+     * @param name the name
+     * @param detail the detail
+     */
     public CommonToDoList(int ID, String name, String detail){
         this.ID = ID;
         this.name = name;
