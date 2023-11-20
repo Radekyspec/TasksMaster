@@ -8,13 +8,13 @@ import interface_adapter.signup.SignupViewModel;
 import view.LabelTextPanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Arrays;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
     private final LoginViewModel loginViewModel;
@@ -43,6 +43,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 passwordInputField,
                 passwordHint
         );
+        usernameHint.setForeground(Color.RED);
+        passwordHint.setForeground(Color.RED);
 
         usernameInputField.addKeyListener(
                 new KeyListener() {
@@ -79,7 +81,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                     @Override
                     public void keyReleased(KeyEvent e) {
                         LoginState state = loginViewModel.getLoginState();
-                        state.setPassword(Arrays.toString(passwordInputField.getPassword()));
+                        state.setPassword(String.valueOf(passwordInputField.getPassword()));
                         loginViewModel.firePropertyChanged();
                     }
                 }
