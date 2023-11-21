@@ -7,6 +7,12 @@ public class CommonComment implements Comment {
     private final User author;
     private final String content;
 
+    /**
+     * build up the new comment with user
+     * @param id the ID of the comment
+     * @param author the author of the comment
+     * @param content the content of the comment
+     */
     public CommonComment(int id, User author, String content) {
         ID = id;
         this.author = author;
@@ -14,16 +20,31 @@ public class CommonComment implements Comment {
     }
 
 
+    /**
+     * Return the ID of the comment
+     *
+     * @return its ID
+     */
     @Override
     public int getId() {
         return ID;
     }
 
+    /**
+     * Return the Author of the comment
+     *
+     * @return its author
+     */
     @Override
     public User getAuthor() {
         return author;
     }
 
+    /**
+     * Return the content of the comment
+     *
+     * @return its content
+     */
     @Override
     public String getContent() {
         return content;
