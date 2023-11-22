@@ -1,5 +1,7 @@
 package interface_adapter.signup;
 
+import interface_adapter.InputChecker;
+
 public class SignupState {
     private String username;
     private String usernameError;
@@ -23,14 +25,18 @@ public class SignupState {
 
     public void setUsername(String username) {
         this.username = username;
-        System.out.println(this.username);
+        if (InputChecker.containsNonWord(username)) {
+            setUsernameError("Username can only contains characters a-z, A-Z, 0-9 and _");
+        } else {
+            setUsernameError(null);
+        }
     }
 
     public String getUsernameError() {
         return usernameError;
     }
 
-    public void setUsernameError(String usernameError) {
+    private void setUsernameError(String usernameError) {
         this.usernameError = usernameError;
     }
 
@@ -40,13 +46,36 @@ public class SignupState {
 
     public void setPassword(String password) {
         this.password = password;
+        if (!InputChecker.containsCapital(password)) {
+            setPasswordError("Password must contains at least one capital letter");
+            return;
+        } else {
+            setPasswordError(null);
+        }
+        if (!InputChecker.containsLetter(password)) {
+            setPasswordError("Password must contains at least one letter");
+            return;
+        } else {
+            setPasswordError(null);
+        }
+        if (!InputChecker.containsNumber(password)) {
+            setPasswordError("Password must contains at least one number");
+            return;
+        } else {
+            setPasswordError(null);
+        }
+        if (InputChecker.containsWhiteSpace(password)) {
+            setPasswordError("Password cannot contains any whitespace");
+        } else {
+            setPasswordError(null);
+        }
     }
 
     public String getPasswordError() {
         return passwordError;
     }
 
-    public void setPasswordError(String passwordError) {
+    private void setPasswordError(String passwordError) {
         this.passwordError = passwordError;
     }
 
@@ -56,13 +85,21 @@ public class SignupState {
 
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
+        if (repeatPassword.isEmpty()) {
+            return;
+        }
+        if (!repeatPassword.equals(password)) {
+            setRepeatPasswordError("Password did not match");
+        } else {
+            setRepeatPasswordError(null);
+        }
     }
 
     public String getRepeatPasswordError() {
         return repeatPasswordError;
     }
 
-    public void setRepeatPasswordError(String repeatPasswordError) {
+    private void setRepeatPasswordError(String repeatPasswordError) {
         this.repeatPasswordError = repeatPasswordError;
     }
 }
