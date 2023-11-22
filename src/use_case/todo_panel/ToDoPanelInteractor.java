@@ -9,6 +9,5 @@ public class ToDoPanelInteractor implements ToDoPanelInputBoundary{
      */
     @Override
     public void execute(ToDoPanelInputData toDoPanelInputData) {
-
     }
 }

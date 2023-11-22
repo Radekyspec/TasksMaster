@@ -3,6 +3,7 @@ package interface_adapter.todo_panel;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class ToDoPanelViewModel extends ViewModel {
     /**
@@ -12,8 +13,44 @@ public class ToDoPanelViewModel extends ViewModel {
      * 而这里的abstract class是viewmodel
      * 通过观察viewmodel，我们可以窥见这个模板的技术性。
      */
-    public static final String TODOPANEL_TITILE = "Your ToDoPanel";
-    public static final String TODOPANEL_THE_TODO_1 = "get from somewhere else";
+    public static final String TODO_PANEL_TITLE_LABEL = "One's ToDoPanel";
+
+    /**
+     * 用于添加
+     * @return
+     */
+    public TodopanelState getState() {
+        return state;
+    }
+
+    private final TodopanelState state = new TodopanelState();
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+
+
+
+    public ToDoPanelViewModel(String viewName) {
+        super("todo_panel");
+    }
+
+    /**
+     * 需要创建：ToDoPanelState
+     * 需要创建：PropertyChangeSupport
+     * Property change 需要创建一个<这样的></>对象。
+     * Todo需要有stage吗？暂时不清楚
+     * 所以这里留空
+     */
+    @Override
+    public void firePropertyChanged() {
+        propertyChangeSupport.firePropertyChange("state", null, state);
+    }
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        /**
+         * 如果需要add再做这件事。
+         */
+        propertyChangeSupport.addPropertyChangeListener(listener);
+    }
 
     /**
      * View name 是这个view的名字。
