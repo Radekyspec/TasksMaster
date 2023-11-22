@@ -8,13 +8,13 @@ import interface_adapter.signup.SignupViewModel;
 import view.LabelTextPanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Arrays;
 
 public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
     private final SignupViewModel signupViewModel;
@@ -49,6 +49,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 repeatPasswordInputField,
                 repeatPasswordHint
         );
+        usernameHint.setForeground(Color.RED);
+        passwordHint.setForeground(Color.RED);
+        repeatPasswordHint.setForeground(Color.RED);
 
         usernameInputField.addKeyListener(
                 new KeyListener() {
@@ -85,7 +88,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyReleased(KeyEvent e) {
                         SignupState state = signupViewModel.getSignupState();
-                        state.setPassword(Arrays.toString(passwordInputField.getPassword()));
+                        state.setPassword(String.valueOf(passwordInputField.getPassword()));
+                        state.setRepeatPassword(String.valueOf(repeatPasswordInputField.getPassword()));
                         signupViewModel.firePropertyChanged();
                     }
                 }
@@ -105,7 +109,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void keyReleased(KeyEvent e) {
                         SignupState state = signupViewModel.getSignupState();
-                        state.setRepeatPassword(Arrays.toString(repeatPasswordInputField.getPassword()));
+                        state.setRepeatPassword(String.valueOf(repeatPasswordInputField.getPassword()));
                         signupViewModel.firePropertyChanged();
                     }
                 }
@@ -132,7 +136,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
-        this.add(new JLabel());
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);
