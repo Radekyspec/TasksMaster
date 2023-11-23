@@ -3,6 +3,8 @@ package entities.user;
 import java.time.LocalDateTime;
 
 public class CommonUserFactory {
+    private CommonUserFactory() {}
+
     /**
      * Create a new user
      * @param ID the unique ID of user

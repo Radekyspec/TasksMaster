@@ -5,18 +5,24 @@ import interface_adapter.InputChecker;
 public class SignupState {
     private String username;
     private String usernameError;
+    private String email;
+    private String emailError;
     private String password;
     private String passwordError;
     private String repeatPassword;
     private String repeatPasswordError;
+    private String signupError;
 
     public SignupState() {
         username = "";
         usernameError = null;
+        email = "";
+        emailError = null;
         password = "";
         passwordError = null;
         repeatPassword = "";
         repeatPasswordError = null;
+        signupError = null;
     }
 
     public String getUsername() {
@@ -38,6 +44,27 @@ public class SignupState {
 
     private void setUsernameError(String usernameError) {
         this.usernameError = usernameError;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+        if (!InputChecker.containsValidEmail(email)) {
+            setEmailError("Must be an valid email");
+        } else {
+            setEmailError(null);
+        }
+    }
+
+    public String getEmailError() {
+        return emailError;
+    }
+
+    public void setEmailError(String emailError) {
+        this.emailError = emailError;
     }
 
     public String getPassword() {
@@ -101,5 +128,13 @@ public class SignupState {
 
     private void setRepeatPasswordError(String repeatPasswordError) {
         this.repeatPasswordError = repeatPasswordError;
+    }
+
+    public String getSignupError() {
+        return signupError;
+    }
+
+    public void setSignupError(String signupError) {
+        this.signupError = signupError;
     }
 }

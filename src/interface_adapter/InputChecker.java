@@ -24,4 +24,8 @@ public class InputChecker {
     public static boolean containsWhiteSpace(String input) {
         return Pattern.compile("\\s").matcher(input).find();
     }
+
+    public static boolean containsValidEmail(String input) {
+        return Pattern.compile(".*@.*\\..*").matcher(input).find();
+    }
 }
