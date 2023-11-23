@@ -21,6 +21,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final SignupController signupController;
     private final JTextField usernameInputField = new JTextField(15);
     private final JLabel usernameHint = new JLabel();
+    private final JTextField emailInputField = new JTextField(15);
+    private final JLabel emailHint = new JLabel();
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JLabel passwordHint = new JLabel();
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
@@ -39,6 +41,11 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 usernameInputField,
                 usernameHint
         );
+        LabelTextPanel emailInfo = new LabelTextPanel(
+                new JLabel(SignupViewModel.SIGNUP_EMAIL_LABEL),
+                emailInputField,
+                emailHint
+        );
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel(SignupViewModel.SIGNUP_PASSWORD_LABEL),
                 passwordInputField,
@@ -50,6 +57,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 repeatPasswordHint
         );
         usernameHint.setForeground(Color.RED);
+        emailHint.setForeground(Color.RED);
         passwordHint.setForeground(Color.RED);
         repeatPasswordHint.setForeground(Color.RED);
 
@@ -69,6 +77,26 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                     public void keyReleased(KeyEvent e) {
                         SignupState state = signupViewModel.getSignupState();
                         state.setUsername(usernameInputField.getText());
+                        signupViewModel.firePropertyChanged();
+                    }
+                }
+        );
+        emailInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        SignupState state = signupViewModel.getSignupState();
+                        state.setEmail(emailInputField.getText());
                         signupViewModel.firePropertyChanged();
                     }
                 }
@@ -137,6 +165,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
         this.add(usernameInfo);
+        this.add(emailInfo);
         this.add(passwordInfo);
         this.add(repeatPasswordInfo);
         this.add(buttons);
@@ -154,6 +183,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         SignupState state = signupViewModel.getSignupState();
         signupController.execute(
                 state.getUsername(),
+                state.getEmail(),
                 state.getPassword(),
                 state.getRepeatPassword()
         );
@@ -176,6 +206,15 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
             repeatPasswordHint.setText(state.getRepeatPasswordError());
         } else {
             repeatPasswordHint.setText("");
+        }
+        if (state.getEmailError() != null) {
+            emailHint.setText(state.getEmailError());
+        } else {
+            emailHint.setText("");
+        }
+        if (state.getSignupError() != null) {
+            JOptionPane.showMessageDialog(this, state.getSignupError());
+            state.setSignupError(null);
         }
     }
 }

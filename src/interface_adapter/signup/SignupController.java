@@ -10,8 +10,8 @@ public class SignupController {
         this.signupInteractor = signupInteractor;
     }
 
-    public void execute(String username, String password, String repeatPassword) {
-        SignupInputData signupInputData = new SignupInputData(username, password, repeatPassword);
+    public void execute(String username, String email, String password, String repeatPassword) {
+        SignupInputData signupInputData = new SignupInputData(username, email, password, repeatPassword);
         signupInteractor.execute(signupInputData);
     }
 }

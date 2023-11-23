@@ -18,14 +18,14 @@ public class SignupUseCaseFactory {
             ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel,
             SignupUserDataAccessInterface signupUserDataAccessObject) {
         SignupController signupController = createSignupController(viewManagerModel,
-                loginViewModel, signupUserDataAccessObject);
+                loginViewModel, signupViewModel, signupUserDataAccessObject);
         return new SignupView(viewManagerModel, signupViewModel, signupController, loginViewModel);
     }
 
     private static SignupController createSignupController(
-            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
+            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel,
             SignupUserDataAccessInterface signupUserDataAccessObject) {
-        SignupOutputBoundary signupPresenter = new SignupPresenter(viewManagerModel, loginViewModel);
+        SignupOutputBoundary signupPresenter = new SignupPresenter(viewManagerModel, loginViewModel, signupViewModel);
         SignupInputBoundary signupInteractor = new SignupInteractor(signupPresenter, signupUserDataAccessObject);
         return new SignupController(signupInteractor);
     }
