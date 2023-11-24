@@ -1,13 +1,11 @@
 package entities.todo;
 
-import java.util.Map;
-
 public interface ToDo {
     /**
      * Returns target of this obj.
      * @return its target.
      */
-    Integer getId();
+    Integer getID();
 
     /**
      * Returns ID of this obj.

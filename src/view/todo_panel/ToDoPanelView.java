@@ -19,6 +19,13 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
      * 必要性：我们需要一个controller。controller真正的发出指令。
      * 参照SignupController：SignupController <- SignupInputBoundary -> SignupInteractor. done
      * 1. VM创建了，initialize好了。此时基本是空的。
+     *
+     *
+     *
+     * 老的要去那
+     * 穿件一个新的for，
+     * 新创建在controller
+     *  给todolist——controller创建自己，返回（用presenter）
      */
     private final JPanel toDoListViews;
     private final ToDoPanelState toDoPanelState;
@@ -53,6 +60,7 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         To ensure type safety of Java, we must assume a type.
         The type can be the type or its subclass.
          */
+
         ToDoPanelState state = (ToDoPanelState) evt.getNewValue();
         JButton newToDoList = new JButton(state.getToDoList().getName());
         /*

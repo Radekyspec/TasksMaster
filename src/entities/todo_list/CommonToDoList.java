@@ -29,7 +29,7 @@ public class CommonToDoList implements ToDoList{
      * @return its ID.
      */
     @Override
-    public Integer getId() {
+    public Integer getID() {
         return this.ID;
     }
 
@@ -68,6 +68,6 @@ public class CommonToDoList implements ToDoList{
      */
     @Override
     public void addToDos(ToDo toDo) {
-        toDos.put(toDo.getId(), toDo);
+        toDos.put(toDo.getID(), toDo);
     }
 }

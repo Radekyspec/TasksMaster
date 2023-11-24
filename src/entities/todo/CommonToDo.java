@@ -31,7 +31,7 @@ public class CommonToDo implements ToDo{
      * @return its ID.
      */
     @Override
-    public Integer getId() {
+    public Integer getID() {
         return this.ID;
     }
 

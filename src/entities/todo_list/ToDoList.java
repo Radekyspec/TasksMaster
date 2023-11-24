@@ -9,7 +9,7 @@ public interface ToDoList {
      * Returns ID of this obj.
      * @return its ID.
      */
-    Integer getId();
+    Integer getID();
 
     /**
      * Returns name of this obj.

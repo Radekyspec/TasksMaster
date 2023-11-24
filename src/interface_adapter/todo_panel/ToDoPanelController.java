@@ -21,10 +21,14 @@ public class ToDoPanelController {
      * 先initialize
      */
     public void execute() {
-        // ToDoPanelInputData toDoPanelInputData = new ToDoPanelInputData(tdpContent);
+        ToDoPanelInputData toDoPanelInputData = new ToDoPanelInputData(tdpContent);
         /**
          * Interactor get data from Inputdata, and start working.
+         * 看清楚了！这里execute的是interactor的execute
          */
-        // ToDoPanelInteractor.execute(toDoPanelInputData);
+        ToDoPanelInteractor.execute(toDoPanelInputData);
+        /*
+        我这儿没写好，Boundary不见了。应该现在Boundary抽象化
+         */
     }
 }
