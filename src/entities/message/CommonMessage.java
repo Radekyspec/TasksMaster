@@ -9,18 +9,22 @@ import java.util.Map;
 public class CommonMessage implements Message {
     private final int ID;
     private final User author;
+    private final String title;
     private final String content;
     private final Map<Integer, Comment> comments;
 
     /**
      * build up the CommonMessage object
-     * @param ID the ID of message
-     * @param author the author of message
+     *
+     * @param ID      the ID of message
+     * @param author  the author of message
+     * @param title  the tittle of message
      * @param content the content of message
      */
-    public CommonMessage(int ID, User author, String content) {
+    public CommonMessage(int ID, User author, String title, String content) {
         this.ID = ID;
         this.author = author;
+        this.title = title;
         this.content = content;
         comments = new HashMap<>();
     }
@@ -44,6 +48,16 @@ public class CommonMessage implements Message {
     @Override
     public User getAuthor() {
         return author;
+    }
+
+    /**
+     * Return the Tittle of the message
+     *
+     * @return its tittle
+     */
+    @Override
+    public String getTitle() {
+        return title;
     }
 
     /**

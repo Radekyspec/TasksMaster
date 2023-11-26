@@ -18,6 +18,11 @@ public interface Message {
      */
     User getAuthor();
     /**
+     * Return the Tittle of the message
+     * @return its tittle
+     */
+    String getTitle();
+    /**
      * Return the content of the message
      * @return its content
      */
