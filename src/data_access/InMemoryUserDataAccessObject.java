@@ -1,7 +1,5 @@
 package data_access;
 
-import data_access.login.LoginUserDataAccessInterface;
-import data_access.signup.SignupUserDataAccessInterface;
 import entities.user.CommonUserFactory;
 import entities.user.User;
 import exceptions.InvalidApiKeyException;
@@ -13,10 +11,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject extends HttpDataAccessObject implements SignupUserDataAccessInterface,
-        LoginUserDataAccessInterface {
+public class InMemoryUserDataAccessObject extends HttpDataAccessObject {
     private final Map<String, Integer> fileIndex = new LinkedHashMap<>();
-    private final Map<Integer, User> accounts = new HashMap<>();
+    private final Map<String, User> accounts = new HashMap<>();
     private final File userFile;
 
     public InMemoryUserDataAccessObject(String apiKey, String filePath) throws
@@ -51,7 +48,7 @@ public class InMemoryUserDataAccessObject extends HttpDataAccessObject implement
                     String email = String.valueOf(col[fileIndex.get("email")]);
                     User user = CommonUserFactory.create(
                             ID, username, password, creationDateTime, email);
-                    accounts.put(ID, user);
+                    accounts.put(username, user);
                 }
             }
         }
@@ -59,17 +56,12 @@ public class InMemoryUserDataAccessObject extends HttpDataAccessObject implement
 
     @Override
     public boolean exists(String username) {
-        for (User user : accounts.values()) {
-            if (user.getName().equals(username)) {
-                return true;
-            }
-        }
-        return false;
+        return accounts.containsKey(username);
     }
 
     @Override
     public void save(User user) {
-        accounts.put(user.getID(), user);
+        accounts.put(user.getName(), user);
         this.save();
     }
 
@@ -88,5 +80,16 @@ public class InMemoryUserDataAccessObject extends HttpDataAccessObject implement
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public User login(String username, String password) {
+        if (username.isEmpty() || password.isEmpty() || !accounts.containsKey(username)) {
+            return null;
+        }
+        if (accounts.get(username).getPassword().equals(password)) {
+            return accounts.get(username);
+        }
+        return null;
     }
 }

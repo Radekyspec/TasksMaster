@@ -17,13 +17,16 @@ public class LoginUseCaseFactory {
     public static LoginView create(
             ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel,
             LoginUserDataAccessInterface userDataAccessObject) {
-        LoginController loginController = LoginUseCaseFactory.createLoginController(userDataAccessObject);
+        LoginController loginController = LoginUseCaseFactory.createLoginController(
+                viewManagerModel, loginViewModel, userDataAccessObject);
         return new LoginView(viewManagerModel, signupViewModel, loginViewModel, loginController);
 
     }
 
-    private static LoginController createLoginController(LoginUserDataAccessInterface userDataAccessObject) {
-        LoginOutputBoundary loginPresenter = new LoginPresenter();
+    private static LoginController createLoginController(
+            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
+            LoginUserDataAccessInterface userDataAccessObject) {
+        LoginOutputBoundary loginPresenter = new LoginPresenter(viewManagerModel, loginViewModel);
         LoginInputBoundary loginInteractor = new LoginInteractor(loginPresenter, userDataAccessObject);
         return new LoginController(loginInteractor);
     }

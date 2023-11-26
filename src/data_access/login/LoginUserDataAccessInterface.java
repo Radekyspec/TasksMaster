@@ -1,5 +1,7 @@
 package data_access.login;
 
-public interface LoginUserDataAccessInterface {
+import entities.user.User;
 
+public interface LoginUserDataAccessInterface {
+    User login(String username, String password);
 }

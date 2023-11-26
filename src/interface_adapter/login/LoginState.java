@@ -2,15 +2,21 @@ package interface_adapter.login;
 
 public class LoginState {
     private String username;
-    private String usernameError;
     private String password;
-    private String passwordError;
+    private String loginError;
 
     public LoginState() {
         username = "";
-        usernameError = null;
         password = "";
-        passwordError = null;
+        loginError = null;
+    }
+
+    public String getLoginError() {
+        return loginError;
+    }
+
+    public void setLoginError(String loginError) {
+        this.loginError = loginError;
     }
 
     public String getUsername() {
@@ -21,27 +27,11 @@ public class LoginState {
         this.username = username;
     }
 
-    public String getUsernameError() {
-        return usernameError;
-    }
-
-    public void setUsernameError(String usernameError) {
-        this.usernameError = usernameError;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPasswordError() {
-        return passwordError;
-    }
-
-    public void setPasswordError(String passwordError) {
-        this.passwordError = passwordError;
     }
 }
