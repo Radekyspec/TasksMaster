@@ -3,10 +3,12 @@ import entities.todo_list.ToDoList;
 
 public class ToDoPanelInputData {
     // private final String[toDos] tdpContent;
+    private final String ID;
+    private final String ProjectID;
 
-    /**
-    public ToDoPanelInputData(String[toDos] tdpContent){
-        this.tdpContent = tdpContent;
+    public ToDoPanelInputData(String ID) {
+        this.ID = ID;
+        this.ProjectID =
+
     }
-     */
 }
