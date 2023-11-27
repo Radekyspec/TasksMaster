@@ -19,8 +19,9 @@ public class CommonProject implements Project {
 
     /**
      * build a CommonProject object.
-     * @param ID the ID of the project
-     * @param name the name of the project
+     *
+     * @param ID     the ID of the project
+     * @param name   the name of the project
      * @param leader the leader of the project
      */
     public CommonProject(int ID, String name, User leader) {

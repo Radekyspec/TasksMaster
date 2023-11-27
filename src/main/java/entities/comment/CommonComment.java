@@ -9,8 +9,9 @@ public class CommonComment implements Comment {
 
     /**
      * build up the new comment with user
-     * @param id the ID of the comment
-     * @param author the author of the comment
+     *
+     * @param id      the ID of the comment
+     * @param author  the author of the comment
      * @param content the content of the comment
      */
     public CommonComment(int id, User author, String content) {

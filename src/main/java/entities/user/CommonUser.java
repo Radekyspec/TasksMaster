@@ -15,11 +15,12 @@ public class CommonUser implements User {
 
     /**
      * build up a new user
-     * @param ID the unique ID of user
-     * @param name the name of user
-     * @param password the password of user
+     *
+     * @param ID             the unique ID of user
+     * @param name           the name of user
+     * @param password       the password of user
      * @param createDateTime the time when user account created
-     * @param email the email user used to sign up account
+     * @param email          the email user used to sign up account
      */
     public CommonUser(int ID, String name, String password, LocalDateTime createDateTime, String email) {
         this.ID = ID;
@@ -42,6 +43,7 @@ public class CommonUser implements User {
 
     /**
      * Return the organization that User is in
+     *
      * @return its organization
      */
     @Override
@@ -51,6 +53,7 @@ public class CommonUser implements User {
 
     /**
      * Return the name of the User
+     *
      * @return its name
      */
     @Override
@@ -60,6 +63,7 @@ public class CommonUser implements User {
 
     /**
      * Return the password of the User
+     *
      * @return its password
      */
     @Override
@@ -69,6 +73,7 @@ public class CommonUser implements User {
 
     /**
      * Return the created time of the User
+     *
      * @return its creation_time
      */
     @Override
@@ -78,6 +83,7 @@ public class CommonUser implements User {
 
     /**
      * Return the email of the User
+     *
      * @return its email
      */
     @Override
@@ -95,6 +101,7 @@ public class CommonUser implements User {
 
     /**
      * let user join a organization
+     *
      * @param organization an organization that user want to join
      */
     @Override

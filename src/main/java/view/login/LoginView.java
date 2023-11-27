@@ -7,7 +7,10 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -136,5 +139,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         }
     }
 
-    public String getViewName() {return loginViewModel.getViewName();}
+    public String getViewName() {
+        return loginViewModel.getViewName();
+    }
 }

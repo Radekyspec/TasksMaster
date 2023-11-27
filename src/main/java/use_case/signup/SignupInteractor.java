@@ -23,7 +23,7 @@ public class SignupInteractor implements SignupInputBoundary {
                     true
             );
             signupPresenter.prepareFailView(outputData);
-        } else if (!signupInputData.getPassword().equals(signupInputData.getRepeatPassword())){
+        } else if (!signupInputData.getPassword().equals(signupInputData.getRepeatPassword())) {
             SignupOutputData outputData = new SignupOutputData(
                     "Password don't match.",
                     true
