@@ -7,6 +7,7 @@ import exceptions.InvalidApiKeyException;
 public abstract class HttpDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface {
     private final String API_KEY;
+
     public HttpDataAccessObject(String apiKey) throws InvalidApiKeyException {
         API_KEY = apiKey;
         if (!isValidApiKey()) {

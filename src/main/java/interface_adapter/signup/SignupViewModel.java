@@ -34,7 +34,6 @@ public class SignupViewModel extends ViewModel {
      * lamdbda写法。
      * 如果一个class只有一个方法，这个class可以打上functionalclass的标记
      * 此时可以简化它的写法
-     *
      */
 
     @Override
