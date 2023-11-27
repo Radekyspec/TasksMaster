@@ -4,11 +4,19 @@ import entities.message.Message;
 
 public class MessageBoardState {
     private Message message;
-    private final int projectID;
-    private final int messageBoardID;
+    private int projectID;
+    private int messageBoardID;
 
     public MessageBoardState(int projectID, int messageBoardID) {
         this.projectID = projectID;
+        this.messageBoardID = messageBoardID;
+    }
+
+    public void setProjectID(int projectID) {
+        this.projectID = projectID;
+    }
+
+    public void setMessageBoardID(int messageBoardID) {
         this.messageBoardID = messageBoardID;
     }
 

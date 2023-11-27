@@ -1,5 +1,6 @@
 package view.message_board;
 
+import entities.comment.Comment;
 import entities.message.Message;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.MessageBoardViewModel;
@@ -8,8 +9,14 @@ import interface_adapter.message_board.message.MessageState;
 import interface_adapter.message_board.message.MessageViewModel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class MessageView {
+public class MessageView extends JPanel implements ActionListener, PropertyChangeListener {
     private final ViewManagerModel viewManagerModel;
     private final MessageViewModel messageViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
@@ -18,6 +25,7 @@ public class MessageView {
     private final JLabel auther;
     private final JLabel content;
     private final JTextField addComment = new JTextField();
+    private final JButton addThisComment = new JButton();
     private final JPanel commentBoard;
 
     public MessageView(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel,
@@ -35,5 +43,61 @@ public class MessageView {
         commentBoard = new JPanel();
         MessageState messageState = messageViewModel.getState();
         messageController.getComments(messageState.getProjectID(), messageState.getMessageID());
+
+        JPanel addCommentPanel = new JPanel();
+        addCommentPanel.add(new JLabel("Add a comment here"));
+        addCommentPanel.add(addComment);
+        addComment.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        messageViewModel.getState().setNewComment(addComment.getText());
+                    }
+                }
+        );
+        addCommentPanel.add(addThisComment);
+        addThisComment.addActionListener(
+                e -> {
+                    if (!e.getSource().equals(addThisComment)){
+                        return;
+                    }
+                    MessageState messagestate = new MessageState();
+
+                    messageController.addNewComment(state.getProjectID(), state.getMessage(), state.getNewComment());
+                }
+        );
+    }
+
+    /**
+     * Invoked when an action occurs.
+     *
+     * @param e the event to be processed
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    /**
+     * This method gets called when a bound property is changed.
+     *
+     * @param evt A PropertyChangeEvent object describing the event source
+     *            and the property that has changed.
+     */
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        MessageState state = (MessageState) evt.getNewValue();
+        Comment comment = state.getComment();
+        commentBoard.add(new JLabel(comment.getAuthor().getName() + comment.getContent()));
     }
 }

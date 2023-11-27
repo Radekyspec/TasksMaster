@@ -59,6 +59,9 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         JLabel title = new JLabel(MessageBoardViewModel.MESSAGE_BOARD_TITLE_LABEL);
         this.add(title);
         this.add(addNewMessage);
+        if (messages.getComponentCount() == 0){
+            messages.add(new JLabel("There is no message..."));
+        }
         this.add(messages);
     }
 
@@ -73,7 +76,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
             return;
         }
         Message message = buttonToMessage.get((JButton) e.getSource());
-        MessageState state = messageViewModel.getState();
+        MessageBoardState state = messageBoardViewModel.getMessageBoardState();
         state.setMessage(message);
         messageViewModel.firePropertyChanged();
         viewManagerModel.setActiveView(messageViewModel.getViewName());
@@ -90,7 +93,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
     public void propertyChange(PropertyChangeEvent evt) {
         MessageBoardState state = (MessageBoardState) evt.getNewValue();
         Message message = state.getMessage();
-        JButton messageButton = new JButton(message.getTitle());
+        JButton messageButton = new JButton(message.getAuthor().getName() + message.getTitle());
         buttonToMessage.put(messageButton, message);
         messageButton.addActionListener(this);
         messages.add(messageButton);
