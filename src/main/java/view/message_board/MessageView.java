@@ -2,6 +2,7 @@ package view.message_board;
 
 import entities.comment.Comment;
 import entities.message.Message;
+import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.MessageBoardViewModel;
 import interface_adapter.message_board.message.MessageController;
@@ -17,6 +18,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class MessageView extends JPanel implements ActionListener, PropertyChangeListener {
+    private User user;
     private final ViewManagerModel viewManagerModel;
     private final MessageViewModel messageViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
@@ -73,7 +75,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
                     }
                     MessageState messagestate = new MessageState();
 
-                    messageController.addNewComment(state.getProjectID(), state.getMessage(), state.getNewComment());
+                    messageController.addNewComment(state.getProjectID(), state.getMessageID(), user, state.getNewComment());
                 }
         );
     }
