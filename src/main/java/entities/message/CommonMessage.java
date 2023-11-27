@@ -18,7 +18,7 @@ public class CommonMessage implements Message {
      *
      * @param ID      the ID of message
      * @param author  the author of message
-     * @param title  the tittle of message
+     * @param title   the tittle of message
      * @param content the content of message
      */
     public CommonMessage(int ID, User author, String title, String content) {

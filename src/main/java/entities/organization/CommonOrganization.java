@@ -15,8 +15,9 @@ public class CommonOrganization implements Organization {
 
     /**
      * Return a new organization with ID, organization name, and owner.
-     * @param ID the ID of organization
-     * @param name the name of organization
+     *
+     * @param ID    the ID of organization
+     * @param name  the name of organization
      * @param owner the owner of organization
      */
     public CommonOrganization(int ID, String name, User owner) {
@@ -29,6 +30,7 @@ public class CommonOrganization implements Organization {
 
     /**
      * Return the ID of the Organization
+     *
      * @return its ID
      */
     @Override
@@ -38,6 +40,7 @@ public class CommonOrganization implements Organization {
 
     /**
      * Return the name of the Organization
+     *
      * @return its name
      */
     @Override
@@ -47,6 +50,7 @@ public class CommonOrganization implements Organization {
 
     /**
      * Return the owner of the Organization
+     *
      * @return its owner
      */
     @Override
@@ -56,6 +60,7 @@ public class CommonOrganization implements Organization {
 
     /**
      * Return the set of all project of the Organization
+     *
      * @return its project_set
      */
     @Override
@@ -65,6 +70,7 @@ public class CommonOrganization implements Organization {
 
     /**
      * Return all members of the Organization
+     *
      * @return its members in the Organization
      */
     @Override

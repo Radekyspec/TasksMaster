@@ -1,7 +1,7 @@
-package main.java.interface_adapter.message_board.message;
+package interface_adapter.message_board.message;
 
-import main.java.use_case.message_board.message.MessageInputBoundary;
-import main.java.use_case.message_board.message.MessageInputData;
+import use_case.message_board.message.MessageInputBoundary;
+import use_case.message_board.message.MessageInputData;
 
 public class MessageController {
     final MessageInputBoundary messageUseCaseInteractor;

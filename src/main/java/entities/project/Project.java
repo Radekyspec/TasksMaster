@@ -59,24 +59,28 @@ public interface Project {
 
     /**
      * Set the to_do panel as current to_do panel for the project
+     *
      * @param toDoPanel a to_do panel object
      */
     void setToDoPanel(ToDoPanel toDoPanel);
 
     /**
      * Set the message_board as current message_board for the project
+     *
      * @param messageBoard a message_board object
      */
     void setMessageBoard(MessageBoard messageBoard);
 
     /**
      * Set the schedule as current schedule for the project
+     *
      * @param schedule a schedule object
      */
     void setSchedule(Schedule schedule);
 
     /**
      * add new member into the project
+     *
      * @param newMember the new member that join the project
      */
     void addNewMember(User newMember);

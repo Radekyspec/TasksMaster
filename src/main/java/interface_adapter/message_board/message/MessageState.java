@@ -1,4 +1,4 @@
-package main.java.interface_adapter.message_board.message;
+package interface_adapter.message_board.message;
 
 import entities.message.Message;
 

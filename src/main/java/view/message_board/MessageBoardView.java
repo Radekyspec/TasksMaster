@@ -1,13 +1,13 @@
-package main.java.view.message_board;
+package view.message_board;
 
 import entities.message.Message;
 import interface_adapter.ViewManagerModel;
-import main.java.interface_adapter.message_board.MessageBoardController;
-import main.java.interface_adapter.message_board.MessageBoardState;
-import main.java.interface_adapter.message_board.MessageBoardViewModel;
-import main.java.interface_adapter.message_board.add_new_message.AddNewMessageViewModel;
-import main.java.interface_adapter.message_board.message.MessageState;
-import main.java.interface_adapter.message_board.message.MessageViewModel;
+import interface_adapter.message_board.MessageBoardController;
+import interface_adapter.message_board.MessageBoardState;
+import interface_adapter.message_board.MessageBoardViewModel;
+import interface_adapter.message_board.add_new_message.AddNewMessageViewModel;
+import interface_adapter.message_board.message.MessageState;
+import interface_adapter.message_board.message.MessageViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -48,7 +48,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         addNewMessage = new JButton(MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL);
         addNewMessage.addActionListener(
                 e -> {
-                    if (!e.getSource().equals(addNewMessage)){
+                    if (!e.getSource().equals(addNewMessage)) {
                         return;
                     }
                     viewManagerModel.setActiveView(addNewMessageViewModel.getViewName());
@@ -69,7 +69,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!buttonToMessage.containsKey((JButton) e.getSource())){
+        if (!buttonToMessage.containsKey((JButton) e.getSource())) {
             return;
         }
         Message message = buttonToMessage.get((JButton) e.getSource());

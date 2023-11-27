@@ -1,4 +1,4 @@
-package main.java.interface_adapter.message_board;
+package interface_adapter.message_board;
 
 import entities.message.Message;
 
@@ -23,6 +23,7 @@ public class MessageBoardState {
     public Message getMessage() {
         return message;
     }
+
     public void setMessage(Message message) {
         this.message = message;
     }

@@ -1,5 +1,6 @@
-package main.java.use_case.message_board;
+package use_case.message_board;
 
-public interface MessageBoardOutpuBoundary {
+
+public interface MessageBoardOutputBoundary {
     void prepareGetMessagesSuccessView(MessageBoardOutputData messageBoardOutputData);
 }

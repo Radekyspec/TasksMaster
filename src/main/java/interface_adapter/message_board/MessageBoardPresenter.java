@@ -1,10 +1,10 @@
-package main.java.interface_adapter.message_board;
+package interface_adapter.message_board;
 
 import entities.message.Message;
-import main.java.use_case.message_board.MessageBoardOutpuBoundary;
-import main.java.use_case.message_board.MessageBoardOutputData;
+import use_case.message_board.MessageBoardOutputBoundary;
+import use_case.message_board.MessageBoardOutputData;
 
-public class MessageBoardPresenter implements MessageBoardOutpuBoundary {
+public class MessageBoardPresenter implements MessageBoardOutputBoundary {
     private final MessageBoardViewModel messageBoardViewModel;
 
     public MessageBoardPresenter(MessageBoardViewModel messageBoardViewModel) {

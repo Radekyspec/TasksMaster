@@ -1,9 +1,5 @@
 package entities.todo_list;
 
-import entities.todo.ToDo;
-
-import java.util.Map;
-
 public class CommonToDoListFactory {
     /**
      * create a CommonToDoList class that contains things as followed.

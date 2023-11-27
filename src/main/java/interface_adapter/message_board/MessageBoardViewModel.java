@@ -1,4 +1,4 @@
-package main.java.interface_adapter.message_board;
+package interface_adapter.message_board;
 
 import interface_adapter.ViewModel;
 
@@ -12,7 +12,8 @@ public class MessageBoardViewModel extends ViewModel {
 
 
     private final MessageBoardState messageBoardState;
-    public MessageBoardViewModel(int ProjectID, int messageBoardID){
+
+    public MessageBoardViewModel(int ProjectID, int messageBoardID) {
         super("Message Board");
         messageBoardState = new MessageBoardState(ProjectID, messageBoardID);
     }
@@ -24,6 +25,7 @@ public class MessageBoardViewModel extends ViewModel {
     public void firePropertyChanged() {
         support.firePropertyChange("new message", null, messageBoardState);
     }
+
     public MessageBoardState getMessageBoardState() {
         return messageBoardState;
     }

@@ -1,11 +1,11 @@
-package main.java.view.message_board;
+package view.message_board;
 
 import entities.message.Message;
 import interface_adapter.ViewManagerModel;
-import main.java.interface_adapter.message_board.MessageBoardViewModel;
-import main.java.interface_adapter.message_board.message.MessageController;
-import main.java.interface_adapter.message_board.message.MessageState;
-import main.java.interface_adapter.message_board.message.MessageViewModel;
+import interface_adapter.message_board.MessageBoardViewModel;
+import interface_adapter.message_board.message.MessageController;
+import interface_adapter.message_board.message.MessageState;
+import interface_adapter.message_board.message.MessageViewModel;
 
 import javax.swing.*;
 

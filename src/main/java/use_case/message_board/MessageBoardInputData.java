@@ -1,3 +1,4 @@
-package main.java.use_case.message_board;
+package use_case.message_board;
 
-public record MessageBoardInputData(int projectID, int messageBoardID){}
+public record MessageBoardInputData(int projectID, int messageBoardID) {
+}

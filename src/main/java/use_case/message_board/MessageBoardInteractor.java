@@ -1,17 +1,17 @@
-package main.java.use_case.message_board;
+package use_case.message_board;
 
-import main.java.data_access.message_board.MessageBoardUserDataAccessInterface;
 import entities.message.Message;
+import main.java.data_access.message_board.MessageBoardUserDataAccessInterface;
 
 import java.util.List;
 
-public class MessageBoardInteractor implements MessageBoardInputBoundary{
+public class MessageBoardInteractor implements MessageBoardInputBoundary {
     final MessageBoardUserDataAccessInterface userDataAccessInterface;
-    final MessageBoardOutpuBoundary messageBoardPresenter;
+    final MessageBoardOutputBoundary messageBoardPresenter;
 
 
     public MessageBoardInteractor(MessageBoardUserDataAccessInterface userDataAccessInterface,
-                                  MessageBoardOutpuBoundary messageBoardPresenter) {
+                                  MessageBoardOutputBoundary messageBoardPresenter) {
         this.userDataAccessInterface = userDataAccessInterface;
         this.messageBoardPresenter = messageBoardPresenter;
     }
