@@ -1,5 +1,4 @@
 package use_case.schedule;
 
-public class ScheduleInputData {
-    //TODO
+public record ScheduleInputData(int id, int projectId) {
 }

@@ -15,9 +15,6 @@ public class SchedulePresenter implements ScheduleOutputBoundary {
 
     @Override
     public void prepareSuccessView(ScheduleOutputData scheduleOutputData) {
-        //TODO viewManagerModel.setActiveView(scheduleViewModel.);
-    }
-
-    public void prepareFailView(ScheduleOutputData scheduleOutputData) {
+        viewManagerModel.setActiveView(scheduleViewModel.);
     }
 }
