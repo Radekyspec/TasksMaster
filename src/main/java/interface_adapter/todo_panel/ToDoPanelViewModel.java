@@ -18,11 +18,11 @@ public class ToDoPanelViewModel extends ViewModel {
     }
     @Override
     public void firePropertyChanged() {
-        propertyChangeSupport.firePropertyChange("new panel", null, toDoPanelState);
+        propertyChangeSupport.firePropertyChange("new todo panel", null, toDoPanelState);
     }
 
     public void firePropertyChanged(String propertyName) {
-        propertyChangeSupport.firePropertyChange("import panel", null, toDoPanelState);
+        propertyChangeSupport.firePropertyChange("import todo panel", null, toDoPanelState);
     }
 
     @Override
