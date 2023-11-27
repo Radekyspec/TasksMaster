@@ -6,44 +6,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonToDoPanel implements ToDoPanel{
-    private final Integer ID;
-    private final Map<Integer, ToDoList> toDoLists;
+    private Integer ID;
+    private Map<Integer, ToDoList> lists;
 
-    /**
-     * build a new to_do Panel that contain space for many to_do lists
-     * @param ID the ID of the to_do Panel
-     */
-    public CommonToDoPanel(int ID){
+    public CommonToDoPanel(Integer ID){
         this.ID = ID;
-        toDoLists = new HashMap<>();
+        this.lists = new HashMap<>();
     }
 
     /**
-     * Return the ID of the to_do panel
-     *
-     * @return its ID
+     * Returns ID of this obj.
+     * @return its ID.
      */
     @Override
-    public int getID() {
-        return ID;
+    public Integer getId() {
+        return this.ID;
     }
 
     /**
-     * Return the to_do lists of the to_do panel
-     *
-     * @return a to_do lists of the current to_do panel
+     * Returns lists of this obj.
+     * @return all the TO_DOList managed by this panel.
      */
     @Override
-    public Map<Integer, ToDoList> getToDoLists() {
-        return toDoLists;
-    }
-
-    /**
-     * add a new to_do list into the to_do panel
-     * @param toDoList the new to_do list
-     */
-    @Override
-    public void setToDoLists(ToDoList toDoList) {
-        toDoLists.put(toDoList.getId(), toDoList);
+    public Map<Integer, ToDoList> getLists() {
+        return this.lists;
     }
 }
