@@ -1,4 +1,4 @@
-package use_case.project.add_project;
+package use_case.project.add;
 
 public interface AddProjectInputBoundary {
 }
