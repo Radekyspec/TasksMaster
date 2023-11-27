@@ -11,9 +11,10 @@ public interface ToDoPanelDataAccessInterface {
     void save(ToDoPanel toDoPanel);
 
     /**
-     * Verify if this ToDoPanel is already exists.
-     * @param tdpName the name of the ToDoPanel
-     * @return ture or false
+     * 判断其成果取决于是否返回null。
+     * 返回null就是失败
+     * 返回空列表代表东西是空的。
+     * @return
      */
-    boolean exists(String tdpName);
+    ToDoPanel getToDoPanel();
 }

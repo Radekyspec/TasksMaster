@@ -6,9 +6,24 @@ public class ToDoPanelInputData {
     private final String ID;
     private final String ProjectID;
 
-    public ToDoPanelInputData(String ID) {
+    public ToDoPanelInputData(String ID, String ProjectID) {
         this.ID = ID;
-        this.ProjectID =
+        this.ProjectID = ProjectID;
+    }
 
+    /**
+     *
+     * @return ID.
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     *
+     * @return ProjectID.
+     */
+    public String getProjectID() {
+        return ProjectID;
     }
 }

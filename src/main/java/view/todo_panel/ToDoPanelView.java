@@ -60,9 +60,14 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         To ensure type safety of Java, we must assume a type.
         The type can be the type or its subclass.
          */
+        ToDoPanelState state = (ToDoPanelState) evt.getNewValue(); // state在这个方法被触发的时候就传过来了。
+        statename = state.getpropertyname;
+        if (statename == "new panel") {
 
-        ToDoPanelState state = (ToDoPanelState) evt.getNewValue();
-        JButton newToDoList = new JButton(state.getToDoList().getName());
+        } else if (statename == "import panel") {
+
+        }
+        JButton newToDoList = new JButton(state.getToDoList().getName()); //这里通过使用state的各种方法，得到各种需要的值
         /*
         successfully add one todolist.
          */
