@@ -34,5 +34,6 @@ public class MessageView {
 
         commentBoard = new JPanel();
         MessageState messageState = messageViewModel.getState();
+        messageController.getComments(messageState.getProjectID(), messageState.getMessageID());
     }
 }

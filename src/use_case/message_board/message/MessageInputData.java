@@ -1,4 +1,4 @@
 package use_case.message_board.message;
 
-public class MessageInputData {
+public record MessageInputData(int projectID, int messageID) {
 }

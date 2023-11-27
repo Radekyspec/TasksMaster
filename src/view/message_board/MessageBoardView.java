@@ -42,7 +42,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         */
         messages = new JPanel();
         MessageBoardState state = messageBoardViewModel.getMessageBoardState();
-        messageBoardController.getMessages(state.getProjectID(), state.getProjectID());
+        messageBoardController.getMessages(state.getProjectID(), state.getMessageBoardID());
 
 
         addNewMessage = new JButton(MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL);
