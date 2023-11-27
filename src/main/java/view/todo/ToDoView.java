@@ -1,5 +1,6 @@
 package view.todo;
 
+import interface_adapter.todo.ToDoController;
 import interface_adapter.todo.ToDoViewModel;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.beans.PropertyChangeListener;
 public class ToDoView extends JPanel implements PropertyChangeListener {
 
     private final ToDoViewModel toDoViewModel;
+    private final ToDoController toDoController;
 
     public ToDoView(ToDoViewModel toDoViewModel) {
         this.toDoViewModel = toDoViewModel;

@@ -1,8 +1,6 @@
 package interface_adapter.todo;
 
 import interface_adapter.ViewModel;
-import interface_adapter.todo_panel.ToDoState;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
