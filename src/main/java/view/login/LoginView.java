@@ -5,14 +5,9 @@ import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
-import view.LabelTextPanel;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -20,9 +15,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private final LoginViewModel loginViewModel;
     private final LoginController loginController;
     private final JTextField usernameInputField = new JTextField(15);
-    private final JLabel usernameHint = new JLabel();
     private final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JLabel passwordHint = new JLabel();
     private final JButton login;
     private final JButton signUp;
     private final JButton cancel;
@@ -33,18 +26,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.loginController = loginController;
         loginViewModel.addPropertyChangeListener(this);
 
-        LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel(LoginViewModel.LOGIN_USERNAME_LABEL),
-                usernameInputField,
-                usernameHint
-        );
-        LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel(LoginViewModel.LOGIN_PASSWORD_LABEL),
-                passwordInputField,
-                passwordHint
-        );
-        usernameHint.setForeground(Color.RED);
-        passwordHint.setForeground(Color.RED);
+        JPanel usernameInfo = new JPanel();
+        usernameInfo.add(new JLabel(LoginViewModel.LOGIN_USERNAME_LABEL));
+        usernameInfo.add(usernameInputField);
+        JPanel passwordInfo = new JPanel();
+        passwordInfo.add(new JLabel(LoginViewModel.LOGIN_PASSWORD_LABEL));
+        passwordInfo.add(passwordInputField);
 
         usernameInputField.addKeyListener(
                 new KeyListener() {
@@ -143,15 +130,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         LoginState state = (LoginState) evt.getNewValue();
-        if (state.getUsernameError() != null) {
-            usernameHint.setText(state.getUsernameError());
-        } else {
-            usernameHint.setText("");
-        }
-        if (state.getPasswordError() != null) {
-            passwordHint.setText(state.getPasswordError());
-        } else {
-            passwordHint.setText("");
+        if (state.getLoginError() != null) {
+            JOptionPane.showMessageDialog(this, state.getLoginError());
+            state.setLoginError(null);
         }
     }
 
