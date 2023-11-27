@@ -7,16 +7,18 @@ import java.util.Map;
 
 public class CommonMessageBoard implements MessageBoard {
     int ID;
-    Map<Integer,Message> messages;
+    Map<Integer, Message> messages;
 
     /**
      * Build a new MessageBoard which containing many massage
+     *
      * @param ID the ID of the messageBoard
      */
-    public CommonMessageBoard(int ID){
+    public CommonMessageBoard(int ID) {
         this.ID = ID;
         messages = new HashMap<>();
     }
+
     /**
      * Return the ID of the MessageBoard
      *

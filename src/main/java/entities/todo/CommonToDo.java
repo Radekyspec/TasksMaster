@@ -1,13 +1,13 @@
 package entities.todo;
 
-public class CommonToDo implements ToDo{
+public class CommonToDo implements ToDo {
     private Integer ID; // No one will pass an id inside, create a unique id once it created
     // Is Integer type proper here when facing large id?
     private String target;
     private String[] assignedTo;
     // Do we need to make it all final here? Do we need to change it afterward?
 
-    public CommonToDo(Integer ID, String target, String[] assignedTo){ // No expectation of id pass in.
+    public CommonToDo(Integer ID, String target, String[] assignedTo) { // No expectation of id pass in.
         // This is a setter. 
         this.target = target;
         this.assignedTo = assignedTo;
@@ -19,6 +19,7 @@ public class CommonToDo implements ToDo{
 
     /**
      * Returns target of this obj.
+     *
      * @return its target.
      */
     @Override
@@ -28,6 +29,7 @@ public class CommonToDo implements ToDo{
 
     /**
      * Returns ID of this obj.
+     *
      * @return its ID.
      */
     @Override
@@ -37,6 +39,7 @@ public class CommonToDo implements ToDo{
 
     /**
      * Returns the people who is assigned to this obj.
+     *
      * @return its assginto[].
      */
     @Override
