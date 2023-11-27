@@ -1,8 +1,11 @@
 package data_access;
 
+import data_access.login.LoginUserDataAccessInterface;
+import data_access.signup.SignupUserDataAccessInterface;
 import exceptions.InvalidApiKeyException;
 
-public class HttpDataAccessObject {
+public abstract class HttpDataAccessObject implements SignupUserDataAccessInterface,
+        LoginUserDataAccessInterface {
     private final String API_KEY;
     public HttpDataAccessObject(String apiKey) throws InvalidApiKeyException {
         API_KEY = apiKey;
