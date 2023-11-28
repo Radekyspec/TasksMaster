@@ -5,6 +5,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.MessageBoardController;
 import interface_adapter.message_board.MessageBoardState;
 import interface_adapter.message_board.MessageBoardViewModel;
+import interface_adapter.message_board.add_new_message.AddNewMessageState;
 import interface_adapter.message_board.add_new_message.AddNewMessageViewModel;
 import interface_adapter.message_board.message.MessageState;
 import interface_adapter.message_board.message.MessageViewModel;
@@ -52,6 +53,9 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                         return;
                     }
                     viewManagerModel.setActiveView(addNewMessageViewModel.getViewName());
+                    AddNewMessageState addNewMessageState = addNewMessageViewModel.getAddNewMessageState();
+                    addNewMessageState.setProjectID(messageBoardViewModel.getMessageBoardState().getProjectID());
+                    addNewMessageState.setMessageBoardID(messageBoardViewModel.getMessageBoardState().getMessageBoardID());
                     viewManagerModel.firePropertyChanged();
                 }
         );

@@ -12,4 +12,6 @@ public interface MessageBoardUserDataAccessInterface {
     List<Comment> getComments(int projectID, int messageID);
 
     Comment addComment(int projectID, int messageID, User user, String newComment);
+
+    Message addMessage(int projectID, int messageBoardID, User author, String messageTitle, String messageContent);
 }

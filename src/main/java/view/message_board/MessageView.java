@@ -27,6 +27,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
     private final JLabel auther;
     private final JLabel content;
     private final JTextField addComment = new JTextField();
+    private final JPanel addCommentPanel = new JPanel();
     private final JButton addThisComment = new JButton();
     private final JPanel commentBoard;
 
@@ -46,7 +47,6 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
         MessageState messageState = messageViewModel.getState();
         messageController.getComments(messageState.getProjectID(), messageState.getMessageID());
 
-        JPanel addCommentPanel = new JPanel();
         addCommentPanel.add(new JLabel("Add a comment here"));
         addCommentPanel.add(addComment);
         addComment.addKeyListener(
@@ -78,6 +78,12 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
                     messageController.addNewComment(state.getProjectID(), state.getMessageID(), user, state.getNewComment());
                 }
         );
+        this.add(title);
+        this.add(auther);
+        this.add(content);
+        this.add(commentBoard);
+        this.add(addCommentPanel);
+        this.add(addThisComment);
     }
 
     /**
