@@ -15,6 +15,10 @@ public interface Project {
      */
     int getID();
 
+    User getLeader();
+
+    void setLeader(User leader);
+
     /**
      * Return the name of the Project
      *
@@ -22,19 +26,14 @@ public interface Project {
      */
     String getName();
 
-    /**
-     * Return the leader of the Project
-     *
-     * @return its leader
-     */
-    User getLeader();
+    String getDescription();
 
     /**
      * Return all members of the Project
      *
      * @return its members
      */
-    Map<Integer, User> getMembers();
+    Map<String, User> getMembers();
 
     /**
      * Return the to_do panel of the Project
