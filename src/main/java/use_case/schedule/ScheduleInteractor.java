@@ -20,6 +20,6 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         int projectId = scheduleInputData.projectId();
         List<Event> events = scheduleDataAccessInterface.getEvents(projectId, scheduleId);
         ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
-        schedulePresenter.prepareSuccessView(scheduleOutputData);
+        schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
     }
 }

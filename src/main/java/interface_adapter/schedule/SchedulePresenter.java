@@ -1,20 +1,20 @@
 package interface_adapter.schedule;
 
-import interface_adapter.ViewManagerModel;
+import entities.event.Event;
 import use_case.schedule.ScheduleOutputBoundary;
 import use_case.schedule.ScheduleOutputData;
 
 public class SchedulePresenter implements ScheduleOutputBoundary {
     private final ScheduleViewModel scheduleViewModel;
-    private final ViewManagerModel viewManagerModel;
 
-    public SchedulePresenter(ScheduleViewModel scheduleViewModel, ViewManagerModel viewManagerModel) {
+    public SchedulePresenter(ScheduleViewModel scheduleViewModel) {
         this.scheduleViewModel = scheduleViewModel;
-        this.viewManagerModel = viewManagerModel;
     }
 
     @Override
-    public void prepareSuccessView(ScheduleOutputData scheduleOutputData) {
-        viewManagerModel.setActiveView(scheduleViewModel.);
+    public void prepareGetEventSuccessView(ScheduleOutputData scheduleOutputData) {
+        for (Event event : scheduleOutputData.getEvents()) {
+            scheduleViewModel.g
+        }
     }
 }
