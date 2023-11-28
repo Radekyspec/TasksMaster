@@ -9,4 +9,9 @@ public class ScheduleController {
     public ScheduleController(ScheduleInputBoundary scheduleInteractor) {
         this.scheduleInteractor = scheduleInteractor;
     }
+
+    public void getEvent(int projectId, int eventId) {
+        ScheduleInputData scheduleInputData = new ScheduleInputData(projectId, eventId);
+        scheduleInteractor.getEvent(scheduleInputData);
+    }
 }
