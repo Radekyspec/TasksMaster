@@ -1,7 +1,8 @@
 package use_case.message_board;
 
+import data_access.message_board.MessageBoardUserDataAccessInterface;
 import entities.message.Message;
-import main.java.data_access.message_board.MessageBoardUserDataAccessInterface;
+
 
 import java.util.List;
 
