@@ -29,6 +29,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     private String error;
     private final OkHttpClient client = new OkHttpClient().newBuilder()
             .build();
+
     public HttpDataAccessObject(String apiKey) throws InvalidApiKeyException {
         API_KEY = apiKey;
         if (!isValidApiKey()) {

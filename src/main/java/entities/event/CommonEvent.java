@@ -18,11 +18,12 @@ public class CommonEvent implements Event {
 
     /**
      * build up an event object.
-     * @param id the id of event
-     * @param name the name of event
-     * @param notes the notes of event
+     *
+     * @param id       the id of event
+     * @param name     the name of event
+     * @param notes    the notes of event
      * @param startsAt starting time of event
-     * @param endsAt ending time of event
+     * @param endsAt   ending time of event
      * @param isAllDay whether the event is all day
      */
     public CommonEvent(int id, String name, String notes, LocalDateTime startsAt, LocalDateTime endsAt,

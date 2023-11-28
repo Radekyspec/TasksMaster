@@ -1,5 +1,6 @@
 package app.signup;
 
+import data_access.signup.SignupUserDataAccessInterface;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
@@ -8,11 +9,11 @@ import interface_adapter.signup.SignupViewModel;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
-import data_access.signup.SignupUserDataAccessInterface;
 import view.signup.SignupView;
 
 public class SignupUseCaseFactory {
-    private SignupUseCaseFactory () {}
+    private SignupUseCaseFactory() {
+    }
 
     public static SignupView create(
             ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel,

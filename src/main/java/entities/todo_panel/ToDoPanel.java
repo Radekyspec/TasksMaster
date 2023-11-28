@@ -6,14 +6,15 @@ import java.util.Map;
 
 public interface ToDoPanel {
     /**
-<<<<<<< HEAD
      * Returns ID of this obj.
+     *
      * @return its ID.
      */
     Integer getId();
 
     /**
      * Returns lists of this obj.
+     *
      * @return all the TO_DOList managed by this panel.
      */
     Map<Integer, ToDoList> getLists();

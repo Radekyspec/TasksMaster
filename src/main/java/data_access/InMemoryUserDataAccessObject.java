@@ -66,7 +66,7 @@ public class InMemoryUserDataAccessObject extends HttpDataAccessObject {
     }
 
     public void save() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(userFile))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(userFile))) {
 
             writer.write(String.join(",", fileIndex.keySet()));
             writer.newLine();

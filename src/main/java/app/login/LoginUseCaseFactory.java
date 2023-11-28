@@ -12,7 +12,8 @@ import use_case.login.LoginOutputBoundary;
 import view.login.LoginView;
 
 public class LoginUseCaseFactory {
-    private LoginUseCaseFactory() {}
+    private LoginUseCaseFactory() {
+    }
 
     public static LoginView create(
             ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel,

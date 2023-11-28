@@ -5,7 +5,7 @@ import entities.todo.ToDo;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommonToDoList implements ToDoList{
+public class CommonToDoList implements ToDoList {
     private final Integer ID;
     private final String name;
     private final String detail;
@@ -13,11 +13,12 @@ public class CommonToDoList implements ToDoList{
 
     /**
      * build up a to_do list
-     * @param ID the ID
-     * @param name the name
+     *
+     * @param ID     the ID
+     * @param name   the name
      * @param detail the detail
      */
-    public CommonToDoList(int ID, String name, String detail){
+    public CommonToDoList(int ID, String name, String detail) {
         this.ID = ID;
         this.name = name;
         this.detail = detail;
@@ -26,15 +27,17 @@ public class CommonToDoList implements ToDoList{
 
     /**
      * Returns ID of this obj.
+     *
      * @return its ID.
      */
     @Override
-    public Integer getId() {
+    public Integer getID() {
         return this.ID;
     }
 
     /**
      * Returns name of this obj.
+     *
      * @return its name.
      */
     @Override
@@ -45,6 +48,7 @@ public class CommonToDoList implements ToDoList{
     /**
      * Returns detail of this obj.
      * A brief description of this TO_DoList
+     *
      * @return its detail.
      */
     @Override
@@ -55,12 +59,14 @@ public class CommonToDoList implements ToDoList{
     /**
      * Returns toDos of this obj.
      * A Map contains pairs of (ID of TO_DO, TO_DO)
+     *
      * @return A map contains pairs of id and to_do.
      */
     @Override
     public Map<Integer, ToDo> getToDos() {
         return this.toDos;
     }
+
     /**
      * add a new to_do into the to_do list
      *
@@ -68,6 +74,6 @@ public class CommonToDoList implements ToDoList{
      */
     @Override
     public void addToDos(ToDo toDo) {
-        toDos.put(toDo.getId(), toDo);
+        toDos.put(toDo.getID(), toDo);
     }
 }

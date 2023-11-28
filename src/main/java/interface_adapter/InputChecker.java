@@ -3,7 +3,8 @@ package interface_adapter;
 import java.util.regex.Pattern;
 
 public class InputChecker {
-    private InputChecker() {}
+    private InputChecker() {
+    }
 
     public static boolean containsCapital(String input) {
         return Pattern.compile("[A-Z]").matcher(input).find();
