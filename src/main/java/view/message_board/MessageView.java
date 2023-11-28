@@ -2,6 +2,7 @@ package view.message_board;
 
 import entities.comment.Comment;
 import entities.message.Message;
+import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.MessageBoardViewModel;
 import interface_adapter.message_board.message.MessageController;
@@ -17,6 +18,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class MessageView extends JPanel implements ActionListener, PropertyChangeListener {
+    private User user;
     private final ViewManagerModel viewManagerModel;
     private final MessageViewModel messageViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
@@ -25,6 +27,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
     private final JLabel auther;
     private final JLabel content;
     private final JTextField addComment = new JTextField();
+    private final JPanel addCommentPanel = new JPanel();
     private final JButton addThisComment = new JButton();
     private final JPanel commentBoard;
 
@@ -44,7 +47,6 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
         MessageState messageState = messageViewModel.getState();
         messageController.getComments(messageState.getProjectID(), messageState.getMessageID());
 
-        JPanel addCommentPanel = new JPanel();
         addCommentPanel.add(new JLabel("Add a comment here"));
         addCommentPanel.add(addComment);
         addComment.addKeyListener(
@@ -73,9 +75,15 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
                     }
                     MessageState messagestate = new MessageState();
 
-                    messageController.addNewComment(state.getProjectID(), state.getMessage(), state.getNewComment());
+                    messageController.addNewComment(state.getProjectID(), state.getMessageID(), user, state.getNewComment());
                 }
         );
+        this.add(title);
+        this.add(auther);
+        this.add(content);
+        this.add(commentBoard);
+        this.add(addCommentPanel);
+        this.add(addThisComment);
     }
 
     /**

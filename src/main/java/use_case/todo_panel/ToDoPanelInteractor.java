@@ -30,7 +30,7 @@ public class ToDoPanelInteractor implements ToDoPanelInputBoundary{
         if (toDoPanel == null) {
             // 此处将获取的todopanel传入进去了，通过outputdata传入todopanelpresenter
             ToDoPanelOutputData outputData = new ToDoPanelOutputData(
-                    "TDPDAO-getToDoPanel: Failure.",
+                    "TDPInteractor: get failure.",
                     null,
                     true
             );

@@ -1,15 +1,19 @@
 package use_case.message_board.message;
 
+import data_access.message_board.MessageBoardUserDataAccessInterface;
 import entities.comment.Comment;
-import main.java.data_access.message_board.MessageBoardUserDataAccessInterface;
+import entities.user.User;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageInteractor implements MessageInputBoundary {
     final MessageBoardUserDataAccessInterface userDataAccessInterface;
     final MessageOutputBoundary messagePresenter;
 
-    public MessageInteractor(MessageBoardUserDataAccessInterface userDataAccessInterface, MessageOutputBoundary messagePresenter) {
+    public MessageInteractor(MessageBoardUserDataAccessInterface userDataAccessInterface,
+                             MessageOutputBoundary messagePresenter) {
         this.userDataAccessInterface = userDataAccessInterface;
         this.messagePresenter = messagePresenter;
     }
@@ -20,6 +24,19 @@ public class MessageInteractor implements MessageInputBoundary {
         int messageID = messageInputData.messageID();
         List<Comment> comments = userDataAccessInterface.getComments(projectID, messageID);
         MessageOutputData messageOutputData = new MessageOutputData(comments);
+        messagePresenter.prepareGetCommentsSuccessView(messageOutputData);
+    }
+
+    @Override
+    public void addComments(MessageInputData messageInputData) {
+        int projectID = messageInputData.projectID();
+        int messageID = messageInputData.messageID();
+        User user = messageInputData.user();
+        String newComment = messageInputData.newComment();
+        Comment comment = userDataAccessInterface.addComment(projectID,messageID,user,newComment);
+        List<Comment> list = new ArrayList<>();
+        list.add(comment);
+        MessageOutputData messageOutputData = new MessageOutputData(list);
         messagePresenter.prepareGetCommentsSuccessView(messageOutputData);
     }
 }
