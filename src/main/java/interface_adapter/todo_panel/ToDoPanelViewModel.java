@@ -19,6 +19,8 @@ public class ToDoPanelViewModel extends ViewModel {
     @Override
     public void firePropertyChanged() {
         propertyChangeSupport.firePropertyChange("new todo panel", null, toDoPanelState);
+        // TODO 问题：接收什么名字，做什么改变，才能让不同的需求对接不同的state传送？
+        //  自查：Controller - InputData - usecase.Interactor - outputdata - ViewModel implemented by OutputBoundary
     }
 
     public void firePropertyChanged(String propertyName) {
