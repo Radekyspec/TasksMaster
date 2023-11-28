@@ -1,7 +1,6 @@
 package use_case.schedule;
 
 import entities.event.Event;
-import entities.schedule.Schedule;
 
 import java.util.List;
 
