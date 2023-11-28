@@ -14,7 +14,7 @@ public class SchedulePresenter implements ScheduleOutputBoundary {
     @Override
     public void prepareGetEventSuccessView(ScheduleOutputData scheduleOutputData) {
         for (Event event : scheduleOutputData.getEvents()) {
-            scheduleViewModel.getE
+            scheduleViewModel.getSc
         }
     }
 }
