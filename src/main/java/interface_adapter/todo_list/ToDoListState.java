@@ -7,12 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ToDoListState {
-    private final Map<Integer, ToDo> toDos;
+    private final Map<Integer, ToDoList> todoListPackage;
     private String toDoListError;
+    private String name;
 
     public ToDoListState() {
-        toDoLists = new HashMap<>();
+        todoListPackage = new HashMap<Integer, ToDoList>();
         toDoListError = null;
+        name = "";
     }
 
     public String getToDoListError() {
@@ -23,7 +25,19 @@ public class ToDoListState {
         this.toDoListError = toDoListError;
     }
 
-    public Map<Integer, ToDoList> getToDoLists() {
-        return toDoLists;
+    public Map<Integer, ToDoList> getToDo() {
+        return ;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Map<Integer, ToDoList> getToDoListPackage() {
+        return todoListPackage;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
