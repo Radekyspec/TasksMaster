@@ -22,11 +22,15 @@ public class ScheduleViewModel extends ViewModel {
 
     @Override
     public void firePropertyChanged() {
-        support.firePropertyChange("new message", null, messageBoardState);
+        support.firePropertyChange("new event", null, scheduleState);
     }
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+
+    public ScheduleState getScheduleState() {
+        return scheduleState;
     }
 }
