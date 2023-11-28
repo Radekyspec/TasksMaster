@@ -2,8 +2,6 @@ package use_case.schedule;
 
 import data_access.schedule.ScheduleDataAccessInterface;
 import entities.event.Event;
-import entities.schedule.Schedule;
-import main.java.data_access.message_board.MessageBoardUserDataAccessInterface;
 
 import java.util.List;
 
@@ -17,11 +15,11 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
     }
 
     @Override
-    public void getSchedule(ScheduleInputData scheduleInputData) {
-        int id = scheduleInputData.id();
+    public void getEvent(ScheduleInputData scheduleInputData) {
+        int scheduleId = scheduleInputData.scheduleId();
         int projectId = scheduleInputData.projectId();
-        List<Schedule> schedules = scheduleDataAccessInterface.getEvents(id, projectId);
-        ScheduleOutputData scheduleOutputData = new ScheduleOutputData(schedules);
+        List<Event> events = scheduleDataAccessInterface.getEvents(projectId, scheduleId);
+        ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
         schedulePresenter.prepareSuccessView(scheduleOutputData);
     }
 }

@@ -1,17 +1,18 @@
 package use_case.schedule;
 
+import entities.event.Event;
 import entities.schedule.Schedule;
 
 import java.util.List;
 
 public class ScheduleOutputData {
-    private final List<Schedule> schedules;
+    private final List<Event> events;
 
-    public ScheduleOutputData(List<Schedule> schedules) {
-        this.schedules = schedules;
+    public ScheduleOutputData(List<Event> events) {
+        this.events = events;
     }
 
-    public List<Schedule> getSchedules() {
-        return this.schedules;
+    public List<Event> getEvents() {
+        return this.events;
     }
 }

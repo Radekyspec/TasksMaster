@@ -1,5 +1,5 @@
 package use_case.schedule;
 
 public interface ScheduleInputBoundary {
-    void execute(ScheduleInputData scheduleInputData);
+    void getEvent(ScheduleInputData scheduleInputData);
 }
