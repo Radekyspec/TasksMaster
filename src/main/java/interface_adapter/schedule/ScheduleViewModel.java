@@ -1,6 +1,7 @@
 package interface_adapter.schedule;
 
 import interface_adapter.ViewModel;
+import interface_adapter.schedule.ScheduleState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
