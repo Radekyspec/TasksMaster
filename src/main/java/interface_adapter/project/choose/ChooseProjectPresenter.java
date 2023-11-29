@@ -1,4 +1,6 @@
 package interface_adapter.project.choose;
 
-public class ChooseProjectPresenter {
+import use_case.project.choose.ChooseProjectOutputBoundary;
+
+public class ChooseProjectPresenter implements ChooseProjectOutputBoundary {
 }

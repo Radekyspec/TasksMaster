@@ -8,6 +8,7 @@ import java.beans.PropertyChangeSupport;
 public class ChooseProjectViewModel extends ViewModel {
     public static final String CHOOSE_PROJECT_LABEL = "Choose a project";
     public static final String BUTTON_ENTER_PROJECT_LABEL = "Enter";
+    public static final String BUTTON_CREATE_PROJECT_LABEL = "Create a Project";
     public static final String UPDATE_PROJECT = "update project";
     public static final String SET_USER = "set user";
     private final ChooseProjectState state = new ChooseProjectState();
