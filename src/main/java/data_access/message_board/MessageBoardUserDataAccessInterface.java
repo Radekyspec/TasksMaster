@@ -1,4 +1,4 @@
-package main.java.data_access.message_board;
+package data_access.message_board;
 
 import entities.comment.Comment;
 import entities.message.Message;
