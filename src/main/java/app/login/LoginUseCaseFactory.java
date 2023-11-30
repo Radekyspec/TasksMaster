@@ -5,6 +5,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.project.choose.ChooseProjectViewModel;
 import interface_adapter.signup.SignupViewModel;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
@@ -17,17 +18,20 @@ public class LoginUseCaseFactory {
 
     public static LoginView create(
             ViewManagerModel viewManagerModel, SignupViewModel signupViewModel, LoginViewModel loginViewModel,
+            ChooseProjectViewModel chooseProjectViewModel,
             LoginUserDataAccessInterface userDataAccessObject) {
         LoginController loginController = LoginUseCaseFactory.createLoginController(
-                viewManagerModel, loginViewModel, userDataAccessObject);
+                viewManagerModel, loginViewModel, chooseProjectViewModel, userDataAccessObject);
         return new LoginView(viewManagerModel, signupViewModel, loginViewModel, loginController);
 
     }
 
     private static LoginController createLoginController(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
+            ChooseProjectViewModel chooseProjectViewModel,
             LoginUserDataAccessInterface userDataAccessObject) {
-        LoginOutputBoundary loginPresenter = new LoginPresenter(viewManagerModel, loginViewModel);
+        LoginOutputBoundary loginPresenter = new LoginPresenter(viewManagerModel, loginViewModel,
+                chooseProjectViewModel);
         LoginInputBoundary loginInteractor = new LoginInteractor(loginPresenter, userDataAccessObject);
         return new LoginController(loginInteractor);
     }

@@ -1,15 +1,19 @@
 package app;
 
 import app.login.LoginUseCaseFactory;
+import app.project.choose.ChooseProjectUseCaseFactory;
 import app.signup.SignupUseCaseFactory;
 import data_access.InMemoryUserDataAccessObject;
 import exceptions.InvalidApiKeyException;
 import exceptions.InvalidUserConfigException;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.project.add.AddProjectViewModel;
+import interface_adapter.project.choose.ChooseProjectViewModel;
 import interface_adapter.signup.SignupViewModel;
 import view.ViewManager;
 import view.login.LoginView;
+import view.project.choose.ChooseProjectView;
 import view.signup.SignupView;
 
 import javax.swing.*;
@@ -42,12 +46,18 @@ public class Main {
 
         SignupViewModel signupViewModel = new SignupViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
+        ChooseProjectViewModel chooseProjectViewModel = new ChooseProjectViewModel();
+        AddProjectViewModel addProjectViewModel = new AddProjectViewModel();
         SignupView signupView = SignupUseCaseFactory.create(
                 viewManagerModel, signupViewModel, loginViewModel, userDAO);
         LoginView loginView = LoginUseCaseFactory.create(
-                viewManagerModel, signupViewModel, loginViewModel, userDAO);
+                viewManagerModel, signupViewModel, loginViewModel, chooseProjectViewModel, userDAO);
+        ChooseProjectView chooseProjectView = ChooseProjectUseCaseFactory.create(
+                viewManagerModel, addProjectViewModel, chooseProjectViewModel
+        );
         views.add(signupView, signupView.getViewName());
         views.add(loginView, loginView.getViewName());
+        views.add(chooseProjectView, chooseProjectView.getViewName());
 
         viewManagerModel.setActiveView(loginView.getViewName());
         viewManagerModel.firePropertyChanged();

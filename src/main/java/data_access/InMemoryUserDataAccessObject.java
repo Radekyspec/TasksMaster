@@ -92,4 +92,9 @@ public class InMemoryUserDataAccessObject extends HttpDataAccessObject {
         }
         return null;
     }
+
+    @Override
+    protected Map<String, User> getAllUsers() {
+        return accounts;
+    }
 }
