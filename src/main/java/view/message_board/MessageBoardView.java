@@ -1,6 +1,8 @@
 package view.message_board;
 
 import entities.message.Message;
+import entities.message_board.MessageBoard;
+import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.MessageBoardController;
 import interface_adapter.message_board.MessageBoardState;
@@ -19,6 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MessageBoardView extends JPanel implements ActionListener, PropertyChangeListener {
+    private int projectID;
+    private MessageBoard messageBoard;
+    private User user;
     private final ViewManagerModel viewManagerModel;
     private final MessageBoardViewModel messageBoardViewModel;
     private final AddNewMessageViewModel addNewMessageViewModel;
@@ -98,6 +103,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         MessageBoardState state = (MessageBoardState) evt.getNewValue();
         Message message = state.getMessage();
         JButton messageButton = new JButton(message.getAuthor().getName() + message.getTitle());
+        messageBoard.setMessage(message);
         buttonToMessage.put(messageButton, message);
         messageButton.addActionListener(this);
         messages.add(messageButton);

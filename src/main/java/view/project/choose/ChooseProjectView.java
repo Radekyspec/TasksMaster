@@ -63,13 +63,13 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        ChooseProjectState state = (ChooseProjectState) evt.getNewValue();
         switch (evt.getPropertyName()) {
             case ChooseProjectViewModel.UPDATE_PROJECT -> {
-                ChooseProjectState state = (ChooseProjectState) evt.getNewValue();
                 projectList.addItem(state.getProject().getName());
                 projectIds.add(state.getProject().getID());
             }
-            case ChooseProjectViewModel.SET_USER -> this.user = (User) evt.getNewValue();
+            case ChooseProjectViewModel.SET_USER -> this.user = state.getUser();
         }
     }
 
