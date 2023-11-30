@@ -16,9 +16,16 @@ public interface ToDo {
     String getTarget();
 
     /**
-     * Returns the people who is assigned to this obj.
+     * Returns the people who assignTo this obj.
      *
-     * @return its assginto[].
+     * @return its assignTo[].
      */
     String[] getAssignedTo();
+
+    /**
+     * Return if the to_do is finished.
+     *
+     * @return incomplete when it isn't complete, done when it's complete.
+     */
+    String getProgress();
 }

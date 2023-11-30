@@ -28,6 +28,7 @@ public class ToDoListPresenter implements ToDoListOutputBoundary {
             return;
         }
         toDoListViewModel.getToDoListState().setToDoListError(toDoListOutputData.getError());
+        toDoListViewModel.getToDoListState().setWorkKind(toDoListOutputData.getWorkKind());
         toDoListViewModel.firePropertyChanged();
     }
 
@@ -42,6 +43,7 @@ public class ToDoListPresenter implements ToDoListOutputBoundary {
             return;
         }
         toDoListViewModel.getToDoListState().setName(toDoListOutputData.getName());
+        toDoListViewModel.getToDoListState().setWorkKind(toDoListOutputData.getWorkKind());
         toDoListViewModel.firePropertyChanged();
     }
 
@@ -57,6 +59,8 @@ public class ToDoListPresenter implements ToDoListOutputBoundary {
         }
         Map<Integer, ToDoList> TDPPackage = toDoListOutputData.getToDoListPackage();
         toDoListViewModel.getToDoListState().getToDoListPackage().putAll(TDPPackage);
+        toDoListViewModel.getToDoListState().setWorkKind(toDoListOutputData.getWorkKind());
+        viewManagerModel.setActiveView(toDoListViewModel.getViewName()); // import完后才能进入view
         toDoListViewModel.firePropertyChanged();
     }
 }

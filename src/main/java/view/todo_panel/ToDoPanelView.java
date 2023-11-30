@@ -30,7 +30,11 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     private final JPanel toDoListViews;
     private final ToDoPanelState toDoPanelState;
 
-    public ToDoPanelView(ToDoPanelViewModel toDoPanelViewModel, ToDoPanelController toDoPanelController, ToDoPanelState toDoPanelState) {
+    private JLabel newToDoList;
+
+    public ToDoPanelView(ToDoPanelViewModel toDoPanelViewModel,
+                         ToDoPanelController toDoPanelController,
+                         ToDoPanelState toDoPanelState) {
         this.toDoPanelViewModel = toDoPanelViewModel;
         this.toDoPanelController = toDoPanelController;
         this.toDoPanelState = toDoPanelState;
@@ -61,13 +65,15 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         The type can be the type or its subclass.
          */
         ToDoPanelState state = (ToDoPanelState) evt.getNewValue(); // state在这个方法被触发的时候就传过来了。
+        /*
         statename = state.getpropertyname;
         if (statename == "new panel") {
 
         } else if (statename == "import panel") {
 
         }
-        JButton newToDoList = new JButton(state.getToDoList().getName()); //这里通过使用state的各种方法，得到各种需要的值
+        */
+        JButton newToDoList = new JButton(state.getWorkKind()); //这里通过使用state的各种方法，得到各种需要的值
         /*
         successfully add one todolist.
          */
