@@ -1,5 +1,8 @@
 package view.todo_panel;
 
+import com.sun.source.tree.NewArrayTree;
+import entities.todo_panel.ToDoPanel;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import interface_adapter.todo_panel.ToDoPanelController;
 import interface_adapter.todo_panel.ToDoPanelState;
@@ -10,29 +13,16 @@ import java.beans.PropertyChangeListener;
 
 public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     private final ToDoPanelViewModel toDoPanelViewModel;
-    /**
-     * 1. VM创建了，initialize好了。此时VM基本是空的。
-     * 2. 对这个变量进行了initialize，代码不报错了。意味着可以开始编辑Controller
-     */
+
     private final ToDoPanelController toDoPanelController;
-    /**
-     * 必要性：我们需要一个controller。controller真正的发出指令。
-     * 参照SignupController：SignupController <- SignupInputBoundary -> SignupInteractor. done
-     * 1. VM创建了，initialize好了。此时基本是空的。
-     *
-     *
-     *
-     * 老的要去那
-     * 穿件一个新的for，
-     * 新创建在controller
-     *  给todolist——controller创建自己，返回（用presenter）
-     */
+
     private final JPanel toDoListViews;
     private final ToDoPanelState toDoPanelState;
 
     private JLabel newToDoList;
 
-    public ToDoPanelView(ToDoPanelViewModel toDoPanelViewModel,
+    public ToDoPanelView(ViewManagerModel viewManagerModel,
+                         ToDoPanelViewModel toDoPanelViewModel,
                          ToDoPanelController toDoPanelController,
                          ToDoPanelState toDoPanelState) {
         this.toDoPanelViewModel = toDoPanelViewModel;
@@ -65,6 +55,11 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         The type can be the type or its subclass.
          */
         ToDoPanelState state = (ToDoPanelState) evt.getNewValue(); // state在这个方法被触发的时候就传过来了。
+        String stateName = evt.getPropertyName();
+
+        if (stateName.equals("create")) {
+
+        }
         /*
         statename = state.getpropertyname;
         if (statename == "new panel") {
