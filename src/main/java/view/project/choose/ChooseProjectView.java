@@ -1,5 +1,6 @@
 package view.project.choose;
 
+import entities.project.Project;
 import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.add.AddProjectViewModel;
@@ -21,7 +22,7 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
     private final ChooseProjectController chooseProjectController;
     private final JButton enter;
     private final JComboBox<String> projectList;
-    private final List<Integer> projectIds;
+    private final List<Project> projects;
 
     public ChooseProjectView(ViewManagerModel viewManagerModel, AddProjectViewModel addProjectViewModel,
             ChooseProjectViewModel chooseProjectViewModel, ChooseProjectController chooseProjectController) {
@@ -29,7 +30,7 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
         this.chooseProjectController = chooseProjectController;
         chooseProjectViewModel.addPropertyChangeListener(this);
 
-        projectIds = new ArrayList<>();
+        projects = new ArrayList<>();
         projectList = new JComboBox<>();
         JPanel buttons = new JPanel();
         JPanel chooseProjectPanel = new JPanel();
@@ -67,9 +68,15 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
         switch (evt.getPropertyName()) {
             case ChooseProjectViewModel.UPDATE_PROJECT -> {
                 projectList.addItem(state.getProject().getName());
-                projectIds.add(state.getProject().getID());
+                projects.add(state.getProject());
             }
             case ChooseProjectViewModel.SET_USER -> this.user = state.getUser();
+            case ChooseProjectViewModel.CHOOSE_PROJECT_ERROR -> {
+                if (state.getChooseProjectError() != null) {
+                    JOptionPane.showMessageDialog(this, state.getChooseProjectError());
+                    state.setChooseProjectError(null);
+                }
+            }
         }
     }
 
@@ -81,7 +88,7 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!e.getSource().equals(enter)) {return;}
-        chooseProjectController.execute(projectIds.get(projectList.getSelectedIndex()));
+        chooseProjectController.execute(projects.get(projectList.getSelectedIndex()));
     }
 
     public String getViewName() {
