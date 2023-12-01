@@ -10,9 +10,9 @@ public class ToDoListInteractor implements ToDoListInputBoundary{
     }
     @Override
     public void execute(ToDoListInputData toDoListInputData) {
-        ToDoListInputData TDLInputData = toDoListInputData;
-        if (TDLInputData.getWorkKind() == null) {
+        if (toDoListInputData.getWorkKind() == null) {
             ToDoListOutputData outputData = new ToDoListOutputData(
+                    null,
                     "TDLInteractor: get failure.",
                     true,
                     null,
@@ -20,23 +20,25 @@ public class ToDoListInteractor implements ToDoListInputBoundary{
                     null,
                     null);
             toDoListPresenter.prepareFailView(outputData);
-        } else if (TDLInputData.getWorkKind().equals("create")) {
+        } else if (toDoListInputData.getWorkKind().equals("create")) {
             ToDoListOutputData outputData = new ToDoListOutputData(
+                    "create",
                     null,
                     false,
-                    TDLInputData.getID(),
-                    TDLInputData.getName(),
-                    TDLInputData.getDetail(),
+                    toDoListInputData.getID(),
+                    toDoListInputData.getName(),
+                    toDoListInputData.getDetail(),
                     null);
             toDoListPresenter.prepareCreateView(outputData);
-        } else if (TDLInputData.getWorkKind().equals("import")) {
+        } else if (toDoListInputData.getWorkKind().equals("import")) {
             ToDoListOutputData outputData = new ToDoListOutputData(
+                    "import",
                     null,
                     false,
                     null,
                     null,
                     null,
-                    TDLInputData.getToDoListPackage());
+                    toDoListInputData.getToDoListPackage());
             toDoListPresenter.prepareImportView(outputData);
         }
     }

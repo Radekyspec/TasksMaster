@@ -1,5 +1,7 @@
 package view.todo_panel;
 
+import interface_adapter.ViewManagerModel;
+import interface_adapter.signup.SignupViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import interface_adapter.todo_panel.ToDoPanelController;
 import interface_adapter.todo_panel.ToDoPanelState;
@@ -29,8 +31,15 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
      */
     private final JPanel toDoListViews;
     private final ToDoPanelState toDoPanelState;
+    private final JButton addNewList;
+    private final JButton cancel;
 
-    public ToDoPanelView(ToDoPanelViewModel toDoPanelViewModel, ToDoPanelController toDoPanelController, ToDoPanelState toDoPanelState) {
+    private JLabel newToDoList;
+
+    public ToDoPanelView(ViewManagerModel viewManagerModel,
+                         ToDoPanelViewModel toDoPanelViewModel,
+                         ToDoPanelController toDoPanelController,
+                         ToDoPanelState toDoPanelState) {
         this.toDoPanelViewModel = toDoPanelViewModel;
         this.toDoPanelController = toDoPanelController;
         this.toDoPanelState = toDoPanelState;
@@ -41,6 +50,24 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title); // add button that u already set.
         this.add(new JLabel());
+
+        /*
+        two buttons added.
+         */
+        JPanel buttons = new JPanel();
+        addNewList = new JButton(ToDoPanelViewModel.ADD_NEW_LIST_BUTTON_LABEL);
+        cancel = new JButton(ToDoPanelViewModel.SIGNUP_CANCEL_BUTTON_LABEL);
+        buttons.add(addNewList);
+        buttons.add(cancel);
+
+        cancel.addActionListener(
+                e -> {
+                    if (!e.getSource().equals(cancel)) {
+                        return;
+                    }
+                    viewManagerModel.setActiveView();
+                }
+        );
     }
 
     /**
@@ -61,13 +88,15 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         The type can be the type or its subclass.
          */
         ToDoPanelState state = (ToDoPanelState) evt.getNewValue(); // state在这个方法被触发的时候就传过来了。
+        /*
         statename = state.getpropertyname;
         if (statename == "new panel") {
 
         } else if (statename == "import panel") {
 
         }
-        JButton newToDoList = new JButton(state.getToDoList().getName()); //这里通过使用state的各种方法，得到各种需要的值
+        */
+        JButton newToDoList = new JButton(state.getWorkKind()); //这里通过使用state的各种方法，得到各种需要的值
         /*
         successfully add one todolist.
          */
