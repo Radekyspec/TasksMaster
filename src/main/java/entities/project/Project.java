@@ -3,9 +3,8 @@ package entities.project;
 import entities.message_board.MessageBoard;
 import entities.schedule.Schedule;
 import entities.todo_panel.ToDoPanel;
-import entities.user.User;
 
-import java.util.Map;
+import java.util.List;
 
 public interface Project {
     /**
@@ -15,9 +14,9 @@ public interface Project {
      */
     int getID();
 
-    User getLeader();
+    String getLeader();
 
-    void setLeader(User leader);
+    void setLeader(String leader);
 
     /**
      * Return the name of the Project
@@ -33,7 +32,7 @@ public interface Project {
      *
      * @return its members
      */
-    Map<String, User> getMembers();
+    List<String> getMembers();
 
     /**
      * Return the to_do panel of the Project
@@ -82,5 +81,5 @@ public interface Project {
      *
      * @param newMember the new member that join the project
      */
-    void addNewMember(User newMember);
+    void addNewMember(String newMember);
 }
