@@ -43,7 +43,6 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
                     viewManagerModel.firePropertyChanged();
                 }
         );
-        chooseProjectController.getUserProjects(user);
         enter = new JButton(ChooseProjectViewModel.BUTTON_ENTER_PROJECT_LABEL);
         enter.addActionListener(this);
         buttons.add(enter);
@@ -70,7 +69,10 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
                 projectList.addItem(state.getProject().getName());
                 projects.add(state.getProject());
             }
-            case ChooseProjectViewModel.SET_USER -> this.user = state.getUser();
+            case ChooseProjectViewModel.SET_USER -> {
+                this.user = state.getUser();
+                chooseProjectController.getUserProjects(user);
+            }
             case ChooseProjectViewModel.CHOOSE_PROJECT_ERROR -> {
                 if (state.getChooseProjectError() != null) {
                     JOptionPane.showMessageDialog(this, state.getChooseProjectError());

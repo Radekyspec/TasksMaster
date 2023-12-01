@@ -1,6 +1,7 @@
 package app;
 
 import app.login.LoginUseCaseFactory;
+import app.project.add.AddProjectUseCaseFactory;
 import app.project.choose.ChooseProjectUseCaseFactory;
 import app.signup.SignupUseCaseFactory;
 import data_access.InMemoryUserDataAccessObject;
@@ -13,6 +14,7 @@ import interface_adapter.project.choose.ChooseProjectViewModel;
 import interface_adapter.signup.SignupViewModel;
 import view.ViewManager;
 import view.login.LoginView;
+import view.project.add.AddProjectView;
 import view.project.choose.ChooseProjectView;
 import view.signup.SignupView;
 
@@ -51,13 +53,17 @@ public class Main {
         SignupView signupView = SignupUseCaseFactory.create(
                 viewManagerModel, signupViewModel, loginViewModel, userDAO);
         LoginView loginView = LoginUseCaseFactory.create(
-                viewManagerModel, signupViewModel, loginViewModel, chooseProjectViewModel, userDAO);
+                viewManagerModel, signupViewModel, loginViewModel, chooseProjectViewModel, addProjectViewModel, userDAO);
         ChooseProjectView chooseProjectView = ChooseProjectUseCaseFactory.create(
-                viewManagerModel, addProjectViewModel, chooseProjectViewModel
+                viewManagerModel, addProjectViewModel, chooseProjectViewModel, userDAO
+        );
+        AddProjectView addProjectView = AddProjectUseCaseFactory.create(
+                viewManagerModel, addProjectViewModel, chooseProjectViewModel, userDAO
         );
         views.add(signupView, signupView.getViewName());
         views.add(loginView, loginView.getViewName());
         views.add(chooseProjectView, chooseProjectView.getViewName());
+        views.add(addProjectView, addProjectView.getViewName());
 
         viewManagerModel.setActiveView(loginView.getViewName());
         viewManagerModel.firePropertyChanged();
