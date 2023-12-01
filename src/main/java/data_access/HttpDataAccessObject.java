@@ -72,9 +72,6 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     }
 
     public String getApiErrorMessage() {
-        if (isValidApiKey()) {
-            return null;
-        }
         if (API_KEY == null || API_KEY.isEmpty() || API_KEY.isBlank()) {
             return "API key is empty.";
         }

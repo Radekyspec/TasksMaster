@@ -11,6 +11,7 @@ public class ChooseProjectViewModel extends ViewModel {
     public static final String BUTTON_CREATE_PROJECT_LABEL = "Create a Project";
     public static final String UPDATE_PROJECT = "update project";
     public static final String SET_USER = "set user";
+    public static final String CHOOSE_PROJECT_ERROR = "choose project error";
     private final ChooseProjectState state = new ChooseProjectState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
