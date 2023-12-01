@@ -17,7 +17,11 @@ public class ToDoViewModel extends ViewModel {
     }
     @Override
     public void firePropertyChanged() {
-        propertyChangeSupport.firePropertyChange("new todo", null, toDoState);
+        propertyChangeSupport.firePropertyChange("todo", null, toDoState);
+    }
+
+    public void firePropertyChanged(String propertyName) {
+        propertyChangeSupport.firePropertyChange(propertyName, null, toDoState);
     }
 
     @Override
