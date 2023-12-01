@@ -11,8 +11,9 @@ import java.util.Map;
 public class CommonProject implements Project {
     private final int ID;
     private final String name;
-    private final User leader;
-    private final Map<Integer, User> members;
+    private final String description;
+    private final Map<String, User> members;
+    private User leader;
     private ToDoPanel toDoPanel;
     private MessageBoard messageBoard;
     private Schedule schedule;
@@ -20,15 +21,25 @@ public class CommonProject implements Project {
     /**
      * build a CommonProject object.
      *
-     * @param ID     the ID of the project
-     * @param name   the name of the project
-     * @param leader the leader of the project
+     * @param ID          the ID of the project
+     * @param name        the name of the project
+     * @param description
      */
-    public CommonProject(int ID, String name, User leader) {
+    public CommonProject(int ID, String name, String description) {
         this.ID = ID;
         this.name = name;
-        this.leader = leader;
+        this.description = description;
         this.members = new HashMap<>();
+    }
+
+    @Override
+    public User getLeader() {
+        return leader;
+    }
+
+    @Override
+    public void setLeader(User leader) {
+        this.leader = leader;
     }
 
     /**
@@ -39,6 +50,11 @@ public class CommonProject implements Project {
     @Override
     public int getID() {
         return ID;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     /**
@@ -52,22 +68,12 @@ public class CommonProject implements Project {
     }
 
     /**
-     * Return the leader of the Project
-     *
-     * @return its leader
-     */
-    @Override
-    public User getLeader() {
-        return leader;
-    }
-
-    /**
      * Return all members of the Project
      *
      * @return its members
      */
     @Override
-    public Map<Integer, User> getMembers() {
+    public Map<String, User> getMembers() {
         return members;
     }
 
@@ -138,6 +144,6 @@ public class CommonProject implements Project {
      */
     @Override
     public void addNewMember(User newMember) {
-        members.put(newMember.getID(), newMember);
+        members.put(newMember.getName(), newMember);
     }
 }

@@ -6,6 +6,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class ToDoPanelViewModel extends ViewModel {
+    public static final String TODO_PANEL_TITLE_LABEL = "A ToDo Panel";
+    public static final String ADD_NEW_LIST_BUTTON_LABEL = "+ new ToDoList";
+    public static final String SIGNUP_CANCEL_BUTTON_LABEL = "Cancel";
     private final ToDoPanelState toDoPanelState = new ToDoPanelState();
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
@@ -19,6 +22,8 @@ public class ToDoPanelViewModel extends ViewModel {
     @Override
     public void firePropertyChanged() {
         propertyChangeSupport.firePropertyChange("new todo panel", null, toDoPanelState);
+        // TODO 问题：接收什么名字，做什么改变，才能让不同的需求对接不同的state传送？
+        //  自查：Controller - InputData - usecase.Interactor - outputdata - ViewModel implemented by OutputBoundary
     }
 
     public void firePropertyChanged(String propertyName) {
