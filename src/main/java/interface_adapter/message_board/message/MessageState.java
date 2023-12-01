@@ -41,4 +41,12 @@ public class MessageState {
     public int getMessageID() {
         return messageID;
     }
+
+    public void setProjectID(int projectID) {
+        this.projectID = projectID;
+    }
+
+    public void setMessageID(int messageID) {
+        this.messageID = messageID;
+    }
 }

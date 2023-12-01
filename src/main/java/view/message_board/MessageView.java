@@ -75,7 +75,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
                     }
                     MessageState messagestate = new MessageState();
 
-                    messageController.addNewComment(state.getProjectID(), state.getMessageID(), user, state.getNewComment());
+                    messageController.addNewComment(messagestate.getProjectID(), messagestate.getMessageID(), user, messagestate.getNewComment());
                 }
         );
         this.add(title);
@@ -104,8 +104,14 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        MessageState state = (MessageState) evt.getNewValue();
-        Comment comment = state.getComment();
-        commentBoard.add(new JLabel(comment.getAuthor().getName() + comment.getContent()));
+        switch (evt.getPropertyName()){
+            case MessageViewModel.SET_MESSAGE -> {
+            }
+            case MessageViewModel.ADD_COMMENT -> {
+                MessageState state = (MessageState) evt.getNewValue();
+                Comment comment = state.getComment();
+                commentBoard.add(new JLabel(comment.getAuthor().getName() + comment.getContent()));
+            }
+        }
     }
 }
