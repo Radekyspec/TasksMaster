@@ -1,32 +1,29 @@
 package use_case.project.choose;
 
+import entities.project.Project;
 import entities.user.User;
 
 public class ChooseProjectInputData {
-    private int projectId;
-    private User user;
+    private final Project project;
+    private final User user;
 
-    public ChooseProjectInputData(int projectId) {
-        this.projectId = projectId;
+    public ChooseProjectInputData(Project project) {
+        this.project = project;
+
+        user = null;
     }
 
     public ChooseProjectInputData(User user) {
         this.user = user;
+
+        project = null;
     }
 
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public Project getProject() {
+        return project;
     }
 
     public User getUser() {
         return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

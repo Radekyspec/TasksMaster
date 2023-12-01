@@ -1,5 +1,6 @@
 package interface_adapter.project.choose;
 
+import entities.project.Project;
 import entities.user.User;
 import use_case.project.choose.ChooseProjectInputBoundary;
 import use_case.project.choose.ChooseProjectInputData;
@@ -11,8 +12,8 @@ public class ChooseProjectController {
         this.interactor = interactor;
     }
 
-    public void execute(int projectId) {
-        ChooseProjectInputData inputData = new ChooseProjectInputData(projectId);
+    public void execute(Project project) {
+        ChooseProjectInputData inputData = new ChooseProjectInputData(project);
         interactor.execute(inputData);
     }
 
