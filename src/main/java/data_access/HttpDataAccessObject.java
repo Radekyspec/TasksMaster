@@ -1,10 +1,15 @@
 package data_access;
 
 import data_access.login.LoginUserDataAccessInterface;
+import data_access.message_board.MessageBoardUserDataAccessInterface;
 import data_access.project.ProjectUserDataAccessInterface;
 import data_access.project.add.AddProjectUserDataAccessInterface;
 import data_access.project.choose.ChooseProjectUserDataAccessInterface;
 import data_access.signup.SignupUserDataAccessInterface;
+import entities.comment.Comment;
+import entities.comment.CommonCommentFactory;
+import entities.message.CommonMessageFactory;
+import entities.message.Message;
 import entities.message_board.CommonMessageBoardFactory;
 import entities.project.CommonProjectFactory;
 import entities.project.Project;
@@ -18,12 +23,14 @@ import org.json.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public abstract class HttpDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface, ProjectUserDataAccessInterface, ChooseProjectUserDataAccessInterface,
-        AddProjectUserDataAccessInterface {
+        AddProjectUserDataAccessInterface, MessageBoardUserDataAccessInterface {
     private final String API_KEY;
     private int orgId;
     private String error;
@@ -198,8 +205,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
                 .method("PUT", body)
                 .build();
 
-        try {
-            Response response = client.newCall(request).execute();
+        try (Response response = client.newCall(request).execute()){
             if (response.code() != 200 || response.body() == null) {
                 setErrorMessage("Network Error");
                 return false;
@@ -213,6 +219,163 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
 
     @Override
     public boolean exists(String username, Project project) {
-        return true;
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/projects/%d.json", orgId, project.getID()))
+                .build();
+        try (Response response = client.newCall(request).execute()){
+            if (response.code() != 200 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return true;
+            }
+            Project projectJson = jsonToProject(new JSONObject(response.body().string()));
+            return projectJson.getMembers().contains(username);
+        } catch (IOException | JSONException e) {
+            setErrorMessage("Network Error");
+            return true;
+        }
+    }
+
+    @Override
+    public List<Message> getMessages(int projectID, int messageBoardID) {
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/message_boards/%d/messages.json",
+                        orgId, projectID, messageBoardID))
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            List<Message> messages = new ArrayList<>();
+            JSONArray responseJson = new JSONArray(response.body().string());
+            for (int i = 0; i < responseJson.length(); i++) {
+                JSONObject rawMessage = responseJson.getJSONObject(i);
+                String author = rawMessage.getString("content").split(":")[0];
+                String content = Arrays.stream(rawMessage.getString("content").split(":")).skip(1)
+                        .collect(Collectors.joining(":"));
+                messages.add(CommonMessageFactory.create(
+                        rawMessage.getInt("id"),
+                        author,
+                        rawMessage.getString("title"),
+                        content
+                ));
+            }
+            return messages;
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON Decode Error");
+            return null;
+        }
+    }
+
+    @Override
+    public List<Comment> getComments(int projectID, int messageID) {
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/recordings/%d/comments.json",
+                        orgId, projectID, messageID))
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200 || response.body() == null) {
+                setErrorMessage("Request Error");
+                return null;
+            }
+            List<Comment> comments = new ArrayList<>();
+            JSONArray responseJson = new JSONArray(response.body().string());
+
+            for (int i = 0; i < responseJson.length(); i++) {
+                JSONObject contentJson = responseJson.getJSONObject(i);
+                String author = contentJson.getString("content").split(":")[0];
+                String content = Arrays.stream(
+                        contentJson.getString("content").split(":")).skip(1)
+                        .collect(Collectors.joining(":"));
+                comments.add(CommonCommentFactory.create(
+                        contentJson.getInt("id"),
+                        author,
+                        content
+                ));
+            }
+            return comments;
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        }
+    }
+
+    @Override
+    public Comment addComment(int projectID, int messageID, User user, String newComment) {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("content", newComment);
+        RequestBody body = RequestBody.create(
+                requestBody.toString(),
+                MediaType.parse("application/json; charset=utf-8")
+        );
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/recordings/%d/comments.json",
+                        orgId, projectID, messageID))
+                .method("POST", body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 201 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            JSONObject responseJson = new JSONObject(response.body().string());
+            String rawContent = responseJson.getString("content");
+            return CommonCommentFactory.create(
+                    requestBody.getInt("id"),
+                    rawContent.split(":")[0],
+                    Arrays.stream(
+                            rawContent.split(":")).skip(1)
+                            .collect(Collectors.joining(":"))
+            );
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        }
+    }
+
+    @Override
+    public Message addMessage(
+            int projectID, int messageBoardID, User author, String messageTitle, String messageContent) {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("subject", messageTitle);
+        requestBody.put("content", author.getName() + ":" + messageContent);
+        requestBody.put("status", "active");
+        RequestBody body = RequestBody.create(
+                requestBody.toString(),
+                MediaType.parse("application/json; charset=utf-8")
+        );
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/message_boards/%d/messages.json",
+                        orgId, projectID, messageBoardID))
+                .method("POST", body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 201 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            JSONObject responseJson = new JSONObject(response.body().string());
+            return CommonMessageFactory.create(
+                    responseJson.getInt("id"),
+                    author.getName(),
+                    messageTitle,
+                    messageContent
+            );
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        }
     }
 }
