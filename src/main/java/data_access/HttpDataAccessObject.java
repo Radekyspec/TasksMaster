@@ -178,8 +178,8 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     }
 
     @Override
-    public boolean addProjectMember(Project project, User user) {
-        project.addNewMember(user.getName());
+    public boolean addProjectMember(Project project, String user) {
+        project.addNewMember(user);
         JSONObject projectInfo = new JSONObject();
         projectInfo.put("owner", project.getLeader());
         JSONArray members = new JSONArray();
@@ -209,5 +209,10 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
             setErrorMessage("Network Error");
             return false;
         }
+    }
+
+    @Override
+    public boolean exists(String username, Project project) {
+        return true;
     }
 }
