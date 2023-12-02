@@ -4,12 +4,12 @@ import data_access.todolist.add.AddToDoListUserDataAccessInterface;
 import entities.todo_list.ToDoList;
 
 public class AddToDoListInteractor implements AddToDoListInputBoundary{
-    private final AddToDoListOutputBoundary presenter;
+    private final AddToDoListOutputBoundary addToDoListPresenter;
     private final AddToDoListUserDataAccessInterface userDAO;
 
     public AddToDoListInteractor(AddToDoListOutputBoundary presenter,
                                  AddToDoListUserDataAccessInterface userDAO) {
-        this.presenter = presenter;
+        this.addToDoListPresenter = presenter;
         this.userDAO = userDAO;
     }
 
@@ -25,8 +25,8 @@ public class AddToDoListInteractor implements AddToDoListInputBoundary{
     @Override
     public void execute(AddToDoListInputData inputData) {
         ToDoList toDoList = userDAO.createToDoList(
-                inputData.getID(),
-                inputData.getID(),
+                inputData.getProjectID(),
+                inputData.getListID(),
                 inputData.getName(),
                 inputData.getDetail()
         );
@@ -36,14 +36,14 @@ public class AddToDoListInteractor implements AddToDoListInputBoundary{
                     userDAO.getApiErrorMessage(),
                     true
             );
-            presenter.prepareFailView(outputData);
+            addToDoListPresenter.prepareFailView(outputData);
         } else {
             AddToDoListOutputData outputData = new AddToDoListOutputData(
                     toDoList,
                     null,
                     false
             );
-            presenter.prepareSuccessView(outputData);
+            addToDoListPresenter.prepareSuccessView(outputData);
         }
     }
 }

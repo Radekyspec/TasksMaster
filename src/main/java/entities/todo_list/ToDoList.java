@@ -10,7 +10,7 @@ public interface ToDoList {
      *
      * @return its ID.
      */
-    Integer getID();
+    Integer getListID();
 
     /**
      * Returns name of this obj.
@@ -38,7 +38,6 @@ public interface ToDoList {
     /**
      * add a new to_do into the to_do list
      *
-     * @param toDo a new to_do
      */
     void addToDos(ToDo toDo);
 }

@@ -2,11 +2,13 @@ package view.project.add_people;
 
 import entities.project.Project;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.project.MainProjectViewModel;
 import interface_adapter.project.add_people.AddPeopleController;
 import interface_adapter.project.add_people.AddPeopleState;
 import interface_adapter.project.add_people.AddPeopleViewModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,19 +20,18 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
     private Project project;
     private final ViewManagerModel viewManagerModel;
     private final AddPeopleViewModel addPeopleViewModel;
+    private final MainProjectViewModel mainProjectViewModel;
     private final AddPeopleController addPeopleController;
     private final JLabel title;
-    private final JPanel typeYourName = new JPanel();
-    private final JTextField nameInputField = new JTextField();
+    private final JTextField nameInputField = new JTextField(15);
     private final JButton enter = new JButton(AddPeopleViewModel.ENTER);
 
-    public AddPeopleView(ViewManagerModel viewManagerModel, AddPeopleViewModel addPeopleViewModel, AddPeopleController addPeopleController) {
+    public AddPeopleView(ViewManagerModel viewManagerModel, AddPeopleViewModel addPeopleViewModel, MainProjectViewModel mainProjectViewModel, AddPeopleController addPeopleController) {
         this.viewManagerModel = viewManagerModel;
         this.addPeopleViewModel = addPeopleViewModel;
+        this.mainProjectViewModel = mainProjectViewModel;
         this.addPeopleController = addPeopleController;
 
-        title = new JLabel(AddPeopleViewModel.ADD_NEW_PEOPLE);
-        typeYourName.add(new JLabel(AddPeopleViewModel.TYPE_NAME), nameInputField);
         nameInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -58,9 +59,29 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
                     addPeopleController.execute(state.getUsername(), state.getProject());
                 }
         );
+
+        JButton back = new JButton("Back");
+        back.addActionListener(
+                e -> {
+                    viewManagerModel.setActiveView(mainProjectViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
+                }
+        );
+        JPanel typeYourName = new JPanel();
+        JLabel type = new JLabel(AddPeopleViewModel.TYPE_NAME);
+        typeYourName.add(type);
+        typeYourName.add(nameInputField);
+        title = new JLabel(AddPeopleViewModel.ADD_NEW_PEOPLE);
+        title.setAlignmentX(CENTER_ALIGNMENT);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
+        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 20));
         this.add(title);
         this.add(typeYourName);
-        this.add(enter);
+        JPanel bottom = new JPanel();
+        bottom.add(enter);
+        bottom.add(back);
+        this.add(bottom);
     }
 
     /**
