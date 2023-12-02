@@ -66,7 +66,9 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
 
     }
     /**
-     * This method gets called when a bound property is changed.
+     * (general) This method gets called when a bound property is changed.
+     *
+     * todo write view logic here.
      *
      * @param evt A PropertyChangeEvent object describing the event source
      *            and the property that has changed.
@@ -74,10 +76,19 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         ToDoListState state = (ToDoListState) evt.getNewValue();
-        if (state.getWorkKind().equals("import")) {
-            return;
-        } else if (state.getWorkKind().equals("create")) {
-
+        switch (evt.getPropertyName()) {
+            case ToDoListViewModel.CREATE_TODO_LIST -> JOptionPane.showMessageDialog(
+                    this,
+                    "Create success! \nIt's time to write adding this List into current view! ");
+            case ToDoListViewModel.CREATE_TODO_LIST_FAILED -> JOptionPane.showMessageDialog(
+                    this,
+                    state.getError());
+            case ToDoListViewModel.IMPORT_TODO_LIST -> JOptionPane.showMessageDialog(
+                    this,
+                    "Import success! \nAble to continue.");
+            case ToDoListViewModel.IMPORT_TODO_LIST_FAILED -> JOptionPane.showMessageDialog(
+                    this,
+                    state.getError());
         }
     }
     public String getViewName() {

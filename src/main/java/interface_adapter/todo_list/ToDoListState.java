@@ -3,7 +3,7 @@ package interface_adapter.todo_list;
 import entities.todo.ToDo;
 import entities.todo_list.ToDoList;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ToDoListState {
@@ -14,43 +14,44 @@ public class ToDoListState {
     Does need in ID in View/ViewModel, because execute method is used in here, which is for create.
         And about import? Maybe we do it in ViewModel? Because we don't need to show on the view.
      */
-    private final Map<Integer, ToDoList> todoListPackage;
-    private String toDoListError;
+    private ToDoList toDoList;
+    private String error;
     private String name;
-    private String workKind;
+    private final List<ToDo> listOfToDo;
 
     public ToDoListState() {
-        todoListPackage = null;
-        toDoListError = null;
+        error = null;
         name = null;
-        workKind = null;
+        toDoList = null;
+        listOfToDo = null;
     }
 
-    public String getToDoListError() {
-        return toDoListError;
-    }
 
-    public void setToDoListError(String toDoListError) {
-        this.toDoListError = toDoListError;
+
+    public String getError() {
+        return error;
+    }
+    public void setError(String error) {
+        this.error = error;
     }
     public String getName() {
         return name;
     }
-
-    public Map<Integer, ToDoList> getToDoListPackage() {
-        return todoListPackage;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getWorkKind() {
-        return workKind;
+    public void setToDoList(ToDoList toDoList) {
+        this.toDoList = toDoList;
+    }
+    public ToDoList getToDoList() {
+        return toDoList;
     }
 
-    public void setWorkKind(String workKind) {
-        this.workKind = workKind;
+    public List<ToDo> getListOfToDo() {
+        return listOfToDo;
     }
 
+    public void setListOfToDo(ToDo toDo) {
+        this.listOfToDo.add(toDo);
+    }
 }

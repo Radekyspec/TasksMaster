@@ -2,7 +2,7 @@ package view.todo;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.todo.add_todo.AddToDoViewModel;
-import interface_adapter.todo_list.add_todo_list.AddToDoListViewModel;
+import interface_adapter.todo_list.add.AddToDoListViewModel;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;

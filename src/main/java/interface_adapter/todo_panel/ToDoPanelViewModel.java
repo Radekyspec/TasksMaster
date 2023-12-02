@@ -9,6 +9,8 @@ public class ToDoPanelViewModel extends ViewModel {
     public static final String TODO_PANEL_TITLE_LABEL = "A ToDo Panel";
     public static final String ADD_NEW_LIST_BUTTON_LABEL = "+ new ToDoList";
     public static final String BACK_TO_HOME_BUTTON_LABEL = "HomePage";
+    public static final String CHOOSE_PROJECT_LABEL = "Click one list to start.";
+    public static final String SELECT_BUTTON_LABEL = "Select";
     private final ToDoPanelState toDoPanelState = new ToDoPanelState();
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 

@@ -17,11 +17,8 @@ public interface ToDoListDataAccessInterface {
     List<ToDo> importToDo(Integer projectID, Integer toDoListID);
 
     /**
-     * Put data into a new & empty ToDoList object.
-     * (for convenient create & sync)
-     * @param projectID Proj. that this List belongs to.
-     * @param toDoPanelID TDP. that this List belongs to.
-     * @return a ToDoList with those data.
+     * namely
+     * @return A string which is the Api error Message.
      */
-    ToDoList createToDoList(Integer projectID, Integer toDoPanelID);
+    String getApiErrorMessage();
 }

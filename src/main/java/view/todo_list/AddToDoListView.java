@@ -1,8 +1,8 @@
 package view.todo_list;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.todo_list.ToDoListViewModel;
-import interface_adapter.todo_list.add_todo_list.AddToDoListViewModel;
+import interface_adapter.todo_list.add.AddToDoListState;
+import interface_adapter.todo_list.add.AddToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 
 import javax.swing.*;
@@ -44,13 +44,23 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
     }
 
     /**
-     * This method gets called when a bound property is changed.
+     * (general) This method gets called when a bound property is changed.
+     * If or if not adding succeed or failed, AddToDoListView only shows different dialogs.
      *
      * @param evt A PropertyChangeEvent object describing the event source
      *            and the property that has changed.
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        AddToDoListState state = (AddToDoListState) evt.getNewValue();
+        switch (evt.getPropertyName()) {
+            case AddToDoListViewModel.CREATE_TODO_LIST -> JOptionPane.showMessageDialog(
+                    this,
+                    AddToDoListViewModel.CREATE_TODO_LIST);
+            case AddToDoListViewModel.CREATE_TODO_LIST_FAILED -> JOptionPane.showMessageDialog(
+                    this,
+                    AddToDoListViewModel.CREATE_TODO_LIST_FAILED
+            );
+        }
     }
 }

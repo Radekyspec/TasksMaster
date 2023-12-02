@@ -11,4 +11,10 @@ public interface ToDoDataAccessInterface {
      * @return a To_Do with those data.
      */
     ToDoList createToDo(Integer projectID, Integer toDoListID);
+
+    /**
+     * namely
+     * @return A string which is the Api error Message.
+     */
+    String getApiErrorMessage();
 }

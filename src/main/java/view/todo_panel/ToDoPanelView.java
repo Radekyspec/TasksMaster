@@ -2,6 +2,7 @@ package view.todo_panel;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
+import interface_adapter.todo_list.add.AddToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import interface_adapter.todo_panel.ToDoPanelController;
 import interface_adapter.todo_panel.ToDoPanelState;
@@ -34,6 +35,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     private final JButton addNewList;
     private final JButton backToHome;
     private final JComboBox<Object> toDoListList;
+    private final JButton select;
+    private final AddToDoListViewModel addToDoListViewModel;
 
     private JLabel newToDoList;
 
@@ -41,26 +44,39 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                          ToDoPanelViewModel toDoPanelViewModel,
                          ToDoPanelController toDoPanelController,
                          ToDoPanelState toDoPanelState,
+                         AddToDoListViewModel addToDoListViewModel,
                          MainProjectViewModel mainProjectViewModel) {
         this.toDoPanelViewModel = toDoPanelViewModel;
         this.toDoPanelController = toDoPanelController;
         this.toDoPanelState = toDoPanelState;
+        this.addToDoListViewModel = addToDoListViewModel;
         toDoPanelViewModel.addPropertyChangeListener(this);
-        toDoListViews = new JPanel();
+
         JLabel title = new JLabel(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title); // add button that u already set.
         this.add(new JLabel());
 
+        toDoListViews = new JPanel();
         toDoListList = new JComboBox<>();
-
+        JPanel toDoPanel = new JPanel();
+        toDoPanel.add(new JLabel(ToDoPanelViewModel.CHOOSE_PROJECT_LABEL));
+        toDoPanel.add(toDoListList);
 
         JPanel buttons = new JPanel();
         addNewList = new JButton(ToDoPanelViewModel.ADD_NEW_LIST_BUTTON_LABEL);
         backToHome = new JButton(ToDoPanelViewModel.BACK_TO_HOME_BUTTON_LABEL);
+        select = new JButton(ToDoPanelViewModel.SELECT_BUTTON_LABEL);
         buttons.add(addNewList);
         buttons.add(backToHome);
+        buttons.add(select);
+        addNewList.addActionListener(
+                e -> {
+                    viewManagerModel.setActiveView(addToDoListViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
+                }
+        );
 
         backToHome.addActionListener(
                 e -> {

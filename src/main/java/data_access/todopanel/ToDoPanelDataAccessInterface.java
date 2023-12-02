@@ -1,6 +1,8 @@
 package data_access.todopanel;
 
 import entities.todo_list.ToDoList;
+import entities.todo_panel.ToDoPanel;
+
 import java.util.List;
 
 public interface ToDoPanelDataAccessInterface {
@@ -11,4 +13,15 @@ public interface ToDoPanelDataAccessInterface {
      * @return A list of ToDoList.
      */
     List<ToDoList> importToDoList(Integer projectID, Integer toDoPanelID);
+
+    /**
+     * Get existed ToDoPanel.
+     * @return the ToDoPanel it find.
+     */
+    ToDoPanel getToDoPanel(Integer projectID);
+    /**
+     * namely
+     * @return A string which is the Api error Message.
+     */
+    String getApiErrorMessage();
 }
