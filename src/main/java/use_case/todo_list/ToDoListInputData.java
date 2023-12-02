@@ -5,67 +5,27 @@ import entities.todo_list.ToDoList;
 import java.util.Map;
 
 public class ToDoListInputData {
-    private final String workKind;
-    private final String ID;
-    private final String name;
-    private final String detail;
-    private final Map<Integer, ToDoList> toDoListPackage;
+    private final Integer projectID;
+    private final Integer toDoListID;
 
     /**
      * Initialize a standard ToDoListInputData.
-     * @param workKind kind of work, which are: "import" and "create"
-     * @param ID ID of the future TDL, if it is "create" a TDL.
-     * @param name name of the future TDL, if it is "create" a TDL.
-     * @param detail detail of the future TDL, if it is "create" a TDL.
-     * @param toDoListPackage a map of ToDoList, if it is "import" TDL(s).
+     * InputData only pass projectID and toDoListID here,
+     * as it only in charges of importing ToDos.
+     *
+     * @param projectID  the project id those todos belongs to.
+     * @param toDoListID the ToDoList id those todos belongs to.
      */
-    public ToDoListInputData(String workKind,
-                             String ID, String name, String detail,
-                             Map<Integer, ToDoList> toDoListPackage) {
-        this.ID = ID;
-        this.name = name;
-        this.detail = detail;
-        this.toDoListPackage = toDoListPackage;
-        this.workKind = workKind;
+    public ToDoListInputData(Integer projectID, Integer toDoListID) {
+        this.projectID = projectID;
+        this.toDoListID = toDoListID;
     }
 
-    /**
-     * Namely
-     * @return workKind
-     */
-    public String getWorkKind() {
-        return workKind;
+    public Integer getProjectID() {
+        return projectID;
     }
 
-    /**
-     * Namely
-     * @return ID, only for "create"
-     */
-    public String getID() {
-        return ID;
-    }
-
-    /**
-     * Namely
-     * @return detail, only for "create"
-     */
-    public String getDetail() {
-        return detail;
-    }
-
-    /**
-     * Namely
-     * @return name, only for "create"
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Namely
-     * @return a map of ToDoList, only for "import"
-     */
-    public Map<Integer, ToDoList> getToDoListPackage() {
-        return toDoListPackage;
+    public Integer getToDoListID() {
+        return toDoListID;
     }
 }

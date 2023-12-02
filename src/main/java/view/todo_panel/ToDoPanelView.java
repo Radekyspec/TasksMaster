@@ -1,7 +1,8 @@
 package view.todo_panel;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.signup.SignupViewModel;
+import interface_adapter.project.MainProjectViewModel;
+import interface_adapter.todo_list.add.AddToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import interface_adapter.todo_panel.ToDoPanelController;
 import interface_adapter.todo_panel.ToDoPanelState;
@@ -32,40 +33,58 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     private final JPanel toDoListViews;
     private final ToDoPanelState toDoPanelState;
     private final JButton addNewList;
-    private final JButton cancel;
+    private final JButton backToHome;
+    private final JComboBox<Object> toDoListList;
+    private final JButton select;
+    private final AddToDoListViewModel addToDoListViewModel;
 
     private JLabel newToDoList;
 
     public ToDoPanelView(ViewManagerModel viewManagerModel,
                          ToDoPanelViewModel toDoPanelViewModel,
                          ToDoPanelController toDoPanelController,
-                         ToDoPanelState toDoPanelState) {
+                         ToDoPanelState toDoPanelState,
+                         AddToDoListViewModel addToDoListViewModel,
+                         MainProjectViewModel mainProjectViewModel) {
         this.toDoPanelViewModel = toDoPanelViewModel;
         this.toDoPanelController = toDoPanelController;
         this.toDoPanelState = toDoPanelState;
+        this.addToDoListViewModel = addToDoListViewModel;
         toDoPanelViewModel.addPropertyChangeListener(this);
-        toDoListViews = new JPanel();
+
         JLabel title = new JLabel(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title); // add button that u already set.
         this.add(new JLabel());
 
-        /*
-        two buttons added.
-         */
+        toDoListViews = new JPanel();
+        toDoListList = new JComboBox<>();
+        JPanel toDoPanel = new JPanel();
+        toDoPanel.add(new JLabel(ToDoPanelViewModel.CHOOSE_PROJECT_LABEL));
+        toDoPanel.add(toDoListList);
+
         JPanel buttons = new JPanel();
         addNewList = new JButton(ToDoPanelViewModel.ADD_NEW_LIST_BUTTON_LABEL);
-        cancel = new JButton(ToDoPanelViewModel.SIGNUP_CANCEL_BUTTON_LABEL);
+        backToHome = new JButton(ToDoPanelViewModel.BACK_TO_HOME_BUTTON_LABEL);
+        select = new JButton(ToDoPanelViewModel.SELECT_BUTTON_LABEL);
         buttons.add(addNewList);
-        buttons.add(cancel);
-
-        cancel.addActionListener(
+        buttons.add(backToHome);
+        buttons.add(select);
+        addNewList.addActionListener(
                 e -> {
-                    if (!e.getSource().equals(cancel)) {
+                    viewManagerModel.setActiveView(addToDoListViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
+                }
+        );
+
+        backToHome.addActionListener(
+                e -> {
+                    if (!e.getSource().equals(backToHome)) {
                         return;
                     }
-                    viewManagerModel.setActiveView();
+                    viewManagerModel.setActiveView(mainProjectViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
                 }
         );
     }
@@ -82,11 +101,15 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        /*
-        为何使用括号(ToDoPanelState)？因为getNewValue返回object。
-        To ensure type safety of Java, we must assume a type.
-        The type can be the type or its subclass.
-         */
+        switch (evt.getPropertyName()) {
+            /*
+            case ToDoPanelViewModel.UPDATE_ToDoList -> {
+                ToDoPanelState state = (ToDoPanelState) evt.getNewValue(); //意味着方法要写到todopanel里来
+                toDoListList.addItem(state.getProject());
+            }
+
+             */
+        }
         ToDoPanelState state = (ToDoPanelState) evt.getNewValue(); // state在这个方法被触发的时候就传过来了。
         /*
         statename = state.getpropertyname;

@@ -1,20 +1,27 @@
 package data_access.todopanel;
 
+import entities.todo_list.ToDoList;
 import entities.todo_panel.ToDoPanel;
+
+import java.util.List;
 
 public interface ToDoPanelDataAccessInterface {
     /**
-     * Save the provided ToDoPanel to the DB.
-     * when implementing, it will call method save() to persist the changes.
-     * @param toDoPanel the organized entity that is going to store.
+     * Get lists from api.
+     * @param projectID namely.
+     * @param toDoPanelID namely.
+     * @return A list of ToDoList.
      */
-    void save(ToDoPanel toDoPanel);
+    List<ToDoList> importToDoList(Integer projectID, Integer toDoPanelID);
 
     /**
-     * 判断其成果取决于是否返回null。
-     * 返回null就是失败
-     * 返回空列表代表东西是空的。
-     * @return
+     * Get existed ToDoPanel.
+     * @return the ToDoPanel it find.
      */
-    ToDoPanel getToDoPanel();
+    ToDoPanel getToDoPanel(Integer projectID);
+    /**
+     * namely
+     * @return A string which is the Api error Message.
+     */
+    String getApiErrorMessage();
 }

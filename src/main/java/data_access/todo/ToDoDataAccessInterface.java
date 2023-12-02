@@ -1,30 +1,20 @@
 package data_access.todo;
 
-import entities.todo.ToDo;
-
-import java.util.Map;
+import entities.todo_list.ToDoList;
 
 public interface ToDoDataAccessInterface {
-    /*
     /**
-     * Verify if this ToDoPanel is already exists.
-     * @param toDoName the name of the To_Do.
-     * @return ture or false
-
-    boolean exists(String toDoName);
-    */
-
-    /**
-     * Save the provided ToDoPanel to the DB.
-     * when implementing, it will call method save() to persist the changes.
-     * @param toDo the organized entity that is going to store.
+     * Put data into a new & empty To_Do object.
+     * (for convenient create & sync)
+     * @param projectID Proj. that this List belongs to.
+     * @param toDoListID TDL. that this List belongs to.
+     * @return a To_Do with those data.
      */
-    void save(ToDo toDo);
+    ToDoList createToDo(Integer projectID, Integer toDoListID);
 
     /**
-     * The first step of import ToDos from the api.
-     * @param ToDoListID corresponding ToDoListID. It aims at distinguish between Lists.
-     * @return A map consists of all existed To_Do In this ToDoList.
+     * namely
+     * @return A string which is the Api error Message.
      */
-    Map<Integer, ToDo> importToDo(Integer ToDoListID);
+    String getApiErrorMessage();
 }
