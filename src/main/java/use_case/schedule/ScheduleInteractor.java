@@ -2,7 +2,10 @@ package use_case.schedule;
 
 import data_access.schedule.ScheduleDataAccessInterface;
 import entities.event.Event;
+import entities.user.User;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ScheduleInteractor implements ScheduleInputBoundary {
@@ -21,5 +24,21 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         List<Event> events = scheduleDataAccessInterface.getEvents(projectId, scheduleId);
         ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
         schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
+    }
+
+    public void addEvent(ScheduleInputData scheduleInputData) {
+        int projectId = scheduleInputData.projectId();
+        int scheduleId = scheduleInputData.scheduleId();
+        String eventName = scheduleInputData.eventName();
+        String notes = scheduleInputData.notes();
+        Date startAt = scheduleInputData.startAt();
+        Date endAt = scheduleInputData.endAt();
+        boolean isAllDay = scheduleInputData.isAllDay();
+        List<User> userWith = new ArrayList<>();
+        userWith = scheduleInputData.userWith();
+        Event event = scheduleDataAccessInterface.addEvents(projectId,scheduleId,eventName,notes,startAt,endAt,isAllDay,userWith);
+        List<Event> events = new ArrayList<>();
+        events.add(event);
+        ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
     }
 }

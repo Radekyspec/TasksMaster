@@ -50,7 +50,7 @@ public class AddNewEventInputData {
         return endAt;
     }
 
-    public boolean isAllDay() {
+    public boolean getIsAllDay() {
         return isAllDay;
     }
 
