@@ -1,6 +1,7 @@
 package view.todo_panel;
 
 import entities.todo_list.ToDoList;
+import entities.todo_panel.ToDoPanel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
 import interface_adapter.todo_list.add.AddToDoListViewModel;
@@ -13,6 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ToDoPanelView extends JPanel implements PropertyChangeListener {
+    private ToDoPanel toDoPanel;
     private final ToDoPanelViewModel toDoPanelViewModel;
     private final ToDoPanelController toDoPanelController;
     private final JPanel toDoListViews;
@@ -104,6 +106,9 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                             + toDoList.getDetail());
                     toDoListViews.add(newToDoList);
                 }
+            }
+            case ToDoPanelViewModel.INITIALIZE_TODO_PANEL -> {
+
             }
         }
     }

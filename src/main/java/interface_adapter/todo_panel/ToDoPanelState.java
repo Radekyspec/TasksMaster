@@ -12,8 +12,40 @@ public class ToDoPanelState {
     private ToDoList newCreatedTDL;
     private User user;
     private Project project;
-    private Integer projectID;
-    private Integer toDoPanelID;
+    private Integer projectID; // 用于承接传入的ID，ToDo 记得接收这个ID
+    private Integer toDoPanelID; // 用于承接传入的ID，ToDo 记得接收这个ID
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Integer getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(Integer projectID) {
+        this.projectID = projectID;
+    }
+
+    public Integer getToDoPanelID() {
+        return toDoPanelID;
+    }
+
+    public void setToDoPanelID(Integer toDoPanelID) {
+        this.toDoPanelID = toDoPanelID;
+    }
 
     public List<ToDoList> getListOfToDoList() {
         return listOfToDoList;

@@ -1,5 +1,7 @@
 package entities.todo;
 
+import javax.swing.*;
+
 public class CommonToDo implements ToDo {
     private Integer ID; // No one will pass an id inside, create a unique id once it created
     private String progress;
@@ -53,5 +55,22 @@ public class CommonToDo implements ToDo {
     @Override
     public String getProgress() {
         return progress;
+    }
+
+    /**
+     * Return [ ] if it's unfinished, and return [x] if it's finished.
+     *
+     * @return a string that graphically shows finish or not.
+     */
+    @Override
+    public String getCharProgress() {
+        if (progress.equals(ToDo.TODO_INCOMPLETE)) {
+            return "[ ]";
+        } else if (progress.equals(ToDo.TODO_COMPLETE)) {
+            return "[x]";
+        } else {
+            JOptionPane.showMessageDialog(null, "CommonToDo-getCharProgress Error!");
+        }
+        return null;
     }
 }

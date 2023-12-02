@@ -17,6 +17,7 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
     private final JButton addNewToDo;
     private final JButton goBack;
     private JLabel newToDoList;
+    private JPanel toDoViews;
 
     public ToDoListView(ViewManagerModel viewManagerModel,
                         ToDoListViewModel toDoListViewModel,
@@ -24,6 +25,9 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
                         ToDoPanelViewModel toDoPanelViewModel,
                         AddToDoViewModel addToDoViewModel) {
         this.toDoListViewModel = toDoListViewModel;
+
+        toDoViews = new JPanel();
+
 
         JPanel buttons = new JPanel();
         addNewToDo = new JButton(ToDoListViewModel.ADD_NEW_TODO_BUTTON_LABEL);
@@ -33,9 +37,6 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
         buttons.add(backToHome);
         buttons.add(goBack);
 
-        /*
-        只要view存在，就有ViewName，就可以抓到view
-         */
         backToHome.addActionListener(
                 e -> {
                     if (!e.getSource().equals(backToHome)) {
@@ -77,9 +78,12 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         ToDoListState state = (ToDoListState) evt.getNewValue();
         switch (evt.getPropertyName()) {
-            case ToDoListViewModel.CREATE_TODO_LIST -> JOptionPane.showMessageDialog(
-                    this,
-                    "Create success! \nIt's time to write adding this List into current view! ");
+            case ToDoListViewModel.CREATE_TODO_LIST -> {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Create success! \nIt's time to write adding this List into current view! ");
+                JButton newToDo = new JButton(state.getNewCreatedTDL().getName());
+            }
             case ToDoListViewModel.CREATE_TODO_LIST_FAILED -> JOptionPane.showMessageDialog(
                     this,
                     state.getError());

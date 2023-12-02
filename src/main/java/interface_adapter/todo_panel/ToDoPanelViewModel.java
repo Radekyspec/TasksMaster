@@ -13,6 +13,7 @@ public class ToDoPanelViewModel extends ViewModel {
     public static final String SELECT_BUTTON_LABEL = "Select";
     public static final String ADD_NEW_TODOLIST = "add new todo list";
     public static final String IMPORT_TODOLIST = "import todo list";
+    public static final String INITIALIZE_TODO_PANEL = "initialize todo panel";
     private final ToDoPanelState toDoPanelState = new ToDoPanelState();
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 

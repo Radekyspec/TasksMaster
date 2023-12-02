@@ -28,7 +28,7 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
                     if (!e.getSource().equals(confirm)) {
                         return;
                     }
-                    viewManagerModel.setActiveView(toDoPanelViewModel.getViewName()); //manage ToDoList in ToDoPanel
+                    viewManagerModel.setActiveView(toDoPanelViewModel.getViewName()); // ToDo: 注意内容不能为空。
                     viewManagerModel.firePropertyChanged();
                 }
         );
@@ -37,7 +37,7 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
                     if (!e.getSource().equals(cancel)) {
                         return;
                     }
-                    viewManagerModel.setActiveView(toDoPanelViewModel.getViewName());
+                    viewManagerModel.setActiveView(toDoPanelViewModel.getViewName()); // ToDo：注意不提交所有改动
                     viewManagerModel.firePropertyChanged();
                 }
         );

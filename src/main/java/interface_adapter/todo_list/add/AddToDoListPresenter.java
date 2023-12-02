@@ -28,10 +28,10 @@ public class AddToDoListPresenter implements AddToDoListOutputBoundary {
      */
     @Override
     public void prepareSuccessView(AddToDoListOutputData outputData) {
-        if (outputData.useCaseFailed()) {
+        if (outputData.isUseCaseFailed()) {
             return;
         }
-        toDoListViewModel.getState().setNewCreatedTD(outputData.toDoList());
+        toDoListViewModel.getState().setNewCreatedTDL(outputData.getToDoList());
         toDoListViewModel.firePropertyChanged(ToDoListViewModel.CREATE_TODO_LIST);
         addToDoListViewModel.firePropertyChanged(AddToDoListViewModel.CREATE_TODO_LIST);
         viewManagerModel.setActiveView(toDoListViewModel.getViewName());
@@ -40,11 +40,11 @@ public class AddToDoListPresenter implements AddToDoListOutputBoundary {
 
     @Override
     public void prepareFailView(AddToDoListOutputData outputData) {
-        if (!outputData.useCaseFailed()) {
+        if (!outputData.isUseCaseFailed()) {
             return;
         }
-        toDoListViewModel.getState().setError(outputData.error());
-        addToDoListViewModel.getState().setATDLSError(outputData.error());
+        toDoListViewModel.getState().setError(outputData.getError());
+        addToDoListViewModel.getState().setATDLSError(outputData.getError());
         toDoListViewModel.firePropertyChanged(ToDoListViewModel.CREATE_TODO_LIST_FAILED);
         addToDoListViewModel.firePropertyChanged(AddToDoListViewModel.CREATE_TODO_LIST_FAILED);
 

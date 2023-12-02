@@ -4,7 +4,6 @@ import entities.todo.ToDo;
 import entities.todo_list.ToDoList;
 
 import java.util.List;
-import java.util.Map;
 
 public class ToDoListState {
     /*
@@ -14,7 +13,7 @@ public class ToDoListState {
     Does need in ID in View/ViewModel, because execute method is used in here, which is for create.
         And about import? Maybe we do it in ViewModel? Because we don't need to show on the view.
      */
-    private ToDoList newCreatedTD;
+    private ToDoList newCreatedTDL;
     private String error;
     private String name;
     private final List<ToDo> listOfToDo;
@@ -22,7 +21,7 @@ public class ToDoListState {
     public ToDoListState() {
         error = null;
         name = null;
-        newCreatedTD = null;
+        newCreatedTDL = null;
         listOfToDo = null;
     }
 
@@ -33,12 +32,12 @@ public class ToDoListState {
      *    2. 
      * @return sth.
      */
-    public ToDoList getNewCreatedTD() {
-        return newCreatedTD;
+    public ToDoList getNewCreatedTDL() {
+        return newCreatedTDL;
     }
 
-    public void setNewCreatedTD(ToDoList newCreatedTD) {
-        this.newCreatedTD = newCreatedTD;
+    public void setNewCreatedTDL(ToDoList newCreatedTDL) {
+        this.newCreatedTDL = newCreatedTDL;
     }
     public String getError() {
         return error;
