@@ -19,7 +19,6 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
         if (toDoPanelOutputData.isUseCaseFailed()) {
             return;
         }
-        toDoPanelViewModel.getToDoPanelState().setWorkKind(toDoPanelOutputData.getWorkKind()); //这一行将viewmodel里的state的内容设置为outputdata里的panel。注意要写好方法，todooutputdata要有gettodopanel来得到todopanel，然后再喂给viewmodel里的gettodopanel（list）
         toDoPanelViewModel.firePropertyChanged(); // fire之后，todopanelview那边的一个不间断监听的listener，
         viewManagerModel.setActiveView(toDoPanelViewModel.getViewName());
     }

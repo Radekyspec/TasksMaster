@@ -1,7 +1,6 @@
 package interface_adapter.schedule;
 
 import interface_adapter.ViewModel;
-import interface_adapter.schedule.ScheduleState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -13,7 +12,7 @@ public class ScheduleViewModel extends ViewModel {
 
     private final ScheduleState scheduleState;
 
-    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public ScheduleViewModel(int projectId, int scheduleId) {
         super("Schedule");
@@ -27,7 +26,7 @@ public class ScheduleViewModel extends ViewModel {
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
+        support.addPropertyChangeListener(listener);
     }
 
     public ScheduleState getScheduleState() {

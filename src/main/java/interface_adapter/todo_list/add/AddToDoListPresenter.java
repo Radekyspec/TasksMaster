@@ -31,9 +31,9 @@ public class AddToDoListPresenter implements AddToDoListOutputBoundary {
         if (outputData.useCaseFailed()) {
             return;
         }
-        toDoListViewModel.getState().setToDoList(outputData.toDoList());
+        toDoListViewModel.getState().setNewCreatedTD(outputData.toDoList());
         toDoListViewModel.firePropertyChanged(ToDoListViewModel.CREATE_TODO_LIST);
-        addToDoListViewModel.firePropertyChanged(AddToDoListViewModel.CREATE_TODO_LIST); // todo if success, show a window says that success. vise versa.
+        addToDoListViewModel.firePropertyChanged(AddToDoListViewModel.CREATE_TODO_LIST);
         viewManagerModel.setActiveView(toDoListViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

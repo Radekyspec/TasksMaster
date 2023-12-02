@@ -1,20 +1,45 @@
 package interface_adapter.todo_panel;
 
+import entities.project.Project;
 import entities.todo_list.ToDoList;
 import entities.todo_panel.ToDoPanel;
+import entities.user.User;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class ToDoPanelState {
+    private final List<ToDoList> listOfToDoList;
+    private ToDoList newCreatedTDL;
+    private User user;
+    private Project project;
+    private Integer projectID;
+    private Integer toDoPanelID;
+
+    public List<ToDoList> getListOfToDoList() {
+        return listOfToDoList;
+    }
+
+    public void setListOfToDoList(ToDoList toDoList) {
+        assert this.listOfToDoList != null;
+        this.listOfToDoList.add(toDoList);
+    }
+
     private ToDoPanel currentToDoPanel;
     private String toDoPanelError;
-    private String workKind;
 
     public ToDoPanelState() {
         currentToDoPanel = null;
         toDoPanelError = null;
-        workKind = null;
+        newCreatedTDL = null;
+        listOfToDoList = null;
+    }
+
+    public ToDoList getNewCreatedTDL() {
+        return newCreatedTDL;
+    }
+
+    public void setNewCreatedTDL(ToDoList newCreatedTDL) {
+        this.newCreatedTDL = newCreatedTDL;
     }
 
     public String getToDoPanelError() {
@@ -32,13 +57,4 @@ public class ToDoPanelState {
     public void setCurrentToDoPanel(ToDoPanel currentToDoPanel) {
         this.currentToDoPanel = currentToDoPanel;
     }
-
-    public String getWorkKind() {
-        return workKind;
-    }
-
-    public void setWorkKind(String workKind) {
-        this.workKind = workKind;
-    }
-
 }

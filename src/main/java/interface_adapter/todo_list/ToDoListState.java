@@ -14,7 +14,7 @@ public class ToDoListState {
     Does need in ID in View/ViewModel, because execute method is used in here, which is for create.
         And about import? Maybe we do it in ViewModel? Because we don't need to show on the view.
      */
-    private ToDoList toDoList;
+    private ToDoList newCreatedTD;
     private String error;
     private String name;
     private final List<ToDo> listOfToDo;
@@ -22,12 +22,24 @@ public class ToDoListState {
     public ToDoListState() {
         error = null;
         name = null;
-        toDoList = null;
+        newCreatedTD = null;
         listOfToDo = null;
     }
 
+    /**
+     * The new ToDoList should send to both ToDoListState and ToDoListView.
+     * It can't be merged with ListOfToDo, because soon you need to get the new lists out.
+     *    1. store created ToDoList into ToDoList (it should be only One ToDoList)
+     *    2. 
+     * @return sth.
+     */
+    public ToDoList getNewCreatedTD() {
+        return newCreatedTD;
+    }
 
-
+    public void setNewCreatedTD(ToDoList newCreatedTD) {
+        this.newCreatedTD = newCreatedTD;
+    }
     public String getError() {
         return error;
     }
@@ -40,18 +52,11 @@ public class ToDoListState {
     public void setName(String name) {
         this.name = name;
     }
-    public void setToDoList(ToDoList toDoList) {
-        this.toDoList = toDoList;
-    }
-    public ToDoList getToDoList() {
-        return toDoList;
-    }
-
     public List<ToDo> getListOfToDo() {
         return listOfToDo;
     }
-
     public void setListOfToDo(ToDo toDo) {
+        assert this.listOfToDo != null;
         this.listOfToDo.add(toDo);
     }
 }
