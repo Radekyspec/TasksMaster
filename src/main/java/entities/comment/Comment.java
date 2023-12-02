@@ -15,7 +15,7 @@ public interface Comment {
      *
      * @return its author
      */
-    User getAuthor();
+    String getAuthor();
 
     /**
      * Return the content of the comment

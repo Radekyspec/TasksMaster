@@ -40,7 +40,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
         MessageState state = messageViewModel.getState();
         Message message = state.getMessage();
         title = new JLabel(message.getTitle());
-        auther = new JLabel(message.getAuthor().getName());
+        auther = new JLabel(message.getAuthor());
         content = new JLabel(message.getContent());
 
         commentBoard = new JPanel();
@@ -110,7 +110,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
             case MessageViewModel.ADD_COMMENT -> {
                 MessageState state = (MessageState) evt.getNewValue();
                 Comment comment = state.getComment();
-                commentBoard.add(new JLabel(comment.getAuthor().getName() + comment.getContent()));
+                commentBoard.add(new JLabel(comment.getAuthor() + comment.getContent()));
             }
         }
     }

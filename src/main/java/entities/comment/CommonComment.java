@@ -4,7 +4,7 @@ import entities.user.User;
 
 public class CommonComment implements Comment {
     private final int ID;
-    private final User author;
+    private final String author;
     private final String content;
 
     /**
@@ -14,7 +14,7 @@ public class CommonComment implements Comment {
      * @param author  the author of the comment
      * @param content the content of the comment
      */
-    public CommonComment(int id, User author, String content) {
+    public CommonComment(int id, String author, String content) {
         ID = id;
         this.author = author;
         this.content = content;
@@ -37,7 +37,7 @@ public class CommonComment implements Comment {
      * @return its author
      */
     @Override
-    public User getAuthor() {
+    public String getAuthor() {
         return author;
     }
 

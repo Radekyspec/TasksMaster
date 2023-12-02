@@ -46,9 +46,6 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         messageBoardViewModel.addPropertyChangeListener(this);
 
         messages = new JPanel();
-        MessageBoardState state = messageBoardViewModel.getMessageBoardState();
-        messageBoardController.getMessages(projectID, messageBoardID);
-
 
         addNewMessage = new JButton(MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL);
         addNewMessage.addActionListener(
@@ -60,6 +57,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                     AddNewMessageState addNewMessageState = addNewMessageViewModel.getAddNewMessageState();
                     addNewMessageState.setProjectID(messageBoardViewModel.getMessageBoardState().getProjectID());
                     addNewMessageState.setMessageBoardID(messageBoardViewModel.getMessageBoardState().getMessageBoardID());
+                    addNewMessageState.setAuthor(user);
                     viewManagerModel.firePropertyChanged();
                 }
         );
@@ -106,9 +104,10 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 this.projectID = state.getProjectID();
                 this.messageBoard = state.getMessageBoard();
                 this.messageBoardID = state.getMessageBoardID();
+                messageBoardController.getMessages(projectID, messageBoardID);
             } case MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL -> {
                 Message message = state.getMessage();
-                JButton messageButton = new JButton(message.getAuthor().getName() + message.getTitle());
+                JButton messageButton = new JButton(message.getAuthor() + message.getTitle());
                 messageBoard.setMessage(message);
                 buttonToMessage.put(messageButton, message);
                 messageButton.addActionListener(this);
