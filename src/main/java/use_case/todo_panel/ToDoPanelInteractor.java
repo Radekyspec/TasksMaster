@@ -4,12 +4,12 @@ import data_access.todopanel.ToDoPanelDataAccessInterface;
 import entities.todo_panel.ToDoPanel;
 
 public class ToDoPanelInteractor implements ToDoPanelInputBoundary{
-    private final ToDoPanelDataAccessInterface toDoPanelDataAccessObject;
+    private final ToDoPanelDataAccessInterface userDAO;
     private final ToDoPanelOutputBoundary toDoPanelPresenter;
 
     public ToDoPanelInteractor(ToDoPanelDataAccessInterface toDoPanelDataAccessObject,
                                ToDoPanelOutputBoundary toDoPanelPresenter) {
-        this.toDoPanelDataAccessObject = toDoPanelDataAccessObject;
+        this.userDAO = toDoPanelDataAccessObject;
         this.toDoPanelPresenter = toDoPanelPresenter;
     }
 
@@ -20,8 +20,7 @@ public class ToDoPanelInteractor implements ToDoPanelInputBoundary{
      */
     @Override
     public void execute(ToDoPanelInputData toDoPanelInputData) {
-        // 此处将获取的ToDoPanel传入进去了，通过OutputData传入ToDoPanelPresenter
-        ToDoPanel toDoPanel = toDoPanelDataAccessObject.getToDoPanel();
+        ToDoPanel toDoPanel = userDAO.getToDoPanel(0); // TODO: fix here.
         if (toDoPanel == null) {
             ToDoPanelOutputData outputData = new ToDoPanelOutputData(
                     null,

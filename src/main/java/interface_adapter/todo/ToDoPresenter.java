@@ -30,7 +30,7 @@ public class ToDoPresenter implements ToDoOutputBoundary {
         }
         toDoViewModel.getToDoState().setToDoError(toDoOutputData.getError());
         toDoViewModel.getToDoState().setWorkKind(toDoOutputData.getWorkKind());
-        toDoViewModel.firePropertyChanged();
+        toDoViewModel.firePropertyChanged("");
     }
 
     /**
