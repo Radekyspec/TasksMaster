@@ -35,7 +35,7 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         Date startAt = scheduleInputData.startAt();
         Date endAt = scheduleInputData.endAt();
         boolean isAllDay = scheduleInputData.isAllDay();
-        List<User> userWith = scheduleInputData.userWith();
+        List<String> userWith = scheduleInputData.userWith();
         Event event = scheduleDataAccessInterface.addEvents(projectId,scheduleId,eventName,notes,startAt,endAt,isAllDay,userWith);
         List<Event> events = new ArrayList<>();
         events.add(event);

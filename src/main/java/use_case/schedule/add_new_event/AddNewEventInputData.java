@@ -13,9 +13,9 @@ public class AddNewEventInputData {
     private Date startAt;
     private Date endAt;
     private boolean isAllDay;
-    private List<User> userWith;
+    private List<String> userWith;
 
-    public AddNewEventInputData(int projectId, int scheduleId, String eventName, String notes, Date startAt, Date endAt, boolean isAllDay, List<User> userWith) {
+    public AddNewEventInputData(int projectId, int scheduleId, String eventName, String notes, Date startAt, Date endAt, boolean isAllDay, List<String> userWith) {
         this.projectId = projectId;
         this.scheduleId = scheduleId;
         this.eventName = eventName;
@@ -54,7 +54,7 @@ public class AddNewEventInputData {
         return isAllDay;
     }
 
-    public List<User> getUserWith() {
+    public List<String> getUserWith() {
         return userWith;
     }
 }

@@ -1,8 +1,5 @@
 package interface_adapter.schedule.event;
 
-import entities.event.Event;
-import entities.project.Project;
-import entities.schedule.Schedule;
 import entities.user.User;
 
 import java.util.Date;
@@ -16,7 +13,7 @@ public class AddEventState {
     private Date startAt;
     private Date endAt;
     private boolean isAllDay;
-    private List<User> userwith;
+    private List<String> userwith;
 
     public void setProjectId(int projectId) { this.projectId = projectId; }
 
@@ -34,7 +31,7 @@ public class AddEventState {
         isAllDay = allDay;
     }
 
-    public void setUserwith(List<User> userwith) {
+    public void setUserwith(List<String> userwith) {
         this.userwith = userwith;
     }
 
@@ -62,7 +59,7 @@ public class AddEventState {
         return isAllDay;
     }
 
-    public List<User> getUserwith() {
+    public List<String> getUserwith() {
         return userwith;
     }
 }

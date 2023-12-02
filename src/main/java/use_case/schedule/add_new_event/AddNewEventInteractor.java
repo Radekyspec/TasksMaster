@@ -27,7 +27,7 @@ public class AddNewEventInteractor implements AddNewEventInputBoundary {
         Date startAt = addNewEventInputData.getStartAt();
         Date endAt = addNewEventInputData.getEndAt();
         boolean isAllDay = addNewEventInputData.getIsAllDay();
-        List<User> userWith = addNewEventInputData.getUserWith();
+        List<String> userWith = addNewEventInputData.getUserWith();
 
         Event event = scheduleDataAccessInterface.addEvents(projectId, scheduleId, eventName, notes, startAt, endAt, isAllDay, userWith);
         AddNewEventOutputData addNewEventOutputData = new AddNewEventOutputData(event);

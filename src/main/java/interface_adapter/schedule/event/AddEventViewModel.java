@@ -13,8 +13,8 @@ public class AddEventViewModel extends ViewModel{
     public final String EVENT_NOTES = "Event Notes";
     public final String EVENT_STARTDATE = "Start at";
     public final String EVENT_ENDDATE = "End at";
-    public final String EVENT_ISALLDAY = "Is all day?";
-    public final String EVENT_USERWITH = "User with";
+    public final String EVENT_ISALLDAY = "Is all day? Type 'Y' or 'N'";
+    public final String EVENT_USERWITH = "User with? Separate user by using ',' (No space) ";
     public final String EVENT_POST = "Post this event";
 
     private final AddEventState addEventState = new AddEventState();
@@ -45,7 +45,7 @@ public class AddEventViewModel extends ViewModel{
     public void setIsAllDay(boolean isAllDay) {
         addEventState.setAllDay(isAllDay);
     }
-    public void setUserWith(List<User> userWith) {
+    public void setUserWith(List<String> userWith) {
         addEventState.setUserwith(userWith);
     }
 
