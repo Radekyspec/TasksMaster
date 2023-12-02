@@ -19,23 +19,22 @@ public class ToDoPanelInteractor implements ToDoPanelInputBoundary{
      * @param toDoPanelInputData for sth. purpose
      */
     @Override
-    public void execute(ToDoPanelInputData toDoPanelInputData) {
-        ToDoPanel toDoPanel = userDAO.getToDoPanel(0); // TODO: fix here.
+    public void importToDoList(ToDoPanelInputData toDoPanelInputData) {
+        ToDoPanel toDoPanel = userDAO.importToDoPanel(
+                toDoPanelInputData.getProjectID()
+        );
         if (toDoPanel == null) {
             ToDoPanelOutputData outputData = new ToDoPanelOutputData(
-                    null,
-                    "TDPInteractor: get failure.",
-                    null,
-                    true);
-            toDoPanelPresenter.prepareFailView(outputData);
-        }
-        if (toDoPanelInputData.getWorkKind().equals("Initialize")) {
+                    userDAO.getApiErrorMessage(),
+                    true,
+                    null);
+            toDoPanelPresenter.prepareInitializeFailView(outputData);
+        } else {
             ToDoPanelOutputData outputData = new ToDoPanelOutputData(
-                    "Initialize",
-                    "",
-                    toDoPanel,
-                    false);
-            toDoPanelPresenter.prepareSuccessView(outputData);
+                    userDAO.getApiErrorMessage(),
+                    false,
+                    toDoPanel);
+            toDoPanelPresenter.prepareInitializeSuccessView(outputData);
         }
     }
 }

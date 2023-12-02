@@ -1,35 +1,28 @@
 package view.todo_panel;
 
+import entities.todo_list.ToDoList;
+import entities.todo_panel.ToDoPanel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
+import interface_adapter.todo.add_todo.AddToDoViewModel;
+import interface_adapter.todo_list.ToDoListViewModel;
 import interface_adapter.todo_list.add.AddToDoListViewModel;
+import interface_adapter.todo_list.import1.ImportToDoListController;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import interface_adapter.todo_panel.ToDoPanelController;
 import interface_adapter.todo_panel.ToDoPanelState;
+import view.todo_list.ToDoListView;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ToDoPanelView extends JPanel implements PropertyChangeListener {
+    private ToDoPanel toDoPanel;
     private final ToDoPanelViewModel toDoPanelViewModel;
-    /**
-     * 1. VM创建了，initialize好了。此时VM基本是空的。
-     * 2. 对这个变量进行了initialize，代码不报错了。意味着可以开始编辑Controller
-     */
+    private final ViewManagerModel viewManagerModel;
+    private final ImportToDoListController importToDoListController;
     private final ToDoPanelController toDoPanelController;
-    /**
-     * 必要性：我们需要一个controller。controller真正的发出指令。
-     * 参照SignupController：SignupController <- SignupInputBoundary -> SignupInteractor. done
-     * 1. VM创建了，initialize好了。此时基本是空的。
-     *
-     *
-     *
-     * 老的要去那
-     * 穿件一个新的for，
-     * 新创建在controller
-     *  给todolist——controller创建自己，返回（用presenter）
-     */
     private final JPanel toDoListViews;
     private final ToDoPanelState toDoPanelState;
     private final JButton addNewList;
@@ -42,15 +35,22 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
 
     public ToDoPanelView(ViewManagerModel viewManagerModel,
                          ToDoPanelViewModel toDoPanelViewModel,
-                         ToDoPanelController toDoPanelController,
+                         ImportToDoListController importToDoListController,
                          ToDoPanelState toDoPanelState,
                          AddToDoListViewModel addToDoListViewModel,
-                         MainProjectViewModel mainProjectViewModel) {
+                         MainProjectViewModel mainProjectViewModel,
+                         ToDoPanelController toDoPanelController) {
         this.toDoPanelViewModel = toDoPanelViewModel;
-        this.toDoPanelController = toDoPanelController;
+        this.viewManagerModel = viewManagerModel;
+        this.importToDoListController = importToDoListController;
         this.toDoPanelState = toDoPanelState;
         this.addToDoListViewModel = addToDoListViewModel;
+        this.toDoPanelController = toDoPanelController;
         toDoPanelViewModel.addPropertyChangeListener(this);
+
+
+        toDoPanelController.initializeToDoPanel(0); // TODO: fix projectID add.
+        importToDoListController.importToDoLists(0, 0); // TODO: fix projectID add.
 
         JLabel title = new JLabel(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
@@ -91,44 +91,77 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
 
     /**
      * This method gets called when a bound property is changed.
-     * 在使用这个功能前，需要FirePropertyChange发送信号。
-     * evt囊括了一个firing change里的所有元素，包括：
-     * 1 get old value
-     * 2 get new value * 得到新的state
-     * 3 get property name
+     * logic:
+     * ADD_NEW_TODOLIST:
+     *   1. get TDL name and part of detail and integrate into a long text.
+     *   2. create this new TDL and add button.
      * @param evt A PropertyChangeEvent object describing the event source
      *            and the property that has changed.
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        ToDoPanelState state = (ToDoPanelState) evt.getNewValue();
         switch (evt.getPropertyName()) {
-            /*
-            case ToDoPanelViewModel.UPDATE_ToDoList -> {
-                ToDoPanelState state = (ToDoPanelState) evt.getNewValue(); //意味着方法要写到todopanel里来
-                toDoListList.addItem(state.getProject());
+            case ToDoPanelViewModel.CREATE_TODO_LIST -> {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Create success! \nIt's time to write adding this List into current view! ");
+                JButton newToDoList = new JButton(state.getNewCreatedTDL().getName());
+                toDoListViews.add(newToDoList);
+                newToDoList.addActionListener(
+                        e -> {
+                            ToDoListView showToDoListView = new ToDoListView(new ViewManagerModel(),
+                                    new ToDoListViewModel(),
+                                    new MainProjectViewModel(),
+                                    new ToDoPanelViewModel(),
+                                    new AddToDoViewModel("add to do view"));
+                            viewManagerModel.setActiveView(showToDoListView.getViewName());
+                            viewManagerModel.firePropertyChanged();
+                        }
+                );
             }
-
-             */
+            case ToDoPanelViewModel.CREATE_TODO_LIST_FAILED -> JOptionPane.showMessageDialog(
+                    null,
+                    state.getImportToDoListError());
+            case ToDoPanelViewModel.IMPORT_TODOLIST -> {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "You get here! Then write Importing List logic.");
+                for (ToDoList toDoList : state.getListOfToDoList()) {
+                    JButton newToDoList = new JButton(toDoList.getName()
+                            + " - "
+                            + toDoList.getDetail());
+                    toDoListViews.add(newToDoList);
+                    newToDoList.addActionListener(
+                            e -> {
+                                ToDoListView showToDoListView = new ToDoListView(new ViewManagerModel(),
+                                        new ToDoListViewModel(),
+                                        new MainProjectViewModel(),
+                                        new ToDoPanelViewModel(),
+                                        new AddToDoViewModel("add to do view"));
+                                viewManagerModel.setActiveView(showToDoListView.getViewName());
+                                viewManagerModel.firePropertyChanged();
+                            }
+                    );
+                }
+            }
+            case ToDoPanelViewModel.IMPORT_TODOLIST_FAILED -> {
+                JOptionPane.showMessageDialog(
+                        null,
+                        state.getImportToDoListError());
+            }
+            case ToDoPanelViewModel.INITIALIZE_TODO_PANEL -> {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Initialize ToDoPanel from DAO success.");
+                this.toDoPanel = state.getCurrentToDoPanel();
+            }
+            case ToDoPanelViewModel.INITIALIZE_TODO_PANEL_FAILED -> {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Initialize ToDoPanel from DAO FAILED.");
+            }
         }
-        ToDoPanelState state = (ToDoPanelState) evt.getNewValue(); // state在这个方法被触发的时候就传过来了。
-        /*
-        statename = state.getpropertyname;
-        if (statename == "new panel") {
-
-        } else if (statename == "import panel") {
-
-        }
-        */
-        JButton newToDoList = new JButton(state.getWorkKind()); //这里通过使用state的各种方法，得到各种需要的值
-        /*
-        successfully add one todolist.
-         */
-        toDoListViews.add(newToDoList);
-        /*
-        now is time to use it
-        and who will use it? FirePropertyChange which have been set.
-         */
-
     }
 
     /**

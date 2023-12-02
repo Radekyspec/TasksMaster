@@ -12,7 +12,7 @@ public class ToDoListController {
 
     public void execute() {
         ToDoListInputData toDoListInputData = new ToDoListInputData(
-                0, 0); // TODO: get to know how to import projectID and toDoListID.
+                0, 0); // TODO: get to know what did the projectID and toDoListID comes.
         toDoListInteractor.execute(toDoListInputData);
     }
 }

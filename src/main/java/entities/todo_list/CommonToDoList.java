@@ -6,33 +6,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonToDoList implements ToDoList {
-    private final Integer ID;
+    private final Integer listID;
+    private final Integer projectID;
     private final String name;
     private final String detail;
     private final Map<Integer, ToDo> toDos;
 
+    public Integer getProjectID() {
+        return projectID;
+    }
+
     /**
      * build up a to_do list
      *
-     * @param ID     the ID
-     * @param name   the name
-     * @param detail the detail
+     * @param listID    the listID
+     * @param projectID the projectID
+     * @param name      the name
+     * @param detail    the detail
      */
-    public CommonToDoList(int ID, String name, String detail) {
-        this.ID = ID;
+    public CommonToDoList(int listID, Integer projectID, String name, String detail) {
+        this.listID = listID;
+        this.projectID = projectID;
         this.name = name;
         this.detail = detail;
         toDos = new HashMap<>();
     }
 
     /**
-     * Returns ID of this obj.
+     * Returns listID of this obj.
      *
-     * @return its ID.
+     * @return its listID.
      */
     @Override
-    public Integer getID() {
-        return this.ID;
+    public Integer getListID() {
+        return this.listID;
     }
 
     /**
@@ -58,7 +65,7 @@ public class CommonToDoList implements ToDoList {
 
     /**
      * Returns toDos of this obj.
-     * A Map contains pairs of (ID of TO_DO, TO_DO)
+     * A Map contains pairs of (listID of TO_DO, TO_DO)
      *
      * @return A map contains pairs of id and to_do.
      */
@@ -70,7 +77,6 @@ public class CommonToDoList implements ToDoList {
     /**
      * add a new to_do into the to_do list
      *
-     * @param toDo a new todo
      */
     @Override
     public void addToDos(ToDo toDo) {

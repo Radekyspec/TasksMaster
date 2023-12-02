@@ -25,7 +25,16 @@ public interface ToDo {
     /**
      * Return if the to_do is finished.
      *
-     * @return incomplete when it isn't complete, done when it's complete.
+     * @return "incomplete" when it isn't complete, done when it's "complete".
      */
     String getProgress();
+
+    /**
+     * Return [ ] if it's unfinished, and return [x] if it's finished.
+     *
+     * @return a string that graphically shows finish or not.
+     */
+    String getCharProgress();
+    final String TODO_INCOMPLETE = "incomplete";
+    final String TODO_COMPLETE = "complete";
 }
