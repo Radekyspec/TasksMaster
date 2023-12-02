@@ -1,6 +1,8 @@
 package view.message_board;
 
 import entities.message.Message;
+import entities.message_board.MessageBoard;
+import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.MessageBoardController;
 import interface_adapter.message_board.MessageBoardState;
@@ -19,6 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MessageBoardView extends JPanel implements ActionListener, PropertyChangeListener {
+    private int projectID;
+    private int messageBoardID;
+    private MessageBoard messageBoard;
+    private User user;
     private final ViewManagerModel viewManagerModel;
     private final MessageBoardViewModel messageBoardViewModel;
     private final AddNewMessageViewModel addNewMessageViewModel;
@@ -28,22 +34,20 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
     private final JPanel messages;
     private final Map<JButton, Message> buttonToMessage;
 
-    public MessageBoardView(ViewManagerModel viewManagerModel, ViewManagerModel viewManagerModel1, MessageBoardViewModel messageBoardViewModel,
+    public MessageBoardView(ViewManagerModel viewManagerModel, MessageBoardViewModel messageBoardViewModel,
                             AddNewMessageViewModel addNewMessageViewModel, MessageViewModel messageViewModel,
                             MessageBoardController messageBoardController) {
-        this.viewManagerModel = viewManagerModel1;
+        this.viewManagerModel = viewManagerModel;
         this.messageBoardViewModel = messageBoardViewModel;
         this.addNewMessageViewModel = addNewMessageViewModel;
         this.messageViewModel = messageViewModel;
         this.messageBoardController = messageBoardController;
         buttonToMessage = new HashMap<>();
         messageBoardViewModel.addPropertyChangeListener(this);
-        /*
-        这里需要建立一个JPanel，来调用controller去得到message的信息来展现在页面上。
-        */
+
         messages = new JPanel();
         MessageBoardState state = messageBoardViewModel.getMessageBoardState();
-        messageBoardController.getMessages(state.getProjectID(), state.getMessageBoardID());
+        messageBoardController.getMessages(projectID, messageBoardID);
 
 
         addNewMessage = new JButton(MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL);
@@ -80,9 +84,9 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
             return;
         }
         Message message = buttonToMessage.get((JButton) e.getSource());
-        MessageBoardState state = messageBoardViewModel.getMessageBoardState();
+        MessageState state = messageViewModel.getState();
         state.setMessage(message);
-        messageViewModel.firePropertyChanged();
+        messageViewModel.firePropertyChanged(MessageViewModel.SET_MESSAGE);
         viewManagerModel.setActiveView(messageViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
@@ -96,8 +100,18 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         MessageBoardState state = (MessageBoardState) evt.getNewValue();
+        switch (evt.getPropertyName()) {
+            case MessageBoardViewModel.SET_USER_PROJECT -> {
+                this.user = state.getUser();
+                this.projectID = state.getProjectID();
+                this.messageBoard = state.getMessageBoard();
+                this.messageBoardID = state.getMessageBoardID();
+            }
+        }
+
         Message message = state.getMessage();
         JButton messageButton = new JButton(message.getAuthor().getName() + message.getTitle());
+        messageBoard.setMessage(message);
         buttonToMessage.put(messageButton, message);
         messageButton.addActionListener(this);
         messages.add(messageButton);

@@ -87,10 +87,10 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
         Project project = CommonProjectFactory.create(projectJson.getInt("id"),
                 projectJson.getString("name"),
                 projectInfo.getString("description"));
-        project.setLeader(getAllUsers().get(projectInfo.getString("owner")));
+        project.setLeader(projectInfo.getString("owner"));
         JSONArray members = projectInfo.getJSONArray("members");
         for (int i = 0; i < members.length(); i++) {
-            project.addNewMember(getAllUsers().get(members.getString(i)));
+            project.addNewMember(members.getString(i));
         }
         JSONArray docks = projectJson.getJSONArray("dock");
         int toDoPanelId = 0, messageBoardId = 0, scheduleId = 0;
@@ -138,7 +138,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     public List<Project> getUserProjects(User user) {
         List<Project> projects = new ArrayList<>();
         for (Project project : getAllProjects()) {
-            if (project.getMembers().containsKey(user.getName())) {
+            if (project.getMembers().contains(user.getName())) {
                 projects.add(project);
             }
         }
@@ -179,11 +179,11 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
 
     @Override
     public boolean addProjectMember(Project project, User user) {
-        project.addNewMember(user);
+        project.addNewMember(user.getName());
         JSONObject projectInfo = new JSONObject();
         projectInfo.put("owner", project.getLeader());
         JSONArray members = new JSONArray();
-        members.putAll(project.getMembers().values());
+        members.putAll(project.getMembers());
         projectInfo.put("members", members);
         projectInfo.put("description", project.getDescription());
         JSONObject requestBody = new JSONObject();
