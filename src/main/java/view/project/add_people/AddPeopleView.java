@@ -30,7 +30,8 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
         this.addPeopleController = addPeopleController;
 
         title = new JLabel(AddPeopleViewModel.ADD_NEW_PEOPLE);
-        typeYourName.add(new JLabel(AddPeopleViewModel.TYPE_NAME), nameInputField);
+        typeYourName.add(new JLabel(AddPeopleViewModel.TYPE_NAME));
+        typeYourName.add(nameInputField);
         nameInputField.addKeyListener(
                 new KeyListener() {
                     @Override

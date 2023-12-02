@@ -5,10 +5,10 @@ import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.MessageBoardState;
 import interface_adapter.message_board.MessageBoardViewModel;
-import interface_adapter.project.MainProjectController;
 import interface_adapter.project.MainProjectState;
 import interface_adapter.project.MainProjectViewModel;
 import interface_adapter.project.add_people.AddPeopleViewModel;
+import interface_adapter.project.choose.ChooseProjectViewModel;
 import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 
@@ -22,6 +22,7 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
     private User user;
     private Project project;
     private final ViewManagerModel viewManagerModel;
+    private final ChooseProjectViewModel chooseProjectViewModel;
     private final MainProjectViewModel mainProjectViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
     private final ToDoPanelViewModel toDoPanelViewModel;
@@ -35,15 +36,17 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
     private final JButton schedule = new JButton(MainProjectViewModel.SCHEDULE);
     private final JPanel buttonField = new JPanel();
 
-    public MainProjectView(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel,
+    public MainProjectView(ViewManagerModel viewManagerModel, ChooseProjectViewModel chooseProjectViewModel, MainProjectViewModel mainProjectViewModel,
                            MessageBoardViewModel messageBoardViewModel, ToDoPanelViewModel toDoPanelViewModel,
                            AddPeopleViewModel addPeopleViewModel, ScheduleViewModel scheduleViewModel) {
         this.viewManagerModel = viewManagerModel;
+        this.chooseProjectViewModel = chooseProjectViewModel;
         this.mainProjectViewModel = mainProjectViewModel;
         this.messageBoardViewModel = messageBoardViewModel;
         this.toDoPanelViewModel = toDoPanelViewModel;
         this.addPeopleViewModel = addPeopleViewModel;
         this.scheduleViewModel = scheduleViewModel;
+        mainProjectViewModel.addPropertyChangeListener(this);
 
         addSomePeople.addActionListener(
                 e -> {
@@ -55,12 +58,22 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
         JPanel title = new JPanel();
         title.add(projectName);
         title.add(description);
+        title.setAlignmentX(CENTER_ALIGNMENT);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
         this.add(addSomePeople);
         buttonField.add(messageBoard);
         buttonField.add(toDoPanel);
         buttonField.add(schedule);
         this.add(buttonField);
+        JButton back = new JButton("Back");
+        back.addActionListener(
+                e -> {
+                    viewManagerModel.setActiveView(chooseProjectViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
+                }
+        );
+        this.add(back);
     }
 
     @Override
@@ -90,6 +103,7 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
                 project = state.getProject();
                 projectName.setText(project.getName());
                 description.setText(project.getDescription());
+                this.repaint();
                 messageBoard.addActionListener(this);
                 toDoPanel.addActionListener(this);
                 schedule.addActionListener(this);
