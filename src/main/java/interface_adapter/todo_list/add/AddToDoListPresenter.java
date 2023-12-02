@@ -1,21 +1,21 @@
 package interface_adapter.todo_list.add;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.todo_list.ToDoListViewModel;
+import interface_adapter.todo_panel.ToDoPanelViewModel;
 import use_case.todo_list.add.AddToDoListOutputBoundary;
 import use_case.todo_list.add.AddToDoListOutputData;
 
 public class AddToDoListPresenter implements AddToDoListOutputBoundary {
     private final ViewManagerModel viewManagerModel;
     private final AddToDoListViewModel addToDoListViewModel;
-    private final ToDoListViewModel toDoListViewModel;
+    private final ToDoPanelViewModel toDoPanelViewModel;
 
     public AddToDoListPresenter(ViewManagerModel viewManagerModel,
                                 AddToDoListViewModel addToDoListViewModel,
-                                ToDoListViewModel toDoListViewModel) {
+                                ToDoPanelViewModel toDoPanelViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.addToDoListViewModel = addToDoListViewModel;
-        this.toDoListViewModel = toDoListViewModel;
+        this.toDoPanelViewModel = toDoPanelViewModel;
     }
 
     /**
@@ -31,10 +31,10 @@ public class AddToDoListPresenter implements AddToDoListOutputBoundary {
         if (outputData.isUseCaseFailed()) {
             return;
         }
-        toDoListViewModel.getState().setNewCreatedTDL(outputData.getToDoList());
-        toDoListViewModel.firePropertyChanged(ToDoListViewModel.CREATE_TODO_LIST);
+        toDoPanelViewModel.getState().setNewCreatedTDL(outputData.getToDoList());
+        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.CREATE_TODO_LIST);
         addToDoListViewModel.firePropertyChanged(AddToDoListViewModel.CREATE_TODO_LIST);
-        viewManagerModel.setActiveView(toDoListViewModel.getViewName());
+        viewManagerModel.setActiveView(toDoPanelViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
@@ -43,9 +43,9 @@ public class AddToDoListPresenter implements AddToDoListOutputBoundary {
         if (!outputData.isUseCaseFailed()) {
             return;
         }
-        toDoListViewModel.getState().setError(outputData.getError());
+        toDoPanelViewModel.getState().setImportToDoListError(outputData.getError());
         addToDoListViewModel.getState().setATDLSError(outputData.getError());
-        toDoListViewModel.firePropertyChanged(ToDoListViewModel.CREATE_TODO_LIST_FAILED);
+        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.CREATE_TODO_LIST_FAILED);
         addToDoListViewModel.firePropertyChanged(AddToDoListViewModel.CREATE_TODO_LIST_FAILED);
 
 

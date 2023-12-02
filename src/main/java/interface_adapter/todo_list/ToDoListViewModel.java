@@ -9,8 +9,6 @@ public class ToDoListViewModel extends ViewModel {
     public static final String BACK_TO_HOME_BUTTON_LABEL = "HomePage";
     public static final String ADD_NEW_TODO_BUTTON_LABEL = "Add a new ToDo";
     public static final String GO_BACK_BUTTON_LABEL = "Back";
-    public static final String CREATE_TODO_LIST = "create todo list";
-    public static final String CREATE_TODO_LIST_FAILED = "create error";
     public static final String IMPORT_TODO_LIST = "import todo list";
     public static final String IMPORT_TODO_LIST_FAILED = "import error";
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);

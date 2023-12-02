@@ -11,12 +11,18 @@ public class ToDoPanelViewModel extends ViewModel {
     public static final String BACK_TO_HOME_BUTTON_LABEL = "HomePage";
     public static final String CHOOSE_PROJECT_LABEL = "Click one list to start.";
     public static final String SELECT_BUTTON_LABEL = "Select";
-    public static final String ADD_NEW_TODOLIST = "add new todo list";
     public static final String IMPORT_TODOLIST = "import todo list";
     public static final String INITIALIZE_TODO_PANEL = "initialize todo panel";
+    public static final String CREATE_TODO_LIST = "create todo list";
+    public static final String CREATE_TODO_LIST_FAILED = "create error";
+    public static final String IMPORT_TODOLIST_FAILED = "import todo list failed";
+    public static final String INITIALIZE_TODO_PANEL_FAILED = "initialize todo panel failed";
     private final ToDoPanelState toDoPanelState = new ToDoPanelState();
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
-
+    private final ToDoPanelState state = new ToDoPanelState();
+    public ToDoPanelState getState() {
+        return state;
+    }
     public ToDoPanelViewModel() {
         super("todo panel");
     }

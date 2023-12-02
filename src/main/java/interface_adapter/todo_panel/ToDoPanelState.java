@@ -14,6 +14,16 @@ public class ToDoPanelState {
     private Project project;
     private Integer projectID; // 用于承接传入的ID，ToDo 记得接收这个ID
     private Integer toDoPanelID; // 用于承接传入的ID，ToDo 记得接收这个ID
+    private String importToDoListError;
+    private ToDoPanel currentToDoPanel;
+    private String toDoPanelError;
+    public ToDoPanelState() {
+        currentToDoPanel = null;
+        toDoPanelError = null;
+        newCreatedTDL = null;
+        listOfToDoList = null;
+        importToDoListError = null;
+    }
 
     public User getUser() {
         return user;
@@ -56,16 +66,6 @@ public class ToDoPanelState {
         this.listOfToDoList.add(toDoList);
     }
 
-    private ToDoPanel currentToDoPanel;
-    private String toDoPanelError;
-
-    public ToDoPanelState() {
-        currentToDoPanel = null;
-        toDoPanelError = null;
-        newCreatedTDL = null;
-        listOfToDoList = null;
-    }
-
     public ToDoList getNewCreatedTDL() {
         return newCreatedTDL;
     }
@@ -88,5 +88,13 @@ public class ToDoPanelState {
 
     public void setCurrentToDoPanel(ToDoPanel currentToDoPanel) {
         this.currentToDoPanel = currentToDoPanel;
+    }
+
+    public String getImportToDoListError() {
+        return importToDoListError;
+    }
+
+    public void setImportToDoListError(String error) {
+        this.importToDoListError = error;
     }
 }

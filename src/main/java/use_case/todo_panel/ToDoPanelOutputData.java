@@ -3,14 +3,12 @@ package use_case.todo_panel;
 import entities.todo_panel.ToDoPanel;
 
 public class ToDoPanelOutputData {
-    private final String workKind;
+    private final ToDoPanel toDoPanel;
     private final String error;
     private final boolean useCaseFailed;
-    private final ToDoPanel toDoPanel;
-    public ToDoPanelOutputData(String workKind, String error, ToDoPanel toDoPanel, boolean useCaseFailed) {
-        this.workKind = workKind;
-        this.error = error;
+    public ToDoPanelOutputData(String error, boolean useCaseFailed, ToDoPanel toDoPanel) {
         this.toDoPanel = toDoPanel;
+        this.error = error;
         this.useCaseFailed = useCaseFailed;
     }
     public String getError() {
@@ -19,7 +17,8 @@ public class ToDoPanelOutputData {
     public boolean isUseCaseFailed() {
         return useCaseFailed;
     }
-    public String getWorkKind() {
-        return workKind;
+
+    public ToDoPanel getToDoPanel() {
+        return toDoPanel;
     }
 }

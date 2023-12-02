@@ -1,14 +1,13 @@
 package use_case.todo_panel;
 
 public class ToDoPanelInputData {
+    private final Integer projectID;
 
-    private final String workKind;
-
-    public String getWorkKind() {
-        return workKind;
+    public ToDoPanelInputData(Integer projectID) {
+        this.projectID = projectID;
     }
 
-    public ToDoPanelInputData(String workKind) {
-        this.workKind = workKind;
+    public Integer getProjectID() {
+        return projectID;
     }
 }

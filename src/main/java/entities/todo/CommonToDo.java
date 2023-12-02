@@ -68,8 +68,6 @@ public class CommonToDo implements ToDo {
             return "[ ]";
         } else if (progress.equals(ToDo.TODO_COMPLETE)) {
             return "[x]";
-        } else {
-            JOptionPane.showMessageDialog(null, "CommonToDo-getCharProgress Error!");
         }
         return null;
     }
