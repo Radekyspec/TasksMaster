@@ -1,34 +1,116 @@
 package view.todo_list;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.todo_list.add.AddToDoListController;
 import interface_adapter.todo_list.add.AddToDoListState;
 import interface_adapter.todo_list.add.AddToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class AddToDoListView extends JPanel implements PropertyChangeListener {
     private final ToDoPanelViewModel toDoPanelViewModel;
+    private final AddToDoListViewModel addToDoListViewModel;
+    private final AddToDoListController addToDoListController;
+    private final JTextField detailInputField;
+    private final JPanel nameInfo;
+    private final JPanel contentInfo;
     private JButton confirm;
     private JButton cancel;
+    private final JTextField nameInputField = new JTextField();
     public AddToDoListView(ViewManagerModel viewManagerModel,
-                           ToDoPanelViewModel toDoPanelViewModel) {
+                           ToDoPanelViewModel toDoPanelViewModel,
+                           AddToDoListViewModel addToDoListViewModel,
+                           AddToDoListController addToDoListController, JTextField detailInputField,
+                           JPanel nameInfo,
+                           JPanel contentInfo) {
         this.toDoPanelViewModel = toDoPanelViewModel;
+        this.addToDoListViewModel = addToDoListViewModel;
+        this.addToDoListController = addToDoListController;
+        this.detailInputField = detailInputField;
+        this.nameInfo = nameInfo;
+        this.contentInfo = contentInfo;
 
         JPanel buttons = new JPanel();
         confirm = new JButton(AddToDoListViewModel.ADD_NEW_TODO_BUTTON_LABEL);
         cancel = new JButton(AddToDoListViewModel.GO_BACK_BUTTON_LABEL);
+        nameInfo.add(new JLabel(AddToDoListViewModel.NAME_IPF));
+        contentInfo.add(new JLabel(AddToDoListViewModel.DETAIL_IPF));
         buttons.add(confirm);
         buttons.add(cancel);
+
+        nameInputField.addKeyListener(
+                new KeyListener() {
+                    /**
+                     * Invoked when a key has been typed.
+                     * See the class description for {@link KeyEvent} for a definition of
+                     * a key typed event.
+                     *
+                     * @param e the event to be processed
+                     */
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    /**
+                     * Invoked when a key has been pressed.
+                     * See the class description for {@link KeyEvent} for a definition of
+                     * a key pressed event.
+                     *
+                     * @param e the event to be processed
+                     */
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                    }
+
+                    /**
+                     * Invoked when a key has been released.
+                     * See the class description for {@link KeyEvent} for a definition of
+                     * a key released event.
+                     *
+                     * @param e the event to be processed
+                     */
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        addToDoListViewModel.getState().setName(nameInputField.getText());
+                    }
+                }
+        );
+
+        detailInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                        addToDoListViewModel.getState().setDetail(nameInputField.getText());
+                    }
+                }
+        );
 
         confirm.addActionListener(
                 e -> {
                     if (!e.getSource().equals(confirm)) {
                         return;
                     }
-                    viewManagerModel.setActiveView(toDoPanelViewModel.getViewName()); //manage ToDoList in ToDoPanel
+
+                    AddToDoListState state = addToDoListViewModel.getState();
+                    addToDoListController.mainLogic(state.getName(), state.getDetail(), 0, 0); // ToDo: fix listid.
+                    viewManagerModel.setActiveView(toDoPanelViewModel.getViewName());
                     viewManagerModel.firePropertyChanged();
                 }
         );

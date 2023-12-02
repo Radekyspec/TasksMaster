@@ -1,20 +1,77 @@
 package interface_adapter.todo_panel;
 
+import entities.project.Project;
 import entities.todo_list.ToDoList;
 import entities.todo_panel.ToDoPanel;
+import entities.user.User;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class ToDoPanelState {
+    private final List<ToDoList> listOfToDoList;
+    private ToDoList newCreatedTDL;
+    private User user;
+    private Project project;
+    private Integer projectID; // 用于承接传入的ID，ToDo 记得接收这个ID
+    private Integer toDoPanelID; // 用于承接传入的ID，ToDo 记得接收这个ID
+    private String importToDoListError;
     private ToDoPanel currentToDoPanel;
     private String toDoPanelError;
-    private String workKind;
-
     public ToDoPanelState() {
         currentToDoPanel = null;
         toDoPanelError = null;
-        workKind = null;
+        newCreatedTDL = null;
+        listOfToDoList = null;
+        importToDoListError = null;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Integer getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(Integer projectID) {
+        this.projectID = projectID;
+    }
+
+    public Integer getToDoPanelID() {
+        return toDoPanelID;
+    }
+
+    public void setToDoPanelID(Integer toDoPanelID) {
+        this.toDoPanelID = toDoPanelID;
+    }
+
+    public List<ToDoList> getListOfToDoList() {
+        return listOfToDoList;
+    }
+
+    public void setListOfToDoList(ToDoList toDoList) {
+        assert this.listOfToDoList != null;
+        this.listOfToDoList.add(toDoList);
+    }
+
+    public ToDoList getNewCreatedTDL() {
+        return newCreatedTDL;
+    }
+
+    public void setNewCreatedTDL(ToDoList newCreatedTDL) {
+        this.newCreatedTDL = newCreatedTDL;
     }
 
     public String getToDoPanelError() {
@@ -33,12 +90,11 @@ public class ToDoPanelState {
         this.currentToDoPanel = currentToDoPanel;
     }
 
-    public String getWorkKind() {
-        return workKind;
+    public String getImportToDoListError() {
+        return importToDoListError;
     }
 
-    public void setWorkKind(String workKind) {
-        this.workKind = workKind;
+    public void setImportToDoListError(String error) {
+        this.importToDoListError = error;
     }
-
 }

@@ -1,11 +1,15 @@
 package use_case.todo_list.add;
 
-import use_case.project.add.AddProjectInputData;
-
 public class AddToDoListInputData {
     private final String name;
     private final String detail;
-    private final Integer ID;
+    private final Integer listID;
+
+    public Integer getProjectID() {
+        return projectID;
+    }
+
+    private final Integer projectID;
 
     public String getName() {
         return name;
@@ -15,13 +19,14 @@ public class AddToDoListInputData {
         return detail;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getListID() {
+        return listID;
     }
 
-    public AddToDoListInputData(String name, String detail, Integer ID) {
+    public AddToDoListInputData(String name, String detail, Integer listID, Integer projectID) {
         this.name = name;
         this.detail = detail;
-        this.ID = ID;
+        this.listID = listID;
+        this.projectID = projectID;
     }
 }

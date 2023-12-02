@@ -1,36 +1,55 @@
 package interface_adapter.todo_panel;
 
+import entities.todo_list.ToDoList;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
+import use_case.todo_list.import1.ImportToDoListOutputData;
 import use_case.todo_panel.ToDoPanelOutputBoundary;
 import use_case.todo_panel.ToDoPanelOutputData;
 
 public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
-    private final ViewManagerModel viewManagerModel;
     private final ToDoPanelViewModel toDoPanelViewModel;
-    private ToDoPanelPresenter(ViewManagerModel viewManagerModel,
-                               ToDoPanelViewModel toDoPanelViewModel) {
-        this.viewManagerModel = viewManagerModel;
+    private ToDoPanelPresenter(ToDoPanelViewModel toDoPanelViewModel) {
         this.toDoPanelViewModel = toDoPanelViewModel;
 
     }
+
     @Override
-    public void prepareSuccessView(ToDoPanelOutputData toDoPanelOutputData) {
+    public void prepareInitializeSuccessView(ToDoPanelOutputData toDoPanelOutputData) {
         if (toDoPanelOutputData.isUseCaseFailed()) {
             return;
         }
-        toDoPanelViewModel.getToDoPanelState().setWorkKind(toDoPanelOutputData.getWorkKind()); //这一行将viewmodel里的state的内容设置为outputdata里的panel。注意要写好方法，todooutputdata要有gettodopanel来得到todopanel，然后再喂给viewmodel里的gettodopanel（list）
-        toDoPanelViewModel.firePropertyChanged(); // fire之后，todopanelview那边的一个不间断监听的listener，
-        viewManagerModel.setActiveView(toDoPanelViewModel.getViewName());
+        toDoPanelViewModel.getToDoPanelState().setCurrentToDoPanel(toDoPanelOutputData.getToDoPanel());
+        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.INITIALIZE_TODO_PANEL);
     }
 
     @Override
-    public void prepareFailView(ToDoPanelOutputData toDoPanelOutputData) {
+    public void prepareImportToDoListSuccessView(ImportToDoListOutputData outputData) {
+        if (outputData.isUseCaseFailed()) {
+            return;
+        }
+        for (ToDoList toDoList : outputData.getListOfToDo()) {
+            toDoPanelViewModel.getToDoPanelState().setListOfToDoList(toDoList);
+            toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
+        }
+
+    }
+
+    @Override
+    public void prepareImportToDoListFailView(ImportToDoListOutputData outputData) {
+        if (!outputData.isUseCaseFailed()) {
+            return;
+        }
+        toDoPanelViewModel.getToDoPanelState().setToDoPanelError(outputData.getError());
+        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST_FAILED);
+    }
+
+    @Override
+    public void prepareInitializeFailView(ToDoPanelOutputData toDoPanelOutputData) {
         if (!toDoPanelOutputData.isUseCaseFailed()) {
             return;
         }
         toDoPanelViewModel.getToDoPanelState().setToDoPanelError(toDoPanelOutputData.getError());
-        toDoPanelViewModel.firePropertyChanged(); //之后呢？？
-
+        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.INITIALIZE_TODO_PANEL_FAILED);
     }
 }

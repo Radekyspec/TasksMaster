@@ -15,7 +15,8 @@ public class ChooseProjectInteractor implements ChooseProjectInputBoundary {
     }
     @Override
     public void execute(ChooseProjectInputData inputData) {
-
+        ChooseProjectOutputData outputData = new ChooseProjectOutputData(inputData.getProject(), null, false);
+        presenter.prepareEnterSuccessView(outputData);
     }
 
     @Override

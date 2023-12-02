@@ -18,7 +18,7 @@ public class MessageBoardPresenter implements MessageBoardOutputBoundary {
     public void prepareGetMessagesSuccessView(MessageBoardOutputData messageBoardOutputData) {
         for (Message message : messageBoardOutputData.getMessages()) {
             messageBoardViewModel.getMessageBoardState().setMessage(message);
-            messageBoardViewModel.firePropertyChanged();
+            messageBoardViewModel.firePropertyChanged(MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL);
         }
     }
 }
