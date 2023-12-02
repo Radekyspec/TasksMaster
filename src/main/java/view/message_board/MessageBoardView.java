@@ -106,14 +106,15 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 this.projectID = state.getProjectID();
                 this.messageBoard = state.getMessageBoard();
                 this.messageBoardID = state.getMessageBoardID();
+            } case MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL -> {
+                Message message = state.getMessage();
+                JButton messageButton = new JButton(message.getAuthor().getName() + message.getTitle());
+                messageBoard.setMessage(message);
+                buttonToMessage.put(messageButton, message);
+                messageButton.addActionListener(this);
+                messages.add(messageButton);
             }
         }
 
-        Message message = state.getMessage();
-        JButton messageButton = new JButton(message.getAuthor().getName() + message.getTitle());
-        messageBoard.setMessage(message);
-        buttonToMessage.put(messageButton, message);
-        messageButton.addActionListener(this);
-        messages.add(messageButton);
     }
 }
