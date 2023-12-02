@@ -1,11 +1,22 @@
 package view.schedule;
 
 import entities.user.User;
+import entities.schedule.Schedule;
+import entities.event.Event;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleViewModel;
+import interface_adapter.schedule.ScheduleController;
+import interface_adapter.schedule.ScheduleState;
 
 import javax.swing.*;
+import java.util.Calendar;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.SystemColor;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -19,14 +30,16 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
     //private final AddNewEventViewModel addNewEventViewModel;
     private final ScheduleController scheduleController;
     private final JButton addNewEvent;
-    private final JPanel
+    private final JPanel addEventPanel = new JPanel();
+    //private final JPanel;
+
     @Override
     public void actionPerformed(ActionEvent e) {
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        //
+
     }
 
     public ScheduleView(User user, ViewManagerModel viewManagerModel, ScheduleViewModel scheduleViewModel, ScheduleController scheduleController, JButton addNewEvent) {
