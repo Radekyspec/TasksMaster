@@ -15,7 +15,7 @@ public class AddPeopleUseCaseFactory {
     private AddPeopleUseCaseFactory(){}
 
     public static AddPeopleView create(ViewManagerModel viewManagerModel, AddPeopleViewModel addPeopleViewModel, MainProjectViewModel mainProjectViewModel, ProjectUserDataAccessInterface projectUserDataAccessInterface){
-        return new AddPeopleView(viewManagerModel, addPeopleViewModel, AddPeopleUseCaseFactory.createController(viewManagerModel, mainProjectViewModel, projectUserDataAccessInterface));
+        return new AddPeopleView(viewManagerModel, addPeopleViewModel, mainProjectViewModel, AddPeopleUseCaseFactory.createController(viewManagerModel, mainProjectViewModel, projectUserDataAccessInterface));
     }
 
     public static AddPeopleController createController(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, ProjectUserDataAccessInterface projectUserDataAccessInterface){

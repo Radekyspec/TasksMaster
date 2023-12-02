@@ -13,6 +13,7 @@ import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -56,12 +57,16 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
                 }
         );
         JPanel title = new JPanel();
+        title.setLayout(new BoxLayout(title, BoxLayout.Y_AXIS));
         title.add(projectName);
         title.add(description);
-        title.setAlignmentX(CENTER_ALIGNMENT);
+        projectName.setAlignmentX(CENTER_ALIGNMENT);
+        projectName.setFont(new Font(projectName.getFont().getName(), Font.BOLD, 22));
+        description.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title);
-        this.add(addSomePeople);
+        this.add(new JPanel());
         buttonField.add(messageBoard);
         buttonField.add(toDoPanel);
         buttonField.add(schedule);
@@ -73,7 +78,10 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
                     viewManagerModel.firePropertyChanged();
                 }
         );
-        this.add(back);
+        JPanel bottom = new JPanel();
+        bottom.add(addSomePeople);
+        bottom.add(back);
+        this.add(bottom);
     }
 
     @Override

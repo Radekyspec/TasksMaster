@@ -39,7 +39,9 @@ public class Main {
     public static void main(String[] args) {
         JFrame application = new JFrame("TasksMaster");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        application.setSize(1280, 720);
+        application.setSize(600, 450);
+
+
 
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
@@ -105,6 +107,7 @@ public class Main {
         viewManagerModel.firePropertyChanged();
 
         application.pack();
+        //application.validate();
         application.setVisible(true);
     }
 }

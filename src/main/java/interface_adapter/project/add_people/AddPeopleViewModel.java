@@ -6,8 +6,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class AddPeopleViewModel extends ViewModel {
-    public static final String ADD_NEW_PEOPLE = "add new people";
-    public static final String TYPE_NAME = "type the name here...";
+    public static final String ADD_NEW_PEOPLE = "Add new people";
+    public static final String TYPE_NAME = "Type the name here...";
     public static final String ENTER = "Enter";
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final AddPeopleState state = new AddPeopleState();
