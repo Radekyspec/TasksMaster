@@ -11,9 +11,6 @@ public class SchedulePresenter implements ScheduleOutputBoundary {
         this.scheduleViewModel = scheduleViewModel;
     }
 
-    /**
-     * @param scheduleOutputData
-     */
     @Override
     public void prepareGetEventSuccessView(ScheduleOutputData scheduleOutputData) {
         for (Event event : scheduleOutputData.getEvents()) {

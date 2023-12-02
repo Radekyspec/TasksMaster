@@ -74,7 +74,7 @@ public class Main {
 
         ToDoPanelViewModel toDoPanelViewModel = new ToDoPanelViewModel();
 
-        ScheduleViewModel scheduleViewModel = new ScheduleViewModel(1,2);
+        ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
 
         SignupView signupView = SignupUseCaseFactory.create(
                 viewManagerModel, signupViewModel, loginViewModel, userDAO);
