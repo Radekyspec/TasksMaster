@@ -1,7 +1,6 @@
 package use_case.todo;
 
-import use_case.todo_panel.ToDoPanelInputData;
 
-public class ToDoInputBoundary {
+public interface ToDoInputBoundary {
     void execute(ToDoInputData toDoInputData);
 }

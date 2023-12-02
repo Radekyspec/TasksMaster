@@ -2,6 +2,8 @@ package data_access.todo;
 
 import entities.todo.ToDo;
 
+import java.util.Map;
+
 public interface ToDoDataAccessInterface {
     /*
     /**
@@ -18,4 +20,11 @@ public interface ToDoDataAccessInterface {
      * @param toDo the organized entity that is going to store.
      */
     void save(ToDo toDo);
+
+    /**
+     * The first step of import ToDos from the api.
+     * @param ToDoListID corresponding ToDoListID. It aims at distinguish between Lists.
+     * @return A map consists of all existed To_Do In this ToDoList.
+     */
+    Map<Integer, ToDo> importToDo(Integer ToDoListID);
 }

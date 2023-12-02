@@ -9,13 +9,13 @@ import java.beans.PropertyChangeSupport;
 public class MessageBoardViewModel extends ViewModel {
     public static final String MESSAGE_BOARD_TITLE_LABEL = "Message Board";
     public static final String ADD_NEW_MESSAGE_LABEL = "Add a new message";
+    public static final String SET_USER_PROJECT = "set user project";
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    private final MessageBoardState messageBoardState;
+    private final MessageBoardState messageBoardState = new MessageBoardState();
 
-    public MessageBoardViewModel(int ProjectID, int messageBoardID) {
+    public MessageBoardViewModel() {
         super("Message Board");
-        messageBoardState = new MessageBoardState(ProjectID, messageBoardID);
     }
 
     /**

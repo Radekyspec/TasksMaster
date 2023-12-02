@@ -3,17 +3,16 @@ package entities.project;
 import entities.message_board.MessageBoard;
 import entities.schedule.Schedule;
 import entities.todo_panel.ToDoPanel;
-import entities.user.User;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommonProject implements Project {
     private final int ID;
     private final String name;
     private final String description;
-    private final Map<String, User> members;
-    private User leader;
+    private final List<String> members;
+    private String leader;
     private ToDoPanel toDoPanel;
     private MessageBoard messageBoard;
     private Schedule schedule;
@@ -29,16 +28,16 @@ public class CommonProject implements Project {
         this.ID = ID;
         this.name = name;
         this.description = description;
-        this.members = new HashMap<>();
+        this.members = new ArrayList<>();
     }
 
     @Override
-    public User getLeader() {
+    public String getLeader() {
         return leader;
     }
 
     @Override
-    public void setLeader(User leader) {
+    public void setLeader(String leader) {
         this.leader = leader;
     }
 
@@ -73,7 +72,7 @@ public class CommonProject implements Project {
      * @return its members
      */
     @Override
-    public Map<String, User> getMembers() {
+    public List<String> getMembers() {
         return members;
     }
 
@@ -143,7 +142,7 @@ public class CommonProject implements Project {
      * @param newMember the new member that join the project
      */
     @Override
-    public void addNewMember(User newMember) {
-        members.put(newMember.getName(), newMember);
+    public void addNewMember(String newMember) {
+        members.add(newMember);
     }
 }

@@ -9,8 +9,8 @@ public class CommonToDoFactory {
      * @param assignedTo people who are assigned to with this to_do.
      * @return a CommonToDo class.
      */
-    public static CommonToDo create(Integer ID, String target, String[] assignedTo) {
-        return new CommonToDo(ID, target, assignedTo);
+    public static CommonToDo create(Integer ID, String target, String[] assignedTo, String progress) {
+        return new CommonToDo(ID, target, assignedTo, progress);
     }
 
 }

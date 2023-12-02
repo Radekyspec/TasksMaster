@@ -12,8 +12,9 @@ public class ToDoView extends JPanel implements PropertyChangeListener {
     private final ToDoViewModel toDoViewModel;
     private final ToDoController toDoController;
 
-    public ToDoView(ToDoViewModel toDoViewModel) {
+    public ToDoView(ToDoViewModel toDoViewModel, ToDoController toDoController) {
         this.toDoViewModel = toDoViewModel;
+        this.toDoController = toDoController;
     }
     /**
      * This method gets called when a bound property is changed.
