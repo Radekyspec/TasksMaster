@@ -4,6 +4,7 @@ import entities.user.User;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CommonEvent implements Event {
@@ -11,8 +12,8 @@ public class CommonEvent implements Event {
     private final long ID;
     private final String name;
     private final String notes;
-    private final LocalDateTime startsAt;
-    private final LocalDateTime endsAt;
+    private final Date startsAt;
+    private final Date endsAt;
     private final boolean isAllDay;
     private final List<User> userList;
 
@@ -26,7 +27,7 @@ public class CommonEvent implements Event {
      * @param endsAt   ending time of event
      * @param isAllDay whether the event is all day
      */
-    public CommonEvent(long id, String name, String notes, LocalDateTime startsAt, LocalDateTime endsAt,
+    public CommonEvent(long id, String name, String notes, Date startsAt, Date endsAt,
                        boolean isAllDay) {
         ID = id;
         this.name = name;
@@ -73,7 +74,7 @@ public class CommonEvent implements Event {
      * @return its start time
      */
     @Override
-    public LocalDateTime getStartsAt() {
+    public Date getStartsAt() {
         return startsAt;
     }
 
@@ -83,7 +84,7 @@ public class CommonEvent implements Event {
      * @return its end time
      */
     @Override
-    public LocalDateTime getEndAt() {
+    public Date getEndAt() {
         return endsAt;
     }
 

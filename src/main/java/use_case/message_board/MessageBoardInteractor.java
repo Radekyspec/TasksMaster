@@ -3,7 +3,6 @@ package use_case.message_board;
 import data_access.message_board.MessageBoardUserDataAccessInterface;
 import entities.message.Message;
 
-
 import java.util.List;
 
 public class MessageBoardInteractor implements MessageBoardInputBoundary {
@@ -25,7 +24,11 @@ public class MessageBoardInteractor implements MessageBoardInputBoundary {
         long projectID = messageBoardInputData.projectID();
         long messageBoardID = messageBoardInputData.messageBoardID();
         List<Message> messages = userDataAccessInterface.getMessages(projectID, messageBoardID);
-        MessageBoardOutputData messageBoardOutputData = new MessageBoardOutputData(messages);
-        messageBoardPresenter.prepareGetMessagesSuccessView(messageBoardOutputData);
+        if (messages == null){
+            messageBoardPresenter.prepareGetMessageFailView();
+        }else{
+            MessageBoardOutputData messageBoardOutputData = new MessageBoardOutputData(messages);
+            messageBoardPresenter.prepareGetMessagesSuccessView(messageBoardOutputData);
+        }
     }
 }

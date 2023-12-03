@@ -5,8 +5,6 @@ import entities.todo_list.ToDoList;
 import entities.todo_panel.ToDoPanel;
 import entities.user.User;
 
-import java.util.List;
-
 public class ToDoPanelState {
     private ToDoList newCreatedTDL;
     private User user;

@@ -3,9 +3,27 @@ TaskMaster
 Welcome to TaskMaster! If you are looking for an application to manage organization's project, you're in the 
 right place! We're happy to have you!
 
+- This software serves as the project for the course 207 at the University of Toronto.
+- **Distribution without permission is strongly prohibted**
+
 Project Domain
 --------------
 In this era of technology, internal communication among employees within the company often falls short of efficiency. There are few applications that cancollect project information, assign tasks,and show stats of the project effectively.
+
+Functionalities and Specifications
+----------------------------------
+- FILL THIS
+
+Code Organization
+-----------------
+
+- We mainly organized our code by layers. However, we also split some "big" layers into fractions by responsibility.
+- Folder `data` contains the csv data files.
+- Package `entities` contains all the entities we designed.
+- Package `usecases` contains different use cases. To make the code easier to search, there are three sub-package in `usecases` .
+    - The `generators` package contains use cases that are responsible for generating entities or attributes of entities.
+    - The `impactors` package contains use cases that are responsible for changing the attributes of the `player` and the `property`
+    - The `interactors` package contains use cases that refers to the actions taken for each subclass of block.
 
 Specification
 -------------

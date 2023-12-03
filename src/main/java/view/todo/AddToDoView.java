@@ -1,12 +1,10 @@
 package view.todo;
 
-import entities.user.User;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.todo.add_todo.AddToDoState;
 import interface_adapter.todo.add_todo.AddToDoController;
+import interface_adapter.todo.add_todo.AddToDoState;
 import interface_adapter.todo.add_todo.AddToDoViewModel;
 import interface_adapter.todo_list.ToDoListViewModel;
-import interface_adapter.todo_list.add.AddToDoListViewModel;
 import view.JButtonWithFont;
 import view.JLabelWithFont;
 
@@ -131,5 +129,9 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                         "Create success! \nIt's time to write adding this List into current view! ");
             }
         }
+    }
+
+    public String getViewName() {
+        return addToDoViewModel.getViewName();
     }
 }

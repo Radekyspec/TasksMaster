@@ -23,9 +23,10 @@ import entities.todo_list.ToDoList;
 import entities.todo_panel.CommonToDoPanelFactory;
 import entities.user.User;
 import exceptions.InvalidApiKeyException;
-
 import okhttp3.*;
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -164,7 +165,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     public Project createProject(User user, String name, String description) {
         JSONObject projectInfo = new JSONObject();
         projectInfo.put("owner", user.getName());
-        projectInfo.put("members", new JSONArray(new String[] {user.getName()}));
+        projectInfo.put("members", new JSONArray(new String[]{user.getName()}));
         projectInfo.put("description", description);
         JSONObject requestBody = new JSONObject();
         requestBody.put("name", name);
@@ -213,7 +214,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
                 .method("PUT", body)
                 .build();
 
-        try (Response response = client.newCall(request).execute()){
+        try (Response response = client.newCall(request).execute()) {
             if (response.code() != 200 || response.body() == null) {
                 setErrorMessage("Network Error");
                 return false;
@@ -230,7 +231,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
         Request request = buildRequest()
                 .url(String.format("https://3.basecampapi.com/%d/projects/%d.json", orgId, project.getID()))
                 .build();
-        try (Response response = client.newCall(request).execute()){
+        try (Response response = client.newCall(request).execute()) {
             if (response.code() != 200 || response.body() == null) {
                 setErrorMessage("Network Error");
                 return true;
@@ -296,7 +297,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
                 JSONObject contentJson = responseJson.getJSONObject(i);
                 String author = contentJson.getString("content").split(":")[0];
                 String content = Arrays.stream(
-                        contentJson.getString("content").split(":")).skip(1)
+                                contentJson.getString("content").split(":")).skip(1)
                         .collect(Collectors.joining(":"));
                 comments.add(CommonCommentFactory.create(
                         contentJson.getLong("id"),
@@ -317,7 +318,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     @Override
     public Comment addComment(long projectID, long messageID, User user, String newComment) {
         JSONObject requestBody = new JSONObject();
-        requestBody.put("content", newComment);
+        requestBody.put("content", user.getName() + ":" + newComment);
         RequestBody body = RequestBody.create(
                 requestBody.toString(),
                 MediaType.parse("application/json; charset=utf-8")
@@ -335,10 +336,10 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
             JSONObject responseJson = new JSONObject(response.body().string());
             String rawContent = responseJson.getString("content");
             return CommonCommentFactory.create(
-                    requestBody.getLong("id"),
+                    responseJson.getLong("id"),
                     rawContent.split(":")[0],
                     Arrays.stream(
-                            rawContent.split(":")).skip(1)
+                                    rawContent.split(":")).skip(1)
                             .collect(Collectors.joining(":"))
             );
         } catch (IOException e) {
@@ -389,19 +390,22 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
 
     @Override
     public ToDo createToDo(long projectID, long listID, String target, String progress) {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("content", target);
         return null;
     }
+
     @Override
     public List<ToDo> importToDo(long projectID, long toDoListID) {
         return null;
     }
 
-     @Override
+    @Override
     public ToDoList createToDoList(long projectID, long toDoPanelID, String name, String detail) {
         return null;
     }
 
-     @Override
+    @Override
     public List<ToDoList> importToDoList(long projectID, long toDoPanelID) {
         return null;
     }

@@ -1,6 +1,5 @@
 package interface_adapter.project.add_people;
 
-import entities.project.Project;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
 import use_case.project.add_people.AddPeopleOutputBoundary;

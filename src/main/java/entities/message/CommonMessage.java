@@ -1,7 +1,6 @@
 package entities.message;
 
 import entities.comment.Comment;
-import entities.user.User;
 
 import java.util.HashMap;
 import java.util.Map;

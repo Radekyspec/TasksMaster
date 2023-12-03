@@ -2,8 +2,10 @@ package interface_adapter.message_board.message;
 
 import entities.comment.Comment;
 import entities.message.Message;
+import entities.user.User;
 
 public class MessageState {
+    private User user;
     private Message message;
     private String newComment;
     private Comment comment;
@@ -48,5 +50,13 @@ public class MessageState {
 
     public void setMessageID(long messageID) {
         this.messageID = messageID;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,6 +1,7 @@
 package entities.event;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class CommonEventFactory {
     /**
@@ -13,7 +14,7 @@ public class CommonEventFactory {
      * @param endsAt   ending time of event
      * @param isAllDay whether the event is all day
      */
-    public static CommonEvent create(long id, String name, String notes, LocalDateTime startsAt, LocalDateTime endsAt,
+    public static CommonEvent create(long id, String name, String notes, Date startsAt, Date endsAt,
                                      boolean isAllDay) {
         return new CommonEvent(id, name, notes, startsAt, endsAt, isAllDay);
     }

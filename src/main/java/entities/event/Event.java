@@ -3,6 +3,7 @@ package entities.event;
 import entities.user.User;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 public interface Event {
@@ -32,14 +33,14 @@ public interface Event {
      *
      * @return its start time
      */
-    LocalDateTime getStartsAt();
+    Date getStartsAt();
 
     /**
      * Return the end time of the Event
      *
      * @return its end time
      */
-    LocalDateTime getEndAt();
+    Date getEndAt();
 
     /**
      * Return whether the event is All-day
