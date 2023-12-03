@@ -1,7 +1,7 @@
 package interface_adapter.todo_panel;
 
 import entities.todo_list.ToDoList;
-import use_case.todo_list.import1.ImportToDoListOutputData;
+import use_case.todo_panel.ImportToDoListOutputData;
 import use_case.todo_panel.ToDoPanelOutputBoundary;
 import use_case.todo_panel.ToDoPanelOutputData;
 
@@ -29,8 +29,8 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
             return;
         }
         for (ToDoList toDoList : outputData.getListOfToDo()) {
-//            toDoPanelViewModel.getState().setListOfToDoList(toDoList);
-//            toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
+            toDoPanelViewModel.getState().setNewCreatedTDL(toDoList);
+            toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
         }
 
     }

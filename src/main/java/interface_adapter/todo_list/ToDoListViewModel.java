@@ -10,6 +10,8 @@ public class ToDoListViewModel extends ViewModel {
     public static final String ADD_NEW_TODO_BUTTON_LABEL = "Add a new ToDo";
     public static final String GO_BACK_BUTTON_LABEL = "Back";
     public static final String IMPORT_TODO_LIST = "import todo list";
+    public static final String IMPORT_TODO = "import todo";
+    public static final String IMPORT_SINGLE_TODO = "import single todo";
     public static final String IMPORT_TODO_LIST_FAILED = "import error";
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private final ToDoListState state = new ToDoListState();

@@ -1,9 +1,7 @@
 package use_case.todo.add;
 
 import data_access.todo.add.AddToDoUserDataAccessInterface;
-import data_access.todolist.add.AddToDoListUserDataAccessInterface;
 import entities.todo.ToDo;
-import use_case.todo_list.add.AddToDoListOutputData;
 
 public class AddToDoInteractor implements AddToDoInputBoundary {
     private final AddToDoOutputBoundary addToDoPresenter;
@@ -27,11 +25,10 @@ public class AddToDoInteractor implements AddToDoInputBoundary {
     @Override
     public void importAddToDoList(AddToDoInputData inputData) {
         ToDo toDo = userDAO.createToDo(
-                inputData.getToDoID(),
-                inputData.getListID(),
-                inputData.getTarget(),
-                inputData.getAssignedTo(),
-                inputData.getProgress());
+                inputData.projectID(),
+                inputData.toDoListID(),
+                inputData.target(),
+                inputData.progress());
         if (toDo == null) {
             AddToDoOutputData outputData = new AddToDoOutputData(
                     null,

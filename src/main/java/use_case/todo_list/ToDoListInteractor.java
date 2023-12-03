@@ -48,15 +48,11 @@ public class ToDoListInteractor implements ToDoListInputBoundary{
                     null);
             toDoListPresenter.prepareFailView(outputData);
         } else {
-            toDoListPresenter.setDone(false);
-            for (ToDo toDo : listOfToDo) {
-                ToDoListOutputData outputData = new ToDoListOutputData(
-                        false,
-                        userDAO.getApiErrorMessage(),
-                        toDo);
-                toDoListPresenter.prepareImportView(outputData);
-            }
-            toDoListPresenter.setDone(true);
+            ToDoListOutputData outputData = new ToDoListOutputData(
+                    false,
+                    null,
+                    listOfToDo);
+            toDoListPresenter.prepareImportView(outputData);
         }
     }
 }

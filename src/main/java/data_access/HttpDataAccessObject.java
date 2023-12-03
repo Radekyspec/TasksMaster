@@ -6,7 +6,6 @@ import data_access.project.ProjectUserDataAccessInterface;
 import data_access.project.add.AddProjectUserDataAccessInterface;
 import data_access.project.choose.ChooseProjectUserDataAccessInterface;
 import data_access.signup.SignupUserDataAccessInterface;
-import data_access.todo.ToDoDataAccessInterface;
 import data_access.todo.add.AddToDoUserDataAccessInterface;
 import data_access.todolist.ToDoListDataAccessInterface;
 import data_access.todolist.add.AddToDoListUserDataAccessInterface;
@@ -37,7 +36,7 @@ import java.util.stream.Collectors;
 
 public abstract class HttpDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface, ProjectUserDataAccessInterface, ChooseProjectUserDataAccessInterface,
-        AddProjectUserDataAccessInterface, MessageBoardUserDataAccessInterface, ToDoDataAccessInterface,
+        AddProjectUserDataAccessInterface, MessageBoardUserDataAccessInterface,
         AddToDoUserDataAccessInterface, ToDoListDataAccessInterface, AddToDoListUserDataAccessInterface,
         ToDoPanelDataAccessInterface {
     private final String API_KEY;
@@ -389,7 +388,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     }
 
     @Override
-    public ToDo createToDo(long toDoID, long listID, String target, String[] assignedTo, String progress) {
+    public ToDo createToDo(long projectID, long listID, String target, String progress) {
         return null;
     }
     @Override
