@@ -5,6 +5,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.todo.add_todo.AddToDoState;
 import interface_adapter.todo.add_todo.AddToDoController;
 import interface_adapter.todo.add_todo.AddToDoViewModel;
+import interface_adapter.todo_list.ToDoListViewModel;
 import interface_adapter.todo_list.add.AddToDoListViewModel;
 import view.JButtonWithFont;
 import view.JLabelWithFont;
@@ -18,23 +19,26 @@ import java.beans.PropertyChangeListener;
 public class AddToDoView extends JPanel implements PropertyChangeListener {
     private final JButton confirm;
     private final JButton cancel;
-    private final AddToDoListViewModel addToDoListViewModel;
+    private final ToDoListViewModel toDoListViewModel;
     private final JTextField targetInputField = new JTextField();
     private final JPanel targetInfo;
     private final AddToDoViewModel addToDoViewModel;
-    private final JComboBox<String> assginedToUserList;
-    private final AddToDoController addToDoViewController;
+    private final AddToDoController addToDoController;
 
     public AddToDoView(ViewManagerModel viewManagerModel,
-                       AddToDoListViewModel addToDoListViewModel, JPanel nameInfo, AddToDoViewModel addToDoViewModel, JComboBox<User> assginedToUserList) {
-        this.addToDoListViewModel = addToDoListViewModel;
-        this.targetInfo = nameInfo;
+                       ToDoListViewModel toDoListViewModel,
+                       AddToDoViewModel addToDoViewModel,
+                       AddToDoController addToDoController) {
+        this.toDoListViewModel = toDoListViewModel;
+        this.targetInfo = new JPanel();
         this.addToDoViewModel = addToDoViewModel;
+        this.addToDoController = addToDoController;
+        addToDoViewModel.addPropertyChangeListener(this);
 
         JPanel buttons = new JPanel();
         confirm = new JButtonWithFont(AddToDoViewModel.CONFIRM_NEW_TODO_BUTTON_LABEL);
         cancel = new JButtonWithFont(AddToDoViewModel.GO_BACK_BUTTON_LABEL);
-        nameInfo.add(new JLabelWithFont(AddToDoViewModel.NAME_IPF));
+        targetInfo.add(new JLabelWithFont(AddToDoViewModel.NAME_IPF));
         buttons.add(confirm);
         buttons.add(cancel);
 
@@ -83,8 +87,13 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                     if (!e.getSource().equals(confirm)) {
                         return;
                     }
-                    viewManagerModel.setActiveView("addToDoListViewModel.getViewName()"); //manage ToDoList in ToDoPanel
-                    viewManagerModel.firePropertyChanged();
+                    AddToDoState state = addToDoViewModel.getState();
+                    addToDoController.addMainLogic(
+                            state.getTarget(),
+                            state.getProgress(),
+                            state.getToDoListID(),
+                            state.getProjectID()
+                    );
                 }
         );
         cancel.addActionListener(
@@ -92,12 +101,10 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                     if (!e.getSource().equals(cancel)) {
                         return;
                     }
-                    viewManagerModel.setActiveView("addToDoListViewModel.getViewName()");
+                    viewManagerModel.setActiveView(toDoListViewModel.getViewName());
                     viewManagerModel.firePropertyChanged();
                 }
         );
-        this.assginedToUserList = null;
-        addToDoViewController = null;
     }
     /**
      * This method gets called when a bound property is changed.

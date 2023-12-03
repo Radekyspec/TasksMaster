@@ -10,9 +10,9 @@ public class ToDoListController {
         this.toDoListInteractor = toDoListInteractor;
     }
 
-    public void execute() {
+    public void execute(long projectID, long toDoListID) {
         ToDoListInputData toDoListInputData = new ToDoListInputData(
-                0, 0); // TODO: get to know what did the projectID and toDoListID comes.
+                projectID, toDoListID);
         toDoListInteractor.execute(toDoListInputData);
     }
 }
