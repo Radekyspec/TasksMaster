@@ -2,6 +2,8 @@ package app;
 
 import app.message_board.MessageBoardUseCaseFactory;
 import app.login.LoginUseCaseFactory;
+import app.message_board.add_new_message.AddNewMessageUseCaseFactory;
+import app.message_board.message.MessageUseCaseFactory;
 import app.project.ProjectUseCaseFactory;
 import app.project.add.AddProjectUseCaseFactory;
 import app.project.add_people.AddPeopleUseCaseFactory;
@@ -31,7 +33,9 @@ import interface_adapter.todo_list.add.AddToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import view.ViewManager;
 import view.login.LoginView;
+import view.message_board.AddNewMessageView;
 import view.message_board.MessageBoardView;
+import view.message_board.MessageView;
 import view.project.MainProjectView;
 import view.project.add.AddProjectView;
 import view.project.add_people.AddPeopleView;
@@ -120,6 +124,9 @@ public class Main {
         AddToDoView addToDoView = AddToDoUseCaseFactory.create(
                 viewManagerModel, addToDoViewModel, toDoListViewModel, userDAO
         );
+        AddNewMessageView addNewMessageView = AddNewMessageUseCaseFactory.create(viewManagerModel, addNewMessageViewModel,messageBoardViewModel, userDAO);
+        MessageView messageView = MessageUseCaseFactory.create(viewManagerModel, messageViewModel, messageBoardViewModel, userDAO);
+
 
         views.add(signupView, signupView.getViewName());
         views.add(loginView, loginView.getViewName());
@@ -127,6 +134,10 @@ public class Main {
         views.add(addProjectView, addProjectView.getViewName());
         views.add(mainProjectView, mainProjectView.getViewName());
         views.add(addPeopleView, addPeopleView.getViewName());
+        views.add(messageBoardView, messageBoardView.getViewName());
+        views.add(addNewMessageView, addNewMessageView.getViewName());
+        views.add(messageView, messageView.getViewName());
+
 
         viewManagerModel.setActiveView(loginView.getViewName());
         viewManagerModel.firePropertyChanged();

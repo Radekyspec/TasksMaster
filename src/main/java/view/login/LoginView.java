@@ -35,9 +35,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         JPanel usernameInfo = new JPanel();
         usernameInfo.add(new JLabelWithFont(LoginViewModel.LOGIN_USERNAME_LABEL));
         usernameInfo.add(usernameInputField);
+        usernameInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         JPanel passwordInfo = new JPanel();
         passwordInfo.add(new JLabelWithFont(LoginViewModel.LOGIN_PASSWORD_LABEL));
         passwordInfo.add(passwordInputField);
+        passwordInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
 
         usernameInputField.addKeyListener(
                 new KeyListener() {
@@ -101,7 +103,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 e -> System.exit(0)
         );
 
-        JLabel title = new JLabelWithFont(LoginViewModel.LOGIN_TITLE_LABEL, Font.BOLD, 26);
+        JLabel title = new JLabelWithFont(LoginViewModel.LOGIN_TITLE_LABEL, Font.BOLD, 32);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());

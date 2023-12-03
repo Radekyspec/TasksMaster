@@ -23,8 +23,12 @@ public class MessageInteractor implements MessageInputBoundary {
         long projectID = messageInputData.projectID();
         long messageID = messageInputData.messageID();
         List<Comment> comments = userDataAccessInterface.getComments(projectID, messageID);
-        MessageOutputData messageOutputData = new MessageOutputData(comments);
-        messagePresenter.prepareGetCommentsSuccessView(messageOutputData);
+        if (comments == null){
+            messagePresenter.prepareGetCommentsFailView();
+        }else {
+            MessageOutputData messageOutputData = new MessageOutputData(comments);
+            messagePresenter.prepareGetCommentsSuccessView(messageOutputData);
+        }
     }
 
     @Override
@@ -34,9 +38,13 @@ public class MessageInteractor implements MessageInputBoundary {
         User user = messageInputData.user();
         String newComment = messageInputData.newComment();
         Comment comment = userDataAccessInterface.addComment(projectID,messageID,user,newComment);
-        List<Comment> list = new ArrayList<>();
-        list.add(comment);
-        MessageOutputData messageOutputData = new MessageOutputData(list);
-        messagePresenter.prepareGetCommentsSuccessView(messageOutputData);
+        if (comment == null){
+            messagePresenter.prepareAddCommentsFailView();
+        }else {
+            List<Comment> list = new ArrayList<>();
+            list.add(comment);
+            MessageOutputData messageOutputData = new MessageOutputData(list);
+            messagePresenter.prepareGetCommentsSuccessView(messageOutputData);
+        }
     }
 }

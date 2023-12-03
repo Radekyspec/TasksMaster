@@ -73,12 +73,14 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
         JLabel type = new JLabelWithFont(AddPeopleViewModel.TYPE_NAME);
         typeYourName.add(type);
         typeYourName.add(nameInputField);
+        nameInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         title = new JLabelWithFont(AddPeopleViewModel.ADD_NEW_PEOPLE);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());
-        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 20));
+        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 32));
         this.add(title);
+        this.add(Box.createVerticalGlue());
         this.add(typeYourName);
         JPanel bottom = new JPanel();
         bottom.add(enter);
