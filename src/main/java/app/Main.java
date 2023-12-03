@@ -127,7 +127,6 @@ public class Main {
         AddNewMessageView addNewMessageView = AddNewMessageUseCaseFactory.create(viewManagerModel, addNewMessageViewModel,messageBoardViewModel, userDAO);
         MessageView messageView = MessageUseCaseFactory.create(viewManagerModel, messageViewModel, messageBoardViewModel, userDAO);
 
-
         views.add(signupView, signupView.getViewName());
         views.add(loginView, loginView.getViewName());
         views.add(chooseProjectView, chooseProjectView.getViewName());

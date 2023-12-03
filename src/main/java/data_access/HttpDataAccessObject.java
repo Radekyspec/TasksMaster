@@ -5,6 +5,7 @@ import data_access.message_board.MessageBoardUserDataAccessInterface;
 import data_access.project.ProjectUserDataAccessInterface;
 import data_access.project.add.AddProjectUserDataAccessInterface;
 import data_access.project.choose.ChooseProjectUserDataAccessInterface;
+import data_access.schedule.ScheduleDataAccessInterface;
 import data_access.signup.SignupUserDataAccessInterface;
 import data_access.todo.add.AddToDoUserDataAccessInterface;
 import data_access.todolist.ToDoListDataAccessInterface;
@@ -12,6 +13,7 @@ import data_access.todolist.add.AddToDoListUserDataAccessInterface;
 import data_access.todopanel.ToDoPanelDataAccessInterface;
 import entities.comment.Comment;
 import entities.comment.CommonCommentFactory;
+import entities.event.Event;
 import entities.message.CommonMessageFactory;
 import entities.message.Message;
 import entities.message_board.CommonMessageBoardFactory;
@@ -29,17 +31,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class HttpDataAccessObject implements SignupUserDataAccessInterface,
         LoginUserDataAccessInterface, ProjectUserDataAccessInterface, ChooseProjectUserDataAccessInterface,
         AddProjectUserDataAccessInterface, MessageBoardUserDataAccessInterface,
         AddToDoUserDataAccessInterface, ToDoListDataAccessInterface, AddToDoListUserDataAccessInterface,
-        ToDoPanelDataAccessInterface {
+        ToDoPanelDataAccessInterface, ScheduleDataAccessInterface {
     private final String API_KEY;
     private long orgId;
     private String error;
@@ -407,6 +406,18 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
 
     @Override
     public List<ToDoList> importToDoList(long projectID, long toDoPanelID) {
+        return null;
+    }
+
+    @Override
+    public List<Event> getEvents(long projectId, long scheduleid) {
+        return null;
+    }
+
+    @Override
+    public Event addEvents(
+            long projectId, long scheduleId, String eventName,
+            String notes, Date startAt, Date endAt, boolean isAllDay, List<String> userWith) {
         return null;
     }
 }
