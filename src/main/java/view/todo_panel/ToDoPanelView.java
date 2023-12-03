@@ -11,6 +11,8 @@ import interface_adapter.todo_list.import1.ImportToDoListController;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import interface_adapter.todo_panel.ToDoPanelController;
 import interface_adapter.todo_panel.ToDoPanelState;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 import view.todo_list.ToDoListView;
 
 import javax.swing.*;
@@ -50,22 +52,22 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         toDoPanelViewModel.addPropertyChangeListener(this);
 
 
-        JLabel title = new JLabel(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title); // add button that u already set.
-        this.add(new JLabel());
+        this.add(new JLabelWithFont());
 
         toDoListViews = new JPanel();
         toDoListList = new JComboBox<>();
         JPanel toDoPanel = new JPanel();
-        toDoPanel.add(new JLabel(ToDoPanelViewModel.CHOOSE_PROJECT_LABEL));
+        toDoPanel.add(new JLabelWithFont(ToDoPanelViewModel.CHOOSE_PROJECT_LABEL));
         toDoPanel.add(toDoListList);
 
         JPanel buttons = new JPanel();
-        addNewList = new JButton(ToDoPanelViewModel.ADD_NEW_LIST_BUTTON_LABEL);
-        backToHome = new JButton(ToDoPanelViewModel.BACK_TO_HOME_BUTTON_LABEL);
-        select = new JButton(ToDoPanelViewModel.SELECT_BUTTON_LABEL);
+        addNewList = new JButtonWithFont(ToDoPanelViewModel.ADD_NEW_LIST_BUTTON_LABEL);
+        backToHome = new JButtonWithFont(ToDoPanelViewModel.BACK_TO_HOME_BUTTON_LABEL);
+        select = new JButtonWithFont(ToDoPanelViewModel.SELECT_BUTTON_LABEL);
         buttons.add(addNewList);
         buttons.add(backToHome);
         buttons.add(select);
@@ -101,7 +103,7 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                 JOptionPane.showMessageDialog(
                         null,
                         "Create success! \nIt's time to write adding this List into current view! ");
-                JButton newToDoList = new JButton(state.getNewCreatedTDL().getName());
+                JButton newToDoList = new JButtonWithFont(state.getNewCreatedTDL().getName());
                 toDoListViews.add(newToDoList);
                 newToDoList.addActionListener(
                         e -> {

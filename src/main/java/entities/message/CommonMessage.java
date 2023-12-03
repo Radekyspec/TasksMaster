@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CommonMessage implements Message {
     private final int ID;
-    private final User author;
+    private final String author;
     private final String title;
     private final String content;
     private final Map<Integer, Comment> comments;
@@ -21,7 +21,7 @@ public class CommonMessage implements Message {
      * @param title   the tittle of message
      * @param content the content of message
      */
-    public CommonMessage(int ID, User author, String title, String content) {
+    public CommonMessage(int ID, String author, String title, String content) {
         this.ID = ID;
         this.author = author;
         this.title = title;
@@ -46,7 +46,7 @@ public class CommonMessage implements Message {
      * @return its Author
      */
     @Override
-    public User getAuthor() {
+    public String getAuthor() {
         return author;
     }
 

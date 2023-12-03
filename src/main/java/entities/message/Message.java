@@ -18,7 +18,7 @@ public interface Message {
      *
      * @return its Author
      */
-    User getAuthor();
+    String getAuthor();
 
     /**
      * Return the Tittle of the message

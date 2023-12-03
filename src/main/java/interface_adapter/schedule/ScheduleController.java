@@ -1,7 +1,11 @@
 package interface_adapter.schedule;
 
+import entities.user.User;
 import use_case.schedule.ScheduleInputBoundary;
 import  use_case.schedule.ScheduleInputData;
+
+import java.util.Date;
+import java.util.List;
 
 public class ScheduleController {
     final ScheduleInputBoundary scheduleInteractor;
@@ -10,8 +14,8 @@ public class ScheduleController {
         this.scheduleInteractor = scheduleInteractor;
     }
 
-    public void getEvent(int projectId, int eventId) {
-        ScheduleInputData scheduleInputData = new ScheduleInputData(projectId, eventId);
+    public void getEvent(int projectId, int eventId, String name, String note, Date startAt, Date endAt, boolean isAllDay, List<User> userWith) {
+        ScheduleInputData scheduleInputData = new ScheduleInputData(projectId, eventId, name, note, startAt, endAt, isAllDay, userWith);
         scheduleInteractor.getEvent(scheduleInputData);
     }
 }

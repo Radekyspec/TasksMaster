@@ -10,18 +10,15 @@ public class ScheduleViewModel extends ViewModel {
     public static final String SCHEDULE_BACK_LABEL = "Back";
     public static final String SCHEDULE_ADD_NEW_EVENT = "Add new event";
 
-    private final ScheduleState scheduleState;
+    private final ScheduleState scheduleState = new ScheduleState();
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public ScheduleViewModel(int projectId, int scheduleId) {
-        super("Schedule");
-        scheduleState = new ScheduleState(projectId, scheduleId);
-    }
+    public ScheduleViewModel() { super("Schedule"); }
 
     @Override
     public void firePropertyChanged() {
-        support.firePropertyChange("new event", null, scheduleState);
+        propertyChangeSupport.firePropertyChange("new event", null, scheduleState);
     }
 
     @Override
@@ -32,4 +29,6 @@ public class ScheduleViewModel extends ViewModel {
     public ScheduleState getScheduleState() {
         return scheduleState;
     }
+
+    public void setProjectID(int projectID) { scheduleState.setProjectId(projectID);}
 }

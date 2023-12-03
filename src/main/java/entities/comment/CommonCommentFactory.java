@@ -10,7 +10,7 @@ public class CommonCommentFactory {
      * @param author  the author of the comment
      * @param content the content of the comment
      */
-    public static CommonComment create(int ID, User author, String content) {
+    public static CommonComment create(int ID, String author, String content) {
         return new CommonComment(ID, author, content);
     }
 }

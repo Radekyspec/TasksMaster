@@ -39,9 +39,7 @@ public class Main {
     public static void main(String[] args) {
         JFrame application = new JFrame("TasksMaster");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        application.setSize(600, 450);
-
-
+        application.setSize(1280, 720);
 
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
@@ -74,7 +72,7 @@ public class Main {
 
         ToDoPanelViewModel toDoPanelViewModel = new ToDoPanelViewModel();
 
-        ScheduleViewModel scheduleViewModel = new ScheduleViewModel(1,2);
+        ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
 
         SignupView signupView = SignupUseCaseFactory.create(
                 viewManagerModel, signupViewModel, loginViewModel, userDAO);
@@ -93,7 +91,7 @@ public class Main {
         AddPeopleView addPeopleView = AddPeopleUseCaseFactory.create(viewManagerModel, addPeopleViewModel,
                 mainProjectViewModel, userDAO);
 
-//        MessageBoardView messageBoardView = MessageBoardUseCaseFactory.create(viewManagerModel, messageBoardViewModel,
+//      MessageBoardView messageBoardView = MessageBoardUseCaseFactory.create(viewManagerModel, mainProjectViewModel,messageBoardViewModel,
 //                addNewMessageViewModel, messageViewModel, userDAO);
 
         views.add(signupView, signupView.getViewName());
@@ -106,8 +104,8 @@ public class Main {
         viewManagerModel.setActiveView(loginView.getViewName());
         viewManagerModel.firePropertyChanged();
 
-        application.pack();
-        //application.validate();
+//        application.pack();
+        application.validate();
         application.setVisible(true);
     }
 }

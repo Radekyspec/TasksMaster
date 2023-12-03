@@ -5,8 +5,11 @@ import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -30,10 +33,10 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         loginViewModel.addPropertyChangeListener(this);
 
         JPanel usernameInfo = new JPanel();
-        usernameInfo.add(new JLabel(LoginViewModel.LOGIN_USERNAME_LABEL));
+        usernameInfo.add(new JLabelWithFont(LoginViewModel.LOGIN_USERNAME_LABEL));
         usernameInfo.add(usernameInputField);
         JPanel passwordInfo = new JPanel();
-        passwordInfo.add(new JLabel(LoginViewModel.LOGIN_PASSWORD_LABEL));
+        passwordInfo.add(new JLabelWithFont(LoginViewModel.LOGIN_PASSWORD_LABEL));
         passwordInfo.add(passwordInputField);
 
         usernameInputField.addKeyListener(
@@ -78,9 +81,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         );
 
         JPanel buttons = new JPanel();
-        login = new JButton(LoginViewModel.LOGIN_BUTTON_LABEL);
-        signUp = new JButton(LoginViewModel.LOGIN_SIGNUP_BUTTON_LABEL);
-        cancel = new JButton(LoginViewModel.LOGIN_CANCEL_BUTTON_LABEL);
+        login = new JButtonWithFont(LoginViewModel.LOGIN_BUTTON_LABEL);
+        signUp = new JButtonWithFont(LoginViewModel.LOGIN_SIGNUP_BUTTON_LABEL);
+        cancel = new JButtonWithFont(LoginViewModel.LOGIN_CANCEL_BUTTON_LABEL);
         buttons.add(login);
         buttons.add(signUp);
         buttons.add(cancel);
@@ -98,10 +101,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 e -> System.exit(0)
         );
 
-        JLabel title = new JLabel(LoginViewModel.LOGIN_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(LoginViewModel.LOGIN_TITLE_LABEL, Font.BOLD, 26);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title);
+        this.add(Box.createVerticalGlue());
         this.add(usernameInfo);
         this.add(passwordInfo);
         this.add(buttons);
