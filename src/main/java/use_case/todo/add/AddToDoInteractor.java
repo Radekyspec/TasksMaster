@@ -25,7 +25,7 @@ public class AddToDoInteractor implements AddToDoInputBoundary {
      * @param inputData A standard AddToDoListInputData.
      */
     @Override
-    public void addToDo(AddToDoInputData inputData) {
+    public void importAddToDoList(AddToDoInputData inputData) {
         ToDo toDo = userDAO.createToDo(
                 inputData.getToDoID(),
                 inputData.getListID(),
