@@ -11,6 +11,7 @@ import interface_adapter.todo_list.ToDoListState;
 import interface_adapter.todo_list.ToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
@@ -44,6 +45,12 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
 
         toDoViews = new JPanel();
 
+        // View: Title.
+        JLabel title = new JLabelWithFont(ToDoListViewModel.TODO_LIST_TITLE_LABEL);
+        title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(title); // add button that u already set.
+
 
         JPanel buttons = new JPanel();
         addNewToDo = new JButtonWithFont(ToDoListViewModel.ADD_NEW_TODO_BUTTON_LABEL);
@@ -74,6 +81,8 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
+        this.add(toDoViews);
+        this.add(buttons);
 
     }
     /**
