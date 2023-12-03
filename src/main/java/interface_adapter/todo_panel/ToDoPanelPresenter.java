@@ -29,8 +29,8 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
             return;
         }
         for (ToDoList toDoList : outputData.getListOfToDo()) {
-            toDoPanelViewModel.getState().setListOfToDoList(toDoList);
-            toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
+//            toDoPanelViewModel.getState().setListOfToDoList(toDoList);
+//            toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
         }
 
     }

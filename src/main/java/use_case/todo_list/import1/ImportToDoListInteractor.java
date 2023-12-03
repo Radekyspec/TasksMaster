@@ -34,13 +34,13 @@ public class ImportToDoListInteractor implements ImportToDoListOutputBoundary{
                     null);
             toDoPanelPresenter.prepareImportToDoListFailView(outputData);
         } else {
-            ImportToDoListOutputData outputData = new ImportToDoListOutputData(
-                    userDAO.getApiErrorMessage(),
-                    false,
-                    null,
-                    null,
-                    listOfToDo);
-            toDoPanelPresenter.prepareImportToDoListSuccessView(outputData);
+//            ImportToDoListOutputData outputData = new ImportToDoListOutputData(
+//                    userDAO.getApiErrorMessage(),
+//                    false,
+//                    null,
+//                    null,
+//                    listOfToDo);
+//            toDoPanelPresenter.prepareImportToDoListSuccessView(outputData);
         }
     }
 }

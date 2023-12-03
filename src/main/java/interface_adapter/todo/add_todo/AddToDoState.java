@@ -19,7 +19,7 @@ public class AddToDoState {
     }
 
     public AddToDoState() {
-        toDoID = null;
+//        toDoID = null;
         target = null;
         assignTo = null;
         progress = null;

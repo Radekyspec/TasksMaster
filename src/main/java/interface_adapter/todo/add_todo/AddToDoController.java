@@ -12,7 +12,7 @@ public class AddToDoController {
     }
 
     public void addMainLogic(String target, String progress, long listID, String[] assignedTo) {
-        AddToDoInputData addToDoInputData = new AddToDoInputData(target, progress, listID, assignedTo, null);
-        addToDoInteractor.importAddToDoList(addToDoInputData);
+//        AddToDoInputData addToDoInputData = new AddToDoInputData(target, progress, listID, assignedTo, null);
+//        addToDoInteractor.importAddToDoList(addToDoInputData);
     }
 }

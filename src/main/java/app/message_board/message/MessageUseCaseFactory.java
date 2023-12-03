@@ -17,8 +17,8 @@ public class MessageUseCaseFactory {
 
     }
 
-    public static MessageView create(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel, MessageBoardViewModel messageBoardViewModel, MessageController messageController){
-        return new MessageView(viewManagerModel, messageViewModel, messageBoardViewModel, messageController);
+    public static MessageView create(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+        return new MessageView(viewManagerModel, messageViewModel, messageBoardViewModel, MessageUseCaseFactory.createController(messageViewModel, messageBoardUserDataAccessInterface));
     }
 
     public static MessageController createController(MessageViewModel messageViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){

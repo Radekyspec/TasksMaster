@@ -25,8 +25,9 @@ public class AddNewMessageInteractor implements AddNewMessageInputBoundary{
                 messageTitle, messageContent);
         if (message == null){
             addNewMessagePresenter.prepareFailView();
+        }else{
+            AddNewMessageOutputData addNewMessageOutputData = new AddNewMessageOutputData(message);
+            addNewMessagePresenter.prepareSuccessView(addNewMessageOutputData);
         }
-        AddNewMessageOutputData addNewMessageOutputData = new AddNewMessageOutputData(message);
-        addNewMessagePresenter.prepareSuccessView(addNewMessageOutputData);
     }
 }

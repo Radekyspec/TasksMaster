@@ -70,6 +70,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         JButton back = new JButtonWithFont("Back");
         back.addActionListener(
                 e -> {
+                    messages.removeAll();
                     viewManagerModel.setActiveView(mainProjectViewModel.getViewName());
                     viewManagerModel.firePropertyChanged();
                 }
@@ -79,6 +80,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());
         this.add(title);
+        title.setAlignmentX(CENTER_ALIGNMENT);
         this.add(Box.createVerticalGlue());
         this.add(messages);
         JPanel bottom = new JPanel();
@@ -101,6 +103,8 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         Message message = buttonToMessage.get((JButton) e.getSource());
         MessageState state = messageViewModel.getState();
         state.setMessage(message);
+        state.setProjectID(projectID);
+        state.setUser(user);
         messageViewModel.firePropertyChanged(MessageViewModel.SET_MESSAGE);
         viewManagerModel.setActiveView(messageViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
@@ -124,10 +128,11 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 messageBoardController.getMessages(projectID, messageBoardID);
             } case MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL -> {
                 Message message = state.getMessage();
-                JButton messageButton = new JButtonWithFont(message.getAuthor() + message.getTitle());
+                JButton messageButton = new JButtonWithFont(message.getAuthor() + "\n" + message.getTitle());
                 messageBoard.setMessage(message);
                 buttonToMessage.put(messageButton, message);
                 messageButton.addActionListener(this);
+                messageButton.setPreferredSize(new Dimension(100,35));
                 messages.add(messageButton);
             }
         }

@@ -3,6 +3,7 @@ package app;
 import app.message_board.MessageBoardUseCaseFactory;
 import app.login.LoginUseCaseFactory;
 import app.message_board.add_new_message.AddNewMessageUseCaseFactory;
+import app.message_board.message.MessageUseCaseFactory;
 import app.project.ProjectUseCaseFactory;
 import app.project.add.AddProjectUseCaseFactory;
 import app.project.add_people.AddPeopleUseCaseFactory;
@@ -27,6 +28,7 @@ import view.ViewManager;
 import view.login.LoginView;
 import view.message_board.AddNewMessageView;
 import view.message_board.MessageBoardView;
+import view.message_board.MessageView;
 import view.project.MainProjectView;
 import view.project.add.AddProjectView;
 import view.project.add_people.AddPeopleView;
@@ -96,6 +98,7 @@ public class Main {
         MessageBoardView messageBoardView = MessageBoardUseCaseFactory.create(viewManagerModel, mainProjectViewModel,
                 messageBoardViewModel, addNewMessageViewModel, messageViewModel, userDAO);
         AddNewMessageView addNewMessageView = AddNewMessageUseCaseFactory.create(viewManagerModel, addNewMessageViewModel,messageBoardViewModel, userDAO);
+        MessageView messageView = MessageUseCaseFactory.create(viewManagerModel, messageViewModel, messageBoardViewModel, userDAO);
 
 
         views.add(signupView, signupView.getViewName());
@@ -106,6 +109,7 @@ public class Main {
         views.add(addPeopleView, addPeopleView.getViewName());
         views.add(messageBoardView, messageBoardView.getViewName());
         views.add(addNewMessageView, addNewMessageView.getViewName());
+        views.add(messageView, messageView.getViewName());
 
 
         viewManagerModel.setActiveView(loginView.getViewName());
