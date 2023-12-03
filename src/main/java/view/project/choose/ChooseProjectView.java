@@ -37,7 +37,9 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
         projectList = new JComboBox<>();
         JPanel buttons = new JPanel();
         JPanel chooseProjectPanel = new JPanel();
-        projectList.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        projectList.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+        projectList.setPreferredSize(new Dimension(200, 500));
+
         chooseProjectPanel.add(new JLabelWithFont(ChooseProjectViewModel.CHOOSE_YOUR_PROJECT));
         chooseProjectPanel.add(projectList);
         JButton create = new JButtonWithFont(ChooseProjectViewModel.BUTTON_CREATE_PROJECT_LABEL);
@@ -51,12 +53,11 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
         enter.addActionListener(this);
         buttons.add(enter);
         buttons.add(create);
-        JLabel title = new JLabelWithFont(ChooseProjectViewModel.CHOOSE_PROJECT_LABEL, Font.BOLD, 26);
+        JLabel title = new JLabelWithFont(ChooseProjectViewModel.CHOOSE_PROJECT_LABEL, Font.BOLD, 32);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());
         this.add(title);
-        this.add(Box.createVerticalGlue());
         this.add(chooseProjectPanel);
         this.add(buttons);
     }

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JLabelWithFont extends JLabel {
-    private final int defaultSize = 18;
+    private final int defaultSize = 26;
     public JLabelWithFont() {
         super();
         setFont(new Font("Times New Roman", Font.PLAIN, defaultSize));

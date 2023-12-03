@@ -43,7 +43,7 @@ public class Main {
     public static void main(String[] args) {
         JFrame application = new JFrame("TasksMaster");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        application.setSize(600, 450);
+        application.setSize(1280, 720);
 
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);

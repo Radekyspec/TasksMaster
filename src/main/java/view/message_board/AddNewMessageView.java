@@ -34,9 +34,11 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
         JPanel titleInfo = new JPanel();
         titleInfo.add(new JLabelWithFont(AddNewMessageViewModel.TYPE_TITLE_MESSAGE));
         titleInfo.add(titleInputField);
+        titleInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         JPanel contentInfo = new JPanel();
         contentInfo.add(new JLabelWithFont(AddNewMessageViewModel.TYPE_CONTENT));
         contentInfo.add(contentInputField);
+        contentInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         titleInputField.addKeyListener(
                 new KeyListener() {
                     @Override
