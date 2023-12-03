@@ -11,6 +11,9 @@ import interface_adapter.message_board.add_new_message.AddNewMessageState;
 import interface_adapter.message_board.add_new_message.AddNewMessageViewModel;
 import interface_adapter.message_board.message.MessageState;
 import interface_adapter.message_board.message.MessageViewModel;
+import interface_adapter.project.MainProjectViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,6 +29,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
     private MessageBoard messageBoard;
     private User user;
     private final ViewManagerModel viewManagerModel;
+    private final MainProjectViewModel mainProjectViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
     private final AddNewMessageViewModel addNewMessageViewModel;
     private final MessageViewModel messageViewModel;
@@ -34,10 +38,11 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
     private final JPanel messages;
     private final Map<JButton, Message> buttonToMessage;
 
-    public MessageBoardView(ViewManagerModel viewManagerModel, MessageBoardViewModel messageBoardViewModel,
+    public MessageBoardView(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, MessageBoardViewModel messageBoardViewModel,
                             AddNewMessageViewModel addNewMessageViewModel, MessageViewModel messageViewModel,
                             MessageBoardController messageBoardController) {
         this.viewManagerModel = viewManagerModel;
+        this.mainProjectViewModel = mainProjectViewModel;
         this.messageBoardViewModel = messageBoardViewModel;
         this.addNewMessageViewModel = addNewMessageViewModel;
         this.messageViewModel = messageViewModel;
@@ -47,7 +52,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
 
         messages = new JPanel();
 
-        addNewMessage = new JButton(MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL);
+        addNewMessage = new JButtonWithFont(MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL);
         addNewMessage.addActionListener(
                 e -> {
                     if (!e.getSource().equals(addNewMessage)) {
@@ -61,12 +66,19 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                     viewManagerModel.firePropertyChanged();
                 }
         );
+        JButton back = new JButtonWithFont("Back");
+        back.addActionListener(
+                e -> {
+                    viewManagerModel.setActiveView(mainProjectViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
+                }
+        );
 
-        JLabel title = new JLabel(MessageBoardViewModel.MESSAGE_BOARD_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(MessageBoardViewModel.MESSAGE_BOARD_TITLE_LABEL);
         this.add(title);
         this.add(addNewMessage);
         if (messages.getComponentCount() == 0){
-            messages.add(new JLabel("There is no message..."));
+            messages.add(new JLabelWithFont("There is no message..."));
         }
         this.add(messages);
     }
@@ -107,7 +119,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 messageBoardController.getMessages(projectID, messageBoardID);
             } case MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL -> {
                 Message message = state.getMessage();
-                JButton messageButton = new JButton(message.getAuthor() + message.getTitle());
+                JButton messageButton = new JButtonWithFont(message.getAuthor() + message.getTitle());
                 messageBoard.setMessage(message);
                 buttonToMessage.put(messageButton, message);
                 messageButton.addActionListener(this);

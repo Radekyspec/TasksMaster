@@ -6,6 +6,8 @@ import interface_adapter.project.MainProjectViewModel;
 import interface_adapter.project.add_people.AddPeopleController;
 import interface_adapter.project.add_people.AddPeopleState;
 import interface_adapter.project.add_people.AddPeopleViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +26,7 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
     private final AddPeopleController addPeopleController;
     private final JLabel title;
     private final JTextField nameInputField = new JTextField(15);
-    private final JButton enter = new JButton(AddPeopleViewModel.ENTER);
+    private final JButton enter = new JButtonWithFont(AddPeopleViewModel.ENTER);
 
     public AddPeopleView(ViewManagerModel viewManagerModel, AddPeopleViewModel addPeopleViewModel, MainProjectViewModel mainProjectViewModel, AddPeopleController addPeopleController) {
         this.viewManagerModel = viewManagerModel;
@@ -60,7 +62,7 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
                 }
         );
 
-        JButton back = new JButton("Back");
+        JButton back = new JButtonWithFont("Back");
         back.addActionListener(
                 e -> {
                     viewManagerModel.setActiveView(mainProjectViewModel.getViewName());
@@ -68,10 +70,10 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
                 }
         );
         JPanel typeYourName = new JPanel();
-        JLabel type = new JLabel(AddPeopleViewModel.TYPE_NAME);
+        JLabel type = new JLabelWithFont(AddPeopleViewModel.TYPE_NAME);
         typeYourName.add(type);
         typeYourName.add(nameInputField);
-        title = new JLabel(AddPeopleViewModel.ADD_NEW_PEOPLE);
+        title = new JLabelWithFont(AddPeopleViewModel.ADD_NEW_PEOPLE);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());

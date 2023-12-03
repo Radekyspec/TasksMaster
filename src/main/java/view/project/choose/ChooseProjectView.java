@@ -7,8 +7,11 @@ import interface_adapter.project.add.AddProjectViewModel;
 import interface_adapter.project.choose.ChooseProjectController;
 import interface_adapter.project.choose.ChooseProjectState;
 import interface_adapter.project.choose.ChooseProjectViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -34,23 +37,26 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
         projectList = new JComboBox<>();
         JPanel buttons = new JPanel();
         JPanel chooseProjectPanel = new JPanel();
-        chooseProjectPanel.add(new JLabel(ChooseProjectViewModel.CHOOSE_PROJECT_LABEL));
+        projectList.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        chooseProjectPanel.add(new JLabelWithFont(ChooseProjectViewModel.CHOOSE_YOUR_PROJECT));
         chooseProjectPanel.add(projectList);
-        JButton create = new JButton(ChooseProjectViewModel.BUTTON_CREATE_PROJECT_LABEL);
+        JButton create = new JButtonWithFont(ChooseProjectViewModel.BUTTON_CREATE_PROJECT_LABEL);
         create.addActionListener(
                 e -> {
                     viewManagerModel.setActiveView(addProjectViewModel.getViewName());
                     viewManagerModel.firePropertyChanged();
                 }
         );
-        enter = new JButton(ChooseProjectViewModel.BUTTON_ENTER_PROJECT_LABEL);
+        enter = new JButtonWithFont(ChooseProjectViewModel.BUTTON_ENTER_PROJECT_LABEL);
         enter.addActionListener(this);
         buttons.add(enter);
         buttons.add(create);
-        JLabel title = new JLabel(ChooseProjectViewModel.CHOOSE_PROJECT_LABEL);
+        JLabel title = new JLabelWithFont(ChooseProjectViewModel.CHOOSE_PROJECT_LABEL, Font.BOLD, 26);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title);
+        this.add(Box.createVerticalGlue());
         this.add(chooseProjectPanel);
         this.add(buttons);
     }

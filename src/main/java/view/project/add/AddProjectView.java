@@ -6,8 +6,11 @@ import interface_adapter.project.add.AddProjectController;
 import interface_adapter.project.add.AddProjectState;
 import interface_adapter.project.add.AddProjectViewModel;
 import interface_adapter.project.choose.ChooseProjectViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -32,10 +35,10 @@ public class AddProjectView extends JPanel implements ActionListener, PropertyCh
         addProjectViewModel.addPropertyChangeListener(this);
 
         JPanel projectNameInfo = new JPanel();
-        projectNameInfo.add(new JLabel(AddProjectViewModel.ADD_PROJECT_NAME_LABEL));
+        projectNameInfo.add(new JLabelWithFont(AddProjectViewModel.ADD_PROJECT_NAME_LABEL));
         projectNameInfo.add(projectNameInputField);
         JPanel descriptionInfo = new JPanel();
-        descriptionInfo.add(new JLabel(AddProjectViewModel.ADD_PROJECT_DESCRIPTION_LABEL));
+        descriptionInfo.add(new JLabelWithFont(AddProjectViewModel.ADD_PROJECT_DESCRIPTION_LABEL));
         descriptionInfo.add(descriptionInputField);
 
         projectNameInputField.addKeyListener(
@@ -76,8 +79,8 @@ public class AddProjectView extends JPanel implements ActionListener, PropertyCh
         );
 
         JPanel buttons = new JPanel();
-        enter = new JButton(AddProjectViewModel.BUTTON_ENTER_LABEL);
-        cancel = new JButton(AddProjectViewModel.BUTTON_CANCEL_LABEL);
+        enter = new JButtonWithFont(AddProjectViewModel.BUTTON_ENTER_LABEL);
+        cancel = new JButtonWithFont(AddProjectViewModel.BUTTON_CANCEL_LABEL);
         buttons.add(enter);
         buttons.add(cancel);
         enter.addActionListener(this);
@@ -88,10 +91,12 @@ public class AddProjectView extends JPanel implements ActionListener, PropertyCh
                 }
         );
 
-        JLabel title = new JLabel(AddProjectViewModel.ADD_PROJECT_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(AddProjectViewModel.ADD_PROJECT_TITLE_LABEL, Font.BOLD, 26);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title);
+        this.add(Box.createVerticalGlue());
         this.add(projectNameInfo);
         this.add(descriptionInfo);
         this.add(buttons);

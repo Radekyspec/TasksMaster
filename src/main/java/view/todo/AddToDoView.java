@@ -3,6 +3,7 @@ package view.todo;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.todo.add_todo.AddToDoViewModel;
 import interface_adapter.todo_list.add.AddToDoListViewModel;
+import view.JButtonWithFont;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
@@ -18,8 +19,8 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
         this.addToDoListViewModel = addToDoListViewModel;
 
         JPanel buttons = new JPanel();
-        confirm = new JButton(AddToDoViewModel.CONFIRM_NEW_TODO_BUTTON_LABEL);
-        cancel = new JButton(AddToDoViewModel.GO_BACK_BUTTON_LABEL);
+        confirm = new JButtonWithFont(AddToDoViewModel.CONFIRM_NEW_TODO_BUTTON_LABEL);
+        cancel = new JButtonWithFont(AddToDoViewModel.GO_BACK_BUTTON_LABEL);
         buttons.add(confirm);
         buttons.add(cancel);
 

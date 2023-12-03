@@ -5,6 +5,8 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 import view.LabelTextPanel;
 
 import javax.swing.*;
@@ -20,13 +22,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final SignupViewModel signupViewModel;
     private final SignupController signupController;
     private final JTextField usernameInputField = new JTextField(15);
-    private final JLabel usernameHint = new JLabel();
+    private final JLabel usernameHint = new JLabelWithFont();
     private final JTextField emailInputField = new JTextField(15);
-    private final JLabel emailHint = new JLabel();
+    private final JLabel emailHint = new JLabelWithFont();
     private final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JLabel passwordHint = new JLabel();
+    private final JLabel passwordHint = new JLabelWithFont();
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
-    private final JLabel repeatPasswordHint = new JLabel();
+    private final JLabel repeatPasswordHint = new JLabelWithFont();
     private final JButton signUp;
     private final JButton cancel;
 
@@ -37,22 +39,22 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         signupViewModel.addPropertyChangeListener(this);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.SIGNUP_USERNAME_LABEL),
+                new JLabelWithFont(SignupViewModel.SIGNUP_USERNAME_LABEL),
                 usernameInputField,
                 usernameHint
         );
         LabelTextPanel emailInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.SIGNUP_EMAIL_LABEL),
+                new JLabelWithFont(SignupViewModel.SIGNUP_EMAIL_LABEL),
                 emailInputField,
                 emailHint
         );
         LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.SIGNUP_PASSWORD_LABEL),
+                new JLabelWithFont(SignupViewModel.SIGNUP_PASSWORD_LABEL),
                 passwordInputField,
                 passwordHint
         );
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.SIGNUP_REPEAT_PASSWORD_LABEL),
+                new JLabelWithFont(SignupViewModel.SIGNUP_REPEAT_PASSWORD_LABEL),
                 repeatPasswordInputField,
                 repeatPasswordHint
         );
@@ -144,8 +146,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         );
 
         JPanel buttons = new JPanel();
-        signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
-        cancel = new JButton(SignupViewModel.SIGNUP_CANCEL_BUTTON_LABEL);
+        signUp = new JButtonWithFont(SignupViewModel.SIGNUP_BUTTON_LABEL);
+        cancel = new JButtonWithFont(SignupViewModel.SIGNUP_CANCEL_BUTTON_LABEL);
         buttons.add(signUp);
         buttons.add(cancel);
 
@@ -160,10 +162,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        JLabel title = new JLabel(SignupViewModel.SIGNUP_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(SignupViewModel.SIGNUP_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        title.setFont(new Font(title.getFont().getName(), title.getFont().getStyle(), 20));
+        this.add(Box.createVerticalGlue());
         this.add(title);
+        this.add(Box.createVerticalGlue());
         this.add(usernameInfo);
         this.add(emailInfo);
         this.add(passwordInfo);

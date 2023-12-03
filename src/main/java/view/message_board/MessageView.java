@@ -8,6 +8,8 @@ import interface_adapter.message_board.MessageBoardViewModel;
 import interface_adapter.message_board.message.MessageController;
 import interface_adapter.message_board.message.MessageState;
 import interface_adapter.message_board.message.MessageViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -28,7 +30,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
     private final JLabel content;
     private final JTextField addComment = new JTextField();
     private final JPanel addCommentPanel = new JPanel();
-    private final JButton addThisComment = new JButton();
+    private final JButton addThisComment = new JButtonWithFont();
     private final JPanel commentBoard;
 
     public MessageView(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel,
@@ -39,15 +41,15 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
         this.messageController = messageController;
         MessageState state = messageViewModel.getState();
         Message message = state.getMessage();
-        title = new JLabel(message.getTitle());
-        auther = new JLabel(message.getAuthor());
-        content = new JLabel(message.getContent());
+        title = new JLabelWithFont(message.getTitle());
+        auther = new JLabelWithFont(message.getAuthor());
+        content = new JLabelWithFont(message.getContent());
 
         commentBoard = new JPanel();
         MessageState messageState = messageViewModel.getState();
         messageController.getComments(messageState.getProjectID(), messageState.getMessageID());
 
-        addCommentPanel.add(new JLabel("Add a comment here"));
+        addCommentPanel.add(new JLabelWithFont("Add a comment here"));
         addCommentPanel.add(addComment);
         addComment.addKeyListener(
                 new KeyListener() {
@@ -110,7 +112,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
             case MessageViewModel.ADD_COMMENT -> {
                 MessageState state = (MessageState) evt.getNewValue();
                 Comment comment = state.getComment();
-                commentBoard.add(new JLabel(comment.getAuthor() + comment.getContent()));
+                commentBoard.add(new JLabelWithFont(comment.getAuthor() + comment.getContent()));
             }
         }
     }
