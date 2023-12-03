@@ -124,4 +124,8 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
             }
         }
     }
+
+    public String getViewName() {
+        return addToDoViewModel.getViewName();
+    }
 }

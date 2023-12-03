@@ -137,7 +137,10 @@ public class Main {
         views.add(messageBoardView, messageBoardView.getViewName());
         views.add(addNewMessageView, addNewMessageView.getViewName());
         views.add(messageView, messageView.getViewName());
-
+        views.add(toDoPanelView, toDoPanelView.getViewName());
+        views.add(toDoListView, toDoListView.getViewName());
+        views.add(addToDoListView, addToDoListView.getViewName());
+        views.add(addToDoView, addToDoView.getViewName());
 
         viewManagerModel.setActiveView(loginView.getViewName());
         viewManagerModel.firePropertyChanged();
