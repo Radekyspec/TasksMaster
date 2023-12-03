@@ -1,4 +1,4 @@
-package use_case.todo_list.import1;
+package use_case.todo_panel;
 
 import entities.todo_list.ToDoList;
 

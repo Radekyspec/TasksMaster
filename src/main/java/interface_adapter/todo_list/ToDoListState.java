@@ -14,9 +14,11 @@ public class ToDoListState {
         And about import? Maybe we do it in ViewModel? Because we don't need to show on the view.
      */
     private ToDoList newCreatedTDL;
+    private long projectID;
     private String error;
     private String name;
-    private final List<ToDo> listOfToDo;
+    private List<ToDo> listOfToDo;
+    private ToDo newToDo;
 
     public ToDoListState() {
         error = null;
@@ -34,6 +36,14 @@ public class ToDoListState {
      */
     public ToDoList getNewCreatedTDL() {
         return newCreatedTDL;
+    }
+
+    public long getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(long projectID) {
+        this.projectID = projectID;
     }
 
     public void setNewCreatedTDL(ToDoList newCreatedTDL) {
@@ -54,8 +64,15 @@ public class ToDoListState {
     public List<ToDo> getListOfToDo() {
         return listOfToDo;
     }
-    public void setListOfToDo(ToDo toDo) {
-        assert this.listOfToDo != null;
-        this.listOfToDo.add(toDo);
+    public void setListOfToDo(List<ToDo> listOfToDo) {
+        this.listOfToDo = listOfToDo;
+    }
+
+    public ToDo getNewToDo() {
+        return newToDo;
+    }
+
+    public void setNewToDo(ToDo newToDo) {
+        this.newToDo = newToDo;
     }
 }
