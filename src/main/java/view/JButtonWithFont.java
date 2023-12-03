@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JButtonWithFont extends JButton {
-    private final int defaultSize = 20;
+    private final int defaultSize = 26;
     public JButtonWithFont() {
         super();
         setFont(new Font("Times New Roman", Font.PLAIN, defaultSize));
