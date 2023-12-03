@@ -22,13 +22,13 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
     private final SignupViewModel signupViewModel;
     private final SignupController signupController;
     private final JTextField usernameInputField = new JTextField(15);
-    private final JLabel usernameHlong = new JLabelWithFont();
+    private final JLabel usernameHint = new JLabelWithFont();
     private final JTextField emailInputField = new JTextField(15);
-    private final JLabel emailHlong = new JLabelWithFont();
+    private final JLabel emailHint = new JLabelWithFont();
     private final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JLabel passwordHlong = new JLabelWithFont();
+    private final JLabel passwordHint = new JLabelWithFont();
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
-    private final JLabel repeatPasswordHlong = new JLabelWithFont();
+    private final JLabel repeatPasswordHint = new JLabelWithFont();
     private final JButton signUp;
     private final JButton cancel;
 
