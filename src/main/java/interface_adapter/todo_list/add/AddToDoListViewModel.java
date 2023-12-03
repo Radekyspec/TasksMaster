@@ -13,6 +13,7 @@ public class AddToDoListViewModel extends ViewModel {
     public static final String CREATE_TODO_LIST_FAILED = "create error";
     public static final String NAME_IPF = "Create a name for your ToDoList";
     public static final String DETAIL_IPF = "Detail is needed";
+    public static final String ADD_TODO_LIST_TITLE_LABEL = "Create a ToDo List";
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public AddToDoListState getState() {

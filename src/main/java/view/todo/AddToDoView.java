@@ -1,12 +1,10 @@
 package view.todo;
 
-import entities.user.User;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.todo.add_todo.AddToDoState;
 import interface_adapter.todo.add_todo.AddToDoController;
+import interface_adapter.todo.add_todo.AddToDoState;
 import interface_adapter.todo.add_todo.AddToDoViewModel;
 import interface_adapter.todo_list.ToDoListViewModel;
-import interface_adapter.todo_list.add.AddToDoListViewModel;
 import view.JButtonWithFont;
 import view.JLabelWithFont;
 
@@ -34,6 +32,12 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
         this.addToDoViewModel = addToDoViewModel;
         this.addToDoController = addToDoController;
         addToDoViewModel.addPropertyChangeListener(this);
+
+        // View: Title.
+        JLabel title = new JLabelWithFont(AddToDoViewModel.ADD_TODO_TITLE_LABEL);
+        title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(title); // add button that u already set.
 
         JPanel buttons = new JPanel();
         confirm = new JButtonWithFont(AddToDoViewModel.CONFIRM_NEW_TODO_BUTTON_LABEL);
@@ -105,9 +109,12 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
+        this.add(targetInfo);
+        this.add(buttons);
     }
     /**
      * This method gets called when a bound property is changed.
+     * FOR VIEW, there is no need for further view, it is already back to ToDoListView.
      *
      * @param evt A PropertyChangeEvent object describing the event source
      *            and the property that has changed.
@@ -120,8 +127,11 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                 JOptionPane.showMessageDialog(
                         null,
                         "Create success! \nIt's time to write adding this List into current view! ");
-//                JButton newToDo = new JButton(state.getNewCreatedTDL().getName());
             }
         }
+    }
+
+    public String getViewName() {
+        return addToDoViewModel.getViewName();
     }
 }

@@ -10,6 +10,7 @@ public class AddToDoViewModel extends ViewModel {
     public static final String GO_BACK_BUTTON_LABEL = "Cancel";
     public static final String CREATE_TODO = "create todo";
     public static final String NAME_IPF = "Create a name for your ToDo";
+    public static final String ADD_TODO_TITLE_LABEL = "Create a ToDo";
     private PropertyChangeSupport propertyChangeSupport;
     private final AddToDoState addToDoState = new AddToDoState();
 
@@ -17,8 +18,8 @@ public class AddToDoViewModel extends ViewModel {
         return addToDoState;
     }
 
-    public AddToDoViewModel(String viewName) {
-        super(viewName);
+    public AddToDoViewModel() {
+        super("add todo");
     }
 
     @Override
@@ -26,6 +27,9 @@ public class AddToDoViewModel extends ViewModel {
         propertyChangeSupport.firePropertyChange("add todo", null, addToDoState);
     }
 
+    public void firePropertyChanged(String propertyName) {
+        propertyChangeSupport.firePropertyChange(propertyName, null, addToDoState);
+    }
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {}
 }

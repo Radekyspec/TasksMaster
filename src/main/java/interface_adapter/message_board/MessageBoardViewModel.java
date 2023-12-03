@@ -1,7 +1,6 @@
 package interface_adapter.message_board;
 
 import interface_adapter.ViewModel;
-import interface_adapter.message_board.message.MessageState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

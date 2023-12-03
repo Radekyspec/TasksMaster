@@ -2,9 +2,6 @@ package use_case.schedule.add_new_event;
 
 import data_access.schedule.ScheduleDataAccessInterface;
 import entities.event.Event;
-import entities.user.User;
-import use_case.message_board.add_new_message.AddNewMessageInteractor;
-import use_case.message_board.add_new_message.AddNewMessageOutputData;
 
 import java.util.Date;
 import java.util.List;
