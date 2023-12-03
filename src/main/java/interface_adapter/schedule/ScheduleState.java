@@ -5,35 +5,66 @@ import entities.project.Project;
 import entities.schedule.Schedule;
 import entities.user.User;
 
+import java.util.Date;
+import java.util.List;
+
 public class ScheduleState {
-    private Project project;
-    private User user;
-    private Schedule schedule;
     private Event event;
     private int projectId;
     private int scheduleId;
+    private String eventName;
+    private String notes;
+    private Date startAt;
+    private Date endAt;
+    private boolean isAllDay;
+    private List<String> userwith;
 
+    public void setEvent(Event event) { this.event = event; }
     public void setProjectId(int projectId) { this.projectId = projectId; }
 
     public void setScheduleId(int scheduleId) { this.scheduleId = scheduleId; }
 
-    public void setEvent(Event event) { this.event = event; }
+    public void setEventName(String eventName) { this.eventName = eventName; }
+
+    public void setNotes(String notes) { this.notes = notes; }
+
+    public void setStartAt(Date startAt) { this.startAt = startAt; }
+
+    public void setEndAt(Date endAt) { this.endAt = endAt; }
+
+    public void setAllDay(boolean allDay) {
+        isAllDay = allDay;
+    }
+
+    public void setUserwith(List<String> userwith) {
+        this.userwith = userwith;
+    }
 
     public int getProjectId() { return projectId; }
 
     public int getScheduleId() { return scheduleId; }
 
-    public Event getEvent() { return event; }
+    public String getEventName() {
+        return eventName;
+    }
 
-    public Project getProject() { return project; }
+    public String getNotes() {
+        return notes;
+    }
 
-    public void setProject(Project project) { this.project = project; }
+    public Date getStartAt() {
+        return startAt;
+    }
 
-    public User getUser() { return user; }
+    public Date getEndAt() {
+        return endAt;
+    }
 
-    public void setUser(User user) { this.user = user; }
+    public boolean isAllDay() {
+        return isAllDay;
+    }
 
-    public Schedule getSchedule() { return schedule; }
-
-    public void setSchedule(Schedule schedule) { this.schedule = schedule; }
+    public List<String> getUserwith() {
+        return userwith;
+    }
 }
