@@ -68,12 +68,12 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
         //}
 
         addNewEventPanel.add(new JLabelWithFont("Add a new event"));
-        eventNameInfo.add(new JLabel(addEventViewModel.EVENT_NAME), eventNameInputField);
-        eventNoteInfo.add(new JLabel(addEventViewModel.EVENT_NOTES), eventNoteInputField);
-        eventStartInfo.add(new JLabel(addEventViewModel.EVENT_STARTDATE), eventStartInputField);
-        eventEndInfo.add(new JLabel(addEventViewModel.EVENT_ENDDATE), eventEndInputField);
-        eventAllDayInfo.add(new JLabel(addEventViewModel.EVENT_ISALLDAY), eventAllDayInputField);
-        eventUserWithInfo.add(new JLabel(addEventViewModel.EVENT_USERWITH), eventUserWithInfo);
+        eventNameInfo.add(new JLabelWithFont(addEventViewModel.EVENT_NAME), eventNameInputField);
+        eventNoteInfo.add(new JLabelWithFont(addEventViewModel.EVENT_NOTES), eventNoteInputField);
+        eventStartInfo.add(new JLabelWithFont(addEventViewModel.EVENT_STARTDATE), eventStartInputField);
+        eventEndInfo.add(new JLabelWithFont(addEventViewModel.EVENT_ENDDATE), eventEndInputField);
+        eventAllDayInfo.add(new JLabelWithFont(addEventViewModel.EVENT_ISALLDAY), eventAllDayInputField);
+        eventUserWithInfo.add(new JLabelWithFont(addEventViewModel.EVENT_USERWITH), eventUserWithInfo);
         addNewEventPanel.add(eventNameInfo);
         eventNameInputField.addKeyListener(
                 new KeyListener() {
