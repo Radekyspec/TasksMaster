@@ -9,6 +9,7 @@ import interface_adapter.project.MainProjectState;
 import interface_adapter.project.MainProjectViewModel;
 import interface_adapter.project.add_people.AddPeopleViewModel;
 import interface_adapter.project.choose.ChooseProjectViewModel;
+import interface_adapter.schedule.ScheduleState;
 import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.todo_panel.ToDoPanelState;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
@@ -109,7 +110,12 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
             viewManagerModel.setActiveView(toDoPanelViewModel.getViewName());
             viewManagerModel.firePropertyChanged();
         } else if (e.getSource().equals(schedule)) {
-
+            ScheduleState scheduleState = scheduleViewModel.getScheduleState();
+            scheduleState.setProjectId(project.getID());
+            scheduleState.setScheduleId(project.getSchedule().getId());
+            scheduleViewModel.firePropertyChanged(ScheduleViewModel.SCHEDULE_SET_EVENT);
+            viewManagerModel.setActiveView(scheduleViewModel.getViewName());
+            viewManagerModel.firePropertyChanged();
         }
     }
 

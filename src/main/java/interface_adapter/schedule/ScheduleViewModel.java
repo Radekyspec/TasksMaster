@@ -21,6 +21,9 @@ public class ScheduleViewModel extends ViewModel {
     public void firePropertyChanged() {
         support.firePropertyChange("new event", null, scheduleState);
     }
+    public void firePropertyChanged(String scheduleSetEvent) {
+        support.firePropertyChange(scheduleSetEvent, null, scheduleState);
+    }
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -31,5 +34,5 @@ public class ScheduleViewModel extends ViewModel {
         return scheduleState;
     }
 
-    public void setProjectID(long projectID) { scheduleState.setProjectId(projectID);}
+    public void setProjectID(long projectID) { scheduleState.setProjectId(projectID); }
 }
