@@ -3,9 +3,9 @@ package interface_adapter.todo.add_todo;
 import entities.todo.ToDo;
 
 public class AddToDoState {
-    private long toDoID;
+    private long toDoListID;
+    private long projectID;
     private String target;
-    private String[] assignTo;
     private String progress;
     private String ATDSError;
     private ToDo newCreatedToDo;
@@ -18,13 +18,6 @@ public class AddToDoState {
         this.newCreatedToDo = newCreatedToDo;
     }
 
-    public AddToDoState() {
-        toDoID = null;
-        target = null;
-        assignTo = null;
-        progress = null;
-    }
-
     public String getProgress() {
         return progress;
     }
@@ -33,12 +26,12 @@ public class AddToDoState {
         this.progress = progress;
     }
 
-    public long getToDoID() {
-        return toDoID;
+    public long getToDoListID() {
+        return toDoListID;
     }
 
-    public void setToDoID(long toDoID) {
-        this.toDoID = toDoID;
+    public void setToDoListID(long toDoID) {
+        this.toDoListID = toDoID;
     }
 
     public String getTarget() {
@@ -49,14 +42,6 @@ public class AddToDoState {
         this.target = target;
     }
 
-    public String[] getAssignTo() {
-        return assignTo;
-    }
-
-    public void setAssignTo(String[] assignTo) {
-        this.assignTo = assignTo;
-    }
-
     public String getATDSError() {
         return ATDSError;
     }
@@ -65,5 +50,11 @@ public class AddToDoState {
         this.ATDSError = ATDSError;
     }
 
+    public long getProjectID() {
+        return projectID;
+    }
 
+    public void setProjectID(long projectID) {
+        this.projectID = projectID;
+    }
 }

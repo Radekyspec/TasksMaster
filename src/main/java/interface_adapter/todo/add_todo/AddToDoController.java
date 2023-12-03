@@ -11,8 +11,8 @@ public class AddToDoController {
         this.addToDoInteractor = addToDoInteractor;
     }
 
-    public void addMainLogic(String target, String progress, long listID, String[] assignedTo) {
-        AddToDoInputData addToDoInputData = new AddToDoInputData(target, progress, listID, assignedTo, null);
+    public void addMainLogic(String target, String progress, long toDoListID, long projectID) {
+        AddToDoInputData addToDoInputData = new AddToDoInputData(target, progress, toDoListID, projectID);
         addToDoInteractor.importAddToDoList(addToDoInputData);
     }
 }

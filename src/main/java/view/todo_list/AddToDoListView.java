@@ -27,15 +27,14 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
     public AddToDoListView(ViewManagerModel viewManagerModel,
                            ToDoPanelViewModel toDoPanelViewModel,
                            AddToDoListViewModel addToDoListViewModel,
-                           AddToDoListController addToDoListController, JTextField detailInputField,
-                           JPanel nameInfo,
-                           JPanel contentInfo) {
+                           AddToDoListController addToDoListController) {
         this.toDoPanelViewModel = toDoPanelViewModel;
         this.addToDoListViewModel = addToDoListViewModel;
         this.addToDoListController = addToDoListController;
-        this.detailInputField = detailInputField;
-        this.nameInfo = nameInfo;
-        this.contentInfo = contentInfo;
+        addToDoListViewModel.addPropertyChangeListener(this);
+        this.detailInputField = new JTextField(15);
+        this.nameInfo = new JPanel();
+        this.contentInfo = new JPanel();
 
         JPanel buttons = new JPanel();
         confirm = new JButtonWithFont(AddToDoListViewModel.ADD_NEW_TODO_BUTTON_LABEL);

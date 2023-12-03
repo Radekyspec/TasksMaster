@@ -7,19 +7,11 @@ import use_case.todo_list.ToDoListOutputData;
 public class ToDoListPresenter implements ToDoListOutputBoundary {
     private final ViewManagerModel viewManagerModel;
     private final ToDoListViewModel toDoListViewModel;
-    private boolean isDone;
-
-    @Override
-    public void setDone(boolean stage) {
-        isDone = stage;
-    }
 
     public ToDoListPresenter(ViewManagerModel viewManagerModel,
-                             ToDoListViewModel toDoListViewModel,
-                             boolean isDone) {
+                             ToDoListViewModel toDoListViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.toDoListViewModel = toDoListViewModel;
-        this.isDone = isDone;
     }
 
     /**
@@ -30,10 +22,10 @@ public class ToDoListPresenter implements ToDoListOutputBoundary {
      */
     @Override
     public void prepareFailView(ToDoListOutputData toDoListOutputData) {
-        if (!toDoListOutputData.isUseCaseFailed()) {
+        if (!toDoListOutputData.useCaseFailed()) {
             return;
         }
-        toDoListViewModel.getState().setError(toDoListOutputData.getError());
+        toDoListViewModel.getState().setError(toDoListOutputData.error());
         toDoListViewModel.firePropertyChanged(ToDoListViewModel.IMPORT_TODO_LIST_FAILED);
     }
 
@@ -47,15 +39,11 @@ public class ToDoListPresenter implements ToDoListOutputBoundary {
      */
     @Override
     public void prepareImportView(ToDoListOutputData outputData) {
-        if (outputData.isUseCaseFailed()) {
+        if (outputData.useCaseFailed()) {
             return;
         }
-        if (this.isDone) {
-            viewManagerModel.setActiveView(toDoListViewModel.getViewName());
-            toDoListViewModel.firePropertyChanged(ToDoListViewModel.IMPORT_TODO_LIST);
-        } else {
-            toDoListViewModel.getState().setListOfToDo(outputData.getToDo());
-        }
+        toDoListViewModel.getState().setListOfToDo(outputData.listOfToDo());
+        toDoListViewModel.firePropertyChanged(ToDoListViewModel.IMPORT_TODO);
     }
 
 
