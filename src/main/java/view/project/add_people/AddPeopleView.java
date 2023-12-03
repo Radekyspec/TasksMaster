@@ -57,6 +57,7 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
                     if (!e.getSource().equals(enter)){
                         return;
                     }
+                    nameInputField.setText("");
                     AddPeopleState state = addPeopleViewModel.getState();
                     addPeopleController.execute(state.getUsername(), state.getProject());
                 }

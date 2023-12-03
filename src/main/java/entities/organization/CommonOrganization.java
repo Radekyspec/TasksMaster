@@ -77,4 +77,9 @@ public class CommonOrganization implements Organization {
     public Map<Long, User> getMembers() {
         return members;
     }
+
+    @Override
+    public void addMember(User member) {
+        members.put(member.getID(), member);
+    }
 }

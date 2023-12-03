@@ -48,10 +48,11 @@ public interface User {
     String getEmail();
 
     /**
-     * set the rule of the User, including Boss, Leader and Member
+     * set and get the rule of the User, including Boss, Leader and Member
      */
 
     void setRule(Rule rule);
+    Rule getRule();
 
     /**
      * let user join a organization

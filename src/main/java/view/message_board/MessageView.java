@@ -48,7 +48,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
 
         commentBoard = new JPanel();
         commentBoard.setPreferredSize(new Dimension(1280, 500));
-        commentBoard.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        commentBoard.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         addCommentPanel.add(new JLabelWithFont("Add a comment here"));
         addCommentPanel.add(addComment);

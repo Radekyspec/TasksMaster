@@ -3,6 +3,7 @@ package entities.organization;
 import entities.project.Project;
 import entities.user.User;
 
+import java.lang.reflect.Member;
 import java.util.Map;
 
 public interface Organization {
@@ -40,4 +41,5 @@ public interface Organization {
      * @return its members in the Organization
      */
     Map<Long, User> getMembers();
+    void addMember(User member);
 }
