@@ -1,32 +1,22 @@
 package interface_adapter.todo_list.add;
 
 public class AddToDoListState {
-    private Integer ID;
+    private Integer listID;
     private String name;
     private String detail;
-    private String progress;
 
     public AddToDoListState() {
-        ID = null;
+        listID = null;
         name = null;
         detail = null;
-        progress = null;
     }
 
-    public String getProgress() {
-        return progress;
+    public Integer getListID() {
+        return listID;
     }
 
-    public void setProgress(String progress) {
-        this.progress = progress;
-    }
-
-    public Integer getID() {
-        return ID;
-    }
-
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setListID(Integer listID) {
+        this.listID = listID;
     }
 
     public String getName() {

@@ -17,7 +17,7 @@ public class ToDoListInteractor implements ToDoListInputBoundary{
     /**
      * workKind is NOT IN USE and be ready to dispose.
      * Only one logic is running here, which is import.
-     * logic: 1. receive List<To_Do></> from userDAO. ?See AddToDoListInteractor for reference.
+     * logic: 1. receive List<To_Do></> from userDAO. ?See AddToDoInteractor for reference.
      *        2. judge if the List is or is not null, as userDAO should return null of anything goes wrong.
      *        3. if it's null, add error message to outputData and prepare failed view.
      *        4. if it's not null, use a for loop to pass multiple times of outputData.

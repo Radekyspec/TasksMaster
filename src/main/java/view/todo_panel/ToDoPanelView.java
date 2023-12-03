@@ -18,6 +18,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ToDoPanelView extends JPanel implements PropertyChangeListener {
+    private int projectID;
     private ToDoPanel toDoPanel;
     private final ToDoPanelViewModel toDoPanelViewModel;
     private final ViewManagerModel viewManagerModel;
@@ -49,9 +50,6 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         toDoPanelViewModel.addPropertyChangeListener(this);
 
 
-        toDoPanelController.initializeToDoPanel(0); // TODO: fix projectID add.
-        importToDoListController.importToDoLists(0, 0); // TODO: fix projectID add.
-
         JLabel title = new JLabel(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -80,9 +78,6 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
 
         backToHome.addActionListener(
                 e -> {
-                    if (!e.getSource().equals(backToHome)) {
-                        return;
-                    }
                     viewManagerModel.setActiveView(mainProjectViewModel.getViewName());
                     viewManagerModel.firePropertyChanged();
                 }
@@ -114,7 +109,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                                     new ToDoListViewModel(),
                                     new MainProjectViewModel(),
                                     new ToDoPanelViewModel(),
-                                    new AddToDoViewModel("add to do view"));
+                                    new AddToDoViewModel("add to do view"),
+                                    new JPanel());
                             viewManagerModel.setActiveView(showToDoListView.getViewName());
                             viewManagerModel.firePropertyChanged();
                         }
@@ -138,7 +134,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                                         new ToDoListViewModel(),
                                         new MainProjectViewModel(),
                                         new ToDoPanelViewModel(),
-                                        new AddToDoViewModel("add to do view"));
+                                        new AddToDoViewModel("add to do view"),
+                                        new JPanel());
                                 viewManagerModel.setActiveView(showToDoListView.getViewName());
                                 viewManagerModel.firePropertyChanged();
                             }
@@ -155,6 +152,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                         null,
                         "Initialize ToDoPanel from DAO success.");
                 this.toDoPanel = state.getCurrentToDoPanel();
+                this.projectID = state.getProjectID();
+                importToDoListController.importToDoLists(projectID, toDoPanel.getId());
             }
             case ToDoPanelViewModel.INITIALIZE_TODO_PANEL_FAILED -> {
                 JOptionPane.showMessageDialog(
