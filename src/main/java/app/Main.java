@@ -7,6 +7,10 @@ import app.project.add.AddProjectUseCaseFactory;
 import app.project.add_people.AddPeopleUseCaseFactory;
 import app.project.choose.ChooseProjectUseCaseFactory;
 import app.signup.SignupUseCaseFactory;
+import app.todo.AddToDoUseCaseFactory;
+import app.todo_list.AddToDoListUseCaseFactory;
+import app.todo_list.ToDoListUseCaseFactory;
+import app.todo_panel.ToDoPanelUseCaseFactory;
 import data_access.InMemoryUserDataAccessObject;
 import exceptions.InvalidApiKeyException;
 import exceptions.InvalidUserConfigException;
@@ -21,6 +25,9 @@ import interface_adapter.project.add_people.AddPeopleViewModel;
 import interface_adapter.project.choose.ChooseProjectViewModel;
 import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.todo.add_todo.AddToDoViewModel;
+import interface_adapter.todo_list.ToDoListViewModel;
+import interface_adapter.todo_list.add.AddToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import view.ViewManager;
 import view.login.LoginView;
@@ -30,6 +37,10 @@ import view.project.add.AddProjectView;
 import view.project.add_people.AddPeopleView;
 import view.project.choose.ChooseProjectView;
 import view.signup.SignupView;
+import view.todo.AddToDoView;
+import view.todo_list.AddToDoListView;
+import view.todo_list.ToDoListView;
+import view.todo_panel.ToDoPanelView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,6 +82,9 @@ public class Main {
         AddNewMessageViewModel addNewMessageViewModel = new AddNewMessageViewModel();
 
         ToDoPanelViewModel toDoPanelViewModel = new ToDoPanelViewModel();
+        ToDoListViewModel toDoListViewModel = new ToDoListViewModel();
+        AddToDoListViewModel addToDoListViewModel = new AddToDoListViewModel();
+        AddToDoViewModel addToDoViewModel = new AddToDoViewModel();
 
         ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
 
@@ -91,8 +105,21 @@ public class Main {
         AddPeopleView addPeopleView = AddPeopleUseCaseFactory.create(viewManagerModel, addPeopleViewModel,
                 mainProjectViewModel, userDAO);
 
-//      MessageBoardView messageBoardView = MessageBoardUseCaseFactory.create(viewManagerModel, mainProjectViewModel,messageBoardViewModel,
-//                addNewMessageViewModel, messageViewModel, userDAO);
+
+        MessageBoardView messageBoardView = MessageBoardUseCaseFactory.create(viewManagerModel, mainProjectViewModel,messageBoardViewModel,
+                addNewMessageViewModel, messageViewModel, userDAO);
+        ToDoPanelView toDoPanelView = ToDoPanelUseCaseFactory.create(
+                viewManagerModel, addToDoListViewModel, mainProjectViewModel, toDoPanelViewModel, toDoListViewModel, userDAO
+        );
+        ToDoListView toDoListView = ToDoListUseCaseFactory.create(
+                viewManagerModel, toDoListViewModel, mainProjectViewModel, toDoPanelViewModel, addToDoViewModel, userDAO
+        );
+        AddToDoListView addToDoListView = AddToDoListUseCaseFactory.create(
+                viewManagerModel, addToDoListViewModel, toDoPanelViewModel, userDAO
+        );
+        AddToDoView addToDoView = AddToDoUseCaseFactory.create(
+                viewManagerModel, addToDoViewModel, toDoListViewModel, userDAO
+        );
 
         views.add(signupView, signupView.getViewName());
         views.add(loginView, loginView.getViewName());

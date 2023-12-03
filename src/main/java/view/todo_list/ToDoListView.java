@@ -11,6 +11,7 @@ import interface_adapter.todo_list.ToDoListState;
 import interface_adapter.todo_list.ToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
@@ -28,7 +29,7 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
     private JPanel toDoViews;
     private final JTextField nameInputField = new JTextField();
     private final ToDoListController toDoListController;
-    private Map<JButton, ToDo> buttonToDoMap;
+    private Map<JCheckBox, ToDo> buttonToDoMap;
     private final AddToDoViewModel addToDoViewModel;
 
     public ToDoListView(ViewManagerModel viewManagerModel,
@@ -44,7 +45,6 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
 
         toDoViews = new JPanel();
         toDoViews.setLayout(new BoxLayout(toDoViews, BoxLayout.Y_AXIS));
-
 
         JPanel buttons = new JPanel();
         addNewToDo = new JButtonWithFont(ToDoListViewModel.ADD_NEW_TODO_BUTTON_LABEL);
@@ -75,7 +75,11 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
-
+        JLabelWithFont title = new JLabelWithFont(ToDoListViewModel.TITLE_LABEL);
+        title.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(title);
+        this.add(toDoViews);
+        this.add(buttons);
     }
     /**
      * (general) This method gets called when a bound property is changed.
@@ -104,13 +108,13 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
             case ToDoListViewModel.IMPORT_TODO -> {
                 for (ToDo toDo : state.getListOfToDo()) {
                     this.toDoList.addToDos(toDo);
-                    JButton newToDo = new JButtonWithFont(
+                    JCheckBox newToDo = new JCheckBox(
                             state.getNewToDo().getProgress() + "-" + state.getNewToDo().getTarget());
                     buttonToDoMap.put(newToDo, toDo);
                     toDoViews.add(newToDo);
                     newToDo.addActionListener(
                             e -> {
-                                ToDo toDo1 = buttonToDoMap.get((JButton) e.getSource());
+                                ToDo toDo1 = buttonToDoMap.get((JCheckBox) e.getSource());
                                 addToDoViewModel.getState().setNewCreatedToDo(toDo1);
                                 addToDoViewModel.getState().setProjectID(projectID);
                                 addToDoViewModel.firePropertyChanged(AddToDoViewModel.CREATE_TODO);
@@ -121,13 +125,13 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
             case ToDoListViewModel.IMPORT_SINGLE_TODO -> {
                 ToDo toDo = state.getNewToDo();
                 this.toDoList.addToDos(toDo);
-                JButton newToDo = new JButtonWithFont(
+                JCheckBox newToDo = new JCheckBox(
                         state.getNewToDo().getProgress() + "-" + state.getNewToDo().getTarget());
                 buttonToDoMap.put(newToDo, toDo);
                 toDoViews.add(newToDo);
                 newToDo.addActionListener(
                         e -> {
-                            ToDo toDo1 = buttonToDoMap.get((JButton) e.getSource());
+                            ToDo toDo1 = buttonToDoMap.get((JCheckBox) e.getSource());
                             addToDoViewModel.getState().setNewCreatedToDo(toDo1);
                             addToDoViewModel.getState().setProjectID(projectID);
                             addToDoViewModel.firePropertyChanged(AddToDoViewModel.CREATE_TODO);

@@ -17,8 +17,8 @@ public class AddToDoViewModel extends ViewModel {
         return addToDoState;
     }
 
-    public AddToDoViewModel(String viewName) {
-        super(viewName);
+    public AddToDoViewModel() {
+        super("add todo");
     }
 
     @Override
