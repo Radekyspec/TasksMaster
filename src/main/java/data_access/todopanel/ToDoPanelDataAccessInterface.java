@@ -15,11 +15,6 @@ public interface ToDoPanelDataAccessInterface {
     List<ToDoList> importToDoList(Integer projectID, Integer toDoPanelID);
 
     /**
-     * Get existed ToDoPanel.
-     * @return the ToDoPanel it find.
-     */
-    ToDoPanel importToDoPanel(Integer projectID);
-    /**
      * namely
      * @return A string which is the Api error Message.
      */

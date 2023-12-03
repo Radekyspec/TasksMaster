@@ -14,5 +14,4 @@ public class ToDoPanelController {
         ToDoPanelInputData toDoPanelInputData = new ToDoPanelInputData(projectID);
         toDoPanelInteractor.importToDoList(toDoPanelInputData);
     }
-    
 }
