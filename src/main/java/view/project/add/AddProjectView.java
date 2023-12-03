@@ -21,7 +21,7 @@ import java.beans.PropertyChangeListener;
 public class AddProjectView extends JPanel implements ActionListener, PropertyChangeListener {
     private User user;
     private final JTextField projectNameInputField = new JTextField(15);
-    private final JTextField descriptionInputField = new JTextField(15);
+    private final JTextField descriptionInputField = new JTextField(30);
     private final JButton enter;
     private final JButton cancel;
     private final AddProjectViewModel addProjectViewModel;
@@ -37,9 +37,11 @@ public class AddProjectView extends JPanel implements ActionListener, PropertyCh
         JPanel projectNameInfo = new JPanel();
         projectNameInfo.add(new JLabelWithFont(AddProjectViewModel.ADD_PROJECT_NAME_LABEL));
         projectNameInfo.add(projectNameInputField);
+        projectNameInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         JPanel descriptionInfo = new JPanel();
         descriptionInfo.add(new JLabelWithFont(AddProjectViewModel.ADD_PROJECT_DESCRIPTION_LABEL));
         descriptionInfo.add(descriptionInputField);
+        descriptionInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
 
         projectNameInputField.addKeyListener(
                 new KeyListener() {
@@ -91,7 +93,7 @@ public class AddProjectView extends JPanel implements ActionListener, PropertyCh
                 }
         );
 
-        JLabel title = new JLabelWithFont(AddProjectViewModel.ADD_PROJECT_TITLE_LABEL, Font.BOLD, 26);
+        JLabel title = new JLabelWithFont(AddProjectViewModel.ADD_PROJECT_TITLE_LABEL, Font.BOLD, 32);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());

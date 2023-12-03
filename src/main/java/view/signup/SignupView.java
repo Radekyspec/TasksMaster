@@ -38,6 +38,10 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.signupController = signupController;
         signupViewModel.addPropertyChangeListener(this);
 
+        usernameInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+        emailInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+        passwordInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+        repeatPasswordInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabelWithFont(SignupViewModel.SIGNUP_USERNAME_LABEL),
                 usernameInputField,

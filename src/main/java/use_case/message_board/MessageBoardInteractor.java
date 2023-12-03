@@ -25,7 +25,11 @@ public class MessageBoardInteractor implements MessageBoardInputBoundary {
         long projectID = messageBoardInputData.projectID();
         long messageBoardID = messageBoardInputData.messageBoardID();
         List<Message> messages = userDataAccessInterface.getMessages(projectID, messageBoardID);
-        MessageBoardOutputData messageBoardOutputData = new MessageBoardOutputData(messages);
-        messageBoardPresenter.prepareGetMessagesSuccessView(messageBoardOutputData);
+        if (messages == null){
+            messageBoardPresenter.prepareGetMessageFailView();
+        }else{
+            MessageBoardOutputData messageBoardOutputData = new MessageBoardOutputData(messages);
+            messageBoardPresenter.prepareGetMessagesSuccessView(messageBoardOutputData);
+        }
     }
 }

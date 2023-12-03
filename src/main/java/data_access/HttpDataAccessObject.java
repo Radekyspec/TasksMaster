@@ -317,7 +317,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     @Override
     public Comment addComment(long projectID, long messageID, User user, String newComment) {
         JSONObject requestBody = new JSONObject();
-        requestBody.put("content", newComment);
+        requestBody.put("content", user.getName() + ":" + newComment);
         RequestBody body = RequestBody.create(
                 requestBody.toString(),
                 MediaType.parse("application/json; charset=utf-8")
@@ -335,7 +335,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
             JSONObject responseJson = new JSONObject(response.body().string());
             String rawContent = responseJson.getString("content");
             return CommonCommentFactory.create(
-                    requestBody.getLong("id"),
+                    responseJson.getLong("id"),
                     rawContent.split(":")[0],
                     Arrays.stream(
                             rawContent.split(":")).skip(1)

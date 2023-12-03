@@ -10,6 +10,7 @@ public class MessageBoardViewModel extends ViewModel {
     public static final String MESSAGE_BOARD_TITLE_LABEL = "Message Board";
     public static final String ADD_NEW_MESSAGE_LABEL = "Add a new message";
     public static final String SET_USER_PROJECT = "set user project";
+    public static final String NO_MESSAGE = "There is no message now";
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     private final MessageBoardState messageBoardState = new MessageBoardState();
