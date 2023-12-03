@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommonProject implements Project {
-    private final int ID;
+    private final long ID;
     private final String name;
     private final String description;
     private final List<String> members;
@@ -24,7 +24,7 @@ public class CommonProject implements Project {
      * @param name        the name of the project
      * @param description
      */
-    public CommonProject(int ID, String name, String description) {
+    public CommonProject(long ID, String name, String description) {
         this.ID = ID;
         this.name = name;
         this.description = description;
@@ -47,7 +47,7 @@ public class CommonProject implements Project {
      * @return its ID
      */
     @Override
-    public int getID() {
+    public long getID() {
         return ID;
     }
 

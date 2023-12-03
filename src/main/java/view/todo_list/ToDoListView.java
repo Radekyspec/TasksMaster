@@ -80,9 +80,12 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         ToDoListState state = (ToDoListState) evt.getNewValue();
         switch (evt.getPropertyName()) {
-            case ToDoListViewModel.IMPORT_TODO_LIST -> JOptionPane.showMessageDialog(
-                    this,
-                    "Import success! \nAble to continue.");
+            case ToDoListViewModel.IMPORT_TODO_LIST -> {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Import success! \nAble to continue.");
+                ToDoList toDoList = state.getNewCreatedTDL();
+            }
             case ToDoListViewModel.IMPORT_TODO_LIST_FAILED -> JOptionPane.showMessageDialog(
                     this,
                     state.getError());

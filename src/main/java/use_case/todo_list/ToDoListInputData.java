@@ -5,8 +5,8 @@ import entities.todo_list.ToDoList;
 import java.util.Map;
 
 public class ToDoListInputData {
-    private final Integer projectID;
-    private final Integer toDoListID;
+    private final long projectID;
+    private final long toDoListID;
 
     /**
      * Initialize a standard ToDoListInputData.
@@ -16,16 +16,16 @@ public class ToDoListInputData {
      * @param projectID  the project id those todos belongs to.
      * @param toDoListID the ToDoList id those todos belongs to.
      */
-    public ToDoListInputData(Integer projectID, Integer toDoListID) {
+    public ToDoListInputData(long projectID, long toDoListID) {
         this.projectID = projectID;
         this.toDoListID = toDoListID;
     }
 
-    public Integer getProjectID() {
+    public long getProjectID() {
         return projectID;
     }
 
-    public Integer getToDoListID() {
+    public long getToDoListID() {
         return toDoListID;
     }
 }

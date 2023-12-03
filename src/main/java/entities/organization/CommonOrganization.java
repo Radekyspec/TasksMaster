@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonOrganization implements Organization {
-    private final int ID;
+    private final long ID;
     private final String name;
     private final User owner;
-    private final Map<Integer, Project> project_set;
-    private final Map<Integer, User> members;
+    private final Map<Long, Project> project_set;
+    private final Map<Long, User> members;
 
     /**
      * Return a new organization with ID, organization name, and owner.
@@ -20,7 +20,7 @@ public class CommonOrganization implements Organization {
      * @param name  the name of organization
      * @param owner the owner of organization
      */
-    public CommonOrganization(int ID, String name, User owner) {
+    public CommonOrganization(long ID, String name, User owner) {
         this.ID = ID;
         this.name = name;
         this.owner = owner;
@@ -34,7 +34,7 @@ public class CommonOrganization implements Organization {
      * @return its ID
      */
     @Override
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
@@ -64,7 +64,7 @@ public class CommonOrganization implements Organization {
      * @return its project_set
      */
     @Override
-    public Map<Integer, Project> getProject_set() {
+    public Map<Long, Project> getProject_set() {
         return project_set;
     }
 
@@ -74,7 +74,7 @@ public class CommonOrganization implements Organization {
      * @return its members in the Organization
      */
     @Override
-    public Map<Integer, User> getMembers() {
+    public Map<Long, User> getMembers() {
         return members;
     }
 }

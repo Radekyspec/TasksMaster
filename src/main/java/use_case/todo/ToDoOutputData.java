@@ -7,7 +7,7 @@ import java.util.Map;
 public class ToDoOutputData {
     private final String error;
     private final boolean useCaseFailed;
-    private final Map<Integer, ToDo> toDoPackage;
+    private final Map<Long, ToDo> toDoPackage;
     private final String target;
     private final String[] assignTo;
     private final String progress;
@@ -16,7 +16,7 @@ public class ToDoOutputData {
     public ToDoOutputData(String workKind,
                           String error, boolean useCaseFailed,
                           String target, String[] assignTo, String progress,
-                          Map<Integer, ToDo> toDoPackage) {
+                          Map<Long, ToDo> toDoPackage) {
         this.error = error;
         this.useCaseFailed = useCaseFailed;
         this.toDoPackage = toDoPackage;
@@ -34,7 +34,7 @@ public class ToDoOutputData {
         return useCaseFailed;
     }
 
-    public Map<Integer, ToDo> getToDoPackage() {
+    public Map<Long, ToDo> getToDoPackage() {
         return toDoPackage;
     }
 

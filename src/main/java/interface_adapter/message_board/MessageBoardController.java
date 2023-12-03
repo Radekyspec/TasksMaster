@@ -10,7 +10,7 @@ public class MessageBoardController {
         this.messageBoardInteractor = messageBoardInteractor;
     }
 
-    public void getMessages(int projectID, int messageBoardID) {
+    public void getMessages(long projectID, long messageBoardID) {
         MessageBoardInputData messageBoardInputData = new MessageBoardInputData(projectID, messageBoardID);
         messageBoardInteractor.getMessages(messageBoardInputData);
     }

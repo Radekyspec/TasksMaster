@@ -15,11 +15,11 @@ public class AddNewMessageViewModel extends ViewModel {
     public AddNewMessageViewModel() {
         super("Add a new message");
     }
-    public void setProjcetID(int projectID){
+    public void setProjcetID(long projectID){
         addNewMessageState.setProjectID(projectID);
     }
 
-    public void setMessageBoardID(int messageBoardID){
+    public void setMessageBoardID(long messageBoardID){
         addNewMessageState.setMessageBoardID(messageBoardID);
     }
 

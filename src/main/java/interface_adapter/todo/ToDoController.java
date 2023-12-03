@@ -13,7 +13,7 @@ public class ToDoController {
         this.toDoInteractor = toDoInteractor;
     }
 
-    public void doImportToDo(Map<Integer, ToDo> toDoPackage) {
+    public void doImportToDo(Map<Long, ToDo> toDoPackage) {
         ToDoInputData toDoInputData = new ToDoInputData("import",
                 null, null, null, null, toDoPackage);
         toDoInteractor.execute(toDoInputData);

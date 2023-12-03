@@ -1,22 +1,25 @@
 package interface_adapter.todo_list.add;
 
 public class AddToDoListState {
-    private Integer listID;
+    private long projectID;
+    private long toDoPanelID;
     private String name;
     private String detail;
 
-    public AddToDoListState() {
-        listID = null;
-        name = null;
-        detail = null;
+    public long getProjectID() {
+        return projectID;
     }
 
-    public Integer getListID() {
-        return listID;
+    public void setProjectID(long projectID) {
+        this.projectID = projectID;
     }
 
-    public void setListID(Integer listID) {
-        this.listID = listID;
+    public long getToDoPanelID() {
+        return toDoPanelID;
+    }
+
+    public void setToDoPanelID(long toDoPanelID) {
+        this.toDoPanelID = toDoPanelID;
     }
 
     public String getName() {

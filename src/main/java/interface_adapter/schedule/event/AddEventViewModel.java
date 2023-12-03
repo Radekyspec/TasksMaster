@@ -24,10 +24,10 @@ public class AddEventViewModel extends ViewModel{
         super("Add a new event");
     }
 
-    public void setProjectId(int projectId) {
+    public void setProjectId(long projectId) {
         addEventState.setProjectId(projectId);
     }
-    public void setScheduleId(int scheduleId) {
+    public void setScheduleId(long scheduleId) {
         addEventState.setScheduleId(scheduleId);
     }
     public void setEventName(String eventName) {

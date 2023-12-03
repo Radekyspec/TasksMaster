@@ -20,16 +20,16 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
 
     @Override
     public void getEvent(ScheduleInputData scheduleInputData) {
-        int scheduleId = scheduleInputData.scheduleId();
-        int projectId = scheduleInputData.projectId();
+        long scheduleId = scheduleInputData.scheduleId();
+        long projectId = scheduleInputData.projectId();
         List<Event> events = scheduleDataAccessInterface.getEvents(projectId, scheduleId);
         ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
         schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
     }
 
     public void addEvent(ScheduleInputData scheduleInputData) {
-        int projectId = scheduleInputData.projectId();
-        int scheduleId = scheduleInputData.scheduleId();
+        long projectId = scheduleInputData.projectId();
+        long scheduleId = scheduleInputData.scheduleId();
         String eventName = scheduleInputData.eventName();
         String notes = scheduleInputData.notes();
         Date startAt = scheduleInputData.startAt();

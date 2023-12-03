@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonToDoPanel implements ToDoPanel {
-    private Integer ID;
-    private Map<Integer, ToDoList> lists;
+    private long ID;
+    private Map<Long, ToDoList> lists;
 
-    public CommonToDoPanel(Integer ID) {
+    public CommonToDoPanel(long ID) {
         this.ID = ID;
         this.lists = new HashMap<>();
     }
@@ -20,7 +20,7 @@ public class CommonToDoPanel implements ToDoPanel {
      * @return its ID.
      */
     @Override
-    public Integer getId() {
+    public long getId() {
         return this.ID;
     }
 
@@ -30,7 +30,7 @@ public class CommonToDoPanel implements ToDoPanel {
      * @return all the TO_DOList managed by this panel.
      */
     @Override
-    public Map<Integer, ToDoList> getLists() {
+    public Map<Long, ToDoList> getLists() {
         return this.lists;
     }
 }

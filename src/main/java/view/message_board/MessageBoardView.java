@@ -25,8 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MessageBoardView extends JPanel implements ActionListener, PropertyChangeListener {
-    private int projectID;
-    private int messageBoardID;
+    private long projectID;
+    private long messageBoardID;
     private MessageBoard messageBoard;
     private User user;
     private final ViewManagerModel viewManagerModel;

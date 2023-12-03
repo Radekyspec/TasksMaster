@@ -3,8 +3,8 @@ package interface_adapter.message_board.add_new_message;
 import entities.user.User;
 
 public class AddNewMessageState {
-    private int projectID;
-    private int messageBoardID;
+    private long projectID;
+    private long messageBoardID;
     private String messageTitle;
     private String messageContent;
     private User author;
@@ -33,19 +33,19 @@ public class AddNewMessageState {
         this.messageContent = messageContent;
     }
 
-    public int getProjectID() {
+    public long getProjectID() {
         return projectID;
     }
 
-    public void setProjectID(int projectID) {
+    public void setProjectID(long projectID) {
         this.projectID = projectID;
     }
 
-    public int getMessageBoardID() {
+    public long getMessageBoardID() {
         return messageBoardID;
     }
 
-    public void setMessageBoardID(int messageBoardID) {
+    public void setMessageBoardID(long messageBoardID) {
         this.messageBoardID = messageBoardID;
     }
 }

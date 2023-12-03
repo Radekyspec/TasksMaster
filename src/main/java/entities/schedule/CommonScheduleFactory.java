@@ -6,7 +6,7 @@ public class CommonScheduleFactory {
      *
      * @param id the id of the schedule
      */
-    public static CommonSchedule create(int id) {
+    public static CommonSchedule create(long id) {
         return new CommonSchedule(id);
     }
 }

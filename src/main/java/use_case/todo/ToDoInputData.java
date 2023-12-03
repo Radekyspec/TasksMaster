@@ -9,14 +9,14 @@ public class ToDoInputData {
     private final String ID;
     private final String target;
     private final String[] assignedTo;
-    private final Map<Integer, ToDo> toDoPackage;
+    private final Map<Long, ToDo> toDoPackage;
     private final String progress;
 
     public ToDoInputData(String workKind,
                          String ID, String target,
                          String[] assignedTo,
                          String progress,
-                         Map<Integer, ToDo> toDoPackage) {
+                         Map<Long, ToDo> toDoPackage) {
 
         this.workKind = workKind;
         this.ID = ID;
@@ -61,7 +61,7 @@ public class ToDoInputData {
      * Namely
      * @return a map of To_Do, only for "import"
      */
-    public Map<Integer, ToDo> getToDoPackage() {
+    public Map<Long, ToDo> getToDoPackage() {
         return toDoPackage;
     }
 

@@ -4,9 +4,9 @@ import data_access.todopanel.ToDoPanelDataAccessInterface;
 import entities.todo_list.ToDoList;
 import entities.todo_panel.ToDoPanel;
 
-import java.util.Map;
+import java.util.List;
 
-public class ToDoPanelInteractor implements ToDoPanelInputBoundary{
+public class ToDoPanelInteractor implements ToDoPanelInputBoundary {
     private final ToDoPanelDataAccessInterface userDAO;
     private final ToDoPanelOutputBoundary toDoPanelPresenter;
 
@@ -23,20 +23,9 @@ public class ToDoPanelInteractor implements ToDoPanelInputBoundary{
      */
     @Override
     public void importToDoList(ToDoPanelInputData toDoPanelInputData) {
-        ToDoPanel toDoPanel = new ToDoPanel() {
-            @Override
-            public Integer getId() {
-                return null;
-            }
-
-            @Override
-            public Map<Integer, ToDoList> getLists() {
-                return null;
-            }
-        };
-//        ToDoPanel toDoPanel = userDAO.importToDoPanel(
-//                toDoPanelInputData.getProjectID()
-        if (toDoPanel == null) {
+        List<ToDoList> toDoLists = userDAO.importToDoList(
+                toDoPanelInputData.getProjectID(), toDoPanelInputData.getToDoPanelID());
+        if (toDoLists == null) {
             ToDoPanelOutputData outputData = new ToDoPanelOutputData(
                     userDAO.getApiErrorMessage(),
                     true,
@@ -44,10 +33,12 @@ public class ToDoPanelInteractor implements ToDoPanelInputBoundary{
             toDoPanelPresenter.prepareInitializeFailView(outputData);
         } else {
             ToDoPanelOutputData outputData = new ToDoPanelOutputData(
-                    userDAO.getApiErrorMessage(),
+                    null,
                     false,
-                    toDoPanel);
+                    toDoLists);
             toDoPanelPresenter.prepareInitializeSuccessView(outputData);
         }
     }
+
+
 }

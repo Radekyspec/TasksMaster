@@ -1,18 +1,18 @@
 package use_case.todo_list.import1;
 
 public class ImportToDoListInputData {
-    private final Integer projectID;
-    private final Integer toDoPanelID;
+    private final long projectID;
+    private final long toDoPanelID;
 
-    public ImportToDoListInputData(Integer projectID, Integer toDoPanelID) {
+    public ImportToDoListInputData(long projectID, long toDoPanelID) {
         this.projectID = projectID;
         this.toDoPanelID = toDoPanelID;
     }
 
-    public Integer getToDoPanelID() {
+    public long getToDoPanelID() {
         return toDoPanelID;
     }
-    public Integer getProjectID() {
+    public long getProjectID() {
         return projectID;
     }
 }

@@ -10,7 +10,7 @@ public interface User {
      *
      * @return its ID
      */
-    int getID();
+    long getID();
 
     /**
      * Return the organization that User is in

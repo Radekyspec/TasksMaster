@@ -16,8 +16,8 @@ public class AddNewMessageInteractor implements AddNewMessageInputBoundary{
 
     @Override
     public void postMessage(AddNewMessageInputData addNewMessageInputData) {
-        int projectID = addNewMessageInputData.getProjectID();
-        int messageBoardID = addNewMessageInputData.getMessageBoardID();
+        long projectID = addNewMessageInputData.getProjectID();
+        long messageBoardID = addNewMessageInputData.getMessageBoardID();
         User author = addNewMessageInputData.getAuthor();
         String messageTitle = addNewMessageInputData.getMessageTitle();
         String messageContent = addNewMessageInputData.getMessageContent();

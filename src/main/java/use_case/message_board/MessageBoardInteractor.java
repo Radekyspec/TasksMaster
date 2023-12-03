@@ -22,8 +22,8 @@ public class MessageBoardInteractor implements MessageBoardInputBoundary {
      */
     @Override
     public void getMessages(MessageBoardInputData messageBoardInputData) {
-        int projectID = messageBoardInputData.projectID();
-        int messageBoardID = messageBoardInputData.messageBoardID();
+        long projectID = messageBoardInputData.projectID();
+        long messageBoardID = messageBoardInputData.messageBoardID();
         List<Message> messages = userDataAccessInterface.getMessages(projectID, messageBoardID);
         if (messages == null){
             messageBoardPresenter.prepareGetMessageFailView();

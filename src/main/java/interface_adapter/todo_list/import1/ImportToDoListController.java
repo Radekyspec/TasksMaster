@@ -10,7 +10,7 @@ public class ImportToDoListController {
         this.importToDoPanelInteractor = importToDoPanelInteractor;
     }
 
-    public void importToDoLists(Integer projectID, Integer toDoPanelID) {
+    public void importToDoLists(long projectID, long toDoPanelID) {
         ImportToDoListInputData importToDoListInputData = new ImportToDoListInputData(projectID, toDoPanelID);
         importToDoPanelInteractor.importToDoList(importToDoListInputData);
     }
