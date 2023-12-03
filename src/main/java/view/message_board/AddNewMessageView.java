@@ -4,6 +4,8 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.add_new_message.AddNewMessageController;
 import interface_adapter.message_board.add_new_message.AddNewMessageState;
 import interface_adapter.message_board.add_new_message.AddNewMessageViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -28,8 +30,8 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
         this.viewManagerModel = viewManagerModel;
         this.addNewMessageViewModel = addNewMessageViewModel;
         this.addNewMessageController = addNewMessageController;
-        titleInfo.add(new JLabel(addNewMessageViewModel.TYPE_TITLE_MESSAGE), titleInputField);
-        contentInfo.add(new JLabel(addNewMessageViewModel.TYPE_CONTENT), contentInputField);
+        titleInfo.add(new JLabelWithFont(addNewMessageViewModel.TYPE_TITLE_MESSAGE), titleInputField);
+        contentInfo.add(new JLabelWithFont(addNewMessageViewModel.TYPE_CONTENT), contentInputField);
         titleInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -67,7 +69,7 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
                 }
         );
 
-        postButton = new JButton(addNewMessageViewModel.POST_THIS);
+        postButton = new JButtonWithFont(addNewMessageViewModel.POST_THIS);
         postButton.addActionListener(
                 e -> {
                     AddNewMessageState state = addNewMessageViewModel.getAddNewMessageState();

@@ -7,6 +7,7 @@ import interface_adapter.message_board.MessageBoardPresenter;
 import interface_adapter.message_board.MessageBoardViewModel;
 import interface_adapter.message_board.add_new_message.AddNewMessageViewModel;
 import interface_adapter.message_board.message.MessageViewModel;
+import interface_adapter.project.MainProjectViewModel;
 import use_case.message_board.MessageBoardInputBoundary;
 import use_case.message_board.MessageBoardInteractor;
 import use_case.message_board.MessageBoardOutputBoundary;
@@ -15,12 +16,12 @@ import view.message_board.MessageBoardView;
 public class MessageBoardUseCaseFactory {
     private MessageBoardUseCaseFactory(){}
 
-    public static MessageBoardView create(ViewManagerModel viewManagerModel,
+    public static MessageBoardView create(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel,
                                           MessageBoardViewModel messageBoardViewModel,
                                           AddNewMessageViewModel addNewMessageViewModel,
-                                          MessageViewModel messageViewModel,
-                                          MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
-        return new MessageBoardView(viewManagerModel, messageBoardViewModel, addNewMessageViewModel, messageViewModel,
+                                          MessageViewModel messageViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+        return new MessageBoardView(viewManagerModel, mainProjectViewModel, messageBoardViewModel,
+                addNewMessageViewModel, messageViewModel,
                 MessageBoardUseCaseFactory.createController(messageBoardViewModel, messageBoardUserDataAccessInterface));
     }
 

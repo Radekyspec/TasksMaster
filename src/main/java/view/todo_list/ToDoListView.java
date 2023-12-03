@@ -6,6 +6,7 @@ import interface_adapter.todo.add_todo.AddToDoViewModel;
 import interface_adapter.todo_list.ToDoListState;
 import interface_adapter.todo_list.ToDoListViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
+import view.JButtonWithFont;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
@@ -30,9 +31,9 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
 
 
         JPanel buttons = new JPanel();
-        addNewToDo = new JButton(ToDoListViewModel.ADD_NEW_TODO_BUTTON_LABEL);
-        backToHome = new JButton(ToDoListViewModel.BACK_TO_HOME_BUTTON_LABEL);
-        goBack = new JButton(ToDoListViewModel.GO_BACK_BUTTON_LABEL);
+        addNewToDo = new JButtonWithFont(ToDoListViewModel.ADD_NEW_TODO_BUTTON_LABEL);
+        backToHome = new JButtonWithFont(ToDoListViewModel.BACK_TO_HOME_BUTTON_LABEL);
+        goBack = new JButtonWithFont(ToDoListViewModel.GO_BACK_BUTTON_LABEL);
         buttons.add(addNewToDo);
         buttons.add(backToHome);
         buttons.add(goBack);

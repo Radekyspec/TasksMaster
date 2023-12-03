@@ -11,6 +11,8 @@ import interface_adapter.project.add_people.AddPeopleViewModel;
 import interface_adapter.project.choose.ChooseProjectViewModel;
 import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
+import view.JButtonWithFont;
+import view.JLabelWithFont;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,12 +31,12 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
     private final ToDoPanelViewModel toDoPanelViewModel;
     private final AddPeopleViewModel addPeopleViewModel;
     private final ScheduleViewModel scheduleViewModel;
-    private final JLabel projectName = new JLabel();
-    private final JLabel description = new JLabel();
-    private final JButton addSomePeople = new JButton(MainProjectViewModel.ADD_NEW_PEOPLE);
-    private final JButton messageBoard = new JButton(MainProjectViewModel.MESSAGE_BOARD);
-    private final JButton toDoPanel = new JButton(MainProjectViewModel.TO_DO_PANEL);
-    private final JButton schedule = new JButton(MainProjectViewModel.SCHEDULE);
+    private final JLabel projectName = new JLabelWithFont();
+    private final JLabel description = new JLabelWithFont();
+    private final JButton addSomePeople = new JButtonWithFont(MainProjectViewModel.ADD_NEW_PEOPLE);
+    private final JButton messageBoard = new JButtonWithFont(MainProjectViewModel.MESSAGE_BOARD);
+    private final JButton toDoPanel = new JButtonWithFont(MainProjectViewModel.TO_DO_PANEL);
+    private final JButton schedule = new JButtonWithFont(MainProjectViewModel.SCHEDULE);
     private final JPanel buttonField = new JPanel();
 
     public MainProjectView(ViewManagerModel viewManagerModel, ChooseProjectViewModel chooseProjectViewModel, MainProjectViewModel mainProjectViewModel,
@@ -66,12 +68,12 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());
         this.add(title);
-        this.add(new JPanel());
+        this.add(addSomePeople);
         buttonField.add(messageBoard);
         buttonField.add(toDoPanel);
         buttonField.add(schedule);
         this.add(buttonField);
-        JButton back = new JButton("Back");
+        JButton back = new JButtonWithFont("Back");
         back.addActionListener(
                 e -> {
                     viewManagerModel.setActiveView(chooseProjectViewModel.getViewName());
