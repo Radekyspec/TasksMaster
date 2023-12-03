@@ -38,6 +38,7 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
         toDoListViewModel.addPropertyChangeListener(this);
 
         toDoViews = new JPanel();
+        toDoViews.setLayout(new BoxLayout(toDoViews, BoxLayout.Y_AXIS));
 
 
         JPanel buttons = new JPanel();
