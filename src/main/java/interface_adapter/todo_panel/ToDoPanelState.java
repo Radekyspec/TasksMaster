@@ -8,12 +8,11 @@ import entities.user.User;
 import java.util.List;
 
 public class ToDoPanelState {
-    private final List<ToDoList> listOfToDoList;
     private ToDoList newCreatedTDL;
     private User user;
     private Project project;
-    private Integer projectID; // 用于承接传入的ID，ToDo 记得接收这个ID
-    private Integer toDoPanelID; // 用于承接传入的ID，ToDo 记得接收这个ID
+    private long projectID; // 用于承接传入的ID，ToDo 记得接收这个ID
+    private long toDoPanelID; // 用于承接传入的ID，ToDo 记得接收这个ID
     private String importToDoListError;
     private ToDoPanel currentToDoPanel;
     private String toDoPanelError;
@@ -21,7 +20,6 @@ public class ToDoPanelState {
         currentToDoPanel = null;
         toDoPanelError = null;
         newCreatedTDL = null;
-        listOfToDoList = null;
         importToDoListError = null;
     }
 
@@ -41,29 +39,20 @@ public class ToDoPanelState {
         this.project = project;
     }
 
-    public Integer getProjectID() {
+    public long getProjectID() {
         return projectID;
     }
 
-    public void setProjectID(Integer projectID) {
+    public void setProjectID(long projectID) {
         this.projectID = projectID;
     }
 
-    public Integer getToDoPanelID() {
+    public long getToDoPanelID() {
         return toDoPanelID;
     }
 
-    public void setToDoPanelID(Integer toDoPanelID) {
+    public void setToDoPanelID(long toDoPanelID) {
         this.toDoPanelID = toDoPanelID;
-    }
-
-    public List<ToDoList> getListOfToDoList() {
-        return listOfToDoList;
-    }
-
-    public void setListOfToDoList(ToDoList toDoList) {
-        assert this.listOfToDoList != null;
-        this.listOfToDoList.add(toDoList);
     }
 
     public ToDoList getNewCreatedTDL() {

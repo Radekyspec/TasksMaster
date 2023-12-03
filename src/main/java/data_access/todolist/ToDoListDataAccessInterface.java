@@ -14,7 +14,7 @@ public interface ToDoListDataAccessInterface {
      * @param toDoListID namely.
      * @return A list of To_Do.
      */
-    List<ToDo> importToDo(Integer projectID, Integer toDoListID);
+    List<ToDo> importToDo(long projectID, long toDoListID);
 
     /**
      * namely

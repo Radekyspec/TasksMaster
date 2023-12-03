@@ -32,7 +32,7 @@ public class AddToDoListPresenter implements AddToDoListOutputBoundary {
             return;
         }
         toDoPanelViewModel.getState().setNewCreatedTDL(outputData.getToDoList());
-        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.CREATE_TODO_LIST);
+        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
         addToDoListViewModel.firePropertyChanged(AddToDoListViewModel.CREATE_TODO_LIST);
         viewManagerModel.setActiveView(toDoPanelViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
@@ -45,7 +45,7 @@ public class AddToDoListPresenter implements AddToDoListOutputBoundary {
         }
         toDoPanelViewModel.getState().setImportToDoListError(outputData.getError());
         addToDoListViewModel.getState().setATDLSError(outputData.getError());
-        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.CREATE_TODO_LIST_FAILED);
+        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST_FAILED);
         addToDoListViewModel.firePropertyChanged(AddToDoListViewModel.CREATE_TODO_LIST_FAILED);
 
 

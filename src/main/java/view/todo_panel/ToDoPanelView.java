@@ -20,7 +20,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ToDoPanelView extends JPanel implements PropertyChangeListener {
-    private int projectID;
+    private long projectID;
     private ToDoPanel toDoPanel;
     private final ToDoPanelViewModel toDoPanelViewModel;
     private final ViewManagerModel viewManagerModel;
@@ -73,6 +73,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         buttons.add(select);
         addNewList.addActionListener(
                 e -> {
+                    addToDoListViewModel.getState().setProjectID(projectID);
+                    addToDoListViewModel.getState().setToDoPanelID(this.toDoPanel.getId());
                     viewManagerModel.setActiveView(addToDoListViewModel.getViewName());
                     viewManagerModel.firePropertyChanged();
                 }
@@ -99,54 +101,24 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         ToDoPanelState state = (ToDoPanelState) evt.getNewValue();
         switch (evt.getPropertyName()) {
-            case ToDoPanelViewModel.CREATE_TODO_LIST -> {
+            case ToDoPanelViewModel.IMPORT_TODOLIST -> {
                 JOptionPane.showMessageDialog(
-                        null,
-                        "Create success! \nIt's time to write adding this List into current view! ");
-                JButton newToDoList = new JButtonWithFont(state.getNewCreatedTDL().getName());
+                        this,
+                        "You get here! Then write Importing List logic.");
+                ToDoList toDoList = state.getNewCreatedTDL();
+                JButton newToDoList = new JButtonWithFont(toDoList.getName()
+                        + " - "
+                        + toDoList.getDetail());
                 toDoListViews.add(newToDoList);
                 newToDoList.addActionListener(
                         e -> {
-                            ToDoListView showToDoListView = new ToDoListView(new ViewManagerModel(),
-                                    new ToDoListViewModel(),
-                                    new MainProjectViewModel(),
-                                    new ToDoPanelViewModel(),
-                                    new AddToDoViewModel("add to do view"),
-                                    new JPanel());
-                            viewManagerModel.setActiveView(showToDoListView.getViewName());
-                            viewManagerModel.firePropertyChanged();
-                        }
-                );
-            }
-            case ToDoPanelViewModel.CREATE_TODO_LIST_FAILED -> JOptionPane.showMessageDialog(
-                    null,
-                    state.getImportToDoListError());
-            case ToDoPanelViewModel.IMPORT_TODOLIST -> {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "You get here! Then write Importing List logic.");
-                for (ToDoList toDoList : state.getListOfToDoList()) {
-                    JButton newToDoList = new JButton(toDoList.getName()
-                            + " - "
-                            + toDoList.getDetail());
-                    toDoListViews.add(newToDoList);
-                    newToDoList.addActionListener(
-                            e -> {
-                                ToDoListView showToDoListView = new ToDoListView(new ViewManagerModel(),
-                                        new ToDoListViewModel(),
-                                        new MainProjectViewModel(),
-                                        new ToDoPanelViewModel(),
-                                        new AddToDoViewModel("add to do view"),
-                                        new JPanel());
-                                viewManagerModel.setActiveView(showToDoListView.getViewName());
-                                viewManagerModel.firePropertyChanged();
-                            }
-                    );
-                }
+                            // TODO switch to ToDoListView
+                        });
+
             }
             case ToDoPanelViewModel.IMPORT_TODOLIST_FAILED -> {
                 JOptionPane.showMessageDialog(
-                        null,
+                        this,
                         state.getImportToDoListError());
             }
             case ToDoPanelViewModel.INITIALIZE_TODO_PANEL -> {

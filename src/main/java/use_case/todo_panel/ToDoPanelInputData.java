@@ -1,13 +1,19 @@
 package use_case.todo_panel;
 
 public class ToDoPanelInputData {
-    private final Integer projectID;
+    private final long projectID;
+    private final long toDoPanelID;
 
-    public ToDoPanelInputData(Integer projectID) {
+    public ToDoPanelInputData(long projectID, long toDoPanelID) {
         this.projectID = projectID;
+        this.toDoPanelID = toDoPanelID;
     }
 
-    public Integer getProjectID() {
+    public long getProjectID() {
         return projectID;
+    }
+
+    public long getToDoPanelID() {
+        return toDoPanelID;
     }
 }

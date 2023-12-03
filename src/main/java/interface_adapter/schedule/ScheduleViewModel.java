@@ -30,5 +30,5 @@ public class ScheduleViewModel extends ViewModel {
         return scheduleState;
     }
 
-    public void setProjectID(int projectID) { scheduleState.setProjectId(projectID);}
+    public void setProjectID(long projectID) { scheduleState.setProjectId(projectID);}
 }

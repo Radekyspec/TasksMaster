@@ -6,8 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 public class AddNewEventInputData {
-    private int projectId;
-    private int scheduleId;
+    private long projectId;
+    private long scheduleId;
     private String eventName;
     private String notes;
     private Date startAt;
@@ -15,7 +15,7 @@ public class AddNewEventInputData {
     private boolean isAllDay;
     private List<String> userWith;
 
-    public AddNewEventInputData(int projectId, int scheduleId, String eventName, String notes, Date startAt, Date endAt, boolean isAllDay, List<String> userWith) {
+    public AddNewEventInputData(long projectId, long scheduleId, String eventName, String notes, Date startAt, Date endAt, boolean isAllDay, List<String> userWith) {
         this.projectId = projectId;
         this.scheduleId = scheduleId;
         this.eventName = eventName;
@@ -26,11 +26,11 @@ public class AddNewEventInputData {
         this.userWith = userWith;
     }
 
-    public int getProjectId() {
+    public long getProjectId() {
         return projectId;
     }
 
-    public int getScheduleId() {
+    public long getScheduleId() {
         return scheduleId;
     }
 

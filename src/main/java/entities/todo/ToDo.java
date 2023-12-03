@@ -6,7 +6,7 @@ public interface ToDo {
      *
      * @return its target.
      */
-    Integer getID();
+    long getID();
 
     /**
      * Returns ID of this obj.

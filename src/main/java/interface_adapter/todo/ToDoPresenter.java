@@ -60,7 +60,7 @@ public class ToDoPresenter implements ToDoOutputBoundary {
         if (toDoOutputData.isUseCaseFailed()) {
             return;
         }
-        Map<Integer, ToDo> TDPPackage = toDoOutputData.getToDoPackage();
+        Map<Long, ToDo> TDPPackage = toDoOutputData.getToDoPackage();
         toDoViewModel.getToDoState().getToDoPackage().putAll(TDPPackage);
         toDoViewModel.getToDoState().setWorkKind(toDoOutputData.getWorkKind());
         viewManagerModel.setActiveView(toDoViewModel.getViewName()); // import 完后才能进入view

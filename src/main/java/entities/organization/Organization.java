@@ -11,7 +11,7 @@ public interface Organization {
      *
      * @return its ID
      */
-    int getID();
+    long getID();
 
     /**
      * Return the name of the Organization
@@ -32,12 +32,12 @@ public interface Organization {
      *
      * @return its project_set
      */
-    Map<Integer, Project> getProject_set();
+    Map<Long, Project> getProject_set();
 
     /**
      * Return all members of the Organization
      *
      * @return its members in the Organization
      */
-    Map<Integer, User> getMembers();
+    Map<Long, User> getMembers();
 }

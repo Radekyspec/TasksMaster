@@ -20,8 +20,8 @@ public class AddNewEventInteractor implements AddNewEventInputBoundary {
 
     @Override
     public void postEvent(AddNewEventInputData addNewEventInputData) {
-        int projectId = addNewEventInputData.getProjectId();
-        int scheduleId = addNewEventInputData.getScheduleId();
+        long projectId = addNewEventInputData.getProjectId();
+        long scheduleId = addNewEventInputData.getScheduleId();
         String eventName = addNewEventInputData.getEventname();
         String notes = addNewEventInputData.getNotes();
         Date startAt = addNewEventInputData.getStartAt();

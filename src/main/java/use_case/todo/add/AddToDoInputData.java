@@ -3,9 +3,9 @@ package use_case.todo.add;
 public class AddToDoInputData {
     private final String target;
     private final String progress;
-    private final Integer listID;
+    private final long listID;
     private final String[] assignedTo;
-    private final Integer toDoID;
+    private final long toDoID;
 
     public String getTarget() {
         return target;
@@ -15,7 +15,7 @@ public class AddToDoInputData {
         return progress;
     }
 
-    public Integer getListID() {
+    public long getListID() {
         return listID;
     }
 
@@ -23,11 +23,11 @@ public class AddToDoInputData {
         return assignedTo;
     }
 
-    public Integer getToDoID() {
+    public long getToDoID() {
         return toDoID;
     }
 
-    public AddToDoInputData(String target, String progress, Integer listID, String[] assignedTo, Integer toDoID) {
+    public AddToDoInputData(String target, String progress, long listID, String[] assignedTo, long toDoID) {
         this.target = target;
         this.progress = progress;
         this.listID = listID;

@@ -7,7 +7,7 @@ public class CommonProjectFactory {
      * @param name the name of the project
      * @param description the description of the project
      */
-    public static CommonProject create(int ID, String name, String description){
+    public static CommonProject create(long ID, String name, String description){
         return new CommonProject(ID, name, description);
     }
 }

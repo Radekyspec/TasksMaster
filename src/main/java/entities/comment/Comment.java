@@ -8,7 +8,7 @@ public interface Comment {
      *
      * @return its ID
      */
-    int getId();
+    long getId();
 
     /**
      * Return the Author of the comment

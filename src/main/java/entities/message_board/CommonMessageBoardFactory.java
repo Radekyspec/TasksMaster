@@ -7,7 +7,7 @@ public class CommonMessageBoardFactory {
      * @param ID the ID of the messageBoard
      * @return return a new messageBoard that we build
      */
-    public static CommonMessageBoard create(int ID) {
+    public static CommonMessageBoard create(long ID) {
         return new CommonMessageBoard(ID);
     }
 }

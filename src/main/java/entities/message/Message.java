@@ -11,7 +11,7 @@ public interface Message {
      *
      * @return its ID
      */
-    int getID();
+    long getID();
 
     /**
      * Return the Author of the message
@@ -39,7 +39,7 @@ public interface Message {
      *
      * @return its comments
      */
-    Map<Integer, Comment> getComments();
+    Map<Long, Comment> getComments();
 
     /**
      * add new comment to the message

@@ -10,8 +10,8 @@ public class ToDoPanelController {
         this.toDoPanelInteractor = toDoPanelInteractor;
     }
 
-    public void initializeToDoPanel(Integer projectID) {
-        ToDoPanelInputData toDoPanelInputData = new ToDoPanelInputData(projectID);
+    public void initializeToDoPanel(long projectID, long toDoPanelID) {
+        ToDoPanelInputData toDoPanelInputData = new ToDoPanelInputData(projectID, toDoPanelID);
         toDoPanelInteractor.importToDoList(toDoPanelInputData);
     }
 }

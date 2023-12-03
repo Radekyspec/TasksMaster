@@ -41,7 +41,7 @@ public class InMemoryUserDataAccessObject extends HttpDataAccessObject {
                     if (col.length != 5) {
                         throw new InvalidUserConfigException(row);
                     }
-                    int ID = Integer.parseInt(col[fileIndex.get("ID")]);
+                    long ID = Long.parseLong(col[fileIndex.get("ID")]);
                     String username = String.valueOf(col[fileIndex.get("username")]);
                     String password = String.valueOf(col[fileIndex.get("password")]);
                     LocalDateTime creationDateTime = LocalDateTime.parse(

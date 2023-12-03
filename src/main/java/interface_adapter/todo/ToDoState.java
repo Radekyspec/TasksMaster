@@ -10,7 +10,7 @@ public class ToDoState {
     private String progress;
     private String target;
     private String toDoError;
-    private Map<Integer, ToDo> toDoPackage;
+    private Map<Long, ToDo> toDoPackage;
 
     public void setProgress(String progress) {
         this.progress = progress;
@@ -33,7 +33,7 @@ public class ToDoState {
         this.toDoError = toDoError;
     }
 
-    public Map<Integer, ToDo> getToDoPackage() {
+    public Map<Long, ToDo> getToDoPackage() {
         return toDoPackage;
     }
 

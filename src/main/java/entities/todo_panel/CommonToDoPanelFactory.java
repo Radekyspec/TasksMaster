@@ -7,7 +7,7 @@ public class CommonToDoPanelFactory {
      * @param ID the identification of this To_DoPanel
      * @return a CommonToDoPanel class
      */
-    public static CommonToDoPanel create(Integer ID) {
+    public static CommonToDoPanel create(long ID) {
         return new CommonToDoPanel(ID);
     }
 }

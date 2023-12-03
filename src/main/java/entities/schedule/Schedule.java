@@ -10,7 +10,7 @@ public interface Schedule {
      *
      * @return the ID of the schedule
      */
-    int getId();
+    long getId();
 
     /**
      * return the events of the schedule

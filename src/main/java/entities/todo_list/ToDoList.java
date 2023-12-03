@@ -10,7 +10,7 @@ public interface ToDoList {
      *
      * @return its ID.
      */
-    Integer getListID();
+    long getListID();
 
     /**
      * Returns name of this obj.
@@ -33,7 +33,7 @@ public interface ToDoList {
      *
      * @return A map contains pairs of id and to_do.
      */
-    Map<Integer, ToDo> getToDos();
+    Map<Long, ToDo> getToDos();
 
     /**
      * add a new to_do into the to_do list

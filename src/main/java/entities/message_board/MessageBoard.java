@@ -10,14 +10,14 @@ public interface MessageBoard {
      *
      * @return its ID
      */
-    int getID();
+    long getID();
 
     /**
      * Return all the message in the MessageBoard
      *
      * @return its messages
      */
-    Map<Integer, Message> getMessage();
+    Map<Long, Message> getMessage();
 
     /**
      * add the new message into our MessageBoard

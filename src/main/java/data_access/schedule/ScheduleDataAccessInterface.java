@@ -7,6 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface ScheduleDataAccessInterface {
-    List<Event> getEvents(int projectId, int id);
-    Event addEvents(int projectId, int scheduleId, String eventName, String notes, Date startAt, Date endAt, boolean isAllDay, List<String> userWith);
+    List<Event> getEvents(long projectId, long id);
+    Event addEvents(long projectId, long scheduleId, String eventName, String notes, Date startAt, Date endAt, boolean isAllDay, List<String> userWith);
 }

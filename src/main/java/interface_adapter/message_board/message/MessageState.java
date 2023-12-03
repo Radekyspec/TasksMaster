@@ -7,8 +7,8 @@ public class MessageState {
     private Message message;
     private String newComment;
     private Comment comment;
-    private int projectID;
-    private int messageID;
+    private long projectID;
+    private long messageID;
 
     public String getNewComment() {
         return newComment;
@@ -34,19 +34,19 @@ public class MessageState {
         this.comment = comment;
     }
 
-    public int getProjectID() {
+    public long getProjectID() {
         return projectID;
     }
 
-    public int getMessageID() {
+    public long getMessageID() {
         return messageID;
     }
 
-    public void setProjectID(int projectID) {
+    public void setProjectID(long projectID) {
         this.projectID = projectID;
     }
 
-    public void setMessageID(int messageID) {
+    public void setMessageID(long messageID) {
         this.messageID = messageID;
     }
 }
