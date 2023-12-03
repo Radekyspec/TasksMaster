@@ -6,9 +6,10 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class AddNewMessageViewModel extends ViewModel {
-    public final String TYPE_TITLE_MESSAGE = "Type a title...";
-    public final String TYPE_CONTENT = "Write away...";
-    public final String POST_THIS = "Post this Message";
+    public static final String TITLE = "Add a new Message!";
+    public static final String TYPE_TITLE_MESSAGE = "Type a title...";
+    public static final String TYPE_CONTENT = "Write away...";
+    public static final String POST_THIS = "Post this Message";
     private final AddNewMessageState addNewMessageState = new AddNewMessageState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     public AddNewMessageViewModel() {

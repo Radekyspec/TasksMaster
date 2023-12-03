@@ -359,6 +359,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
                 .method("POST", body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
+            System.out.println(response.body().string());
             if (response.code() != 201 || response.body() == null) {
                 setErrorMessage("Network Error");
                 return null;

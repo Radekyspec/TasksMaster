@@ -16,6 +16,7 @@ import view.JButtonWithFont;
 import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -74,13 +75,17 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 }
         );
 
-        JLabel title = new JLabelWithFont(MessageBoardViewModel.MESSAGE_BOARD_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(MessageBoardViewModel.MESSAGE_BOARD_TITLE_LABEL, Font.BOLD, 26);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title);
-        this.add(addNewMessage);
-        if (messages.getComponentCount() == 0){
-            messages.add(new JLabelWithFont("There is no message..."));
-        }
+        this.add(Box.createVerticalGlue());
         this.add(messages);
+        JPanel bottom = new JPanel();
+        bottom.add(addNewMessage);
+        bottom.add(back);
+        this.add(bottom);
+
     }
 
     /**
@@ -126,6 +131,9 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 messages.add(messageButton);
             }
         }
+    }
 
+    public String getViewName(){
+        return messageBoardViewModel.getViewName();
     }
 }

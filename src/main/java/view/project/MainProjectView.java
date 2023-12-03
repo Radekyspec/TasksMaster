@@ -68,6 +68,7 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());
         this.add(title);
+        this.add(Box.createVerticalGlue());
         this.add(addSomePeople);
         buttonField.add(messageBoard);
         buttonField.add(toDoPanel);

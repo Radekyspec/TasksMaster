@@ -1,6 +1,7 @@
 package view.message_board;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.message_board.MessageBoardViewModel;
 import interface_adapter.message_board.add_new_message.AddNewMessageController;
 import interface_adapter.message_board.add_new_message.AddNewMessageState;
 import interface_adapter.message_board.add_new_message.AddNewMessageViewModel;
@@ -8,6 +9,7 @@ import view.JButtonWithFont;
 import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,20 +20,23 @@ import java.beans.PropertyChangeListener;
 public class AddNewMessageView extends JPanel implements ActionListener, PropertyChangeListener {
     private final ViewManagerModel viewManagerModel;
     private final AddNewMessageViewModel addNewMessageViewModel;
+    private final MessageBoardViewModel messageBoardViewModel;
     private final AddNewMessageController addNewMessageController;
-    private final JPanel titleInfo = new JPanel();
-    private final JTextField titleInputField = new JTextField();
-    private final JPanel contentInfo = new JPanel();
-    private final JTextField contentInputField = new JTextField();
-    private final JButton postButton;
+    private final JTextField titleInputField = new JTextField(15);
+    private final JTextField contentInputField = new JTextField(15);
 
     public AddNewMessageView(ViewManagerModel viewManagerModel, AddNewMessageViewModel addNewMessageViewModel,
-                             AddNewMessageController addNewMessageController) {
+                             MessageBoardViewModel messageBoardViewModel, AddNewMessageController addNewMessageController) {
         this.viewManagerModel = viewManagerModel;
         this.addNewMessageViewModel = addNewMessageViewModel;
+        this.messageBoardViewModel = messageBoardViewModel;
         this.addNewMessageController = addNewMessageController;
-        titleInfo.add(new JLabelWithFont(addNewMessageViewModel.TYPE_TITLE_MESSAGE), titleInputField);
-        contentInfo.add(new JLabelWithFont(addNewMessageViewModel.TYPE_CONTENT), contentInputField);
+        JPanel titleInfo = new JPanel();
+        titleInfo.add(new JLabelWithFont(AddNewMessageViewModel.TYPE_TITLE_MESSAGE));
+        titleInfo.add(titleInputField);
+        JPanel contentInfo = new JPanel();
+        contentInfo.add(new JLabelWithFont(AddNewMessageViewModel.TYPE_CONTENT));
+        contentInfo.add(contentInputField);
         titleInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -69,7 +74,7 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
                 }
         );
 
-        postButton = new JButtonWithFont(addNewMessageViewModel.POST_THIS);
+        JButton postButton = new JButtonWithFont(AddNewMessageViewModel.POST_THIS);
         postButton.addActionListener(
                 e -> {
                     AddNewMessageState state = addNewMessageViewModel.getAddNewMessageState();
@@ -77,10 +82,25 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
                             state.getAuthor(), state.getMessageTitle(), state.getMessageContent());
                 }
         );
-
+        JButtonWithFont back = new JButtonWithFont("Back");
+        back.addActionListener(
+                e -> {
+                    viewManagerModel.setActiveView(messageBoardViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
+                }
+        );
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        JLabelWithFont title = new JLabelWithFont(AddNewMessageViewModel.TITLE, Font.BOLD, 26);
+        title.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(Box.createVerticalGlue());
+        this.add(title);
+        this.add(Box.createVerticalGlue());
         this.add(titleInfo);
         this.add(contentInfo);
-        this.add(postButton);
+        JPanel bottom = new JPanel();
+        bottom.add(postButton);
+        bottom.add(back);
+        this.add(bottom);
     }
 
     /**
@@ -102,5 +122,9 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 
+    }
+
+    public String getViewName(){
+        return addNewMessageViewModel.getViewName();
     }
 }

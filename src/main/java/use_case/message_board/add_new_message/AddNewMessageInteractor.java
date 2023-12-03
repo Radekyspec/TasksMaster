@@ -23,6 +23,9 @@ public class AddNewMessageInteractor implements AddNewMessageInputBoundary{
         String messageContent = addNewMessageInputData.getMessageContent();
         Message message = userDataAccessInterface.addMessage(projectID, messageBoardID, author,
                 messageTitle, messageContent);
+        if (message == null){
+            addNewMessagePresenter.prepareFailView();
+        }
         AddNewMessageOutputData addNewMessageOutputData = new AddNewMessageOutputData(message);
         addNewMessagePresenter.prepareSuccessView(addNewMessageOutputData);
     }
