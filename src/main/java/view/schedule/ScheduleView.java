@@ -1,5 +1,6 @@
 package view.schedule;
 
+import entities.event.Event;
 import entities.schedule.Schedule;
 import entities.user.User;
 import interface_adapter.ViewManagerModel;
@@ -13,6 +14,7 @@ import view.JButtonWithFont;
 import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,6 +24,7 @@ import java.beans.PropertyChangeListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener{
     private User user;
@@ -47,7 +50,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
     private final JTextField eventEndInputField = new JTextField();
     private final JTextField eventAllDayInputField = new JTextField();
     private final JTextField eventUserWithInputField = new JTextField();
-    private final JButton addThisEventButton;
+    private JButton addThisEventButton = new JButton();
 
     public ScheduleView(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, ScheduleViewModel scheduleViewModel, AddEventViewModel addEventViewModel, ScheduleController scheduleController) {
         this.viewManagerModel = viewManagerModel;
@@ -59,9 +62,11 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
 
         scheduleBoard = new JPanel();
         ScheduleState scheduleState = scheduleViewModel.getScheduleState();
-        scheduleController.getEvent(scheduleState.getProjectId(), scheduleState.getScheduleId());
+        //for (Event event : scheduleController.getEvent(scheduleState.getProjectId(), scheduleState.getScheduleId()) ) {
+        //    return ;
+        //}
 
-        addNewEventPanel.add(new JLabelWithFont("A a new event"));
+        addNewEventPanel.add(new JLabelWithFont("Add a new event"));
         eventNameInfo.add(new JLabel(addEventViewModel.EVENT_NAME), eventNameInputField);
         eventNoteInfo.add(new JLabel(addEventViewModel.EVENT_NOTES), eventNoteInputField);
         eventStartInfo.add(new JLabel(addEventViewModel.EVENT_STARTDATE), eventStartInputField);
@@ -224,9 +229,14 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                 }
         );
 
-        JLabel title = new JLabelWithFont(ScheduleViewModel.SCHEDULE_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(ScheduleViewModel.SCHEDULE_TITLE_LABEL, Font.BOLD, 26);
+        title.setAlignmentX(CENTER_ALIGNMENT);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title);
+        this.add(Box.createVerticalGlue());
         this.add(scheduleBoard);
+        this.add(Box.createVerticalGlue());
         this.add(eventNameInfo);
         this.add(eventNoteInfo);
         this.add(eventStartInfo);
