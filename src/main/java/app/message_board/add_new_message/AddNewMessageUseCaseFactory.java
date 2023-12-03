@@ -15,8 +15,8 @@ import view.message_board.AddNewMessageView;
 public class AddNewMessageUseCaseFactory {
     private AddNewMessageUseCaseFactory(){}
 
-    public static AddNewMessageView create(ViewManagerModel viewManagerModel, AddNewMessageViewModel addNewMessageViewModel, AddNewMessageController addNewMessageController){
-        return new AddNewMessageView(viewManagerModel, addNewMessageViewModel, addNewMessageController);
+    public static AddNewMessageView create(ViewManagerModel viewManagerModel, AddNewMessageViewModel addNewMessageViewModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+        return new AddNewMessageView(viewManagerModel, addNewMessageViewModel, messageBoardViewModel, AddNewMessageUseCaseFactory.createController(viewManagerModel, messageBoardViewModel, messageBoardUserDataAccessInterface));
     }
 
     public static AddNewMessageController createController(ViewManagerModel viewManagerModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){

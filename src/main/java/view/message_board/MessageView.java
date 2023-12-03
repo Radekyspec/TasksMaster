@@ -12,6 +12,7 @@ import view.JButtonWithFont;
 import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -21,6 +22,7 @@ import java.beans.PropertyChangeListener;
 
 public class MessageView extends JPanel implements ActionListener, PropertyChangeListener {
     private User user;
+    private Message message;
     private final ViewManagerModel viewManagerModel;
     private final MessageViewModel messageViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
@@ -28,9 +30,9 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
     private final JLabel title;
     private final JLabel auther;
     private final JLabel content;
-    private final JTextField addComment = new JTextField();
+    private final JTextField addComment = new JTextField(15);
     private final JPanel addCommentPanel = new JPanel();
-    private final JButton addThisComment = new JButtonWithFont();
+    private final JButton addThisComment = new JButtonWithFont(MessageViewModel.ADD_COMMENT);
     private final JPanel commentBoard;
 
     public MessageView(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel,
@@ -39,15 +41,12 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
         this.messageViewModel = messageViewModel;
         this.messageBoardViewModel = messageBoardViewModel;
         this.messageController = messageController;
-        MessageState state = messageViewModel.getState();
-        Message message = state.getMessage();
-        title = new JLabelWithFont(message.getTitle());
-        auther = new JLabelWithFont(message.getAuthor());
-        content = new JLabelWithFont(message.getContent());
+        messageViewModel.addPropertyChangeListener(this);
+        title = new JLabelWithFont(Font.BOLD, 26);
+        auther = new JLabelWithFont(Font.PLAIN, 22);
+        content = new JLabelWithFont();
 
         commentBoard = new JPanel();
-        MessageState messageState = messageViewModel.getState();
-        messageController.getComments(messageState.getProjectID(), messageState.getMessageID());
 
         addCommentPanel.add(new JLabelWithFont("Add a comment here"));
         addCommentPanel.add(addComment);
@@ -75,17 +74,31 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
                     if (!e.getSource().equals(addThisComment)){
                         return;
                     }
-                    MessageState messagestate = new MessageState();
-
-                    messageController.addNewComment(messagestate.getProjectID(), messagestate.getMessageID(), user, messagestate.getNewComment());
+                    MessageState messagestate = messageViewModel.getState();
+                    messageController.addNewComment(messagestate.getProjectID(), message.getID(), user, messagestate.getNewComment());
                 }
         );
+        JButtonWithFont back = new JButtonWithFont("back");
+        back.addActionListener(
+                e -> {
+                    viewManagerModel.setActiveView(messageBoardViewModel.getViewName());
+                    viewManagerModel.firePropertyChanged();
+                }
+        );
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title);
+        title.setAlignmentX(CENTER_ALIGNMENT);
         this.add(auther);
+        auther.setAlignmentX(CENTER_ALIGNMENT);
         this.add(content);
+        content.setAlignmentX(CENTER_ALIGNMENT);
         this.add(commentBoard);
         this.add(addCommentPanel);
-        this.add(addThisComment);
+        JPanel bottom = new JPanel();
+        bottom.add(addThisComment);
+        bottom.add(back);
+        this.add(bottom);
     }
 
     /**
@@ -108,6 +121,15 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()){
             case MessageViewModel.SET_MESSAGE -> {
+                MessageState state = (MessageState) evt.getNewValue();
+                this.user = state.getUser();
+                this.message = state.getMessage();
+                title.setText(message.getTitle());
+                auther.setText(message.getAuthor());
+                content.setText(message.getContent());
+                this.repaint();
+                MessageState messageState = messageViewModel.getState();
+                messageController.getComments(messageState.getProjectID(), messageState.getMessageID());
             }
             case MessageViewModel.ADD_COMMENT -> {
                 MessageState state = (MessageState) evt.getNewValue();
@@ -115,5 +137,9 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
                 commentBoard.add(new JLabelWithFont(comment.getAuthor() + comment.getContent()));
             }
         }
+    }
+
+    public String getViewName(){
+        return messageViewModel.getViewName();
     }
 }
