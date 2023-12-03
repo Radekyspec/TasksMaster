@@ -22,7 +22,7 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
     private final JTextField targetInputField = new JTextField();
     private final JPanel targetInfo;
     private final AddToDoViewModel addToDoViewModel;
-    private final JComboBox<User> assginedToUserList;
+    private final JComboBox<String> assginedToUserList;
     private final AddToDoController addToDoViewController;
 
     public AddToDoView(ViewManagerModel viewManagerModel,
@@ -78,7 +78,6 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                 }
         );
 
-        assginedToUserList.add()
         confirm.addActionListener(
                 e -> {
                     if (!e.getSource().equals(confirm)) {
@@ -97,6 +96,8 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
+        this.assginedToUserList = null;
+        addToDoViewController = null;
     }
     /**
      * This method gets called when a bound property is changed.
@@ -112,7 +113,7 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                 JOptionPane.showMessageDialog(
                         null,
                         "Create success! \nIt's time to write adding this List into current view! ");
-                JButton newToDo = new JButton(state.getNewCreatedTDL().getName());
+//                JButton newToDo = new JButton(state.getNewCreatedTDL().getName());
             }
         }
     }
