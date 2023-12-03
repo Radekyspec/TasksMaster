@@ -108,6 +108,7 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
     }
     /**
      * This method gets called when a bound property is changed.
+     * FOR VIEW, there is no need for further view, it is already back to ToDoListView.
      *
      * @param evt A PropertyChangeEvent object describing the event source
      *            and the property that has changed.
@@ -120,7 +121,6 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                 JOptionPane.showMessageDialog(
                         null,
                         "Create success! \nIt's time to write adding this List into current view! ");
-//                JButton newToDo = new JButton(state.getNewCreatedTDL().getName());
             }
         }
     }

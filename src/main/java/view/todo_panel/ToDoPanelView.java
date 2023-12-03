@@ -28,7 +28,6 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     private final JPanel toDoListViews;
     private final JButton addNewList;
     private final JButton backToHome;
-    private final JComboBox<String> toDoListList;
     private final JButton select;
     private final AddToDoListViewModel addToDoListViewModel;
     private final ToDoListViewModel toDoListViewModel;
@@ -52,14 +51,9 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title); // add button that u already set.
-        this.add(new JLabelWithFont());
 
         toDoListViews = new JPanel();
-        toDoListList = new JComboBox<>();
         buttonToDoListMap = new HashMap<>();
-        JPanel toDoPanel = new JPanel();
-        toDoPanel.add(new JLabelWithFont(ToDoPanelViewModel.CHOOSE_PROJECT_LABEL));
-        toDoPanel.add(toDoListList);
 
         JPanel buttons = new JPanel();
         addNewList = new JButtonWithFont(ToDoPanelViewModel.ADD_NEW_LIST_BUTTON_LABEL);
@@ -83,6 +77,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
+        this.add(toDoListViews);
+        this.add(buttons);
     }
 
     /**
@@ -91,6 +87,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
      * ADD_NEW_TODOLIST:
      *   1. get TDL name and part of detail and integrate into a long text.
      *   2. create this new TDL and add button.
+     * FOR VIEW, see case IMPORT_TODOLIST and INITIALIZE_TODO_PANEL
+     *
      * @param evt A PropertyChangeEvent object describing the event source
      *            and the property that has changed.
      */
@@ -115,7 +113,6 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                             toDoListViewModel.getState().setProjectID(projectID);
                             toDoListViewModel.firePropertyChanged(ToDoListViewModel.IMPORT_TODO_LIST);
                         });
-
             }
             case ToDoPanelViewModel.IMPORT_TODOLIST_FAILED -> {
                 JOptionPane.showMessageDialog(
@@ -125,9 +122,11 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
             case ToDoPanelViewModel.INITIALIZE_TODO_PANEL -> {
                 JOptionPane.showMessageDialog(
                         null,
-                        "Initialize ToDoPanel from DAO success.");
+                        "Start initializing ToDoPanel.");
                 this.toDoPanel = state.getCurrentToDoPanel();
                 this.projectID = state.getProjectID();
+                buttonToDoListMap.clear();
+                toDoListViews.removeAll();
                 toDoPanelController.initializeToDoPanel(projectID, toDoPanel.getId());
             }
             case ToDoPanelViewModel.INITIALIZE_TODO_PANEL_FAILED -> {

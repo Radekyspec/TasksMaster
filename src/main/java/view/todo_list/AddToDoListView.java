@@ -124,11 +124,17 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
+        // title
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(nameInfo);
+        this.add(contentInfo);
+        this.add(buttons);
     }
 
     /**
      * (general) This method gets called when a bound property is changed.
      * If or if not adding succeed or failed, AddToDoListView only shows different dialogs.
+     * FOR VIEW, there is no need for further view, it is already back to ToDoPanelView.
      *
      * @param evt A PropertyChangeEvent object describing the event source
      *            and the property that has changed.

@@ -26,6 +26,9 @@ public class AddToDoViewModel extends ViewModel {
         propertyChangeSupport.firePropertyChange("add todo", null, addToDoState);
     }
 
+    public void firePropertyChanged(String propertyName) {
+        propertyChangeSupport.firePropertyChange(propertyName, null, addToDoState);
+    }
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {}
 }
