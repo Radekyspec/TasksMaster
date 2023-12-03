@@ -1,8 +1,6 @@
 package interface_adapter.todo_panel;
 
 import entities.todo_list.ToDoList;
-import interface_adapter.ViewManagerModel;
-import interface_adapter.todo_panel.ToDoPanelViewModel;
 import use_case.todo_list.import1.ImportToDoListOutputData;
 import use_case.todo_panel.ToDoPanelOutputBoundary;
 import use_case.todo_panel.ToDoPanelOutputData;
@@ -19,7 +17,7 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
         if (toDoPanelOutputData.isUseCaseFailed()) {
             return;
         }
-        toDoPanelViewModel.getToDoPanelState().setCurrentToDoPanel(toDoPanelOutputData.getToDoPanel());
+        toDoPanelViewModel.getState().setCurrentToDoPanel(toDoPanelOutputData.getToDoPanel());
         toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.INITIALIZE_TODO_PANEL);
     }
 
@@ -29,7 +27,7 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
             return;
         }
         for (ToDoList toDoList : outputData.getListOfToDo()) {
-            toDoPanelViewModel.getToDoPanelState().setListOfToDoList(toDoList);
+            toDoPanelViewModel.getState().setListOfToDoList(toDoList);
             toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
         }
 
@@ -40,7 +38,7 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
         if (!outputData.isUseCaseFailed()) {
             return;
         }
-        toDoPanelViewModel.getToDoPanelState().setToDoPanelError(outputData.getError());
+        toDoPanelViewModel.getState().setToDoPanelError(outputData.getError());
         toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST_FAILED);
     }
 
@@ -49,7 +47,7 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
         if (!toDoPanelOutputData.isUseCaseFailed()) {
             return;
         }
-        toDoPanelViewModel.getToDoPanelState().setToDoPanelError(toDoPanelOutputData.getError());
+        toDoPanelViewModel.getState().setToDoPanelError(toDoPanelOutputData.getError());
         toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.INITIALIZE_TODO_PANEL_FAILED);
     }
 }

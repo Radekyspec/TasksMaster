@@ -26,7 +26,7 @@ public class AddToDoListInteractor implements AddToDoListInputBoundary{
     public void execute(AddToDoListInputData inputData) {
         ToDoList toDoList = userDAO.createToDoList(
                 inputData.getProjectID(),
-                inputData.getListID(),
+                inputData.getPanelID(),
                 inputData.getName(),
                 inputData.getDetail()
         );

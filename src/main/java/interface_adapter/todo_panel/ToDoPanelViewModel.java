@@ -17,26 +17,23 @@ public class ToDoPanelViewModel extends ViewModel {
     public static final String CREATE_TODO_LIST_FAILED = "create error";
     public static final String IMPORT_TODOLIST_FAILED = "import todo list failed";
     public static final String INITIALIZE_TODO_PANEL_FAILED = "initialize todo panel failed";
-    private final ToDoPanelState toDoPanelState = new ToDoPanelState();
-    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private final ToDoPanelState state = new ToDoPanelState();
-    public ToDoPanelState getState() {
-        return state;
-    }
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+
     public ToDoPanelViewModel() {
         super("todo panel");
     }
 
-    public ToDoPanelState getToDoPanelState() {
-        return toDoPanelState;
+    public ToDoPanelState getState() {
+        return state;
     }
     @Override
     public void firePropertyChanged() {
-        propertyChangeSupport.firePropertyChange("todo panel", null, toDoPanelState);
+        propertyChangeSupport.firePropertyChange("todo panel", null, state);
     }
 
     public void firePropertyChanged(String propertyName) {
-        propertyChangeSupport.firePropertyChange(propertyName, null, toDoPanelState);
+        propertyChangeSupport.firePropertyChange(propertyName, null, state);
     }
 
     @Override
