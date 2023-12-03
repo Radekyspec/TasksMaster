@@ -4,15 +4,13 @@ import entities.todo_list.ToDoList;
 import entities.todo_panel.ToDoPanel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
-import interface_adapter.todo.add_todo.AddToDoViewModel;
 import interface_adapter.todo_list.ToDoListViewModel;
 import interface_adapter.todo_list.add.AddToDoListViewModel;
-import interface_adapter.todo_panel.ToDoPanelViewModel;
 import interface_adapter.todo_panel.ToDoPanelController;
 import interface_adapter.todo_panel.ToDoPanelState;
+import interface_adapter.todo_panel.ToDoPanelViewModel;
 import view.JButtonWithFont;
 import view.JLabelWithFont;
-import view.todo_list.ToDoListView;
 
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;

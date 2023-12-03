@@ -1,7 +1,5 @@
 package use_case.schedule;
 
-import entities.user.User;
-
 import java.util.Date;
 import java.util.List;
 

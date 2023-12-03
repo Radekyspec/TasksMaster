@@ -1,7 +1,7 @@
 package app;
 
-import app.message_board.MessageBoardUseCaseFactory;
 import app.login.LoginUseCaseFactory;
+import app.message_board.MessageBoardUseCaseFactory;
 import app.message_board.add_new_message.AddNewMessageUseCaseFactory;
 import app.message_board.message.MessageUseCaseFactory;
 import app.project.ProjectUseCaseFactory;

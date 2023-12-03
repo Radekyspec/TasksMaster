@@ -2,7 +2,6 @@ package use_case.todo_panel;
 
 import data_access.todopanel.ToDoPanelDataAccessInterface;
 import entities.todo_list.ToDoList;
-import entities.todo_panel.ToDoPanel;
 
 import java.util.List;
 

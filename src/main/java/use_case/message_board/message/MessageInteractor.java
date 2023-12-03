@@ -4,7 +4,6 @@ import data_access.message_board.MessageBoardUserDataAccessInterface;
 import entities.comment.Comment;
 import entities.user.User;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,7 +1,5 @@
 package entities.comment;
 
-import entities.user.User;
-
 public class CommonComment implements Comment {
     private final long ID;
     private final String author;

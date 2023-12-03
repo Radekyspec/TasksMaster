@@ -1,6 +1,5 @@
 package interface_adapter.schedule.event;
 
-import entities.user.User;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;

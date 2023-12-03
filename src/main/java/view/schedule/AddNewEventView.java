@@ -1,6 +1,5 @@
 package view.schedule;
 
-import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.schedule.event.AddEventController;
 import interface_adapter.schedule.event.AddEventState;

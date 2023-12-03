@@ -1,22 +1,11 @@
 package view.schedule;
 
 import entities.user.User;
-import entities.schedule.Schedule;
-import entities.event.Event;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.schedule.ScheduleController;
-import interface_adapter.schedule.ScheduleState;
+import interface_adapter.schedule.ScheduleViewModel;
 
 import javax.swing.*;
-import java.util.Calendar;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.SystemColor;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;

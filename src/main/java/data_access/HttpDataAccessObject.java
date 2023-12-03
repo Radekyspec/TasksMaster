@@ -23,9 +23,10 @@ import entities.todo_list.ToDoList;
 import entities.todo_panel.CommonToDoPanelFactory;
 import entities.user.User;
 import exceptions.InvalidApiKeyException;
-
 import okhttp3.*;
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -391,6 +392,7 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     public ToDo createToDo(long projectID, long listID, String target, String progress) {
         JSONObject requestBody = new JSONObject();
         requestBody.put("content", target);
+        return null;
     }
 
     @Override

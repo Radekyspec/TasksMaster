@@ -4,7 +4,6 @@ import entities.todo.ToDo;
 import entities.todo_list.ToDoList;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
-import interface_adapter.todo.add_todo.AddToDoState;
 import interface_adapter.todo.add_todo.AddToDoViewModel;
 import interface_adapter.todo_list.ToDoListController;
 import interface_adapter.todo_list.ToDoListState;

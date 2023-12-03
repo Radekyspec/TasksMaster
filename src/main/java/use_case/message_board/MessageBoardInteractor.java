@@ -3,7 +3,6 @@ package use_case.message_board;
 import data_access.message_board.MessageBoardUserDataAccessInterface;
 import entities.message.Message;
 
-
 import java.util.List;
 
 public class MessageBoardInteractor implements MessageBoardInputBoundary {

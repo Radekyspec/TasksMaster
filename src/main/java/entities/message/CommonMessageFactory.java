@@ -1,7 +1,5 @@
 package entities.message;
 
-import entities.user.User;
-
 public class CommonMessageFactory {
     /**
      * build up the CommonMessage object

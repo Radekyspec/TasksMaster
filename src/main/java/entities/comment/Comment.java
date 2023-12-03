@@ -1,7 +1,5 @@
 package entities.comment;
 
-import entities.user.User;
-
 public interface Comment {
     /**
      * Return the ID of the comment
