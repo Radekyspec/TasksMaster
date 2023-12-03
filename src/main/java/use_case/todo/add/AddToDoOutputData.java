@@ -1,7 +1,6 @@
 package use_case.todo.add;
 
 import entities.todo.ToDo;
-import entities.todo_list.ToDoList;
 
 public class AddToDoOutputData {
     private final ToDo toDo;

@@ -1,7 +1,5 @@
 package entities.todo;
 
-import javax.swing.*;
-
 public class CommonToDo implements ToDo {
     private long ID; // No one will pass an id inside, create a unique id once it created
     private String progress;

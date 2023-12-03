@@ -28,11 +28,6 @@ public class ToDoListInteractor implements ToDoListInputBoundary{
      *            4.3.2 We modify the methods in ToDoListState, makes it be able to receive single To_Do and
      *                integrate them into a list.
      *            4.3.3 We don't store To_Do in ToDoView, we will only have AddToDoView.
-     * ToDo: delete the logic that pass toDoListPackage from ToDoListController all the way to here.
-     *       you need to delete those logic on:
-     *       ToDoListController, ToDoList InputData, ToDoListInteractor, ToDoListOutputData, ToDoListPresenter
-     *       ToDoListViewModel and ToDoListView.
-     * TODO: delete the use of workKind In ToDoList, ToDo and ToDoPanel. Use searching engine.
      *
      * @param toDoListInputData A standard ToDoListInputData
      */

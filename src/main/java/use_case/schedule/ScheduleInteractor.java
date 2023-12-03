@@ -2,8 +2,6 @@ package use_case.schedule;
 
 import data_access.schedule.ScheduleDataAccessInterface;
 import entities.event.Event;
-import entities.user.User;
-import interface_adapter.schedule.SchedulePresenter;
 
 import java.util.ArrayList;
 import java.util.Date;

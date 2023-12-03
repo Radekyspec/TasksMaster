@@ -1,7 +1,5 @@
 package interface_adapter.schedule.event;
 
-import entities.event.Event;
-import entities.user.User;
 import use_case.schedule.add_new_event.AddNewEventInputBoundary;
 import use_case.schedule.add_new_event.AddNewEventInputData;
 

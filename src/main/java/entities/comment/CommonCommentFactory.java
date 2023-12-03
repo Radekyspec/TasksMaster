@@ -1,7 +1,5 @@
 package entities.comment;
 
-import entities.user.User;
-
 public class CommonCommentFactory {
     /**
      * create up the new comment with user

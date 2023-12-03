@@ -1,12 +1,10 @@
 package view.todo;
 
-import entities.user.User;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.todo.add_todo.AddToDoState;
 import interface_adapter.todo.add_todo.AddToDoController;
+import interface_adapter.todo.add_todo.AddToDoState;
 import interface_adapter.todo.add_todo.AddToDoViewModel;
 import interface_adapter.todo_list.ToDoListViewModel;
-import interface_adapter.todo_list.add.AddToDoListViewModel;
 import view.JButtonWithFont;
 import view.JLabelWithFont;
 
@@ -108,6 +106,7 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
     }
     /**
      * This method gets called when a bound property is changed.
+     * FOR VIEW, there is no need for further view, it is already back to ToDoListView.
      *
      * @param evt A PropertyChangeEvent object describing the event source
      *            and the property that has changed.
@@ -120,8 +119,11 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                 JOptionPane.showMessageDialog(
                         null,
                         "Create success! \nIt's time to write adding this List into current view! ");
-//                JButton newToDo = new JButton(state.getNewCreatedTDL().getName());
             }
         }
+    }
+
+    public String getViewName() {
+        return addToDoViewModel.getViewName();
     }
 }

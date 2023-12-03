@@ -1,6 +1,5 @@
 package data_access;
 
-import entities.project.Project;
 import entities.user.CommonUserFactory;
 import entities.user.User;
 import exceptions.InvalidApiKeyException;

@@ -5,14 +5,12 @@ import entities.todo_list.ToDoList;
 import entities.todo_panel.ToDoPanel;
 import entities.user.User;
 
-import java.util.List;
-
 public class ToDoPanelState {
     private ToDoList newCreatedTDL;
     private User user;
     private Project project;
-    private long projectID; // 用于承接传入的ID，ToDo 记得接收这个ID
-    private long toDoPanelID; // 用于承接传入的ID，ToDo 记得接收这个ID
+    private long projectID;
+    private long toDoPanelID;
     private String importToDoListError;
     private ToDoPanel currentToDoPanel;
     private String toDoPanelError;
