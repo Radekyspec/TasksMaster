@@ -33,6 +33,12 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
         this.addToDoController = addToDoController;
         addToDoViewModel.addPropertyChangeListener(this);
 
+        // View: Title.
+        JLabel title = new JLabelWithFont(AddToDoViewModel.ADD_TODO_TITLE_LABEL);
+        title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(title); // add button that u already set.
+
         JPanel buttons = new JPanel();
         confirm = new JButtonWithFont(AddToDoViewModel.CONFIRM_NEW_TODO_BUTTON_LABEL);
         cancel = new JButtonWithFont(AddToDoViewModel.GO_BACK_BUTTON_LABEL);
@@ -103,6 +109,8 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
+        this.add(targetInfo);
+        this.add(buttons);
     }
     /**
      * This method gets called when a bound property is changed.

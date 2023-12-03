@@ -45,6 +45,7 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         toDoPanelViewModel.addPropertyChangeListener(this);
 
 
+        // View: Title.
         JLabel title = new JLabelWithFont(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

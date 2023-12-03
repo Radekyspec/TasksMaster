@@ -6,7 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class ToDoPanelViewModel extends ViewModel {
-    public static final String TODO_PANEL_TITLE_LABEL = "A ToDo Panel";
+    public static final String TODO_PANEL_TITLE_LABEL = "Your ToDo Panel";
     public static final String ADD_NEW_LIST_BUTTON_LABEL = "+ new ToDoList";
     public static final String BACK_TO_HOME_BUTTON_LABEL = "HomePage";
     public static final String CHOOSE_PROJECT_LABEL = "Click one list to start.";
