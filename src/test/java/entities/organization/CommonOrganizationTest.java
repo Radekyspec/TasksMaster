@@ -8,19 +8,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CommonOrganizationTest {
-    private User user;
+    private User user1;
+    private User user2;
     private Project project;
     private Organization organization;
 
     @BeforeEach
     void setUp() {
-        user = CommonUserFactory.create(1, "Sawyer", "Abc123", LocalDateTime.now(), "sawyer030908@gmail.com");
+        user1 = CommonUserFactory.create(1, "Sawyer", "Abc123", LocalDateTime.now(), "sawyer030908@gmail.com");
+        user2 = CommonUserFactory.create(2, "Kenneth", "Abc123", LocalDateTime.now(), "yukai.liang@mail.utoronto.ca");
         project = CommonProjectFactory.create(1, "Task Master", "Project for CSC207");
-        organization = CommonOrganizationFactory.create(1,"CSC207", user);
+        organization = CommonOrganizationFactory.create(1,"CSC207", user1);
     }
 
     @Test
@@ -35,19 +38,21 @@ class CommonOrganizationTest {
 
     @Test
     void getOwner() {
-        assertEquals(user, organization.getOwner());
+        assertEquals(user1, organization.getOwner());
     }
 
     @Test
     void getProject_set() {
-
+        assertEquals(project, organization.getProject_set().get(project.getID()));
     }
 
     @Test
-    void getMembers() {
-    }
-
-    @Test
-    void addMember() {
+    void getAddMembers() {
+        assertNull(organization.getMembers());
+        organization.addMember(user1);
+        organization.addMember(user2);
+        assertEquals(2, organization.getMembers().size());
+        assertEquals(user1, organization.getMembers().get(1L));
+        assertEquals(user2, organization.getMembers().get(2L));
     }
 }
