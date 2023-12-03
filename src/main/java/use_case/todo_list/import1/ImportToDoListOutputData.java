@@ -7,11 +7,11 @@ import java.util.List;
 public class ImportToDoListOutputData {
     private final List<ToDoList> listOfToDo;
     private final String error;
-    private final Integer projectID;
-    private final Integer toDoPanelID;
+    private final long projectID;
+    private final long toDoPanelID;
     private final boolean useCaseFailed;
     public ImportToDoListOutputData(String error, boolean useCaseFailed,
-                                    Integer projectID, Integer toDoPanelID,
+                                    long projectID, long toDoPanelID,
                                     List<ToDoList> listOfToDo) {
         this.listOfToDo = listOfToDo;
         this.error = error;

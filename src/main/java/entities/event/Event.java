@@ -11,7 +11,7 @@ public interface Event {
      *
      * @return its ID
      */
-    int getID();
+    long getID();
 
     /**
      * Return the name of the Event

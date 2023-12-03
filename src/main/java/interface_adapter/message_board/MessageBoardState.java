@@ -10,22 +10,22 @@ public class MessageBoardState {
     private MessageBoard messageBoard;
     private User user;
     private Message message;
-    private int projectID;
-    private int messageBoardID;
+    private long projectID;
+    private long messageBoardID;
 
-    public void setProjectID(int projectID) {
+    public void setProjectID(long projectID) {
         this.projectID = projectID;
     }
 
-    public void setMessageBoardID(int messageBoardID) {
+    public void setMessageBoardID(long messageBoardID) {
         this.messageBoardID = messageBoardID;
     }
 
-    public int getProjectID() {
+    public long getProjectID() {
         return projectID;
     }
 
-    public int getMessageBoardID() {
+    public long getMessageBoardID() {
         return messageBoardID;
     }
 

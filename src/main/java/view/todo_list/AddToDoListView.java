@@ -111,7 +111,7 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
                     }
 
                     AddToDoListState state = addToDoListViewModel.getState();
-                    addToDoListController.mainLogic(state.getName(), state.getDetail(), 0, 0); // ToDo: fix listid.
+                    addToDoListController.mainLogic(state.getName(), state.getDetail(), state.getToDoPanelID(), state.getProjectID());
                     viewManagerModel.setActiveView(toDoPanelViewModel.getViewName());
                     viewManagerModel.firePropertyChanged();
                 }

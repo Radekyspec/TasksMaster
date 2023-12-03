@@ -7,11 +7,11 @@ import entities.user.User;
 import java.util.List;
 
 public interface MessageBoardUserDataAccessInterface {
-    List<Message> getMessages(int projectID, int messageBoardID);
+    List<Message> getMessages(long projectID, long messageBoardID);
 
-    List<Comment> getComments(int projectID, int messageID);
+    List<Comment> getComments(long projectID, long messageID);
 
-    Comment addComment(int projectID, int messageID, User user, String newComment);
+    Comment addComment(long projectID, long messageID, User user, String newComment);
 
-    Message addMessage(int projectID, int messageBoardID, User author, String messageTitle, String messageContent);
+    Message addMessage(long projectID, long messageBoardID, User author, String messageTitle, String messageContent);
 }

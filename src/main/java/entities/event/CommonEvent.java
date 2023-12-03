@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CommonEvent implements Event {
 
-    private final int ID;
+    private final long ID;
     private final String name;
     private final String notes;
     private final LocalDateTime startsAt;
@@ -26,7 +26,7 @@ public class CommonEvent implements Event {
      * @param endsAt   ending time of event
      * @param isAllDay whether the event is all day
      */
-    public CommonEvent(int id, String name, String notes, LocalDateTime startsAt, LocalDateTime endsAt,
+    public CommonEvent(long id, String name, String notes, LocalDateTime startsAt, LocalDateTime endsAt,
                        boolean isAllDay) {
         ID = id;
         this.name = name;
@@ -43,7 +43,7 @@ public class CommonEvent implements Event {
      * @return its ID
      */
     @Override
-    public int getID() {
+    public long getID() {
         return ID;
     }
 

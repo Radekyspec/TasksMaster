@@ -10,18 +10,18 @@ public class ScheduleState {
     private User user;
     private Schedule schedule;
     private Event event;
-    private int projectId;
-    private int scheduleId;
+    private long projectId;
+    private long scheduleId;
 
-    public void setProjectId(int projectId) { this.projectId = projectId; }
+    public void setProjectId(long projectId) { this.projectId = projectId; }
 
-    public void setScheduleId(int scheduleId) { this.scheduleId = scheduleId; }
+    public void setScheduleId(long scheduleId) { this.scheduleId = scheduleId; }
 
     public void setEvent(Event event) { this.event = event; }
 
-    public int getProjectId() { return projectId; }
+    public long getProjectId() { return projectId; }
 
-    public int getScheduleId() { return scheduleId; }
+    public long getScheduleId() { return scheduleId; }
 
     public Event getEvent() { return event; }
 

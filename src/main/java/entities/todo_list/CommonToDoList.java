@@ -6,13 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonToDoList implements ToDoList {
-    private final Integer listID;
-    private final Integer projectID;
+    private final long listID;
+    private final long projectID;
     private final String name;
     private final String detail;
-    private final Map<Integer, ToDo> toDos;
+    private final Map<Long, ToDo> toDos;
 
-    public Integer getProjectID() {
+    public long getProjectID() {
         return projectID;
     }
 
@@ -24,7 +24,7 @@ public class CommonToDoList implements ToDoList {
      * @param name      the name
      * @param detail    the detail
      */
-    public CommonToDoList(int listID, Integer projectID, String name, String detail) {
+    public CommonToDoList(long listID, long projectID, String name, String detail) {
         this.listID = listID;
         this.projectID = projectID;
         this.name = name;
@@ -38,7 +38,7 @@ public class CommonToDoList implements ToDoList {
      * @return its listID.
      */
     @Override
-    public Integer getListID() {
+    public long getListID() {
         return this.listID;
     }
 
@@ -70,7 +70,7 @@ public class CommonToDoList implements ToDoList {
      * @return A map contains pairs of id and to_do.
      */
     @Override
-    public Map<Integer, ToDo> getToDos() {
+    public Map<Long, ToDo> getToDos() {
         return this.toDos;
     }
 

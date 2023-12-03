@@ -12,7 +12,7 @@ public interface Project {
      *
      * @return its ID
      */
-    int getID();
+    long getID();
 
     String getLeader();
 

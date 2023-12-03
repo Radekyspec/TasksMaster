@@ -25,10 +25,10 @@ public class AddToDoListInteractor implements AddToDoListInputBoundary{
     @Override
     public void execute(AddToDoListInputData inputData) {
         ToDoList toDoList = userDAO.createToDoList(
-                inputData.getProjectID(),
-                inputData.getPanelID(),
-                inputData.getName(),
-                inputData.getDetail()
+                inputData.projectID(),
+                inputData.panelID(),
+                inputData.name(),
+                inputData.detail()
         );
         if (toDoList == null) {
             AddToDoListOutputData outputData = new AddToDoListOutputData(

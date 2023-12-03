@@ -9,7 +9,7 @@ public class CommonToDoListFactory {
      * @param detail a brief description word that talks about this To_DoList.
      * @return a CommonToDoList
      */
-    public static CommonToDoList create(Integer listID, Integer projectID, String name, String detail) {
+    public static CommonToDoList create(long listID, long projectID, String name, String detail) {
         return new CommonToDoList(listID, projectID, name, detail);
     }
 }

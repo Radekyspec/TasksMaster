@@ -6,15 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonMessageBoard implements MessageBoard {
-    int ID;
-    Map<Integer, Message> messages;
+    long ID;
+    Map<Long, Message> messages;
 
     /**
      * Build a new MessageBoard which containing many massage
      *
      * @param ID the ID of the messageBoard
      */
-    public CommonMessageBoard(int ID) {
+    public CommonMessageBoard(long ID) {
         this.ID = ID;
         messages = new HashMap<>();
     }
@@ -25,7 +25,7 @@ public class CommonMessageBoard implements MessageBoard {
      * @return its ID
      */
     @Override
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
@@ -35,7 +35,7 @@ public class CommonMessageBoard implements MessageBoard {
      * @return its messages
      */
     @Override
-    public Map<Integer, Message> getMessage() {
+    public Map<Long, Message> getMessage() {
         return messages;
     }
 

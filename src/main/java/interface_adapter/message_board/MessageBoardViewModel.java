@@ -30,7 +30,7 @@ public class MessageBoardViewModel extends ViewModel {
         return messageBoardState;
     }
 
-    public void setProjectID(int projectID) {
+    public void setProjectID(long projectID) {
         messageBoardState.setProjectID(projectID);
     }
 

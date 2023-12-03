@@ -14,7 +14,7 @@ public interface AddToDoUserDataAccessInterface {
      * @param progress   receive progress
      * @return a finished, non-empty ToDoList.
      */
-    ToDo createToDo(Integer toDoID, Integer listID, String target, String[] assignedTo, String progress);
+    ToDo createToDo(long toDoID, long listID, String target, String[] assignedTo, String progress);
     /**
      * namely
      * @return A string which is the Api error Message.
