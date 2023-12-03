@@ -38,6 +38,7 @@ public class MessageInteractor implements MessageInputBoundary {
         User user = messageInputData.user();
         String newComment = messageInputData.newComment();
         Comment comment = userDataAccessInterface.addComment(projectID,messageID,user,newComment);
+        System.out.println(comment == null);
         if (comment == null){
             messagePresenter.prepareAddCommentsFailView();
         }else {
