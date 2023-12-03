@@ -7,12 +7,12 @@ public interface AddToDoListUserDataAccessInterface {
      * Create a new to_do List. Add data passed in.
      *  Data should come from an Interactor.
      * @param projectID receive projectID
-     * @param listID receive listID
+     * @param toDoPanelID receive listID
      * @param name receive name
      * @param detail receive detail
      * @return a finished, non-empty ToDoList.
      */
-    ToDoList createToDoList(Integer projectID, Integer listID, String name, String detail);
+    ToDoList createToDoList(long projectID, long toDoPanelID, String name, String detail);
 
     /**
      * namely

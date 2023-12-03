@@ -10,7 +10,7 @@ public class AddToDoListController {
         this.interactor = interactor;
     }
 
-    public void mainLogic(String name, String detail, Integer listID, Integer projectID) {
-        interactor.execute(new AddToDoListInputData(name, detail, listID, projectID));
+    public void mainLogic(String name, String detail, long toDoPanelID, long projectID) {
+        interactor.execute(new AddToDoListInputData(name, detail, toDoPanelID, projectID));
     }
 }

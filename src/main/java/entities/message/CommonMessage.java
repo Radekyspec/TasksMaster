@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonMessage implements Message {
-    private final int ID;
+    private final long ID;
     private final String author;
     private final String title;
     private final String content;
-    private final Map<Integer, Comment> comments;
+    private final Map<Long, Comment> comments;
 
     /**
      * build up the CommonMessage object
@@ -21,7 +21,7 @@ public class CommonMessage implements Message {
      * @param title   the tittle of message
      * @param content the content of message
      */
-    public CommonMessage(int ID, String author, String title, String content) {
+    public CommonMessage(long ID, String author, String title, String content) {
         this.ID = ID;
         this.author = author;
         this.title = title;
@@ -36,7 +36,7 @@ public class CommonMessage implements Message {
      * @return its ID
      */
     @Override
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
@@ -76,7 +76,7 @@ public class CommonMessage implements Message {
      * @return its comments
      */
     @Override
-    public Map<Integer, Comment> getComments() {
+    public Map<Long, Comment> getComments() {
         return comments;
     }
 

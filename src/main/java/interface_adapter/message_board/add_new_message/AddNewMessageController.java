@@ -11,7 +11,7 @@ public class AddNewMessageController {
         this.addNewMessageUseCaseInteractor = addNewMessageUseCaseInteractor;
     }
 
-    public void postMessage(int projectID, int messageBoardID, User author,
+    public void postMessage(long projectID, long messageBoardID, User author,
                             String messageTitle, String messageContent) {
         AddNewMessageInputData addNewMessageInputData = new AddNewMessageInputData(projectID, messageBoardID, author,
                 messageTitle, messageContent);

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommonSchedule implements Schedule {
-    private final int ID;
+    private final long ID;
     private final List<Event> events;
 
     /**
@@ -14,7 +14,7 @@ public class CommonSchedule implements Schedule {
      *
      * @param id the id of the schedule
      */
-    public CommonSchedule(int id) {
+    public CommonSchedule(long id) {
         ID = id;
         this.events = new ArrayList<>();
     }
@@ -24,7 +24,7 @@ public class CommonSchedule implements Schedule {
      *
      * @return the ID of the schedule
      */
-    public int getId() {
+    public long getId() {
         return ID;
     }
 

@@ -3,7 +3,7 @@ package interface_adapter.todo.add_todo;
 import entities.todo.ToDo;
 
 public class AddToDoState {
-    private Integer toDoID;
+    private long toDoID;
     private String target;
     private String[] assignTo;
     private String progress;
@@ -33,11 +33,11 @@ public class AddToDoState {
         this.progress = progress;
     }
 
-    public Integer getToDoID() {
+    public long getToDoID() {
         return toDoID;
     }
 
-    public void setToDoID(Integer toDoID) {
+    public void setToDoID(long toDoID) {
         this.toDoID = toDoID;
     }
 

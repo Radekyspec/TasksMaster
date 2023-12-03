@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ScheduleState {
     private Event event;
-    private int projectId;
-    private int scheduleId;
+    private long projectId;
+    private long scheduleId;
     private String eventName;
     private String notes;
     private Date startAt;
@@ -20,9 +20,10 @@ public class ScheduleState {
     private List<String> userwith;
 
     public void setEvent(Event event) { this.event = event; }
-    public void setProjectId(int projectId) { this.projectId = projectId; }
 
-    public void setScheduleId(int scheduleId) { this.scheduleId = scheduleId; }
+    public void setProjectId(long projectId) { this.projectId = projectId; }
+
+    public void setScheduleId(long scheduleId) { this.scheduleId = scheduleId; }
 
     public void setEventName(String eventName) { this.eventName = eventName; }
 
@@ -40,9 +41,9 @@ public class ScheduleState {
         this.userwith = userwith;
     }
 
-    public int getProjectId() { return projectId; }
+    public long getProjectId() { return projectId; }
 
-    public int getScheduleId() { return scheduleId; }
+    public long getScheduleId() { return scheduleId; }
 
     public String getEventName() {
         return eventName;

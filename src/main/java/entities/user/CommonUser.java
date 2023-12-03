@@ -5,7 +5,7 @@ import entities.organization.Organization;
 import java.time.LocalDateTime;
 
 public class CommonUser implements User {
-    private final int ID;
+    private final long ID;
     private Organization organization;
     private final String name;
     private final String password;
@@ -22,7 +22,7 @@ public class CommonUser implements User {
      * @param createDateTime the time when user account created
      * @param email          the email user used to sign up account
      */
-    public CommonUser(int ID, String name, String password, LocalDateTime createDateTime, String email) {
+    public CommonUser(long ID, String name, String password, LocalDateTime createDateTime, String email) {
         this.ID = ID;
         organization = null;
         this.name = name;
@@ -37,7 +37,7 @@ public class CommonUser implements User {
      * @return its ID
      */
     @Override
-    public int getID() {
+    public long getID() {
         return ID;
     }
 

@@ -16,7 +16,7 @@ public class CommonUserFactory {
      * @param email          the email user used to sign up account
      * @return a new user object
      */
-    public static User create(int ID, String name, String password, LocalDateTime createDateTime, String email) {
+    public static User create(long ID, String name, String password, LocalDateTime createDateTime, String email) {
         return new CommonUser(ID, name, password, createDateTime, email);
     }
 }

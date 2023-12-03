@@ -13,12 +13,12 @@ public class MessageController {
         this.messageUseCaseInteractor = messageUseCaseInteractor;
     }
 
-    public void getComments(int projectID, int messageID) {
+    public void getComments(long projectID, long messageID) {
         MessageInputData messageInputData = new MessageInputData(projectID, messageID, null, null);
         messageUseCaseInteractor.getComments(messageInputData);
     }
 
-    public void addNewComment(int projectID, int messageID, User user, String newComment) {
+    public void addNewComment(long projectID, long messageID, User user, String newComment) {
         MessageInputData messageInputData = new MessageInputData(projectID, messageID, user, newComment);
         messageUseCaseInteractor.addComments(messageInputData);
     }

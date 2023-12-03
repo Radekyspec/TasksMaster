@@ -10,12 +10,12 @@ public interface ToDoPanel {
      *
      * @return its ID.
      */
-    Integer getId();
+    long getId();
 
     /**
      * Returns lists of this obj.
      *
      * @return all the TO_DOList managed by this panel.
      */
-    Map<Integer, ToDoList> getLists();
+    Map<Long, ToDoList> getLists();
 }

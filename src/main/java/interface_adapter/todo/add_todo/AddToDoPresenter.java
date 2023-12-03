@@ -27,8 +27,8 @@ public class AddToDoPresenter implements AddToDoOutputBoundary {
         if (outputData.isUseCaseFailed()) {
             return;
         }
-        toDoViewModel.getState().setNewCreatedToDo(outputData.getToDo());
-        addToDoViewModel.firePropertyChanged(AddToDo);
+//        toDoViewModel.getState().setNewCreatedToDo(outputData.getToDo());
+//        addToDoViewModel.firePropertyChanged(AddToDo);
     }
 
     @Override

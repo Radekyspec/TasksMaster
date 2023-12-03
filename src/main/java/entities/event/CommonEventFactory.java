@@ -13,7 +13,7 @@ public class CommonEventFactory {
      * @param endsAt   ending time of event
      * @param isAllDay whether the event is all day
      */
-    public static CommonEvent create(int id, String name, String notes, LocalDateTime startsAt, LocalDateTime endsAt,
+    public static CommonEvent create(long id, String name, String notes, LocalDateTime startsAt, LocalDateTime endsAt,
                                      boolean isAllDay) {
         return new CommonEvent(id, name, notes, startsAt, endsAt, isAllDay);
     }

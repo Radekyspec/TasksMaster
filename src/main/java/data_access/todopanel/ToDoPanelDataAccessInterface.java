@@ -12,7 +12,7 @@ public interface ToDoPanelDataAccessInterface {
      * @param toDoPanelID namely.
      * @return A list of ToDoList.
      */
-    List<ToDoList> importToDoList(Integer projectID, Integer toDoPanelID);
+    List<ToDoList> importToDoList(long projectID, long toDoPanelID);
 
     /**
      * namely

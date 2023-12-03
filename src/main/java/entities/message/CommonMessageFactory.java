@@ -11,7 +11,7 @@ public class CommonMessageFactory {
      * @param title  the tittle of message
      * @param content the content of message
      */
-    public static CommonMessage create(int ID, String author, String title, String content) {
+    public static CommonMessage create(long ID, String author, String title, String content) {
         return new CommonMessage(ID, author, title, content);
     }
 }

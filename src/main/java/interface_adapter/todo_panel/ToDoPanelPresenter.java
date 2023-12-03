@@ -14,11 +14,13 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
 
     @Override
     public void prepareInitializeSuccessView(ToDoPanelOutputData toDoPanelOutputData) {
-        if (toDoPanelOutputData.isUseCaseFailed()) {
+        if (toDoPanelOutputData.useCaseFailed()) {
             return;
         }
-        toDoPanelViewModel.getState().setCurrentToDoPanel(toDoPanelOutputData.getToDoPanel());
-        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.INITIALIZE_TODO_PANEL);
+        for (ToDoList toDoList : toDoPanelOutputData.toDoList()) {
+            toDoPanelViewModel.getState().setNewCreatedTDL(toDoList);
+            toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
+        }
     }
 
     @Override
@@ -44,10 +46,10 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
 
     @Override
     public void prepareInitializeFailView(ToDoPanelOutputData toDoPanelOutputData) {
-        if (!toDoPanelOutputData.isUseCaseFailed()) {
+        if (!toDoPanelOutputData.useCaseFailed()) {
             return;
         }
-        toDoPanelViewModel.getState().setToDoPanelError(toDoPanelOutputData.getError());
-        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.INITIALIZE_TODO_PANEL_FAILED);
+        toDoPanelViewModel.getState().setImportToDoListError(toDoPanelOutputData.error());
+        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST_FAILED);
     }
 }

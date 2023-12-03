@@ -20,8 +20,8 @@ public class MessageInteractor implements MessageInputBoundary {
 
     @Override
     public void getComments(MessageInputData messageInputData) {
-        int projectID = messageInputData.projectID();
-        int messageID = messageInputData.messageID();
+        long projectID = messageInputData.projectID();
+        long messageID = messageInputData.messageID();
         List<Comment> comments = userDataAccessInterface.getComments(projectID, messageID);
         MessageOutputData messageOutputData = new MessageOutputData(comments);
         messagePresenter.prepareGetCommentsSuccessView(messageOutputData);
@@ -29,8 +29,8 @@ public class MessageInteractor implements MessageInputBoundary {
 
     @Override
     public void addComments(MessageInputData messageInputData) {
-        int projectID = messageInputData.projectID();
-        int messageID = messageInputData.messageID();
+        long projectID = messageInputData.projectID();
+        long messageID = messageInputData.messageID();
         User user = messageInputData.user();
         String newComment = messageInputData.newComment();
         Comment comment = userDataAccessInterface.addComment(projectID,messageID,user,newComment);

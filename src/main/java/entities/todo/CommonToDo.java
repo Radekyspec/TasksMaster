@@ -3,14 +3,14 @@ package entities.todo;
 import javax.swing.*;
 
 public class CommonToDo implements ToDo {
-    private Integer ID; // No one will pass an id inside, create a unique id once it created
+    private long ID; // No one will pass an id inside, create a unique id once it created
     private String progress;
 
     private String target;
     private String[] assignedTo;
     // Do we need to make it all final here? Do we need to change it afterward?
 
-    public CommonToDo(Integer ID, String target, String[] assignedTo, String progress) {
+    public CommonToDo(long ID, String target, String[] assignedTo, String progress) {
         this.target = target;
         this.assignedTo = assignedTo;
         this.ID = ID;
@@ -33,7 +33,7 @@ public class CommonToDo implements ToDo {
      * @return its ID.
      */
     @Override
-    public Integer getID() {
+    public long getID() {
         return this.ID;
     }
 

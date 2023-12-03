@@ -11,7 +11,7 @@ public class CommonOrganizationFactory {
      * @param owner the owner of organization
      * @return a new CommonOrganization object
      */
-    public static CommonOrganization create(int ID, String name, User owner) {
+    public static CommonOrganization create(long ID, String name, User owner) {
         return new CommonOrganization(ID, name, owner);
     }
 }
