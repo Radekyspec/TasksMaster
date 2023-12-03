@@ -17,8 +17,8 @@ public class AddToDoViewModel extends ViewModel {
         return addToDoState;
     }
 
-    public AddToDoViewModel(String viewName) {
-        super(viewName);
+    public AddToDoViewModel() {
+        super("add todo");
     }
 
     @Override
@@ -26,6 +26,9 @@ public class AddToDoViewModel extends ViewModel {
         propertyChangeSupport.firePropertyChange("add todo", null, addToDoState);
     }
 
+    public void firePropertyChanged(String propertyName) {
+        propertyChangeSupport.firePropertyChange(propertyName, null, addToDoState);
+    }
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {}
 }

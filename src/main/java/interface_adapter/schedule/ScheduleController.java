@@ -1,8 +1,7 @@
 package interface_adapter.schedule;
 
-import entities.user.User;
 import use_case.schedule.ScheduleInputBoundary;
-import  use_case.schedule.ScheduleInputData;
+import use_case.schedule.ScheduleInputData;
 
 import java.util.Date;
 import java.util.List;

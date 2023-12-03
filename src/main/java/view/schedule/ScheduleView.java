@@ -12,6 +12,7 @@ import interface_adapter.schedule.event.AddEventState;
 import interface_adapter.schedule.event.AddEventViewModel;
 import view.JButtonWithFont;
 import view.JLabelWithFont;
+import interface_adapter.schedule.ScheduleViewModel;
 
 import javax.swing.*;
 import java.awt.*;

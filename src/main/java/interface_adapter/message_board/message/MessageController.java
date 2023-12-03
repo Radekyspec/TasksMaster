@@ -1,6 +1,5 @@
 package interface_adapter.message_board.message;
 
-import entities.message.Message;
 import entities.user.User;
 import use_case.message_board.message.MessageInputBoundary;
 import use_case.message_board.message.MessageInputData;

@@ -13,6 +13,7 @@ public class ToDoListViewModel extends ViewModel {
     public static final String IMPORT_TODO = "import todo";
     public static final String IMPORT_SINGLE_TODO = "import single todo";
     public static final String IMPORT_TODO_LIST_FAILED = "import error";
+    public static final String TITLE_LABEL = "ToDo List";
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private final ToDoListState state = new ToDoListState();
     

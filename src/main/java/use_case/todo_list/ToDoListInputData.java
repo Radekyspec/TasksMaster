@@ -1,9 +1,5 @@
 package use_case.todo_list;
 
-import entities.todo_list.ToDoList;
-
-import java.util.Map;
-
 public class ToDoListInputData {
     private final long projectID;
     private final long toDoListID;

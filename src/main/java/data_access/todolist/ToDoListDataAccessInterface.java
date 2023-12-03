@@ -1,11 +1,8 @@
 package data_access.todolist;
 
 import entities.todo.ToDo;
-import entities.todo_list.ToDoList;
-import entities.todo_panel.ToDoPanel;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ToDoListDataAccessInterface {
     /**
