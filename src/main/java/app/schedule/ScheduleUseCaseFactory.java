@@ -18,7 +18,7 @@ public class ScheduleUseCaseFactory {
 
     }
 
-    public static ScheduleView create(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, ScheduleViewModel scheduleViewModel, AddEventViewModel addEventViewModel, ScheduleDataAccessInterface scheduleDataAccessInterface) {
+    public static ScheduleView create(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, ScheduleViewModel scheduleViewModel, AddEventViewModel addEventViewModel,ScheduleDataAccessInterface scheduleDataAccessInterface) {
         return  new ScheduleView(viewManagerModel,mainProjectViewModel,scheduleViewModel,addEventViewModel,ScheduleUseCaseFactory.createController(scheduleViewModel, scheduleDataAccessInterface));
     }
 

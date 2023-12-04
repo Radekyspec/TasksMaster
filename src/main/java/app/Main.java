@@ -8,6 +8,8 @@ import app.project.ProjectUseCaseFactory;
 import app.project.add.AddProjectUseCaseFactory;
 import app.project.add_people.AddPeopleUseCaseFactory;
 import app.project.choose.ChooseProjectUseCaseFactory;
+import app.schedule.ScheduleUseCaseFactory;
+import app.schedule.add_new_event.AddNewEventUseCaseFactory;
 import app.signup.SignupUseCaseFactory;
 import app.todo.AddToDoUseCaseFactory;
 import app.todo_list.AddToDoListUseCaseFactory;
@@ -26,6 +28,7 @@ import interface_adapter.project.add.AddProjectViewModel;
 import interface_adapter.project.add_people.AddPeopleViewModel;
 import interface_adapter.project.choose.ChooseProjectViewModel;
 import interface_adapter.schedule.ScheduleViewModel;
+import interface_adapter.schedule.event.AddEventViewModel;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.todo.add_todo.AddToDoViewModel;
 import interface_adapter.todo_list.ToDoListViewModel;
@@ -40,6 +43,8 @@ import view.project.MainProjectView;
 import view.project.add.AddProjectView;
 import view.project.add_people.AddPeopleView;
 import view.project.choose.ChooseProjectView;
+import view.schedule.ScheduleView;
+import view.schedule.AddNewEventView;
 import view.signup.SignupView;
 import view.todo.AddToDoView;
 import view.todo_list.AddToDoListView;
@@ -91,6 +96,7 @@ public class Main {
         AddToDoViewModel addToDoViewModel = new AddToDoViewModel();
 
         ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
+        AddEventViewModel addEventViewModel = new AddEventViewModel();
 
         SignupView signupView = SignupUseCaseFactory.create(
                 viewManagerModel, signupViewModel, loginViewModel, userDAO);
@@ -126,6 +132,8 @@ public class Main {
         );
         AddNewMessageView addNewMessageView = AddNewMessageUseCaseFactory.create(viewManagerModel, addNewMessageViewModel,messageBoardViewModel, userDAO);
         MessageView messageView = MessageUseCaseFactory.create(viewManagerModel, messageViewModel, messageBoardViewModel, userDAO);
+        ScheduleView scheduleView = ScheduleUseCaseFactory.create(viewManagerModel, mainProjectViewModel, scheduleViewModel, addEventViewModel, userDAO);
+        AddNewEventView addNewEventView = AddNewEventUseCaseFactory.create(viewManagerModel, addEventViewModel, scheduleViewModel, userDAO);
 
         views.add(signupView, signupView.getViewName());
         views.add(loginView, loginView.getViewName());
@@ -140,6 +148,8 @@ public class Main {
         views.add(toDoListView, toDoListView.getViewName());
         views.add(addToDoListView, addToDoListView.getViewName());
         views.add(addToDoView, addToDoView.getViewName());
+        views.add(scheduleView, scheduleView.getViewName());
+        views.add(addNewEventView, addNewEventView.getViewName());
 
         viewManagerModel.setActiveView(loginView.getViewName());
         viewManagerModel.firePropertyChanged();

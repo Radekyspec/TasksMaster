@@ -8,13 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 public class AddEventViewModel extends ViewModel{
-    public final String EVENT_NAME = "Event Title";
-    public final String EVENT_NOTES = "Event Notes";
-    public final String EVENT_STARTDATE = "Start at";
-    public final String EVENT_ENDDATE = "End at";
-    public final String EVENT_ISALLDAY = "Is all day? Type 'Y' or 'N'";
-    public final String EVENT_USERWITH = "User with? Separate user by using ',' (No space) ";
-    public final String EVENT_POST = "Post this event";
+    public static final String EVENT_NAME = "Event Title";
+    public static final String EVENT_NOTES = "Event Notes";
+    public static final String EVENT_STARTDATE = "Start at (dd-MMM-yyyy)";
+    public static final String EVENT_ENDDATE = "End at (dd-MMM-yyyy)";
+    public static final String EVENT_ISALLDAY = "Is all day? Type 'Y' or 'N'";
+    public static final String EVENT_USERWITH = "User with? Separate user by using ',' (No space) ";
+    public static final String EVENT_POST = "Post this event";
+    public static final String EVENT_POST_FAIL = "Fail to post this event";
 
     private final AddEventState addEventState = new AddEventState();
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);

@@ -113,6 +113,7 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
             ScheduleState scheduleState = scheduleViewModel.getScheduleState();
             scheduleState.setProjectId(project.getID());
             scheduleState.setScheduleId(project.getSchedule().getId());
+            scheduleState.setSchedule(project.getSchedule());
             scheduleViewModel.firePropertyChanged(ScheduleViewModel.SCHEDULE_SET_EVENT);
             viewManagerModel.setActiveView(scheduleViewModel.getViewName());
             viewManagerModel.firePropertyChanged();

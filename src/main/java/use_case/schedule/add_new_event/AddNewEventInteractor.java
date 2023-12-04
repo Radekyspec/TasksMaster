@@ -27,7 +27,12 @@ public class AddNewEventInteractor implements AddNewEventInputBoundary {
         List<String> userWith = addNewEventInputData.getUserWith();
 
         Event event = scheduleDataAccessInterface.addEvents(projectId, scheduleId, eventName, notes, startAt, endAt, isAllDay, userWith);
-        AddNewEventOutputData addNewEventOutputData = new AddNewEventOutputData(event);
-        addNewEventPrensenter.prepareSuccessView(addNewEventOutputData);
+        if (event == null) {
+            addNewEventPrensenter.prepareFailView();
+        } else {
+            AddNewEventOutputData addNewEventOutputData = new AddNewEventOutputData(event);
+            addNewEventPrensenter.prepareSuccessView(addNewEventOutputData);
+        }
+
     }
 }
