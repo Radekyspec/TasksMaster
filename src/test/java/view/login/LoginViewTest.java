@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInputData;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,7 +40,15 @@ class LoginViewTest {
 
     @Test
     void propertyChange() {
-        loginViewModel.getLoginState().setLoginError("123");
+        loginViewModel.getLoginState().setLoginError("error message test");
+
+        Timer t = new Timer(1000, e -> {for (Window window : Window.getWindows()) {
+            if (window instanceof JDialog) {
+                window.dispose();
+            }
+        }});
+        t.setRepeats(false);
+        t.start();
         loginViewModel.firePropertyChanged();
     }
 
