@@ -101,9 +101,6 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!buttonToMessage.containsKey((JButton) e.getSource())) {
-            return;
-        }
         Message message = buttonToMessage.get((JButton) e.getSource());
         MessageState state = messageViewModel.getState();
         state.setMessage(message);

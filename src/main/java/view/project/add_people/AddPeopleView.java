@@ -18,7 +18,7 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class AddPeopleView extends JPanel implements ActionListener, PropertyChangeListener {
+public class AddPeopleView extends JPanel{
     private Project project;
     private final ViewManagerModel viewManagerModel;
     private final AddPeopleViewModel addPeopleViewModel;
@@ -87,27 +87,6 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
         bottom.add(enter);
         bottom.add(back);
         this.add(bottom);
-    }
-
-    /**
-     * Invoked when an action occurs.
-     *
-     * @param e the event to be processed
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    /**
-     * This method gets called when a bound property is changed.
-     *
-     * @param evt A PropertyChangeEvent object describing the event source
-     *            and the property that has changed.
-     */
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-
     }
 
     public String getViewName(){

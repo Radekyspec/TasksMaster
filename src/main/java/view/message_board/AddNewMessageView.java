@@ -17,7 +17,7 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class AddNewMessageView extends JPanel implements ActionListener, PropertyChangeListener {
+public class AddNewMessageView extends JPanel{
     private final ViewManagerModel viewManagerModel;
     private final AddNewMessageViewModel addNewMessageViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
@@ -105,26 +105,6 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
         this.add(bottom);
     }
 
-    /**
-     * Invoked when an action occurs.
-     *
-     * @param e the event to be processed
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    /**
-     * This method gets called when a bound property is changed.
-     *
-     * @param evt A PropertyChangeEvent object describing the event source
-     *            and the property that has changed.
-     */
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-
-    }
 
     public String getViewName(){
         return addNewMessageViewModel.getViewName();
