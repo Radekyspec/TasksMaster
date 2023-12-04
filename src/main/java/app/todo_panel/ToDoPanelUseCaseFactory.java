@@ -16,12 +16,12 @@ import view.todo_panel.ToDoPanelView;
 public class ToDoPanelUseCaseFactory {
     private ToDoPanelUseCaseFactory() {}
 
-    public static ToDoPanelView create(ViewManagerModel viewManagerModel, AddToDoListViewModel addToDoListViewModel, MainProjectViewModel mainProjectViewModel,
+    public static ToDoPanelView create(ViewManagerModel viewManagerModel, AddToDoListViewModel addToDoListViewModel,MainProjectViewModel mainProjectViewModel,
                                        ToDoPanelViewModel toDoPanelViewModel, ToDoListViewModel toDoListViewModel,
                                        ToDoPanelDataAccessInterface userDAO) {
         ToDoPanelController controller = createController(toDoPanelViewModel, userDAO);
         return new ToDoPanelView(
-                viewManagerModel, toDoPanelViewModel, addToDoListViewModel, mainProjectViewModel, controller, toDoListViewModel);
+                viewManagerModel, toDoPanelViewModel, addToDoListViewModel, mainProjectViewModel, viewManagerModel, controller, toDoListViewModel);
     }
 
     public static ToDoPanelController createController(

@@ -13,8 +13,10 @@ import view.JButtonWithFont;
 import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ToDoListView extends JPanel implements PropertyChangeListener {
@@ -28,7 +30,7 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
     private JPanel toDoViews;
     private final JTextField nameInputField = new JTextField();
     private final ToDoListController toDoListController;
-    private Map<JCheckBox, ToDo> buttonToDoMap;
+    private Map<JCheckBox, ToDo> buttonToDoMap = new HashMap<>();
     private final AddToDoViewModel addToDoViewModel;
 
     public ToDoListView(ViewManagerModel viewManagerModel,
@@ -74,10 +76,16 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
-        JLabelWithFont title = new JLabelWithFont(ToDoListViewModel.TITLE_LABEL);
+        JLabelWithFont title = new JLabelWithFont(ToDoListViewModel.TITLE_LABEL, Font.BOLD, 32);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         title.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(Box.createVerticalGlue());
         this.add(title);
+        this.add(Box.createVerticalGlue());
+        title.setAlignmentX(CENTER_ALIGNMENT);
         this.add(toDoViews);
+        toDoViews.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(Box.createVerticalGlue());
         this.add(buttons);
     }
     /**
@@ -92,9 +100,6 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
         ToDoListState state = (ToDoListState) evt.getNewValue();
         switch (evt.getPropertyName()) {
             case ToDoListViewModel.IMPORT_TODO_LIST -> {
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Import success! \nAble to continue.");
                 this.toDoList = state.getNewCreatedTDL();
                 this.projectID = state.getProjectID();
                 buttonToDoMap.clear();
@@ -107,8 +112,8 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
             case ToDoListViewModel.IMPORT_TODO -> {
                 for (ToDo toDo : state.getListOfToDo()) {
                     this.toDoList.addToDos(toDo);
-                    JCheckBox newToDo = new JCheckBox(
-                            state.getNewToDo().getProgress() + "-" + state.getNewToDo().getTarget());
+                    JCheckBox newToDo = new JCheckBox(toDo.getTarget());
+                    newToDo.setFont(new Font("Times New Roman", Font.PLAIN, 26));
                     buttonToDoMap.put(newToDo, toDo);
                     toDoViews.add(newToDo);
                     newToDo.addActionListener(
@@ -124,8 +129,8 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
             case ToDoListViewModel.IMPORT_SINGLE_TODO -> {
                 ToDo toDo = state.getNewToDo();
                 this.toDoList.addToDos(toDo);
-                JCheckBox newToDo = new JCheckBox(
-                        state.getNewToDo().getProgress() + "-" + state.getNewToDo().getTarget());
+                JCheckBox newToDo = new JCheckBox(state.getNewToDo().getTarget());
+                newToDo.setFont(new Font("Times New Roman", Font.PLAIN, 26));
                 buttonToDoMap.put(newToDo, toDo);
                 toDoViews.add(newToDo);
                 newToDo.addActionListener(
