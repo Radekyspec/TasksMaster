@@ -81,6 +81,10 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         this.add(Box.createVerticalGlue());
         this.add(title);
         title.setAlignmentX(CENTER_ALIGNMENT);
+        JLabelWithFont messageHere = new JLabelWithFont("Messages Here", Font.BOLD, 32);
+        messageHere.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(Box.createVerticalGlue());
+        this.add(messageHere);
         this.add(Box.createVerticalGlue());
         this.add(messages);
         JPanel bottom = new JPanel();
@@ -126,9 +130,6 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 this.messageBoard = state.getMessageBoard();
                 this.messageBoardID = state.getMessageBoardID();
                 messages.removeAll();
-                JLabelWithFont messageTitle = new JLabelWithFont("Messages Here", Font.BOLD, 32);
-                messageTitle.setAlignmentX(CENTER_ALIGNMENT);
-                messages.add(messageTitle);
                 messageBoardController.getMessages(projectID, messageBoardID);
             } case MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL -> {
                 Message message = state.getMessage();

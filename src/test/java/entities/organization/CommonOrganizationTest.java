@@ -43,12 +43,13 @@ class CommonOrganizationTest {
 
     @Test
     void getProject_set() {
+        organization.addProject(project);
         assertEquals(project, organization.getProject_set().get(project.getID()));
     }
 
     @Test
     void getAddMembers() {
-        assertNull(organization.getMembers());
+        assertEquals(0, organization.getMembers().size());
         organization.addMember(user1);
         organization.addMember(user2);
         assertEquals(2, organization.getMembers().size());

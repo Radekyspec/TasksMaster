@@ -61,6 +61,17 @@ public class CommonOrganization implements Organization {
     /**
      * Return the set of all project of the Organization
      *
+     * @param project
+     * @return its project_set
+     */
+    @Override
+    public void addProject(Project project) {
+        project_set.put(project.getID(), project);
+    }
+
+    /**
+     * Return the set of all project of the Organization
+     *
      * @return its project_set
      */
     @Override

@@ -33,6 +33,7 @@ public interface Organization {
      *
      * @return its project_set
      */
+    void addProject(Project project);
     Map<Long, Project> getProject_set();
 
     /**

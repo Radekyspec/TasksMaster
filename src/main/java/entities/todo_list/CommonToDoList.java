@@ -12,9 +12,6 @@ public class CommonToDoList implements ToDoList {
     private final String detail;
     private final Map<Long, ToDo> toDos;
 
-    public long getProjectID() {
-        return projectID;
-    }
 
     /**
      * build up a to_do list
@@ -81,5 +78,10 @@ public class CommonToDoList implements ToDoList {
     @Override
     public void addToDos(ToDo toDo) {
         toDos.put(toDo.getID(), toDo);
+    }
+
+    @Override
+    public long getProjectID() {
+        return projectID;
     }
 }
