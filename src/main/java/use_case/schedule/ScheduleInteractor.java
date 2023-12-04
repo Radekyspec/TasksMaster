@@ -21,8 +21,14 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         long scheduleId = scheduleInputData.scheduleId();
         long projectId = scheduleInputData.projectId();
         List<Event> events = scheduleDataAccessInterface.getEvents(projectId, scheduleId);
-        ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
-        schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
+        if (events == null) {
+            schedulePresenter.prepareGetEventFailView();
+        } else if (events.isEmpty()){
+            schedulePresenter.prepareGetEventFailView();
+        }else {
+            ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
+            schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
+        }
     }
 
     public void addEvent(ScheduleInputData scheduleInputData) {
@@ -35,9 +41,13 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         boolean isAllDay = scheduleInputData.isAllDay();
         List<String> userWith = scheduleInputData.userWith();
         Event event = scheduleDataAccessInterface.addEvents(projectId,scheduleId,eventName,notes,startAt,endAt,isAllDay,userWith);
-        List<Event> events = new ArrayList<>();
-        events.add(event);
-        ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
-        schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
+        if (event == null) {
+            schedulePresenter.prepareGetEventFailView();
+        } else {
+            List<Event> events = new ArrayList<>();
+            events.add(event);
+            ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
+            schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
+        }
     }
 }

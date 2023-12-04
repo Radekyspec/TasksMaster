@@ -91,7 +91,6 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         bottom.add(addNewMessage);
         bottom.add(back);
         this.add(bottom);
-
     }
 
     /**
