@@ -1,12 +1,14 @@
 package interface_adapter.schedule;
 
 import entities.event.Event;
+import entities.schedule.Schedule;
 
 import java.util.Date;
 import java.util.List;
 
 public class ScheduleState {
     private Event event;
+    private Schedule schedule;
     private long projectId;
     private long scheduleId;
     private String eventName;
@@ -17,6 +19,8 @@ public class ScheduleState {
     private List<String> userwith;
 
     public void setEvent(Event event) { this.event = event; }
+
+    public void setSchedule(Schedule schedule) { this.schedule = schedule; }
 
     public void setProjectId(long projectId) { this.projectId = projectId; }
 
@@ -37,6 +41,10 @@ public class ScheduleState {
     public void setUserwith(List<String> userwith) {
         this.userwith = userwith;
     }
+
+    public Event getEvent() { return this.event; }
+
+    public Schedule getSchedule() { return this.schedule; }
 
     public long getProjectId() { return projectId; }
 

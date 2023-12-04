@@ -1,12 +1,14 @@
 package view.schedule;
 
+import entities.event.Event;
+import entities.schedule.CommonSchedule;
 import entities.schedule.Schedule;
-import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleState;
 import interface_adapter.schedule.ScheduleViewModel;
+import interface_adapter.schedule.event.AddEventState;
 import interface_adapter.schedule.event.AddEventViewModel;
 import view.JButtonWithFont;
 import view.JLabelWithFont;
@@ -25,29 +27,15 @@ import java.util.List;
 import java.util.*;
 
 public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener{
-    private User user;
-    private int projectId;
-    private int ScheduleId;
+    private long projectId;
+    private long scheduleId;
     private Schedule schedule;
     private final ViewManagerModel viewManagerModel;
     private final MainProjectViewModel mainProjectViewModel;
     private final ScheduleViewModel scheduleViewModel;
-    private final AddEventViewModel addEventViewModel;
     private final ScheduleController scheduleController;
+    private final AddEventViewModel addEventViewModel;
     private final JPanel scheduleBoard;
-    private final JPanel addNewEventPanel = new JPanel();
-    private final JPanel eventNameInfo = new JPanel();
-    private final JPanel eventNoteInfo = new JPanel();
-    private final JPanel eventStartInfo = new JPanel();
-    private final JPanel eventEndInfo = new JPanel();
-    private final JPanel eventAllDayInfo = new JPanel();
-    private final JPanel eventUserWithInfo = new JPanel();
-    private final JTextField eventNameInputField = new JTextField();
-    private final JTextField eventNoteInputField = new JTextField();
-    private final JTextField eventStartInputField = new JTextField();
-    private final JTextField eventEndInputField = new JTextField();
-    private final JTextField eventAllDayInputField = new JTextField();
-    private final JTextField eventUserWithInputField = new JTextField();
     private JButton addThisEventButton = new JButton();
 
     public ScheduleView(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, ScheduleViewModel scheduleViewModel, AddEventViewModel addEventViewModel, ScheduleController scheduleController) {
@@ -59,163 +47,19 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
         scheduleViewModel.addPropertyChangeListener(this);
 
         scheduleBoard = new JPanel();
-        ScheduleState scheduleState = scheduleViewModel.getScheduleState();
-        //for (Event event : scheduleController.getEvent(scheduleState.getProjectId(), scheduleState.getScheduleId()) ) {
-        //    return ;
-        //}
+        scheduleBoard.setLayout(new BoxLayout(scheduleBoard, BoxLayout.Y_AXIS));
 
-        addNewEventPanel.add(new JLabelWithFont("Add a new event"));
-        eventNameInfo.add(new JLabelWithFont(addEventViewModel.EVENT_NAME), eventNameInputField);
-        eventNoteInfo.add(new JLabelWithFont(addEventViewModel.EVENT_NOTES), eventNoteInputField);
-        eventStartInfo.add(new JLabelWithFont(addEventViewModel.EVENT_STARTDATE), eventStartInputField);
-        eventEndInfo.add(new JLabelWithFont(addEventViewModel.EVENT_ENDDATE), eventEndInputField);
-        eventAllDayInfo.add(new JLabelWithFont(addEventViewModel.EVENT_ISALLDAY), eventAllDayInputField);
-        eventUserWithInfo.add(new JLabelWithFont(addEventViewModel.EVENT_USERWITH), eventUserWithInfo);
-        addNewEventPanel.add(eventNameInfo);
-        eventNameInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        addEventViewModel.getAddEventState().setEventName(eventNameInputField.getText());
-                    }
-                }
-        );
-
-        eventNoteInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        addEventViewModel.getAddEventState().setNotes(eventNoteInputField.getText());
-                    }
-                }
-        );
-
-        eventStartInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-                        Date start = null;
-                        try {
-                            start = formatter.parse(eventStartInputField.getText());
-                        } catch (ParseException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        addEventViewModel.getAddEventState().setStartAt(start);
-                    }
-                }
-        );
-
-        eventEndInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-                        Date end = null;
-                        try {
-                            end = formatter.parse(eventEndInputField.getText());
-                        } catch (ParseException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        addEventViewModel.getAddEventState().setStartAt(end);
-                    }
-                }
-        );
-
-        eventAllDayInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        boolean allDay;
-                        if (Objects.equals(eventAllDayInputField.getText(), "Y")) {
-                            allDay = true;
-                        } else {
-                            allDay = false;
-                        }
-                        addEventViewModel.getAddEventState().setAllDay(allDay);
-                    }
-                }
-        );
-
-        eventUserWithInputField.addKeyListener(
-                new KeyListener() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-
-                    }
-
-                    @Override
-                    public void keyReleased(KeyEvent e) {
-                        List<String> userWith = new ArrayList<String>(Arrays.asList(eventUserWithInputField.getText().split(",")));
-                        addEventViewModel.getAddEventState().setUserwith(userWith);
-                    }
-                }
-        );
-
-        addThisEventButton = new JButtonWithFont(addEventViewModel.EVENT_POST);
-        addNewEventPanel.add(addThisEventButton);
+        addThisEventButton = new JButtonWithFont(ScheduleViewModel.SCHEDULE_ADD_NEW_EVENT);
         addThisEventButton.addActionListener(
                 e -> {
                     if (!e.getSource().equals(addThisEventButton)){
                         return;
                     }
-                    ScheduleState state = scheduleViewModel.getScheduleState();
-                    scheduleController.addEvent(state.getProjectId(), state.getProjectId(), state.getEventName(), state.getNotes(), state.getStartAt(), state.getEndAt(), state.isAllDay(), state.getUserwith());
+                    viewManagerModel.setActiveView(addEventViewModel.getViewName());
+                    AddEventState addEventState = addEventViewModel.getAddEventState();
+                    addEventState.setProjectId(projectId);
+                    addEventState.setScheduleId(scheduleId);
+                    viewManagerModel.firePropertyChanged();
                 }
         );
 
@@ -235,28 +79,41 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
         this.add(Box.createVerticalGlue());
         this.add(scheduleBoard);
         this.add(Box.createVerticalGlue());
-        this.add(eventNameInfo);
-        this.add(eventNoteInfo);
-        this.add(eventStartInfo);
-        this.add(eventEndInfo);
-        this.add(eventAllDayInfo);
-        this.add(eventUserWithInfo);
-        this.add(addThisEventButton);
+        JPanel bottom = new JPanel();
+        bottom.add(addThisEventButton);
+        bottom.add(back);
+        this.add(bottom);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        ScheduleState state = (ScheduleState) evt.getNewValue();
         switch (evt.getPropertyName()) {
             case ScheduleViewModel.SCHEDULE_SET_EVENT -> {
+                this.projectId = state.getProjectId();
+                this.scheduleId = state.getScheduleId();
+                this.schedule = state.getSchedule();
+                scheduleBoard.removeAll();
+                scheduleController.getEvent(projectId, scheduleId);
             }
             case ScheduleViewModel.SCHEDULE_ADD_NEW_EVENT -> {
-                ScheduleState state = (ScheduleState) evt.getNewValue();
+                Event event = state.getEvent();
+                JLabel addThisEventLabel = new JLabelWithFont(event.getName() + " start at: " + event.getStartsAt() + " end at: " + event.getEndAt());
+                addThisEventLabel.setAlignmentX(LEFT_ALIGNMENT);
+                schedule.addEvent(event);
+                scheduleBoard.add(addThisEventLabel);
+                addThisEventButton.addActionListener(this);
+                addThisEventButton.setPreferredSize(new Dimension(100,35));
+                scheduleBoard.add(addThisEventLabel);
+                this.revalidate();
             }
         }
+    }
+    public String getViewName() {
+        return scheduleViewModel.getViewName();
     }
 }

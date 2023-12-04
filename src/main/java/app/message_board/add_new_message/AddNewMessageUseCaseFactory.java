@@ -1,6 +1,5 @@
 package app.message_board.add_new_message;
 
-
 import data_access.message_board.MessageBoardUserDataAccessInterface;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.message_board.MessageBoardViewModel;
