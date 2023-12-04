@@ -29,7 +29,7 @@ public class LoginUseCaseFactory {
 
     }
 
-    private static LoginController createLoginController(
+    public static LoginController createLoginController(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel,
             ChooseProjectViewModel chooseProjectViewModel, AddProjectViewModel addProjectViewModel,
             MainProjectViewModel mainProjectViewModel,
