@@ -38,7 +38,6 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
         JPanel buttons = new JPanel();
         JPanel chooseProjectPanel = new JPanel();
         projectList.setFont(new Font("Times New Roman", Font.PLAIN, 26));
-        projectList.setPreferredSize(new Dimension(200, 500));
 
         chooseProjectPanel.add(new JLabelWithFont(ChooseProjectViewModel.CHOOSE_YOUR_PROJECT));
         chooseProjectPanel.add(projectList);

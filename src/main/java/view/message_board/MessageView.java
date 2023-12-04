@@ -20,7 +20,9 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MessageView extends JPanel implements ActionListener, PropertyChangeListener {
+public class MessageView extends JPanel implements PropertyChangeListener {
+    private User user;
+    private Message message;
     private final ViewManagerModel viewManagerModel;
     private final MessageViewModel messageViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
@@ -32,8 +34,6 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
     private final JPanel addCommentPanel = new JPanel();
     private final JButton addThisComment = new JButtonWithFont(MessageViewModel.ADD_COMMENT);
     private final JPanel commentBoard;
-    private User user;
-    private Message message;
 
     public MessageView(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel,
                        MessageBoardViewModel messageBoardViewModel, MessageController messageController) {
@@ -106,16 +106,6 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
         bottom.add(addThisComment);
         bottom.add(back);
         this.add(bottom);
-    }
-
-    /**
-     * Invoked when an action occurs.
-     *
-     * @param e the event to be processed
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 
     /**

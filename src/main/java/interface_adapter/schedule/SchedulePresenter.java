@@ -23,6 +23,6 @@ public class SchedulePresenter implements ScheduleOutputBoundary {
     }
 
     public void prepareGetEventFailView() {
-        JOptionPane.showMessageDialog(null, ScheduleViewModel.SCHEDULE_NO_EVENT);
+
     }
 }

@@ -18,7 +18,8 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class AddPeopleView extends JPanel implements ActionListener, PropertyChangeListener {
+public class AddPeopleView extends JPanel{
+    private Project project;
     private final ViewManagerModel viewManagerModel;
     private final AddPeopleViewModel addPeopleViewModel;
     private final MainProjectViewModel mainProjectViewModel;
@@ -26,7 +27,6 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
     private final JLabel title;
     private final JTextField nameInputField = new JTextField(15);
     private final JButton enter = new JButtonWithFont(AddPeopleViewModel.ENTER);
-    private Project project;
 
     public AddPeopleView(ViewManagerModel viewManagerModel, AddPeopleViewModel addPeopleViewModel, MainProjectViewModel mainProjectViewModel, AddPeopleController addPeopleController) {
         this.viewManagerModel = viewManagerModel;
@@ -54,7 +54,7 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
         );
         enter.addActionListener(
                 e -> {
-                    if (!e.getSource().equals(enter)) {
+                    if (!e.getSource().equals(enter)){
                         return;
                     }
                     nameInputField.setText("");
@@ -89,28 +89,7 @@ public class AddPeopleView extends JPanel implements ActionListener, PropertyCha
         this.add(bottom);
     }
 
-    /**
-     * Invoked when an action occurs.
-     *
-     * @param e the event to be processed
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    /**
-     * This method gets called when a bound property is changed.
-     *
-     * @param evt A PropertyChangeEvent object describing the event source
-     *            and the property that has changed.
-     */
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-
-    }
-
-    public String getViewName() {
+    public String getViewName(){
         return addPeopleViewModel.getViewName();
     }
 }

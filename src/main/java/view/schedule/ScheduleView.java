@@ -19,16 +19,16 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener {
+public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener{
+    private long projectId;
+    private long scheduleId;
+    private Schedule schedule;
     private final ViewManagerModel viewManagerModel;
     private final MainProjectViewModel mainProjectViewModel;
     private final ScheduleViewModel scheduleViewModel;
     private final ScheduleController scheduleController;
     private final AddEventViewModel addEventViewModel;
     private final JPanel scheduleBoard;
-    private long projectId;
-    private long scheduleId;
-    private Schedule schedule;
     private JButton addThisEventButton = new JButton();
 
     public ScheduleView(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, ScheduleViewModel scheduleViewModel, AddEventViewModel addEventViewModel, ScheduleController scheduleController) {
@@ -64,7 +64,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                 }
         );
 
-        JLabel title = new JLabelWithFont(ScheduleViewModel.SCHEDULE_TITLE_LABEL, Font.BOLD, 26);
+        JLabel title = new JLabelWithFont(ScheduleViewModel.SCHEDULE_TITLE_LABEL, Font.BOLD, 32);
         title.setAlignmentX(CENTER_ALIGNMENT);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());
@@ -95,12 +95,13 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
             }
             case ScheduleViewModel.SCHEDULE_ADD_NEW_EVENT -> {
                 Event event = state.getEvent();
-                JLabel addThisEventLabel = new JLabelWithFont(event.getName() + "start at: " + event.getStartsAt() + " end at: " + event.getEndAt());
+                JPanel addThisEventPanel = new JPanel();
+                JLabel addThisEventLabel = new JLabelWithFont("Event Name: " + event.getName() + " Start at: " + event.getStartsAt() + " End at: " + event.getEndAt());
+                addThisEventPanel.add(addThisEventLabel);
                 addThisEventLabel.setAlignmentX(LEFT_ALIGNMENT);
                 schedule.addEvent(event);
-                scheduleBoard.add(addThisEventLabel);
+                scheduleBoard.add(addThisEventPanel);
                 addThisEventButton.addActionListener(this);
-                addThisEventButton.setPreferredSize(new Dimension(100, 35));
                 scheduleBoard.add(addThisEventLabel);
                 this.revalidate();
             }
