@@ -1,6 +1,7 @@
 package interface_adapter.schedule;
 
 import entities.event.Event;
+import entities.schedule.Schedule;
 
 import java.util.Date;
 import java.util.List;

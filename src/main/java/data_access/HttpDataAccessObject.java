@@ -128,8 +128,6 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
         return project;
     }
 
-    protected abstract Map<String, User> getAllUsers();
-
     @Override
     public List<Project> getAllProjects() {
         Request request = buildRequest()
