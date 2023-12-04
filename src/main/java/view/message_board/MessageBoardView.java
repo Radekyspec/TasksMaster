@@ -87,6 +87,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         this.add(messageHere);
         this.add(Box.createVerticalGlue());
         this.add(messages);
+        this.add(Box.createVerticalGlue());
         JPanel bottom = new JPanel();
         bottom.add(addNewMessage);
         bottom.add(back);
