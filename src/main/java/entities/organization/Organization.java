@@ -3,7 +3,6 @@ package entities.organization;
 import entities.project.Project;
 import entities.user.User;
 
-import java.lang.reflect.Member;
 import java.util.Map;
 
 public interface Organization {

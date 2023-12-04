@@ -9,9 +9,9 @@ public class AddToDoViewModel extends ViewModel {
     public static final String CONFIRM_NEW_TODO_BUTTON_LABEL = "Create";
     public static final String GO_BACK_BUTTON_LABEL = "Cancel";
     public static final String CREATE_TODO = "create todo";
-    public static final String NAME_IPF = "Create a name for your ToDo";
+    public static final String NAME_IPF = "Create a Target";
     public static final String ADD_TODO_TITLE_LABEL = "Create a ToDo";
-    private PropertyChangeSupport propertyChangeSupport;
+    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private final AddToDoState addToDoState = new AddToDoState();
 
     public AddToDoState getState() {

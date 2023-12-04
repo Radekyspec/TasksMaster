@@ -5,7 +5,6 @@ import entities.schedule.CommonSchedule;
 import entities.schedule.Schedule;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
-import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleState;
 import interface_adapter.schedule.ScheduleViewModel;
@@ -24,8 +23,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
 public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener{
     private long projectId;

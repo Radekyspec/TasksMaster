@@ -23,7 +23,7 @@ public class ChooseProjectUseCaseFactory {
                 ChooseProjectUseCaseFactory.createController(chooseProjectViewModel, mainProjectViewModel, viewManagerModel, userDAO));
     }
 
-    private static ChooseProjectController createController(
+    public static ChooseProjectController createController(
             ChooseProjectViewModel chooseProjectViewModel, MainProjectViewModel mainProjectViewModel, ViewManagerModel viewManagerModel, ChooseProjectUserDataAccessInterface userDAO) {
         ChooseProjectOutputBoundary chooseProjectPresenter = new ChooseProjectPresenter(chooseProjectViewModel, mainProjectViewModel, viewManagerModel);
         ChooseProjectInputBoundary interactor = new ChooseProjectInteractor(chooseProjectPresenter, userDAO);

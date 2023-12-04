@@ -1,9 +1,7 @@
 package entities.project;
 
-import entities.message_board.CommonMessageBoard;
 import entities.message_board.CommonMessageBoardFactory;
 import entities.message_board.MessageBoard;
-import entities.schedule.CommonSchedule;
 import entities.schedule.CommonScheduleFactory;
 import entities.schedule.Schedule;
 import entities.todo_panel.CommonToDoPanelFactory;
@@ -15,7 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class CommonProjectTest {
     private User user1;

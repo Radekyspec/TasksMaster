@@ -21,6 +21,7 @@ public class AddProjectInteractor implements AddProjectInputBoundary {
             AddProjectOutputData outputData = new AddProjectOutputData(
                     null, userDAO.getApiErrorMessage(), true);
             presenter.prepareFailView(outputData);
+            return;
         }
         AddProjectOutputData outputData = new AddProjectOutputData(
                 project, null, false
