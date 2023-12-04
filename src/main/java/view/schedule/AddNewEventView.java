@@ -105,6 +105,7 @@ public class AddNewEventView extends JPanel implements ActionListener, PropertyC
                 }
         );
 
+        final String[] stringStartAt = new String[1];
         eventStartInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -119,18 +120,12 @@ public class AddNewEventView extends JPanel implements ActionListener, PropertyC
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-                        Date start = null;
-                        try {
-                            start = formatter.parse(eventStartInputField.getText());
-                        } catch (ParseException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        addEventViewModel.getAddEventState().setStartAt(start);
+                        stringStartAt[0] = eventStartInputField.getText();
                     }
                 }
         );
 
+        final String[] stringEndAt = new String[1];
         eventEndInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -145,14 +140,7 @@ public class AddNewEventView extends JPanel implements ActionListener, PropertyC
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-                        Date end = null;
-                        try {
-                            end = formatter.parse(eventEndInputField.getText());
-                        } catch (ParseException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        addEventViewModel.getAddEventState().setStartAt(end);
+                        stringEndAt[0] = eventEndInputField.getText();
                     }
                 }
         );
@@ -203,14 +191,30 @@ public class AddNewEventView extends JPanel implements ActionListener, PropertyC
 //        );
 
         postButton = new JButtonWithFont(AddEventViewModel.EVENT_POST);
-        this.add(postButton);
         postButton.addActionListener(
                 e -> {
                     if (!e.getSource().equals(postButton)){
                         return;
                     }
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+                    Date start = null;
+                    try {
+                        start = formatter.parse(stringStartAt[0]);
+                    } catch (ParseException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    addEventViewModel.getAddEventState().setStartAt(start);
+
+                    Date end = null;
+                    try {
+                        end = formatter.parse(stringEndAt[0]);
+                    } catch (ParseException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    addEventViewModel.getAddEventState().setEndAt(end);
+
                     AddEventState state = addEventViewModel.getAddEventState();
-                    addEventController.postEvent(state.getProjectId(), state.getProjectId(), state.getEventName(), state.getNotes(), state.getStartAt(), state.getEndAt(), state.isAllDay(), state.getUserwith());
+                    addEventController.postEvent(state.getProjectId(), state.getScheduleId(), state.getEventName(), state.getNotes(), state.getStartAt(), state.getEndAt(), state.isAllDay(), state.getUserwith());
                 }
         );
 

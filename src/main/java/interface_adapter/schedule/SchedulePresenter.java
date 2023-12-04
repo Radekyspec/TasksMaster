@@ -18,7 +18,8 @@ public class SchedulePresenter implements ScheduleOutputBoundary {
     public void prepareGetEventSuccessView(ScheduleOutputData scheduleOutputData) {
         for (Event event : scheduleOutputData.getEvents()) {
             scheduleViewModel.getScheduleState().setProjectId(event.getID());
-            scheduleViewModel.firePropertyChanged();
+            scheduleViewModel.getScheduleState().setEvent(event);
+            scheduleViewModel.firePropertyChanged(ScheduleViewModel.SCHEDULE_ADD_NEW_EVENT);
         }
     }
 

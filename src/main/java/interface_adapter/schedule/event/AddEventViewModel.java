@@ -10,8 +10,8 @@ import java.util.List;
 public class AddEventViewModel extends ViewModel{
     public static final String EVENT_NAME = "Event Title";
     public static final String EVENT_NOTES = "Event Notes";
-    public static final String EVENT_STARTDATE = "Start at (dd-MMM-yyyy)";
-    public static final String EVENT_ENDDATE = "End at (dd-MMM-yyyy)";
+    public static final String EVENT_STARTDATE = "Start at (dd-MM-yyyy)";
+    public static final String EVENT_ENDDATE = "End at (dd-MM-yyyy)";
     public static final String EVENT_ISALLDAY = "Is all day? Type 'Y' or 'N'";
     public static final String EVENT_USERWITH = "User with? Separate user by using ',' (No space) ";
     public static final String EVENT_POST = "Post this event";

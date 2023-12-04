@@ -19,7 +19,7 @@ public class AddEventPresenter implements AddNewEventOutputBoundary{
     @Override
     public void prepareSuccessView(AddNewEventOutputData addNewEventOutputData) {
         scheduleViewModel.getScheduleState().setEvent(addNewEventOutputData.getEvent());
-        scheduleViewModel.firePropertyChanged();
+        scheduleViewModel.firePropertyChanged(ScheduleViewModel.SCHEDULE_ADD_NEW_EVENT);
         viewManagerModel.setActiveView(scheduleViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

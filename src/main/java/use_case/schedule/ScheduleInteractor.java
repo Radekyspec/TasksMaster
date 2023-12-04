@@ -23,7 +23,9 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         List<Event> events = scheduleDataAccessInterface.getEvents(projectId, scheduleId);
         if (events == null) {
             schedulePresenter.prepareGetEventFailView();
-        } else {
+        } else if (events.isEmpty()){
+            schedulePresenter.prepareGetEventFailView();
+        }else {
             ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
             schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
         }
