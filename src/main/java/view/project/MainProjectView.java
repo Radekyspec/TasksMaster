@@ -35,6 +35,7 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
     private final ScheduleViewModel scheduleViewModel;
     private final JLabel projectName = new JLabelWithFont();
     private final JLabel description = new JLabelWithFont();
+    private final JLabel author = new JLabelWithFont();
     private final JButton addSomePeople = new JButtonWithFont(MainProjectViewModel.ADD_NEW_PEOPLE);
     private final JButton messageBoard = new JButtonWithFont(MainProjectViewModel.MESSAGE_BOARD);
     private final JButton toDoPanel = new JButtonWithFont(MainProjectViewModel.TO_DO_PANEL);
@@ -70,6 +71,8 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());
         this.add(title);
+        this.add(author);
+        author.setAlignmentX(CENTER_ALIGNMENT);
         this.add(Box.createVerticalGlue());
         this.add(addSomePeople);
         buttonField.add(messageBoard);
@@ -128,6 +131,7 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
                 project = state.getProject();
                 projectName.setText(project.getName());
                 description.setText(project.getDescription());
+                author.setText("Leader: " + project.getLeader());
                 this.repaint();
                 messageBoard.addActionListener(this);
                 toDoPanel.addActionListener(this);
