@@ -23,10 +23,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LoginViewTest {
     private LoginView loginView;
+    private LoginView loginView1;
     private LoginViewModel loginViewModel = new LoginViewModel();
 
     @BeforeEach
     void setUp() {
+        loginView1 = LoginUseCaseFactory.create(
+                new ViewManagerModel(),
+                new SignupViewModel(),
+                new LoginViewModel(),
+                new ChooseProjectViewModel(),
+                new AddProjectViewModel(),
+                new MainProjectViewModel(),
+                new LoginUserDataAccessInterface() {
+                    @Override
+                    public User login(String username, String password) {
+                        return null;
+                    }
+                }
+        );
         LoginController controller = new LoginController(loginInputData -> {
 
         });
@@ -55,5 +70,6 @@ class LoginViewTest {
     @Test
     void getViewName() {
         assertEquals(loginView.getViewName(), "log in");
+        assertEquals(loginView1.getViewName(), "log in");
     }
 }

@@ -23,7 +23,7 @@ public class SignupUseCaseFactory {
         return new SignupView(viewManagerModel, signupViewModel, signupController, loginViewModel);
     }
 
-    private static SignupController createSignupController(
+    public static SignupController createSignupController(
             ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, SignupViewModel signupViewModel,
             SignupUserDataAccessInterface signupUserDataAccessObject) {
         SignupOutputBoundary signupPresenter = new SignupPresenter(viewManagerModel, loginViewModel, signupViewModel);
