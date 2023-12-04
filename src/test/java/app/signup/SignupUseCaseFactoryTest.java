@@ -8,7 +8,8 @@ import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupViewModel;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class SignupUseCaseFactoryTest {
 

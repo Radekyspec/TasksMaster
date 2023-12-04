@@ -14,12 +14,12 @@ public class ScheduleController {
     }
 
     public void getEvent(long projectId, long eventId) {
-        ScheduleInputData scheduleInputData = new ScheduleInputData(projectId, eventId,null,null,null,null,null,null);
+        ScheduleInputData scheduleInputData = new ScheduleInputData(projectId, eventId, null, null, null, null, null, null);
         scheduleInteractor.getEvent(scheduleInputData);
     }
 
     public void addEvent(long projectId, long eventId, String name, String note, Date startAt, Date endAt, boolean isAllDay, List<String> userWith) {
-        ScheduleInputData scheduleInputData =new ScheduleInputData(projectId,eventId,name,note,startAt,endAt,isAllDay,userWith);
+        ScheduleInputData scheduleInputData = new ScheduleInputData(projectId, eventId, name, note, startAt, endAt, isAllDay, userWith);
         scheduleInteractor.addEvent(scheduleInputData);
     }
 }

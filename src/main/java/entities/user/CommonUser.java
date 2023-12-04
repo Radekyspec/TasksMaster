@@ -6,11 +6,11 @@ import java.time.LocalDateTime;
 
 public class CommonUser implements User {
     private final long ID;
-    private Organization organization;
     private final String name;
     private final String password;
     private final String email;
     private final LocalDateTime createDateTime;
+    private Organization organization;
     private Rule rule;
 
     /**
@@ -91,17 +91,17 @@ public class CommonUser implements User {
         return email;
     }
 
+    @Override
+    public Rule getRule() {
+        return rule;
+    }
+
     /**
      * set the rule of the User, including Boss, Leader and Member
      */
     @Override
     public void setRule(Rule rule) {
         this.rule = rule;
-    }
-
-    @Override
-    public Rule getRule() {
-        return rule;
     }
 
     /**

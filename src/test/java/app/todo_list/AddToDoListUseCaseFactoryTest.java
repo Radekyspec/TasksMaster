@@ -9,7 +9,7 @@ import interface_adapter.todo_panel.ToDoPanelViewModel;
 import org.junit.jupiter.api.Test;
 import view.todo_list.AddToDoListView;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class AddToDoListUseCaseFactoryTest {
 

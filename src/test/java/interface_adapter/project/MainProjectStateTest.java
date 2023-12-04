@@ -3,7 +3,7 @@ package interface_adapter.project;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MainProjectStateTest {
     private MainProjectState mainProjectState;

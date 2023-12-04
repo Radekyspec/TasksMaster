@@ -15,7 +15,7 @@ public class MessagePresenter implements MessageOutputBoundary {
 
     @Override
     public void prepareGetCommentsSuccessView(MessageOutputData messageOutputData) {
-        for (Comment comment : messageOutputData.getComments()){
+        for (Comment comment : messageOutputData.getComments()) {
             messageViewModel.getState().setComment(comment);
             messageViewModel.firePropertyChanged(MessageViewModel.ADD_COMMENT);
         }

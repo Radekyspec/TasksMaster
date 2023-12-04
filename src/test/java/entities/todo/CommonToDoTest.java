@@ -11,6 +11,7 @@ class CommonToDoTest {
     private ToDo toDo2;
     private ToDo toDo3;
     private String[] strings;
+
     @BeforeEach
     void setUp() {
         strings = new String[]{};

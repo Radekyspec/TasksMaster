@@ -27,6 +27,7 @@ public class ToDoPanelViewModel extends ViewModel {
     public ToDoPanelState getState() {
         return state;
     }
+
     @Override
     public void firePropertyChanged() {
         propertyChangeSupport.firePropertyChange("todo panel", null, state);

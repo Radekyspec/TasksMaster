@@ -4,7 +4,7 @@ import data_access.message_board.MessageBoardUserDataAccessInterface;
 import entities.message.Message;
 import entities.user.User;
 
-public class AddNewMessageInteractor implements AddNewMessageInputBoundary{
+public class AddNewMessageInteractor implements AddNewMessageInputBoundary {
     final MessageBoardUserDataAccessInterface userDataAccessInterface;
     final AddNewMessageOutputBoundary addNewMessagePresenter;
 
@@ -23,9 +23,9 @@ public class AddNewMessageInteractor implements AddNewMessageInputBoundary{
         String messageContent = addNewMessageInputData.getMessageContent();
         Message message = userDataAccessInterface.addMessage(projectID, messageBoardID, author,
                 messageTitle, messageContent);
-        if (message == null){
+        if (message == null) {
             addNewMessagePresenter.prepareFailView();
-        }else{
+        } else {
             AddNewMessageOutputData addNewMessageOutputData = new AddNewMessageOutputData(message);
             addNewMessagePresenter.prepareSuccessView(addNewMessageOutputData);
         }

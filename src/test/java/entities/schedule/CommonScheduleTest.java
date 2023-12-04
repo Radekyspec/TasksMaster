@@ -10,10 +10,10 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CommonScheduleTest {
-    private Schedule schedule;
-    private Event event;
     Date start;
     Date ends;
+    private Schedule schedule;
+    private Event event;
 
     @BeforeEach
     void setUp() {

@@ -20,8 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ToDoPanelView extends JPanel implements PropertyChangeListener {
-    private long projectID;
-    private ToDoPanel toDoPanel;
     private final ViewManagerModel viewManagerModel;
     private final ToDoPanelViewModel toDoPanelViewModel;
     private final ToDoPanelController toDoPanelController;
@@ -30,7 +28,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     private final JButton backToHome;
     private final AddToDoListViewModel addToDoListViewModel;
     private final ToDoListViewModel toDoListViewModel;
-
+    private long projectID;
+    private ToDoPanel toDoPanel;
     private Map<JButton, ToDoList> buttonToDoListMap;
 
     public ToDoPanelView(ViewManagerModel viewManagerModel,
@@ -88,8 +87,8 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
      * This method gets called when a bound property is changed.
      * logic:
      * ADD_NEW_TODOLIST:
-     *   1. get TDL name and part of detail and integrate into a long text.
-     *   2. create this new TDL and add button.
+     * 1. get TDL name and part of detail and integrate into a long text.
+     * 2. create this new TDL and add button.
      * FOR VIEW, see case IMPORT_TODOLIST and INITIALIZE_TODO_PANEL
      *
      * @param evt A PropertyChangeEvent object describing the event source
@@ -140,6 +139,7 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     /**
      * When required view name, return the view name.
      * View name is required when doing view exchanging.
+     *
      * @return the name of this view.
      */
     public String getViewName() {

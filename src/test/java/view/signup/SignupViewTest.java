@@ -9,11 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.event.ActionEvent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SignupViewTest {
     private SignupView signupView;
     private SignupViewModel signupViewModel = new SignupViewModel();
+
     @BeforeEach
     void setUp() {
         SignupController controller = new SignupController(signupInputData -> {

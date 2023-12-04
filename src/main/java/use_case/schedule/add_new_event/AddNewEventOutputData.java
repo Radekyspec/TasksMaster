@@ -4,7 +4,10 @@ import entities.event.Event;
 
 public class AddNewEventOutputData {
     private final Event event;
-    public AddNewEventOutputData(Event event) { this.event = event; }
+
+    public AddNewEventOutputData(Event event) {
+        this.event = event;
+    }
 
     public Event getEvent() {
         return event;

@@ -4,23 +4,20 @@ import entities.project.CommonProjectFactory;
 import entities.project.Project;
 import entities.user.CommonUserFactory;
 import exceptions.InvalidApiKeyException;
-import exceptions.InvalidUserConfigException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import java.io.EOFException;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class HttpDataAccessObjectTest {
     private HttpDataAccessObject dataAccessObject;
+
     @BeforeEach
     void setUp() {
         try {

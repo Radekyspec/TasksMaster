@@ -73,7 +73,6 @@ public class CommonToDoList implements ToDoList {
 
     /**
      * add a new to_do into the to_do list
-     *
      */
     @Override
     public void addToDos(ToDo toDo) {

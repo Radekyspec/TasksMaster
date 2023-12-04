@@ -19,13 +19,13 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class AddProjectView extends JPanel implements ActionListener, PropertyChangeListener {
-    private User user;
     private final JTextField projectNameInputField = new JTextField(15);
     private final JTextField descriptionInputField = new JTextField(30);
     private final JButton enter;
     private final JButton cancel;
     private final AddProjectViewModel addProjectViewModel;
     private final AddProjectController addProjectController;
+    private User user;
 
     public AddProjectView(
             ViewManagerModel viewManagerModel, AddProjectViewModel addProjectViewModel,
@@ -142,5 +142,7 @@ public class AddProjectView extends JPanel implements ActionListener, PropertyCh
         );
     }
 
-    public String getViewName() {return addProjectViewModel.getViewName();}
+    public String getViewName() {
+        return addProjectViewModel.getViewName();
+    }
 }

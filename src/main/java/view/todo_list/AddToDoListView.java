@@ -22,9 +22,10 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
     private final JTextField detailInputField = new JTextField(30);
     private final JPanel nameInfo;
     private final JPanel contentInfo;
+    private final JTextField nameInputField = new JTextField(15);
     private JButton confirm;
     private JButton cancel;
-    private final JTextField nameInputField = new JTextField(15);
+
     public AddToDoListView(ViewManagerModel viewManagerModel,
                            ToDoPanelViewModel toDoPanelViewModel,
                            AddToDoListViewModel addToDoListViewModel,

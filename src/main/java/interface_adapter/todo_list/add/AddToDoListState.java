@@ -5,6 +5,7 @@ public class AddToDoListState {
     private long toDoPanelID;
     private String name;
     private String detail;
+    private String ATDLSError;
 
     public long getProjectID() {
         return projectID;
@@ -45,7 +46,5 @@ public class AddToDoListState {
     public void setATDLSError(String ATDLSError) {
         this.ATDLSError = ATDLSError;
     }
-
-    private String ATDLSError;
 
 }

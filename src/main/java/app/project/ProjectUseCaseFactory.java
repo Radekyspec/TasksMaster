@@ -10,12 +10,13 @@ import interface_adapter.todo_panel.ToDoPanelViewModel;
 import view.project.MainProjectView;
 
 public class ProjectUseCaseFactory {
-    public ProjectUseCaseFactory(){}
+    public ProjectUseCaseFactory() {
+    }
 
     public static MainProjectView create(ViewManagerModel viewManagerModel, ChooseProjectViewModel chooseProjectViewModel, MainProjectViewModel mainProjectViewModel,
                                          MessageBoardViewModel messageBoardViewModel,
                                          ToDoPanelViewModel toDoPanelViewModel, AddPeopleViewModel addPeopleViewModel,
-                                         ScheduleViewModel scheduleViewModel){
+                                         ScheduleViewModel scheduleViewModel) {
         return new MainProjectView(viewManagerModel, chooseProjectViewModel, mainProjectViewModel, messageBoardViewModel, toDoPanelViewModel,
                 addPeopleViewModel, scheduleViewModel);
     }

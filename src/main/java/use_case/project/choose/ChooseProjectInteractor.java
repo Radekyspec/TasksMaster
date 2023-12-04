@@ -13,6 +13,7 @@ public class ChooseProjectInteractor implements ChooseProjectInputBoundary {
         this.presenter = presenter;
         this.userDAO = userDAO;
     }
+
     @Override
     public void execute(ChooseProjectInputData inputData) {
         ChooseProjectOutputData outputData = new ChooseProjectOutputData(inputData.getProject(), null, false);

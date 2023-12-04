@@ -12,7 +12,8 @@ import use_case.todo_list.add.AddToDoListOutputBoundary;
 import view.todo_list.AddToDoListView;
 
 public class AddToDoListUseCaseFactory {
-    private AddToDoListUseCaseFactory() {}
+    private AddToDoListUseCaseFactory() {
+    }
 
     public static AddToDoListView create(ViewManagerModel viewManagerModel, AddToDoListViewModel addToDoListViewModel, ToDoPanelViewModel toDoPanelViewModel,
                                          AddToDoListUserDataAccessInterface userDAO) {

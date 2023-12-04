@@ -6,6 +6,7 @@ import use_case.todo_panel.ToDoPanelOutputData;
 
 public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
     private final ToDoPanelViewModel toDoPanelViewModel;
+
     public ToDoPanelPresenter(ToDoPanelViewModel toDoPanelViewModel) {
         this.toDoPanelViewModel = toDoPanelViewModel;
 

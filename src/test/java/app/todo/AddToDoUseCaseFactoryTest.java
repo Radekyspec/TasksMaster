@@ -1,6 +1,5 @@
 package app.todo;
 
-import data_access.InMemoryUserDataAccessObject;
 import data_access.todo.add.AddToDoUserDataAccessInterface;
 import entities.todo.ToDo;
 import interface_adapter.ViewManagerModel;
@@ -10,7 +9,7 @@ import interface_adapter.todo_list.ToDoListViewModel;
 import org.junit.jupiter.api.Test;
 import view.todo.AddToDoView;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class AddToDoUseCaseFactoryTest {
 

@@ -1,7 +1,6 @@
 package view.schedule;
 
 import entities.event.Event;
-import entities.schedule.CommonSchedule;
 import entities.schedule.Schedule;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
@@ -17,25 +16,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.*;
 
-public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener{
-    private long projectId;
-    private long scheduleId;
-    private Schedule schedule;
+public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener {
     private final ViewManagerModel viewManagerModel;
     private final MainProjectViewModel mainProjectViewModel;
     private final ScheduleViewModel scheduleViewModel;
     private final ScheduleController scheduleController;
     private final AddEventViewModel addEventViewModel;
     private final JPanel scheduleBoard;
+    private long projectId;
+    private long scheduleId;
+    private Schedule schedule;
     private JButton addThisEventButton = new JButton();
 
     public ScheduleView(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, ScheduleViewModel scheduleViewModel, AddEventViewModel addEventViewModel, ScheduleController scheduleController) {
@@ -52,7 +45,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
         addThisEventButton = new JButtonWithFont(ScheduleViewModel.SCHEDULE_ADD_NEW_EVENT);
         addThisEventButton.addActionListener(
                 e -> {
-                    if (!e.getSource().equals(addThisEventButton)){
+                    if (!e.getSource().equals(addThisEventButton)) {
                         return;
                     }
                     viewManagerModel.setActiveView(addEventViewModel.getViewName());
@@ -107,12 +100,13 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
                 schedule.addEvent(event);
                 scheduleBoard.add(addThisEventLabel);
                 addThisEventButton.addActionListener(this);
-                addThisEventButton.setPreferredSize(new Dimension(100,35));
+                addThisEventButton.setPreferredSize(new Dimension(100, 35));
                 scheduleBoard.add(addThisEventLabel);
                 this.revalidate();
             }
         }
     }
+
     public String getViewName() {
         return scheduleViewModel.getViewName();
     }

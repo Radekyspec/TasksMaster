@@ -10,8 +10,6 @@ import use_case.message_board.add_new_message.AddNewMessageOutputData;
 import javax.swing.*;
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AddNewMessagePresenterTest {
     private AddNewMessageOutputBoundary presenter;
 
@@ -27,11 +25,13 @@ class AddNewMessagePresenterTest {
 
     @Test
     void prepareFailView() {
-        Timer t = new Timer(1000, e -> {for (Window window : Window.getWindows()) {
-            if (window instanceof JDialog) {
-                window.dispose();
+        Timer t = new Timer(1000, e -> {
+            for (Window window : Window.getWindows()) {
+                if (window instanceof JDialog) {
+                    window.dispose();
+                }
             }
-        }});
+        });
         t.setRepeats(false);
         t.start();
         presenter.prepareFailView();

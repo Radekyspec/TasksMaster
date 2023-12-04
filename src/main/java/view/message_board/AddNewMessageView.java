@@ -55,7 +55,7 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
                     public void keyReleased(KeyEvent e) {
                         addNewMessageViewModel.getAddNewMessageState().setMessageTitle(titleInputField.getText());
                     }
-        });
+                });
 
         contentInputField.addKeyListener(
                 new KeyListener() {
@@ -126,7 +126,7 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
 
     }
 
-    public String getViewName(){
+    public String getViewName() {
         return addNewMessageViewModel.getViewName();
     }
 }

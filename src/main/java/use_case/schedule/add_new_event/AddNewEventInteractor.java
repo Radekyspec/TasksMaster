@@ -2,7 +2,6 @@ package use_case.schedule.add_new_event;
 
 import data_access.schedule.ScheduleDataAccessInterface;
 import entities.event.Event;
-import use_case.schedule.ScheduleOutputBoundary;
 
 import java.util.Date;
 import java.util.List;

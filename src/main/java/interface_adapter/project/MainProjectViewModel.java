@@ -25,7 +25,7 @@ public class MainProjectViewModel extends ViewModel {
         support.firePropertyChange("state", null, state);
     }
 
-    public void firePropertyChanged(String propertyName){
+    public void firePropertyChanged(String propertyName) {
         support.firePropertyChange(propertyName, null, state);
     }
 

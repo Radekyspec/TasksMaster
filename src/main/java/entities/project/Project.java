@@ -42,20 +42,6 @@ public interface Project {
     ToDoPanel getToDoPanel();
 
     /**
-     * Return the MessageBoard of the Project
-     *
-     * @return a message_board of the current project
-     */
-    MessageBoard getMessageBoard();
-
-    /**
-     * Return the schedule of the Project
-     *
-     * @return a schedule of the current project
-     */
-    Schedule getSchedule();
-
-    /**
      * Set the to_do panel as current to_do panel for the project
      *
      * @param toDoPanel a to_do panel object
@@ -63,11 +49,25 @@ public interface Project {
     void setToDoPanel(ToDoPanel toDoPanel);
 
     /**
+     * Return the MessageBoard of the Project
+     *
+     * @return a message_board of the current project
+     */
+    MessageBoard getMessageBoard();
+
+    /**
      * Set the message_board as current message_board for the project
      *
      * @param messageBoard a message_board object
      */
     void setMessageBoard(MessageBoard messageBoard);
+
+    /**
+     * Return the schedule of the Project
+     *
+     * @return a schedule of the current project
+     */
+    Schedule getSchedule();
 
     /**
      * Set the schedule as current schedule for the project

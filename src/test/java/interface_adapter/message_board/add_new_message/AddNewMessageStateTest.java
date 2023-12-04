@@ -3,7 +3,8 @@ package interface_adapter.message_board.add_new_message;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AddNewMessageStateTest {
     private AddNewMessageState addNewMessageState;

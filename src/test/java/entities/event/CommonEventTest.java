@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class CommonEventTest {
-    private Event event;
-    private User user;
     Date start;
     Date ends;
+    private Event event;
+    private User user;
 
     @BeforeEach
     void setUp() {

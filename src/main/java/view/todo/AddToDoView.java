@@ -120,6 +120,7 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
         this.add(Box.createVerticalGlue());
         this.add(buttons);
     }
+
     /**
      * This method gets called when a bound property is changed.
      * FOR VIEW, there is no need for further view, it is already back to ToDoListView.

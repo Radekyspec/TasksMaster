@@ -9,7 +9,7 @@ import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.todo_panel.ToDoPanelViewModel;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ProjectUseCaseFactoryTest {
 

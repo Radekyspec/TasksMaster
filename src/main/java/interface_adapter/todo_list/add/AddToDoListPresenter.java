@@ -21,9 +21,10 @@ public class AddToDoListPresenter implements AddToDoListOutputBoundary {
     /**
      * namely
      * logic: 1. pass new ToDoList into state to let ToDoListViewModel use.
-     *        2. send state and a state name that represent the success of adding.
-     *        3. send state(meaningless) and a state name says: create successful.
-     *        3. change active view.
+     * 2. send state and a state name that represent the success of adding.
+     * 3. send state(meaningless) and a state name says: create successful.
+     * 3. change active view.
+     *
      * @param outputData A standard outputData get from Interactor and userDAO.
      */
     @Override

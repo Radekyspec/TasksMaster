@@ -80,7 +80,7 @@ class MessageInteractorTest {
 
     @Test
     void getComments() {
-        interactor.getComments(new MessageInputData(0, 0, user,  "comment"));
+        interactor.getComments(new MessageInputData(0, 0, user, "comment"));
         interactor.getComments(new MessageInputData(0, 123, user, "comment"));
     }
 

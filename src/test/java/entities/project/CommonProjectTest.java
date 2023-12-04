@@ -43,7 +43,7 @@ class CommonProjectTest {
 
     @Test
     void getID() {
-        assertEquals(1,project.getID());
+        assertEquals(1, project.getID());
     }
 
     @Test

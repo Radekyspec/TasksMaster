@@ -36,7 +36,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class HttpDataAccessObject implements SignupUserDataAccessInterface,
@@ -45,10 +48,10 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
         AddToDoUserDataAccessInterface, ToDoListDataAccessInterface, AddToDoListUserDataAccessInterface,
         ToDoPanelDataAccessInterface, ScheduleDataAccessInterface {
     private final String API_KEY;
-    private long orgId;
-    private String error;
     private final OkHttpClient client = new OkHttpClient().newBuilder()
             .build();
+    private long orgId;
+    private String error;
 
     public HttpDataAccessObject(String apiKey) throws InvalidApiKeyException {
         API_KEY = apiKey;

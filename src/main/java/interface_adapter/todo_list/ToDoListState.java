@@ -30,12 +30,17 @@ public class ToDoListState {
     /**
      * The new ToDoList should send to both ToDoListState and ToDoListView.
      * It can't be merged with ListOfToDo, because soon you need to get the new lists out.
-     *    1. store created ToDoList into ToDoList (it should be only One ToDoList)
-     *    2. 
+     * 1. store created ToDoList into ToDoList (it should be only One ToDoList)
+     * 2.
+     *
      * @return sth.
      */
     public ToDoList getNewCreatedTDL() {
         return newCreatedTDL;
+    }
+
+    public void setNewCreatedTDL(ToDoList newCreatedTDL) {
+        this.newCreatedTDL = newCreatedTDL;
     }
 
     public long getProjectID() {
@@ -46,24 +51,26 @@ public class ToDoListState {
         this.projectID = projectID;
     }
 
-    public void setNewCreatedTDL(ToDoList newCreatedTDL) {
-        this.newCreatedTDL = newCreatedTDL;
-    }
     public String getError() {
         return error;
     }
+
     public void setError(String error) {
         this.error = error;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public List<ToDo> getListOfToDo() {
         return listOfToDo;
     }
+
     public void setListOfToDo(List<ToDo> listOfToDo) {
         this.listOfToDo = listOfToDo;
     }

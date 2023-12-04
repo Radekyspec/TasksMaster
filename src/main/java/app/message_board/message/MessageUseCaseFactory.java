@@ -13,15 +13,15 @@ import use_case.message_board.message.MessageOutputBoundary;
 import view.message_board.MessageView;
 
 public class MessageUseCaseFactory {
-    private MessageUseCaseFactory(){
+    private MessageUseCaseFactory() {
 
     }
 
-    public static MessageView create(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+    public static MessageView create(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface) {
         return new MessageView(viewManagerModel, messageViewModel, messageBoardViewModel, MessageUseCaseFactory.createController(messageViewModel, messageBoardUserDataAccessInterface));
     }
 
-    public static MessageController createController(MessageViewModel messageViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+    public static MessageController createController(MessageViewModel messageViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface) {
         MessageOutputBoundary messagePresenter = new MessagePresenter(messageViewModel);
         MessageInputBoundary messageInteractor = new MessageInteractor(messageBoardUserDataAccessInterface, messagePresenter);
         return new MessageController(messageInteractor);

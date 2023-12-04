@@ -13,20 +13,20 @@ public class MessageBoardState {
     private long projectID;
     private long messageBoardID;
 
-    public void setProjectID(long projectID) {
-        this.projectID = projectID;
-    }
-
-    public void setMessageBoardID(long messageBoardID) {
-        this.messageBoardID = messageBoardID;
-    }
-
     public long getProjectID() {
         return projectID;
     }
 
+    public void setProjectID(long projectID) {
+        this.projectID = projectID;
+    }
+
     public long getMessageBoardID() {
         return messageBoardID;
+    }
+
+    public void setMessageBoardID(long messageBoardID) {
+        this.messageBoardID = messageBoardID;
     }
 
     public Project getProject() {

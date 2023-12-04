@@ -14,7 +14,8 @@ import use_case.todo_list.ToDoListOutputBoundary;
 import view.todo_list.ToDoListView;
 
 public class ToDoListUseCaseFactory {
-    private ToDoListUseCaseFactory() {}
+    private ToDoListUseCaseFactory() {
+    }
 
     public static ToDoListView create(
             ViewManagerModel viewManagerModel, ToDoListViewModel toDoListViewModel, MainProjectViewModel mainProjectViewModel,

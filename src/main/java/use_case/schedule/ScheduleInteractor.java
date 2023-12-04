@@ -23,9 +23,9 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         List<Event> events = scheduleDataAccessInterface.getEvents(projectId, scheduleId);
         if (events == null) {
             schedulePresenter.prepareGetEventFailView();
-        } else if (events.isEmpty()){
+        } else if (events.isEmpty()) {
             schedulePresenter.prepareGetEventFailView();
-        }else {
+        } else {
             ScheduleOutputData scheduleOutputData = new ScheduleOutputData(events);
             schedulePresenter.prepareGetEventSuccessView(scheduleOutputData);
         }
@@ -40,7 +40,7 @@ public class ScheduleInteractor implements ScheduleInputBoundary {
         Date endAt = scheduleInputData.endAt();
         boolean isAllDay = scheduleInputData.isAllDay();
         List<String> userWith = scheduleInputData.userWith();
-        Event event = scheduleDataAccessInterface.addEvents(projectId,scheduleId,eventName,notes,startAt,endAt,isAllDay,userWith);
+        Event event = scheduleDataAccessInterface.addEvents(projectId, scheduleId, eventName, notes, startAt, endAt, isAllDay, userWith);
         if (event == null) {
             schedulePresenter.prepareGetEventFailView();
         } else {

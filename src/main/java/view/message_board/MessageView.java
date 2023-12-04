@@ -21,8 +21,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class MessageView extends JPanel implements ActionListener, PropertyChangeListener {
-    private User user;
-    private Message message;
     private final ViewManagerModel viewManagerModel;
     private final MessageViewModel messageViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
@@ -34,6 +32,8 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
     private final JPanel addCommentPanel = new JPanel();
     private final JButton addThisComment = new JButtonWithFont(MessageViewModel.ADD_COMMENT);
     private final JPanel commentBoard;
+    private User user;
+    private Message message;
 
     public MessageView(ViewManagerModel viewManagerModel, MessageViewModel messageViewModel,
                        MessageBoardViewModel messageBoardViewModel, MessageController messageController) {
@@ -74,7 +74,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
         addCommentPanel.add(addThisComment);
         addThisComment.addActionListener(
                 e -> {
-                    if (!e.getSource().equals(addThisComment)){
+                    if (!e.getSource().equals(addThisComment)) {
                         return;
                     }
                     addComment.setText("");
@@ -126,7 +126,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        switch (evt.getPropertyName()){
+        switch (evt.getPropertyName()) {
             case MessageViewModel.SET_MESSAGE -> {
                 MessageState state = (MessageState) evt.getNewValue();
                 commentBoard.removeAll();
@@ -155,7 +155,7 @@ public class MessageView extends JPanel implements ActionListener, PropertyChang
         }
     }
 
-    public String getViewName(){
+    public String getViewName() {
         return messageViewModel.getViewName();
     }
 }

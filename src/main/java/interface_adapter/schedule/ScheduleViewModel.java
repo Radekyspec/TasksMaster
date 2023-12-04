@@ -15,12 +15,15 @@ public class ScheduleViewModel extends ViewModel {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public ScheduleViewModel() { super("Schedule"); }
+    public ScheduleViewModel() {
+        super("Schedule");
+    }
 
     @Override
     public void firePropertyChanged() {
         support.firePropertyChange("new event", null, scheduleState);
     }
+
     public void firePropertyChanged(String scheduleSetEvent) {
         support.firePropertyChange(scheduleSetEvent, null, scheduleState);
     }
@@ -34,5 +37,7 @@ public class ScheduleViewModel extends ViewModel {
         return scheduleState;
     }
 
-    public void setProjectID(long projectID) { scheduleState.setProjectId(projectID); }
+    public void setProjectID(long projectID) {
+        scheduleState.setProjectId(projectID);
+    }
 }

@@ -12,14 +12,15 @@ import use_case.project.add.AddProjectOutputBoundary;
 import view.project.add.AddProjectView;
 
 public class AddProjectUseCaseFactory {
-    private AddProjectUseCaseFactory() {}
+    private AddProjectUseCaseFactory() {
+    }
 
     public static AddProjectView create(
             ViewManagerModel viewManagerModel, AddProjectViewModel addProjectViewModel,
             ChooseProjectViewModel chooseProjectViewModel, AddProjectUserDataAccessInterface userDAO) {
         return new AddProjectView(
                 viewManagerModel, addProjectViewModel, createController(
-                        viewManagerModel, addProjectViewModel, chooseProjectViewModel, userDAO), chooseProjectViewModel
+                viewManagerModel, addProjectViewModel, chooseProjectViewModel, userDAO), chooseProjectViewModel
         );
     }
 

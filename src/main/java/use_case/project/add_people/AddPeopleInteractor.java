@@ -3,7 +3,7 @@ package use_case.project.add_people;
 import data_access.project.ProjectUserDataAccessInterface;
 import entities.project.Project;
 
-public class AddPeopleInteractor implements AddPeopleInputBoundary{
+public class AddPeopleInteractor implements AddPeopleInputBoundary {
     final AddPeopleOutputBoundary addPeoplePresenter;
     final ProjectUserDataAccessInterface dataAccessInterface;
 
@@ -17,9 +17,9 @@ public class AddPeopleInteractor implements AddPeopleInputBoundary{
     public void execute(AddPeopleInputData addPeopleInputData) {
         String username = addPeopleInputData.username();
         Project project = addPeopleInputData.project();
-        if (dataAccessInterface.exists(username, project)){
+        if (dataAccessInterface.exists(username, project)) {
             addPeoplePresenter.prepareFailView();
-        }else {
+        } else {
             dataAccessInterface.addProjectMember(project, username);
             project.addNewMember(username);
             AddPeopleOutputData addPeopleOutputData = new AddPeopleOutputData(project);

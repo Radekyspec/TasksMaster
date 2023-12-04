@@ -3,7 +3,7 @@ package interface_adapter.login;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LoginStateTest {
     private LoginState state;
@@ -12,6 +12,7 @@ class LoginStateTest {
     void setUp() {
         state = new LoginState();
     }
+
     @Test
     void setUsername() {
         state.setUsername("username");
