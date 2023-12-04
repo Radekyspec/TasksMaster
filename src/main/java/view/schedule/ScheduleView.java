@@ -103,7 +103,7 @@ public class ScheduleView extends JPanel implements ActionListener, PropertyChan
             }
             case ScheduleViewModel.SCHEDULE_ADD_NEW_EVENT -> {
                 Event event = state.getEvent();
-                JLabel addThisEventLabel = new JLabelWithFont(event.getName() + "start at: " + event.getStartsAt() + " end at: " + event.getEndAt());
+                JLabel addThisEventLabel = new JLabelWithFont(event.getName() + " start at: " + event.getStartsAt() + " end at: " + event.getEndAt());
                 addThisEventLabel.setAlignmentX(LEFT_ALIGNMENT);
                 schedule.addEvent(event);
                 scheduleBoard.add(addThisEventLabel);
