@@ -1,7 +1,6 @@
 package interface_adapter.schedule;
 
 import entities.event.Event;
-import interface_adapter.message_board.MessageBoardViewModel;
 import use_case.schedule.ScheduleOutputBoundary;
 import use_case.schedule.ScheduleOutputData;
 
@@ -16,7 +15,7 @@ public class SchedulePresenter implements ScheduleOutputBoundary {
 
     @Override
     public void prepareGetEventSuccessView(ScheduleOutputData scheduleOutputData) {
-        for (Event event : scheduleOutputData.getEvents()) {
+        for (Event event : scheduleOutputData.events()) {
             scheduleViewModel.getScheduleState().setProjectId(event.getID());
             scheduleViewModel.getScheduleState().setEvent(event);
             scheduleViewModel.firePropertyChanged(ScheduleViewModel.SCHEDULE_ADD_NEW_EVENT);
