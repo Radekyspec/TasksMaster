@@ -40,4 +40,5 @@ public interface ToDoList {
      *
      */
     void addToDos(ToDo toDo);
+    long getProjectID();
 }

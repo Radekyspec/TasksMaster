@@ -13,6 +13,7 @@ import data_access.todolist.add.AddToDoListUserDataAccessInterface;
 import data_access.todopanel.ToDoPanelDataAccessInterface;
 import entities.comment.Comment;
 import entities.comment.CommonCommentFactory;
+import entities.event.CommonEventFactory;
 import entities.event.Event;
 import entities.message.CommonMessageFactory;
 import entities.message.Message;
@@ -20,7 +21,9 @@ import entities.message_board.CommonMessageBoardFactory;
 import entities.project.CommonProjectFactory;
 import entities.project.Project;
 import entities.schedule.CommonScheduleFactory;
+import entities.todo.CommonToDoFactory;
 import entities.todo.ToDo;
+import entities.todo_list.CommonToDoListFactory;
 import entities.todo_list.ToDoList;
 import entities.todo_panel.CommonToDoPanelFactory;
 import entities.user.User;
@@ -31,6 +34,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -391,33 +396,224 @@ public abstract class HttpDataAccessObject implements SignupUserDataAccessInterf
     public ToDo createToDo(long projectID, long listID, String target, String progress) {
         JSONObject requestBody = new JSONObject();
         requestBody.put("content", target);
-        return null;
+        RequestBody body = RequestBody.create(
+                requestBody.toString(),
+                MediaType.parse("application/json; charset=utf-8")
+        );
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/todolists/%d/todos.json",
+                        orgId, projectID, listID))
+                .method("POST", body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 201 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            JSONObject responseJson = new JSONObject(response.body().string());
+            return CommonToDoFactory.create(
+                    responseJson.getLong("id"),
+                    target,
+                    new String[]{},
+                    progress
+            );
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        }
     }
 
     @Override
     public List<ToDo> importToDo(long projectID, long toDoListID) {
-        return null;
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/todolists/%d/todos.json",
+                        orgId, projectID, toDoListID))
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            JSONArray responseArray = new JSONArray(response.body().string());
+            List<ToDo> toDos = new ArrayList<>();
+            for (int i = 0; i < responseArray.length(); i++) {
+                JSONObject responseJson = responseArray.getJSONObject(i);
+                toDos.add(
+                        CommonToDoFactory.create(
+                                responseJson.getLong("id"),
+                                responseJson.getString("content"),
+                                new String[]{},
+                                "incomplete"
+                        )
+                );
+            }
+            return toDos;
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        }
     }
 
     @Override
     public ToDoList createToDoList(long projectID, long toDoPanelID, String name, String detail) {
-        return null;
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("name", name);
+        requestBody.put("description", detail);
+        RequestBody body = RequestBody.create(
+                requestBody.toString(),
+                MediaType.parse("application/json; charset=utf-8")
+        );
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/todosets/%d/todolists.json",
+                        orgId, projectID, toDoPanelID))
+                .method("POST", body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 201 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            JSONObject responseJson = new JSONObject(response.body().string());
+            return CommonToDoListFactory.create(
+                    responseJson.getLong("id"),
+                    projectID,
+                    name,
+                    detail
+            );
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        }
     }
 
     @Override
     public List<ToDoList> importToDoList(long projectID, long toDoPanelID) {
-        return null;
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/todosets/%d/todolists.json",
+                        orgId, projectID, toDoPanelID))
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            JSONArray responseArray = new JSONArray(response.body().string());
+            List<ToDoList> toDoLists = new ArrayList<>();
+            for (int i = 0; i < responseArray.length(); i++) {
+                JSONObject responseJson = responseArray.getJSONObject(i);
+                toDoLists.add(
+                        CommonToDoListFactory.create(
+                                responseJson.getLong("id"),
+                                projectID,
+                                responseJson.getString("title"),
+                                responseJson.getString("description")
+                        )
+                );
+            }
+            return toDoLists;
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        }
     }
 
     @Override
-    public List<Event> getEvents(long projectId, long scheduleid) {
-        return null;
+    public List<Event> getEvents(long projectId, long scheduleId) {
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/schedules/%d/entries.json",
+                        orgId, projectId, scheduleId))
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 200 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            JSONArray responseArray = new JSONArray(response.body().string());
+            List<Event> events = new ArrayList<>();
+            for (int i = 0; i < responseArray.length(); i++) {
+                JSONObject responseJson = responseArray.getJSONObject(i);
+                events.add(
+                        CommonEventFactory.create(
+                                responseJson.getLong("id"),
+                                responseJson.getString("title"),
+                                responseJson.getString("description"),
+                                new SimpleDateFormat("yyyy-MM-dd")
+                                        .parse(responseJson.getString("starts_at").split("T")[0]),
+                                new SimpleDateFormat("yyyy-MM-dd")
+                                        .parse(responseJson.getString("ends_at").split("T")[0]),
+                                responseJson.getBoolean("all_day")
+                        )
+                );
+            }
+            return events;
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        } catch (ParseException e) {
+            setErrorMessage("Parse Date Time error");
+            return null;
+        }
     }
 
     @Override
     public Event addEvents(
             long projectId, long scheduleId, String eventName,
             String notes, Date startAt, Date endAt, boolean isAllDay, List<String> userWith) {
-        return null;
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("summary", eventName);
+        requestBody.put("starts_at", new SimpleDateFormat("yyyy-MM-dd").format(startAt) + "T00:00:00Z");
+        requestBody.put("ends_at", new SimpleDateFormat("yyyy-MM-dd").format(endAt) + "T00:00:00Z");
+        requestBody.put("description", notes);
+        requestBody.put("all_day", isAllDay);
+        RequestBody body = RequestBody.create(
+                requestBody.toString(),
+                MediaType.parse("application/json; charset=utf-8")
+        );
+        Request request = buildRequest()
+                .url(String.format("https://3.basecampapi.com/%d/buckets/%d/schedules/%d/entries.json",
+                        orgId, projectId, scheduleId))
+                .method("POST", body)
+                .build();
+        try (Response response = client.newCall(request).execute()) {
+            if (response.code() != 201 || response.body() == null) {
+                setErrorMessage("Network Error");
+                return null;
+            }
+            JSONObject responseJson = new JSONObject(response.body().string());
+            return CommonEventFactory.create(
+                    responseJson.getLong("id"),
+                    responseJson.getString("title"),
+                    responseJson.getString("description"),
+                    new SimpleDateFormat("yyyy-MM-dd")
+                            .parse(responseJson.getString("starts_at").split("T")[0]),
+                    new SimpleDateFormat("yyyy-MM-dd")
+                            .parse(responseJson.getString("ends_at").split("T")[0]),
+                    responseJson.getBoolean("all_day")
+            );
+        } catch (IOException e) {
+            setErrorMessage("Network Error");
+            return null;
+        } catch (JSONException e) {
+            setErrorMessage("JSON decode error");
+            return null;
+        } catch (ParseException e) {
+            setErrorMessage("Date Time parse error");
+            return null;
+        }
     }
 }
