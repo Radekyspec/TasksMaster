@@ -52,6 +52,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         messageBoardViewModel.addPropertyChangeListener(this);
 
         messages = new JPanel();
+        messages.setLayout(new BoxLayout(messages, BoxLayout.Y_AXIS));
 
         addNewMessage = new JButtonWithFont(MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL);
         addNewMessage.addActionListener(
@@ -70,17 +71,20 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         JButton back = new JButtonWithFont("Back");
         back.addActionListener(
                 e -> {
-                    messages.removeAll();
                     viewManagerModel.setActiveView(mainProjectViewModel.getViewName());
                     viewManagerModel.firePropertyChanged();
                 }
         );
 
-        JLabel title = new JLabelWithFont(MessageBoardViewModel.MESSAGE_BOARD_TITLE_LABEL, Font.BOLD, 26);
+        JLabel title = new JLabelWithFont(MessageBoardViewModel.MESSAGE_BOARD_TITLE_LABEL, Font.BOLD, 32);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(Box.createVerticalGlue());
         this.add(title);
         title.setAlignmentX(CENTER_ALIGNMENT);
+        JLabelWithFont messageHere = new JLabelWithFont("Messages Here", Font.BOLD, 32);
+        messageHere.setAlignmentX(CENTER_ALIGNMENT);
+        this.add(Box.createVerticalGlue());
+        this.add(messageHere);
         this.add(Box.createVerticalGlue());
         this.add(messages);
         JPanel bottom = new JPanel();
@@ -125,10 +129,12 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 this.projectID = state.getProjectID();
                 this.messageBoard = state.getMessageBoard();
                 this.messageBoardID = state.getMessageBoardID();
+                messages.removeAll();
                 messageBoardController.getMessages(projectID, messageBoardID);
             } case MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL -> {
                 Message message = state.getMessage();
-                JButton messageButton = new JButtonWithFont(message.getAuthor() + "\n" + message.getTitle());
+                JButton messageButton = new JButtonWithFont(message.getAuthor() + ": " + message.getTitle());
+                messageButton.setAlignmentX(CENTER_ALIGNMENT);
                 messageBoard.setMessage(message);
                 buttonToMessage.put(messageButton, message);
                 messageButton.addActionListener(this);

@@ -99,6 +99,11 @@ public class CommonUser implements User {
         this.rule = rule;
     }
 
+    @Override
+    public Rule getRule() {
+        return rule;
+    }
+
     /**
      * let user join a organization
      *
