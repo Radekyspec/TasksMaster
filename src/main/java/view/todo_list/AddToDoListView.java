@@ -10,6 +10,7 @@ import view.JButtonWithFont;
 import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
@@ -19,12 +20,12 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
     private final ToDoPanelViewModel toDoPanelViewModel;
     private final AddToDoListViewModel addToDoListViewModel;
     private final AddToDoListController addToDoListController;
-    private final JTextField detailInputField;
+    private final JTextField detailInputField = new JTextField(30);
     private final JPanel nameInfo;
     private final JPanel contentInfo;
     private JButton confirm;
     private JButton cancel;
-    private final JTextField nameInputField = new JTextField();
+    private final JTextField nameInputField = new JTextField(15);
     public AddToDoListView(ViewManagerModel viewManagerModel,
                            ToDoPanelViewModel toDoPanelViewModel,
                            AddToDoListViewModel addToDoListViewModel,
@@ -33,21 +34,26 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
         this.addToDoListViewModel = addToDoListViewModel;
         this.addToDoListController = addToDoListController;
         addToDoListViewModel.addPropertyChangeListener(this);
-        this.detailInputField = new JTextField(15);
         this.nameInfo = new JPanel();
         this.contentInfo = new JPanel();
 
         // View: Title.
-        JLabel title = new JLabelWithFont(AddToDoListViewModel.ADD_TODO_LIST_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(AddToDoListViewModel.ADD_TODO_LIST_TITLE_LABEL, Font.BOLD, 32);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title); // add button that u already set.
+        this.add(Box.createVerticalGlue());
 
         JPanel buttons = new JPanel();
         confirm = new JButtonWithFont(AddToDoListViewModel.ADD_NEW_TODO_BUTTON_LABEL);
         cancel = new JButtonWithFont(AddToDoListViewModel.GO_BACK_BUTTON_LABEL);
         nameInfo.add(new JLabelWithFont(AddToDoListViewModel.NAME_IPF));
+        nameInfo.add(nameInputField);
+        nameInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         contentInfo.add(new JLabelWithFont(AddToDoListViewModel.DETAIL_IPF));
+        contentInfo.add(detailInputField);
+        detailInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         buttons.add(confirm);
         buttons.add(cancel);
 
@@ -105,7 +111,7 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
 
                     @Override
                     public void keyReleased(KeyEvent e) {
-                        addToDoListViewModel.getState().setDetail(nameInputField.getText());
+                        addToDoListViewModel.getState().setDetail(detailInputField.getText());
                     }
                 }
         );
@@ -132,7 +138,9 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
                 }
         );
         this.add(nameInfo);
+        this.add(Box.createVerticalGlue());
         this.add(contentInfo);
+        this.add(Box.createVerticalGlue());
         this.add(buttons);
     }
 
@@ -148,9 +156,6 @@ public class AddToDoListView extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         AddToDoListState state = (AddToDoListState) evt.getNewValue();
         switch (evt.getPropertyName()) {
-            case AddToDoListViewModel.CREATE_TODO_LIST -> JOptionPane.showMessageDialog(
-                    this,
-                    AddToDoListViewModel.CREATE_TODO_LIST);
             case AddToDoListViewModel.CREATE_TODO_LIST_FAILED -> JOptionPane.showMessageDialog(
                     this,
                     AddToDoListViewModel.CREATE_TODO_LIST_FAILED

@@ -13,6 +13,7 @@ import view.JButtonWithFont;
 import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
@@ -21,12 +22,12 @@ import java.util.Map;
 public class ToDoPanelView extends JPanel implements PropertyChangeListener {
     private long projectID;
     private ToDoPanel toDoPanel;
+    private final ViewManagerModel viewManagerModel;
     private final ToDoPanelViewModel toDoPanelViewModel;
     private final ToDoPanelController toDoPanelController;
     private final JPanel toDoListViews;
     private final JButton addNewList;
     private final JButton backToHome;
-    private final JButton select;
     private final AddToDoListViewModel addToDoListViewModel;
     private final ToDoListViewModel toDoListViewModel;
 
@@ -36,31 +37,33 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                          ToDoPanelViewModel toDoPanelViewModel,
                          AddToDoListViewModel addToDoListViewModel,
                          MainProjectViewModel mainProjectViewModel,
-                         ToDoPanelController toDoPanelController,
+                         ViewManagerModel viewManagerModel1, ToDoPanelController toDoPanelController,
                          ToDoListViewModel toDoListViewModel) {
         this.toDoPanelViewModel = toDoPanelViewModel;
         this.addToDoListViewModel = addToDoListViewModel;
+        this.viewManagerModel = viewManagerModel1;
         this.toDoPanelController = toDoPanelController;
         this.toDoListViewModel = toDoListViewModel;
         toDoPanelViewModel.addPropertyChangeListener(this);
 
 
         // View: Title.
-        JLabel title = new JLabelWithFont(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(ToDoPanelViewModel.TODO_PANEL_TITLE_LABEL, Font.BOLD, 32);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title); // add button that u already set.
+        this.add(Box.createVerticalGlue());
 
         toDoListViews = new JPanel();
+        toDoListViews.setLayout(new BoxLayout(toDoListViews, BoxLayout.Y_AXIS));
         buttonToDoListMap = new HashMap<>();
 
         JPanel buttons = new JPanel();
         addNewList = new JButtonWithFont(ToDoPanelViewModel.ADD_NEW_LIST_BUTTON_LABEL);
         backToHome = new JButtonWithFont(ToDoPanelViewModel.BACK_TO_HOME_BUTTON_LABEL);
-        select = new JButtonWithFont(ToDoPanelViewModel.SELECT_BUTTON_LABEL);
         buttons.add(addNewList);
         buttons.add(backToHome);
-        buttons.add(select);
         addNewList.addActionListener(
                 e -> {
                     addToDoListViewModel.getState().setProjectID(projectID);
@@ -77,6 +80,7 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                 }
         );
         this.add(toDoListViews);
+        this.add(Box.createVerticalGlue());
         this.add(buttons);
     }
 
@@ -96,21 +100,21 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
         ToDoPanelState state = (ToDoPanelState) evt.getNewValue();
         switch (evt.getPropertyName()) {
             case ToDoPanelViewModel.IMPORT_TODOLIST -> {
-                JOptionPane.showMessageDialog(
-                        this,
-                        "You get here! Then write Importing List logic.");
                 ToDoList toDoList = state.getNewCreatedTDL();
                 JButton newToDoList = new JButtonWithFont(toDoList.getName()
                         + " - "
                         + toDoList.getDetail());
                 buttonToDoListMap.put(newToDoList, toDoList);
                 toDoListViews.add(newToDoList);
+                newToDoList.setAlignmentX(CENTER_ALIGNMENT);
                 newToDoList.addActionListener(
                         e -> {
                             ToDoList toDoList1 = buttonToDoListMap.get((JButton) e.getSource());
                             toDoListViewModel.getState().setNewCreatedTDL(toDoList1);
                             toDoListViewModel.getState().setProjectID(projectID);
                             toDoListViewModel.firePropertyChanged(ToDoListViewModel.IMPORT_TODO_LIST);
+                            viewManagerModel.setActiveView(toDoListViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
                         });
             }
             case ToDoPanelViewModel.IMPORT_TODOLIST_FAILED -> {
@@ -119,9 +123,6 @@ public class ToDoPanelView extends JPanel implements PropertyChangeListener {
                         state.getImportToDoListError());
             }
             case ToDoPanelViewModel.INITIALIZE_TODO_PANEL -> {
-                JOptionPane.showMessageDialog(
-                        null,
-                        "Start initializing ToDoPanel.");
                 this.toDoPanel = state.getCurrentToDoPanel();
                 this.projectID = state.getProjectID();
                 buttonToDoListMap.clear();
