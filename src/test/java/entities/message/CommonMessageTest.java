@@ -1,12 +1,11 @@
 package entities.message;
 
 import entities.comment.Comment;
-import entities.comment.CommonComment;
 import entities.comment.CommonCommentFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CommonMessageTest {
     private Message message;
