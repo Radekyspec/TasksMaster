@@ -1,7 +1,6 @@
 package interface_adapter.todo_panel;
 
 import entities.todo_list.ToDoList;
-import use_case.todo_panel.ImportToDoListOutputData;
 import use_case.todo_panel.ToDoPanelOutputBoundary;
 import use_case.todo_panel.ToDoPanelOutputData;
 
@@ -21,27 +20,6 @@ public class ToDoPanelPresenter implements ToDoPanelOutputBoundary {
             toDoPanelViewModel.getState().setNewCreatedTDL(toDoList);
             toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
         }
-    }
-
-    @Override
-    public void prepareImportToDoListSuccessView(ImportToDoListOutputData outputData) {
-        if (outputData.isUseCaseFailed()) {
-            return;
-        }
-        for (ToDoList toDoList : outputData.getListOfToDo()) {
-            toDoPanelViewModel.getState().setNewCreatedTDL(toDoList);
-            toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST);
-        }
-
-    }
-
-    @Override
-    public void prepareImportToDoListFailView(ImportToDoListOutputData outputData) {
-        if (!outputData.isUseCaseFailed()) {
-            return;
-        }
-        toDoPanelViewModel.getState().setToDoPanelError(outputData.getError());
-        toDoPanelViewModel.firePropertyChanged(ToDoPanelViewModel.IMPORT_TODOLIST_FAILED);
     }
 
     @Override

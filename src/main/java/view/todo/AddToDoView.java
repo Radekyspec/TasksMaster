@@ -9,6 +9,7 @@ import view.JButtonWithFont;
 import view.JLabelWithFont;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
@@ -18,7 +19,7 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
     private final JButton confirm;
     private final JButton cancel;
     private final ToDoListViewModel toDoListViewModel;
-    private final JTextField targetInputField = new JTextField();
+    private final JTextField targetInputField = new JTextField(15);
     private final JPanel targetInfo;
     private final AddToDoViewModel addToDoViewModel;
     private final AddToDoController addToDoController;
@@ -34,15 +35,20 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
         addToDoViewModel.addPropertyChangeListener(this);
 
         // View: Title.
-        JLabel title = new JLabelWithFont(AddToDoViewModel.ADD_TODO_TITLE_LABEL);
+        JLabel title = new JLabelWithFont(AddToDoViewModel.ADD_TODO_TITLE_LABEL, Font.BOLD, 32);
         title.setAlignmentX(CENTER_ALIGNMENT); // set position of the title.
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(Box.createVerticalGlue());
         this.add(title); // add button that u already set.
+        this.add(Box.createVerticalGlue());
+
 
         JPanel buttons = new JPanel();
         confirm = new JButtonWithFont(AddToDoViewModel.CONFIRM_NEW_TODO_BUTTON_LABEL);
         cancel = new JButtonWithFont(AddToDoViewModel.GO_BACK_BUTTON_LABEL);
         targetInfo.add(new JLabelWithFont(AddToDoViewModel.NAME_IPF));
+        targetInfo.add(targetInputField);
+        targetInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         buttons.add(confirm);
         buttons.add(cancel);
 
@@ -109,7 +115,9 @@ public class AddToDoView extends JPanel implements PropertyChangeListener {
                     viewManagerModel.firePropertyChanged();
                 }
         );
+        this.add(Box.createVerticalGlue());
         this.add(targetInfo);
+        this.add(Box.createVerticalGlue());
         this.add(buttons);
     }
     /**

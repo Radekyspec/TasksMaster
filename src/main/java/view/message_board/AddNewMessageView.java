@@ -23,7 +23,7 @@ public class AddNewMessageView extends JPanel implements ActionListener, Propert
     private final MessageBoardViewModel messageBoardViewModel;
     private final AddNewMessageController addNewMessageController;
     private final JTextField titleInputField = new JTextField(15);
-    private final JTextField contentInputField = new JTextField(15);
+    private final JTextField contentInputField = new JTextField(30);
 
     public AddNewMessageView(ViewManagerModel viewManagerModel, AddNewMessageViewModel addNewMessageViewModel,
                              MessageBoardViewModel messageBoardViewModel, AddNewMessageController addNewMessageController) {
