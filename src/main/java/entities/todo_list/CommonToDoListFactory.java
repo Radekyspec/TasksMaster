@@ -4,7 +4,7 @@ public class CommonToDoListFactory {
     /**
      * create a CommonToDoList class that contains things as followed.
      *
-     * @param listID     the identification of this To_DoList
+     * @param listID the identification of this To_DoList
      * @param name   the name of this list
      * @param detail a brief description word that talks about this To_DoList.
      * @return a CommonToDoList

@@ -15,6 +15,7 @@ public class AddProjectViewModel extends ViewModel {
     public static final String ADD_PROJECT_ERROR = "add project error";
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final AddProjectState state = new AddProjectState();
+
     public AddProjectViewModel() {
         super("add project");
     }

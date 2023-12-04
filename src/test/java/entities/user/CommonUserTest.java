@@ -20,7 +20,7 @@ class CommonUserTest {
     void setUp() {
         user1 = CommonUserFactory.create(1, "Sawyer", "Abc123", now, "sawyer030908@gmail.com");
         user2 = CommonUserFactory.create(2, "Kenneth", "Abc123", LocalDateTime.now(), "yukai.liang@mail.utoronto.ca");
-        organization = CommonOrganizationFactory.create(1,"CSC207", user1);
+        organization = CommonOrganizationFactory.create(1, "CSC207", user1);
     }
 
     @Test

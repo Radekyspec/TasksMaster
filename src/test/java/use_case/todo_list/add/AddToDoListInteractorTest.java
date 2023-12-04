@@ -1,14 +1,13 @@
 package use_case.todo_list.add;
 
 import data_access.todolist.add.AddToDoListUserDataAccessInterface;
-import entities.todo_list.CommonToDoList;
 import entities.todo_list.CommonToDoListFactory;
 import entities.todo_list.ToDoList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.todo_list.ToDoListInteractor;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AddToDoListInteractorTest {
     private AddToDoListUserDataAccessInterface userDAO;
@@ -20,10 +19,10 @@ class AddToDoListInteractorTest {
         userDAO = new AddToDoListUserDataAccessInterface() {
             @Override
             public ToDoList createToDoList(long projectID, long toDoPanelID, String name, String detail) {
-                if (toDoPanelID == 0){
+                if (toDoPanelID == 0) {
                     return null;
                 }
-                return CommonToDoListFactory.create(1,1,"name", "detail");
+                return CommonToDoListFactory.create(1, 1, "name", "detail");
             }
 
             @Override
@@ -47,7 +46,7 @@ class AddToDoListInteractorTest {
 
     @Test
     void execute() {
-        interactor.execute(new AddToDoListInputData("","",0, 1));
-        interactor.execute(new AddToDoListInputData("","",1, 1));
+        interactor.execute(new AddToDoListInputData("", "", 0, 1));
+        interactor.execute(new AddToDoListInputData("", "", 1, 1));
     }
 }

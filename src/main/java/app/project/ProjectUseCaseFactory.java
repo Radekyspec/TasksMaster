@@ -15,7 +15,7 @@ public class ProjectUseCaseFactory {
     public static MainProjectView create(ViewManagerModel viewManagerModel, ChooseProjectViewModel chooseProjectViewModel, MainProjectViewModel mainProjectViewModel,
                                          MessageBoardViewModel messageBoardViewModel,
                                          ToDoPanelViewModel toDoPanelViewModel, AddPeopleViewModel addPeopleViewModel,
-                                         ScheduleViewModel scheduleViewModel){
+                                         ScheduleViewModel scheduleViewModel) {
         return new MainProjectView(viewManagerModel, chooseProjectViewModel, mainProjectViewModel, messageBoardViewModel, toDoPanelViewModel,
                 addPeopleViewModel, scheduleViewModel);
     }

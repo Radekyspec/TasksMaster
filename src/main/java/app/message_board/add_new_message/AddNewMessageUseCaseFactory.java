@@ -12,13 +12,14 @@ import use_case.message_board.add_new_message.AddNewMessageOutputBoundary;
 import view.message_board.AddNewMessageView;
 
 public class AddNewMessageUseCaseFactory {
-    private AddNewMessageUseCaseFactory(){}
+    private AddNewMessageUseCaseFactory() {
+    }
 
-    public static AddNewMessageView create(ViewManagerModel viewManagerModel, AddNewMessageViewModel addNewMessageViewModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+    public static AddNewMessageView create(ViewManagerModel viewManagerModel, AddNewMessageViewModel addNewMessageViewModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface) {
         return new AddNewMessageView(viewManagerModel, addNewMessageViewModel, messageBoardViewModel, AddNewMessageUseCaseFactory.createController(viewManagerModel, messageBoardViewModel, messageBoardUserDataAccessInterface));
     }
 
-    public static AddNewMessageController createController(ViewManagerModel viewManagerModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+    public static AddNewMessageController createController(ViewManagerModel viewManagerModel, MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface) {
         AddNewMessageOutputBoundary addNewMessagePresenter = new AddNewMessagePresenter(viewManagerModel, messageBoardViewModel);
         AddNewMessageInputBoundary addNewMessageInteractor = new AddNewMessageInteractor(messageBoardUserDataAccessInterface, addNewMessagePresenter);
         return new AddNewMessageController(addNewMessageInteractor);

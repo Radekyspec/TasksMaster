@@ -13,14 +13,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ChooseProjectViewTest {
     private ChooseProjectView chooseProjectView;
     private ChooseProjectViewModel chooseProjectViewModel = new ChooseProjectViewModel();
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         ChooseProjectController controller = new ChooseProjectController(new ChooseProjectInputBoundary() {
             @Override
             public void execute(ChooseProjectInputData inputData) {
@@ -34,14 +34,17 @@ class ChooseProjectViewTest {
         });
         chooseProjectView = new ChooseProjectView(new ViewManagerModel(), new AddProjectViewModel(), new ChooseProjectViewModel(), controller);
     }
+
     @Test
     void propertyChange() {
         chooseProjectViewModel.getState().setChooseProjectError("error message test");
-        Timer t = new Timer(2000, e -> {for (Window window : Window.getWindows()) {
-            if (window instanceof JDialog) {
-                window.dispose();
+        Timer t = new Timer(2000, e -> {
+            for (Window window : Window.getWindows()) {
+                if (window instanceof JDialog) {
+                    window.dispose();
+                }
             }
-        }});
+        });
         t.setRepeats(false);
         t.start();
         chooseProjectViewModel.firePropertyChanged();

@@ -40,12 +40,12 @@ public class MessageState {
         return projectID;
     }
 
-    public long getMessageID() {
-        return messageID;
-    }
-
     public void setProjectID(long projectID) {
         this.projectID = projectID;
+    }
+
+    public long getMessageID() {
+        return messageID;
     }
 
     public void setMessageID(long messageID) {

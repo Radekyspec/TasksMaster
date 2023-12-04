@@ -1,6 +1,5 @@
 package interface_adapter.message_board;
 
-import entities.message.CommonMessage;
 import entities.message.CommonMessageFactory;
 import entities.message.Message;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,8 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MessageBoardPresenterTest {
     private MessageBoardOutputBoundary presenter;
@@ -34,11 +31,13 @@ class MessageBoardPresenterTest {
 
     @Test
     void prepareGetMessageFailView() {
-        Timer t = new Timer(1000, e -> {for (Window window : Window.getWindows()) {
-            if (window instanceof JDialog) {
-                window.dispose();
+        Timer t = new Timer(1000, e -> {
+            for (Window window : Window.getWindows()) {
+                if (window instanceof JDialog) {
+                    window.dispose();
+                }
             }
-        }});
+        });
         t.setRepeats(false);
         t.start();
         presenter.prepareGetMessageFailView();

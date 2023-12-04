@@ -8,7 +8,7 @@ import interface_adapter.project.add.AddProjectViewModel;
 import interface_adapter.project.choose.ChooseProjectViewModel;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class AddProjectUseCaseFactoryTest {
 

@@ -1,6 +1,5 @@
 package interface_adapter.login;
 
-import entities.user.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
 import interface_adapter.project.add.AddProjectViewModel;
@@ -9,10 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
-
-import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LoginPresenterTest {
     private LoginOutputBoundary presenter;

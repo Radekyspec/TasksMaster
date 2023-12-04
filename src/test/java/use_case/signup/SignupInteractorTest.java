@@ -2,7 +2,6 @@ package use_case.signup;
 
 import data_access.signup.SignupUserDataAccessInterface;
 import entities.user.User;
-import interface_adapter.signup.SignupPresenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +42,7 @@ class SignupInteractorTest {
 
     @Test
     void execute() {
-        interactor.execute(new SignupInputData(null, "", "",""));
+        interactor.execute(new SignupInputData(null, "", "", ""));
         interactor.execute(new SignupInputData("", ",", "1", "2"));
         interactor.execute(new SignupInputData("", "", "", ""));
     }

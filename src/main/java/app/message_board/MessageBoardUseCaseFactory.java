@@ -14,18 +14,19 @@ import use_case.message_board.MessageBoardOutputBoundary;
 import view.message_board.MessageBoardView;
 
 public class MessageBoardUseCaseFactory {
-    private MessageBoardUseCaseFactory(){}
+    private MessageBoardUseCaseFactory() {
+    }
 
     public static MessageBoardView create(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel,
                                           MessageBoardViewModel messageBoardViewModel,
                                           AddNewMessageViewModel addNewMessageViewModel,
-                                          MessageViewModel messageViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+                                          MessageViewModel messageViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface) {
         return new MessageBoardView(viewManagerModel, mainProjectViewModel, messageBoardViewModel,
                 addNewMessageViewModel, messageViewModel,
                 MessageBoardUseCaseFactory.createController(messageBoardViewModel, messageBoardUserDataAccessInterface));
     }
 
-    public static MessageBoardController createController(MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface){
+    public static MessageBoardController createController(MessageBoardViewModel messageBoardViewModel, MessageBoardUserDataAccessInterface messageBoardUserDataAccessInterface) {
         MessageBoardOutputBoundary messageBoardPresenter = new MessageBoardPresenter(messageBoardViewModel);
         MessageBoardInputBoundary messageBoardInteractor = new MessageBoardInteractor(messageBoardUserDataAccessInterface, messageBoardPresenter);
         return new MessageBoardController(messageBoardInteractor);

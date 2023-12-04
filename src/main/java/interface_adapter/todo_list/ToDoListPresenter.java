@@ -33,7 +33,7 @@ public class ToDoListPresenter implements ToDoListOutputBoundary {
      * namely
      * Import ToDos one by one.
      * Find adding new ToDos in AddToDoInteractor/Presenter/View.
-     *     This Presenter only in charges of importing ToDos.
+     * This Presenter only in charges of importing ToDos.
      *
      * @param outputData get output data.
      */
@@ -45,7 +45,6 @@ public class ToDoListPresenter implements ToDoListOutputBoundary {
         toDoListViewModel.getState().setListOfToDo(outputData.listOfToDo());
         toDoListViewModel.firePropertyChanged(ToDoListViewModel.IMPORT_TODO);
     }
-
 
 
 }

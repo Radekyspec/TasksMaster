@@ -13,7 +13,8 @@ import use_case.project.choose.ChooseProjectOutputBoundary;
 import view.project.choose.ChooseProjectView;
 
 public class ChooseProjectUseCaseFactory {
-    private ChooseProjectUseCaseFactory() {}
+    private ChooseProjectUseCaseFactory() {
+    }
 
     public static ChooseProjectView create(
             ViewManagerModel viewManagerModel, AddProjectViewModel addProjectViewModel,

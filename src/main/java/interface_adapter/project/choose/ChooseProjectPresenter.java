@@ -16,6 +16,7 @@ public class ChooseProjectPresenter implements ChooseProjectOutputBoundary {
         this.mainProjectViewModel = mainProjectViewModel;
         this.viewManagerModel = viewManagerModel;
     }
+
     @Override
     public void prepareChooseSuccessView(ChooseProjectOutputData outputData) {
         ChooseProjectState state = chooseProjectViewModel.getState();

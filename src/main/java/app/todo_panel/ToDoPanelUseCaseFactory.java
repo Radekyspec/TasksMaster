@@ -14,9 +14,10 @@ import use_case.todo_panel.ToDoPanelOutputBoundary;
 import view.todo_panel.ToDoPanelView;
 
 public class ToDoPanelUseCaseFactory {
-    private ToDoPanelUseCaseFactory() {}
+    private ToDoPanelUseCaseFactory() {
+    }
 
-    public static ToDoPanelView create(ViewManagerModel viewManagerModel, AddToDoListViewModel addToDoListViewModel,MainProjectViewModel mainProjectViewModel,
+    public static ToDoPanelView create(ViewManagerModel viewManagerModel, AddToDoListViewModel addToDoListViewModel, MainProjectViewModel mainProjectViewModel,
                                        ToDoPanelViewModel toDoPanelViewModel, ToDoListViewModel toDoListViewModel,
                                        ToDoPanelDataAccessInterface userDAO) {
         ToDoPanelController controller = createController(toDoPanelViewModel, userDAO);

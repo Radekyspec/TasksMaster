@@ -55,7 +55,7 @@ public class AddNewMessageView extends JPanel{
                     public void keyReleased(KeyEvent e) {
                         addNewMessageViewModel.getAddNewMessageState().setMessageTitle(titleInputField.getText());
                     }
-        });
+                });
 
         contentInputField.addKeyListener(
                 new KeyListener() {
@@ -106,7 +106,7 @@ public class AddNewMessageView extends JPanel{
     }
 
 
-    public String getViewName(){
+    public String getViewName() {
         return addNewMessageViewModel.getViewName();
     }
 }

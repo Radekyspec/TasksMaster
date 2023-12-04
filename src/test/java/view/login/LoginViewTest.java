@@ -12,14 +12,12 @@ import interface_adapter.project.choose.ChooseProjectViewModel;
 import interface_adapter.signup.SignupViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.login.LoginInputBoundary;
-import use_case.login.LoginInputData;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LoginViewTest {
     private LoginView loginView;
@@ -57,11 +55,13 @@ class LoginViewTest {
     void propertyChange() {
         loginViewModel.getLoginState().setLoginError("error message test");
 
-        Timer t = new Timer(1000, e -> {for (Window window : Window.getWindows()) {
-            if (window instanceof JDialog) {
-                window.dispose();
+        Timer t = new Timer(1000, e -> {
+            for (Window window : Window.getWindows()) {
+                if (window instanceof JDialog) {
+                    window.dispose();
+                }
             }
-        }});
+        });
         t.setRepeats(false);
         t.start();
         loginViewModel.firePropertyChanged();

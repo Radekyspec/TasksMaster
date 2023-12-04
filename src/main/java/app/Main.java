@@ -43,8 +43,8 @@ import view.project.MainProjectView;
 import view.project.add.AddProjectView;
 import view.project.add_people.AddPeopleView;
 import view.project.choose.ChooseProjectView;
-import view.schedule.ScheduleView;
 import view.schedule.AddNewEventView;
+import view.schedule.ScheduleView;
 import view.signup.SignupView;
 import view.todo.AddToDoView;
 import view.todo_list.AddToDoListView;
@@ -116,7 +116,7 @@ public class Main {
                 mainProjectViewModel, userDAO);
 
 
-        MessageBoardView messageBoardView = MessageBoardUseCaseFactory.create(viewManagerModel, mainProjectViewModel,messageBoardViewModel,
+        MessageBoardView messageBoardView = MessageBoardUseCaseFactory.create(viewManagerModel, mainProjectViewModel, messageBoardViewModel,
                 addNewMessageViewModel, messageViewModel, userDAO);
         ToDoPanelView toDoPanelView = ToDoPanelUseCaseFactory.create(
                 viewManagerModel, addToDoListViewModel, mainProjectViewModel, toDoPanelViewModel, toDoListViewModel, userDAO
@@ -130,7 +130,7 @@ public class Main {
         AddToDoView addToDoView = AddToDoUseCaseFactory.create(
                 viewManagerModel, addToDoViewModel, toDoListViewModel, userDAO
         );
-        AddNewMessageView addNewMessageView = AddNewMessageUseCaseFactory.create(viewManagerModel, addNewMessageViewModel,messageBoardViewModel, userDAO);
+        AddNewMessageView addNewMessageView = AddNewMessageUseCaseFactory.create(viewManagerModel, addNewMessageViewModel, messageBoardViewModel, userDAO);
         MessageView messageView = MessageUseCaseFactory.create(viewManagerModel, messageViewModel, messageBoardViewModel, userDAO);
         ScheduleView scheduleView = ScheduleUseCaseFactory.create(viewManagerModel, mainProjectViewModel, scheduleViewModel, addEventViewModel, userDAO);
         AddNewEventView addNewEventView = AddNewEventUseCaseFactory.create(viewManagerModel, addEventViewModel, scheduleViewModel, userDAO);

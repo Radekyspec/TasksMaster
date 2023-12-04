@@ -49,7 +49,7 @@ class AddToDoInteractorTest {
 
     @Test
     void importAddToDoList() {
-        interactor.importAddToDoList(new AddToDoInputData("","",0,1));
-        interactor.importAddToDoList(new AddToDoInputData("","",1,1));
+        interactor.importAddToDoList(new AddToDoInputData("", "", 0, 1));
+        interactor.importAddToDoList(new AddToDoInputData("", "", 1, 1));
     }
 }

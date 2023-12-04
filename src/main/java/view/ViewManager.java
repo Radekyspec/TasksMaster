@@ -8,9 +8,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class ViewManager implements PropertyChangeListener {
+    final ViewManagerModel viewManagerModel;
     private final CardLayout cardLayout;
     private final JPanel views;
-    final ViewManagerModel viewManagerModel;
 
     public ViewManager(CardLayout cardLayout, JPanel views, ViewManagerModel viewManagerModel) {
         this.cardLayout = cardLayout;

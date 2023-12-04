@@ -1,6 +1,5 @@
 package view.schedule;
 
-import entities.event.Event;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.schedule.event.AddEventController;
@@ -19,7 +18,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 public class AddNewEventView extends JPanel implements ActionListener, PropertyChangeListener {
     private final ViewManagerModel viewManagerModel;
@@ -48,7 +49,8 @@ public class AddNewEventView extends JPanel implements ActionListener, PropertyC
         addEventViewModel.addPropertyChangeListener(this);
 
         eventNameInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
-        eventNoteInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));;
+        eventNoteInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+        ;
         eventStartInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         eventEndInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
         eventAllDayInputField.setFont(new Font("Times New Roman", Font.PLAIN, 26));
@@ -193,7 +195,7 @@ public class AddNewEventView extends JPanel implements ActionListener, PropertyC
         postButton = new JButtonWithFont(AddEventViewModel.EVENT_POST);
         postButton.addActionListener(
                 e -> {
-                    if (!e.getSource().equals(postButton)){
+                    if (!e.getSource().equals(postButton)) {
                         return;
                     }
                     SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
@@ -254,7 +256,7 @@ public class AddNewEventView extends JPanel implements ActionListener, PropertyC
     public void propertyChange(PropertyChangeEvent evt) {
     }
 
-    public String getViewName(){
+    public String getViewName() {
         return addEventViewModel.getViewName();
     }
 }

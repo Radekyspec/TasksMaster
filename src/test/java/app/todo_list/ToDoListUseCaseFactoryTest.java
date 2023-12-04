@@ -13,7 +13,7 @@ import view.todo_list.ToDoListView;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class ToDoListUseCaseFactoryTest {
 

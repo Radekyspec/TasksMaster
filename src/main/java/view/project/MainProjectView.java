@@ -24,8 +24,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class MainProjectView extends JPanel implements ActionListener, PropertyChangeListener {
-    private User user;
-    private Project project;
     private final ViewManagerModel viewManagerModel;
     private final ChooseProjectViewModel chooseProjectViewModel;
     private final MainProjectViewModel mainProjectViewModel;
@@ -41,6 +39,8 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
     private final JButton toDoPanel = new JButtonWithFont(MainProjectViewModel.TO_DO_PANEL);
     private final JButton schedule = new JButtonWithFont(MainProjectViewModel.SCHEDULE);
     private final JPanel buttonField = new JPanel();
+    private User user;
+    private Project project;
 
     public MainProjectView(ViewManagerModel viewManagerModel, ChooseProjectViewModel chooseProjectViewModel, MainProjectViewModel mainProjectViewModel,
                            MessageBoardViewModel messageBoardViewModel, ToDoPanelViewModel toDoPanelViewModel,
@@ -94,7 +94,7 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(messageBoard)){
+        if (e.getSource().equals(messageBoard)) {
             MessageBoardState messageBoardState = messageBoardViewModel.getMessageBoardState();
             messageBoardState.setUser(user);
             messageBoardState.setProjectID(project.getID());
@@ -126,7 +126,7 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         MainProjectState state = (MainProjectState) evt.getNewValue();
-        switch (evt.getPropertyName()){
+        switch (evt.getPropertyName()) {
             case MainProjectViewModel.SET_USER -> user = state.getUser();
             case MainProjectViewModel.SET_PROJECT -> {
                 project = state.getProject();
@@ -140,7 +140,8 @@ public class MainProjectView extends JPanel implements ActionListener, PropertyC
             }
         }
     }
-    public String getViewName(){
+
+    public String getViewName() {
         return mainProjectViewModel.getViewName();
     }
 }

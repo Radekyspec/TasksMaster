@@ -7,7 +7,7 @@ import use_case.schedule.add_new_event.AddNewEventOutputData;
 
 import javax.swing.*;
 
-public class AddEventPresenter implements AddNewEventOutputBoundary{
+public class AddEventPresenter implements AddNewEventOutputBoundary {
     private final ViewManagerModel viewManagerModel;
     private final ScheduleViewModel scheduleViewModel;
 

@@ -1,7 +1,6 @@
 package use_case.schedule;
 
 import data_access.schedule.ScheduleDataAccessInterface;
-import entities.event.CommonEvent;
 import entities.event.CommonEventFactory;
 import entities.event.Event;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ScheduleInteractorTest {
     private ScheduleOutputBoundary presenter;

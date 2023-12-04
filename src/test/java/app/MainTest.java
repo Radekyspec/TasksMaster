@@ -3,10 +3,7 @@ package app;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
-
 import java.awt.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
 
@@ -21,6 +18,6 @@ class MainTest {
         });
         timer.setRepeats(false);
         timer.start();
-        Main.main(new String[] {});
+        Main.main(new String[]{});
     }
 }

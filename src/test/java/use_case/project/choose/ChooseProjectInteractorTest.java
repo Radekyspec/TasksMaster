@@ -1,14 +1,10 @@
 package use_case.project.choose;
 
-import data_access.project.ProjectUserDataAccessInterface;
 import data_access.project.choose.ChooseProjectUserDataAccessInterface;
-import entities.project.CommonProject;
 import entities.project.CommonProjectFactory;
 import entities.project.Project;
-import entities.user.CommonUser;
 import entities.user.CommonUserFactory;
 import entities.user.User;
-import interface_adapter.project.choose.ChooseProjectPresenter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +24,11 @@ class ChooseProjectInteractorTest {
         userDAO = new ChooseProjectUserDataAccessInterface() {
             @Override
             public List<Project> getUserProjects(User user) {
-                if (user == null){
+                if (user == null) {
                     return null;
                 }
                 List<Project> projects = new ArrayList<>();
-                projects.add(CommonProjectFactory.create(1,"d123", "213214"));
+                projects.add(CommonProjectFactory.create(1, "d123", "213214"));
                 return projects;
             }
 

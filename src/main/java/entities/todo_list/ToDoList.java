@@ -37,8 +37,8 @@ public interface ToDoList {
 
     /**
      * add a new to_do into the to_do list
-     *
      */
     void addToDos(ToDo toDo);
+
     long getProjectID();
 }

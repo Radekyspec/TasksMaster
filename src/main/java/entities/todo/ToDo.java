@@ -1,6 +1,9 @@
 package entities.todo;
 
 public interface ToDo {
+    final String TODO_INCOMPLETE = "incomplete";
+    final String TODO_COMPLETE = "complete";
+
     /**
      * Returns target of this obj.
      *
@@ -35,6 +38,4 @@ public interface ToDo {
      * @return a string that graphically shows finish or not.
      */
     String getCharProgress();
-    final String TODO_INCOMPLETE = "incomplete";
-    final String TODO_COMPLETE = "complete";
 }

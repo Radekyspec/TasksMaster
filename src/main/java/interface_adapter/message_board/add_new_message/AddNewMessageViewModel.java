@@ -12,18 +12,20 @@ public class AddNewMessageViewModel extends ViewModel {
     public static final String POST_THIS = "Post this Message";
     private final AddNewMessageState addNewMessageState = new AddNewMessageState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
     public AddNewMessageViewModel() {
         super("Add a new message");
     }
-    public void setProjcetID(long projectID){
+
+    public void setProjcetID(long projectID) {
         addNewMessageState.setProjectID(projectID);
     }
 
-    public void setMessageBoardID(long messageBoardID){
+    public void setMessageBoardID(long messageBoardID) {
         addNewMessageState.setMessageBoardID(messageBoardID);
     }
 
-    public AddNewMessageState getAddNewMessageState(){
+    public AddNewMessageState getAddNewMessageState() {
         return addNewMessageState;
     }
 

@@ -1,5 +1,5 @@
 package use_case.todo_panel;
 
-public interface ToDoPanelInputBoundary{
+public interface ToDoPanelInputBoundary {
     void importToDoList(ToDoPanelInputData toDoPanelInputData);
 }

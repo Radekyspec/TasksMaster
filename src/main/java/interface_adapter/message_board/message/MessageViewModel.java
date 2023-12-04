@@ -27,7 +27,7 @@ public class MessageViewModel extends ViewModel {
         support.firePropertyChange("new message", null, state);
     }
 
-    public void firePropertyChanged(String propertyName){
+    public void firePropertyChanged(String propertyName) {
         support.firePropertyChange(propertyName, null, state);
     }
 

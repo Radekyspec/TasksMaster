@@ -16,11 +16,11 @@ public class ToDoListViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Your ToDo List";
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private final ToDoListState state = new ToDoListState();
-    
+
     public ToDoListViewModel() {
         super("todo list");
     }
-    
+
     public ToDoListState getState() {
         return state;
     }
@@ -36,6 +36,7 @@ public class ToDoListViewModel extends ViewModel {
     public void firePropertyChanged(String propertyName) {
         propertyChangeSupport.firePropertyChange(propertyName, null, state);
     }
+
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);

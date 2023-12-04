@@ -1,17 +1,16 @@
 package use_case.todo_list;
 
 import data_access.todolist.ToDoListDataAccessInterface;
-import entities.todo.CommonToDo;
 import entities.todo.CommonToDoFactory;
 import entities.todo.ToDo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.todo_panel.ToDoPanelOutputBoundary;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ToDoListInteractorTest {
     private ToDoListDataAccessInterface userDAO;
@@ -23,12 +22,12 @@ class ToDoListInteractorTest {
         userDAO = new ToDoListDataAccessInterface() {
             @Override
             public List<ToDo> importToDo(long projectID, long toDoListID) {
-                if (toDoListID == 0){
+                if (toDoListID == 0) {
                     return null;
                 }
                 List<ToDo> toDoList = new ArrayList<>();
                 String[] strings = {};
-                toDoList.add(CommonToDoFactory.create(1,"", strings, ""));
+                toDoList.add(CommonToDoFactory.create(1, "", strings, ""));
                 return toDoList;
             }
 
@@ -53,7 +52,7 @@ class ToDoListInteractorTest {
 
     @Test
     void execute() {
-        interactor.execute(new ToDoListInputData(1, 0 ));
+        interactor.execute(new ToDoListInputData(1, 0));
         interactor.execute(new ToDoListInputData(1, 1));
     }
 }

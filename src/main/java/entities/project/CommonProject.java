@@ -87,26 +87,6 @@ public class CommonProject implements Project {
     }
 
     /**
-     * Return the MessageBoard of the Project
-     *
-     * @return a message_board of the current project
-     */
-    @Override
-    public MessageBoard getMessageBoard() {
-        return messageBoard;
-    }
-
-    /**
-     * Return the schedule of the Project
-     *
-     * @return a schedule of the current project
-     */
-    @Override
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    /**
      * Set the to_do panel as current to_do panel for the project
      *
      * @param toDoPanel a to_do panel object
@@ -117,6 +97,16 @@ public class CommonProject implements Project {
     }
 
     /**
+     * Return the MessageBoard of the Project
+     *
+     * @return a message_board of the current project
+     */
+    @Override
+    public MessageBoard getMessageBoard() {
+        return messageBoard;
+    }
+
+    /**
      * Set the message_board as current message_board for the project
      *
      * @param messageBoard a message_board object
@@ -124,6 +114,16 @@ public class CommonProject implements Project {
     @Override
     public void setMessageBoard(MessageBoard messageBoard) {
         this.messageBoard = messageBoard;
+    }
+
+    /**
+     * Return the schedule of the Project
+     *
+     * @return a schedule of the current project
+     */
+    @Override
+    public Schedule getSchedule() {
+        return schedule;
     }
 
     /**

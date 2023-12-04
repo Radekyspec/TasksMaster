@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AddNewEventInteractorTest {
     private AddNewEventOutputBoundary presenter;
     private AddNewEventInputBoundary interactor;

@@ -14,6 +14,7 @@ public class ToDoPanelState {
     private String importToDoListError;
     private ToDoPanel currentToDoPanel;
     private String toDoPanelError;
+
     public ToDoPanelState() {
         currentToDoPanel = null;
         toDoPanelError = null;

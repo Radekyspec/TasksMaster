@@ -15,11 +15,12 @@ public class AddToDoInteractor implements AddToDoInputBoundary {
 
     /**
      * Main logic of Adding ToDoLists.
-     *   First create a ToDoList using AddToDoListUserDataInterface.
-     *   Then judge if the new ToDoList is or is not null.
-     *     userDAO will return null if anything goes wrong in the code.
-     *   if toDoList == null, add error message to outputData and prepare failed view.
-     *   if toDoList is not null, add new ToDoList to outputData and prepare success view.
+     * First create a ToDoList using AddToDoListUserDataInterface.
+     * Then judge if the new ToDoList is or is not null.
+     * userDAO will return null if anything goes wrong in the code.
+     * if toDoList == null, add error message to outputData and prepare failed view.
+     * if toDoList is not null, add new ToDoList to outputData and prepare success view.
+     *
      * @param inputData A standard AddToDoListInputData.
      */
     @Override

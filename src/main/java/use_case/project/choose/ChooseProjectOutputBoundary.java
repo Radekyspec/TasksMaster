@@ -4,5 +4,6 @@ public interface ChooseProjectOutputBoundary {
     void prepareChooseSuccessView(ChooseProjectOutputData outputData);
 
     void prepareChooseFailView(ChooseProjectOutputData outputData);
+
     void prepareEnterSuccessView(ChooseProjectOutputData outputData);
 }

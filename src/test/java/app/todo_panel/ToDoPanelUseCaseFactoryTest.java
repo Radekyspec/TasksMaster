@@ -1,6 +1,5 @@
 package app.todo_panel;
 
-import data_access.InMemoryUserDataAccessObject;
 import data_access.todopanel.ToDoPanelDataAccessInterface;
 import entities.todo_list.ToDoList;
 import interface_adapter.ViewManagerModel;
@@ -14,7 +13,7 @@ import view.todo_panel.ToDoPanelView;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 class ToDoPanelUseCaseFactoryTest {
 

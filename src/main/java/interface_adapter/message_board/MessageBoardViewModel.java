@@ -38,7 +38,7 @@ public class MessageBoardViewModel extends ViewModel {
         support.addPropertyChangeListener(propertyChangeListener);
     }
 
-    public void firePropertyChanged(String propertyName){
+    public void firePropertyChanged(String propertyName) {
         support.firePropertyChange(propertyName, null, messageBoardState);
     }
 }

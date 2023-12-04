@@ -20,15 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseProjectView extends JPanel implements PropertyChangeListener, ActionListener {
-    private User user;
     private final ChooseProjectViewModel chooseProjectViewModel;
     private final ChooseProjectController chooseProjectController;
     private final JButton enter;
     private final JComboBox<String> projectList;
     private final List<Project> projects;
+    private User user;
 
     public ChooseProjectView(ViewManagerModel viewManagerModel, AddProjectViewModel addProjectViewModel,
-            ChooseProjectViewModel chooseProjectViewModel, ChooseProjectController chooseProjectController) {
+                             ChooseProjectViewModel chooseProjectViewModel, ChooseProjectController chooseProjectController) {
         this.chooseProjectViewModel = chooseProjectViewModel;
         this.chooseProjectController = chooseProjectController;
         chooseProjectViewModel.addPropertyChangeListener(this);
@@ -95,7 +95,9 @@ public class ChooseProjectView extends JPanel implements PropertyChangeListener,
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!e.getSource().equals(enter)) {return;}
+        if (!e.getSource().equals(enter)) {
+            return;
+        }
         chooseProjectController.execute(projects.get(projectList.getSelectedIndex()));
     }
 

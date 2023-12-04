@@ -11,15 +11,15 @@ public class AddToDoViewModel extends ViewModel {
     public static final String CREATE_TODO = "create todo";
     public static final String NAME_IPF = "Create a Target";
     public static final String ADD_TODO_TITLE_LABEL = "Create a ToDo";
-    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     private final AddToDoState addToDoState = new AddToDoState();
-
-    public AddToDoState getState() {
-        return addToDoState;
-    }
+    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public AddToDoViewModel() {
         super("add todo");
+    }
+
+    public AddToDoState getState() {
+        return addToDoState;
     }
 
     @Override
@@ -30,6 +30,8 @@ public class AddToDoViewModel extends ViewModel {
     public void firePropertyChanged(String propertyName) {
         propertyChangeSupport.firePropertyChange(propertyName, null, addToDoState);
     }
+
     @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {}
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+    }
 }

@@ -20,18 +20,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ToDoListView extends JPanel implements PropertyChangeListener {
-    private long projectID;
-    private ToDoList toDoList;
     private final ToDoListViewModel toDoListViewModel;
     private final JButton backToHome;
     private final JButton addNewToDo;
     private final JButton goBack;
-    private JLabel newToDoList;
-    private JPanel toDoViews;
     private final JTextField nameInputField = new JTextField();
     private final ToDoListController toDoListController;
-    private Map<JCheckBox, ToDo> buttonToDoMap = new HashMap<>();
     private final AddToDoViewModel addToDoViewModel;
+    private long projectID;
+    private ToDoList toDoList;
+    private JLabel newToDoList;
+    private JPanel toDoViews;
+    private Map<JCheckBox, ToDo> buttonToDoMap = new HashMap<>();
 
     public ToDoListView(ViewManagerModel viewManagerModel,
                         ToDoListViewModel toDoListViewModel,
@@ -88,6 +88,7 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
         this.add(Box.createVerticalGlue());
         this.add(buttons);
     }
+
     /**
      * (general) This method gets called when a bound property is changed.
      * FOR VIEW, see case IMPORT_TODO and case IMPORT_SINGLE_TODO.
@@ -144,6 +145,7 @@ public class ToDoListView extends JPanel implements PropertyChangeListener {
             }
         }
     }
+
     public String getViewName() {
         return toDoListViewModel.getViewName();
     }

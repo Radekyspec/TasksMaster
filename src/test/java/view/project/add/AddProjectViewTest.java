@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddProjectViewTest {
     private AddProjectView addProjectView;
@@ -33,11 +33,13 @@ class AddProjectViewTest {
     @Test
     void propertyChange() {
         addProjectViewModel.getState().setAddError("error message test");
-        Timer t = new Timer(1000, e -> {for (Window window : Window.getWindows()) {
-            if (window instanceof JDialog) {
-                window.dispose();
+        Timer t = new Timer(1000, e -> {
+            for (Window window : Window.getWindows()) {
+                if (window instanceof JDialog) {
+                    window.dispose();
+                }
             }
-        }});
+        });
         addProjectViewModel.firePropertyChanged();
     }
 

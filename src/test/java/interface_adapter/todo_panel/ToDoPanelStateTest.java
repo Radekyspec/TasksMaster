@@ -1,10 +1,10 @@
 package interface_adapter.todo_panel;
 
-import entities.todo_panel.ToDoPanel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ToDoPanelStateTest {
     private ToDoPanelState state;

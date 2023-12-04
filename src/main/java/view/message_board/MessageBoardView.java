@@ -25,10 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MessageBoardView extends JPanel implements ActionListener, PropertyChangeListener {
-    private long projectID;
-    private long messageBoardID;
-    private MessageBoard messageBoard;
-    private User user;
     private final ViewManagerModel viewManagerModel;
     private final MainProjectViewModel mainProjectViewModel;
     private final MessageBoardViewModel messageBoardViewModel;
@@ -38,6 +34,10 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
     private final JButton addNewMessage;
     private final JPanel messages;
     private final Map<JButton, Message> buttonToMessage;
+    private long projectID;
+    private long messageBoardID;
+    private MessageBoard messageBoard;
+    private User user;
 
     public MessageBoardView(ViewManagerModel viewManagerModel, MainProjectViewModel mainProjectViewModel, MessageBoardViewModel messageBoardViewModel,
                             AddNewMessageViewModel addNewMessageViewModel, MessageViewModel messageViewModel,
@@ -128,20 +128,21 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
                 this.messageBoardID = state.getMessageBoardID();
                 messages.removeAll();
                 messageBoardController.getMessages(projectID, messageBoardID);
-            } case MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL -> {
+            }
+            case MessageBoardViewModel.ADD_NEW_MESSAGE_LABEL -> {
                 Message message = state.getMessage();
                 JButton messageButton = new JButtonWithFont(message.getAuthor() + ": " + message.getTitle());
                 messageButton.setAlignmentX(CENTER_ALIGNMENT);
                 messageBoard.setMessage(message);
                 buttonToMessage.put(messageButton, message);
                 messageButton.addActionListener(this);
-                messageButton.setPreferredSize(new Dimension(100,35));
+                messageButton.setPreferredSize(new Dimension(100, 35));
                 messages.add(messageButton);
             }
         }
     }
 
-    public String getViewName(){
+    public String getViewName() {
         return messageBoardViewModel.getViewName();
     }
 }

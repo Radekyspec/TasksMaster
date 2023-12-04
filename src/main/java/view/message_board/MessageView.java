@@ -74,7 +74,7 @@ public class MessageView extends JPanel implements PropertyChangeListener {
         addCommentPanel.add(addThisComment);
         addThisComment.addActionListener(
                 e -> {
-                    if (!e.getSource().equals(addThisComment)){
+                    if (!e.getSource().equals(addThisComment)) {
                         return;
                     }
                     addComment.setText("");
@@ -116,7 +116,7 @@ public class MessageView extends JPanel implements PropertyChangeListener {
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        switch (evt.getPropertyName()){
+        switch (evt.getPropertyName()) {
             case MessageViewModel.SET_MESSAGE -> {
                 MessageState state = (MessageState) evt.getNewValue();
                 commentBoard.removeAll();
@@ -145,7 +145,7 @@ public class MessageView extends JPanel implements PropertyChangeListener {
         }
     }
 
-    public String getViewName(){
+    public String getViewName() {
         return messageViewModel.getViewName();
     }
 }
