@@ -1,7 +1,6 @@
 package view.todo_list;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.todo_list.ToDoListViewModel;
 import interface_adapter.todo_list.add.AddToDoListController;
 import interface_adapter.todo_list.add.AddToDoListState;
 import interface_adapter.todo_list.add.AddToDoListViewModel;

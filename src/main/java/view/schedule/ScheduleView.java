@@ -1,18 +1,15 @@
 package view.schedule;
 
-import entities.event.Event;
 import entities.schedule.Schedule;
 import entities.user.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.project.MainProjectViewModel;
-import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.schedule.ScheduleController;
 import interface_adapter.schedule.ScheduleState;
-import interface_adapter.schedule.event.AddEventState;
+import interface_adapter.schedule.ScheduleViewModel;
 import interface_adapter.schedule.event.AddEventViewModel;
 import view.JButtonWithFont;
 import view.JLabelWithFont;
-import interface_adapter.schedule.ScheduleViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +21,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
 public class ScheduleView extends JPanel implements ActionListener, PropertyChangeListener{
     private User user;
