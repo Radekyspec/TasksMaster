@@ -10,7 +10,7 @@ import interface_adapter.todo_panel.ToDoPanelViewModel;
 import view.project.MainProjectView;
 
 public class ProjectUseCaseFactory {
-    public ProjectUseCaseFactory(){}
+    private ProjectUseCaseFactory(){}
 
     public static MainProjectView create(ViewManagerModel viewManagerModel, ChooseProjectViewModel chooseProjectViewModel, MainProjectViewModel mainProjectViewModel,
                                          MessageBoardViewModel messageBoardViewModel,

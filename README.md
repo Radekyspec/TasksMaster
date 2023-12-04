@@ -34,33 +34,3 @@ We are able to create todo-lists, which contains several todos. All todo-list wi
 For message board, we create the message. You can also comment asides the message, comments will have author and the content.
 We can create schedules, every member can know daliy tasks. Each tasks will have a start time and end time, and also, every crews involved will be notify. Every members can also add some private tasks in their schedule.
 
-@startuml
-class LoginView extends JPanel implements ActionListener, PropertyChangeListener{
-+String viewName
--final LoginViewModel loginViewModel
--LoginController loginController
-+void LoginView()
-+void actionPerformed()
-+void propertyChange()
--void setFields()
-}
-class LoginController{
--LoginInputBoundary loginUseCaseInteractor
-+void execute()
-}
-Interface LoginInputBoundary
-class LoginInteractor implements LoginInputBoundary{
--LoginUserDataAccessInterface userDataAccessObject
--LoginOutputBoundary loginPresenter
-+LoginInteractor()
-+execute()
-}
-class LoginPresenter{
--LoginViewModel loginViewModel
--LoggedInViewModel loggedInViewModel
--ViewManagerModel viewManagerModel
-+LoginPresenter()
-+prepareSuccessView()
-+prepareFailView()
-}
-@enduml

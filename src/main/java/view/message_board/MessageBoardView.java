@@ -87,6 +87,7 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
         this.add(messageHere);
         this.add(Box.createVerticalGlue());
         this.add(messages);
+        this.add(Box.createVerticalGlue());
         JPanel bottom = new JPanel();
         bottom.add(addNewMessage);
         bottom.add(back);
@@ -100,9 +101,6 @@ public class MessageBoardView extends JPanel implements ActionListener, Property
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!buttonToMessage.containsKey((JButton) e.getSource())) {
-            return;
-        }
         Message message = buttonToMessage.get((JButton) e.getSource());
         MessageState state = messageViewModel.getState();
         state.setMessage(message);
